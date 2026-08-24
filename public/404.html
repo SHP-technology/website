@@ -1,11 +1,22 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
   <head>
-    <meta charset="utf-8" />
-    <title>SHP Technology — Redirecting...</title>
-    <script>
-      // Simple redirect for legacy path links back to Hash Router root
-      window.location.replace(window.location.origin + window.location.pathname.split('/').slice(0, 2).join('/') + '/#/');
+    <meta charset="utf-8">
+    <title>SHP Technology — Software Development Company</title>
+    <script type="text/javascript">
+      // Single Page Apps for GitHub Pages
+      // MIT License
+      // https://github.com/rafgraph/spa-github-pages
+      var pathSegmentsToKeep = 1;
+
+      var l = window.location;
+      l.replace(
+        l.protocol + '//' + l.hostname + (l.port ? ':' + l.port : '') +
+        l.pathname.split('/').slice(0, 1 + pathSegmentsToKeep).join('/') + '/?/' +
+        l.pathname.slice(1).split('/').slice(pathSegmentsToKeep).join('/') +
+        (l.search ? '&' + l.search.slice(1) : '') +
+        l.hash
+      );
     </script>
   </head>
   <body>
