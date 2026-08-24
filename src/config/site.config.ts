@@ -25,8 +25,11 @@ export interface CompanyConfig {
   };
   socials: {
     linkedin: string;
+    instagram: string;
+    facebook: string;
     github: string;
     twitter: string;
+    indeed: string;
   };
   site: {
     url: string;
@@ -66,9 +69,12 @@ export const siteConfig: CompanyConfig = {
     responseSLA: '4 business hours'
   },
   socials: {
-    linkedin: 'https://linkedin.com/company/shp-technologies',
+    linkedin: 'https://www.linkedin.com/in/shp-technology-5b8ba1430/?utm_source=linkedin&utm_medium=social&utm_campaign=shp_technology',
+    instagram: 'https://www.instagram.com/founder.shp/?utm_source=instagram&utm_medium=social&utm_campaign=shp_technology',
+    facebook: 'https://www.facebook.com/profile.php?id=61593774120280&utm_source=facebook&utm_medium=social&utm_campaign=shp_technology',
     github: 'https://github.com/sandeshPatel06',
-    twitter: 'https://twitter.com/shptech'
+    twitter: 'https://twitter.com/shptech',
+    indeed: 'https://in.indeed.com/job/senior-sales-executive-a12c481dc18fc1c2?utm_source=indeed&utm_medium=job_portal&utm_campaign=shp_recruitment'
   },
   site: {
     url: 'https://sandeshpatel06.github.io/website/',
