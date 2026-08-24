@@ -1,0 +1,80 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 450 160" fill="none">
+  <defs>
+    <linearGradient id="shpGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0284C7" />
+      <stop offset="50%" stop-color="#0284C7" />
+      <stop offset="100%" stop-color="#1E40AF" />
+    </linearGradient>
+    <linearGradient id="ribbonGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#38BDF8" />
+      <stop offset="100%" stop-color="#0284C7" />
+    </linearGradient>
+  </defs>
+
+  <!-- Speed Lines on the left of S -->
+  <circle cx="18" cy="48" r="4" fill="#0284C7" opacity="0.9" />
+  <circle cx="32" cy="48" r="4" fill="#0284C7" />
+  <rect x="42" y="44" width="40" height="8" rx="4" fill="#0284C7" />
+
+  <circle cx="12" cy="64" r="4" fill="#38BDF8" />
+  <rect x="22" y="60" width="70" height="8" rx="4" fill="url(#shpGradient)" />
+
+  <circle cx="28" cy="80" r="4" fill="#0284C7" opacity="0.8" />
+  <rect x="38" y="76" width="30" height="8" rx="4" fill="#0284C7" />
+
+  <!-- S Letter -->
+  <path
+    d="M 160 40 C 120 20, 80 40, 80 64 C 80 90, 160 85, 120 110 C 95 125, 60 115, 50 100"
+    stroke="url(#shpGradient)"
+    stroke-width="26"
+    stroke-linecap="round"
+    fill="none"
+  />
+
+  <!-- H Letter -->
+  <path
+    d="M 180 30 V 110 M 245 30 V 110"
+    stroke="url(#shpGradient)"
+    stroke-width="24"
+    stroke-linecap="round"
+  />
+  <!-- Connecting Ribbon Wave -->
+  <path
+    d="M 160 72 C 190 50, 220 90, 260 55"
+    stroke="url(#ribbonGradient)"
+    stroke-width="14"
+    stroke-linecap="round"
+    fill="none"
+  />
+
+  <!-- P Letter with Code Slash Symbol Inside -->
+  <path
+    d="M 275 30 V 110 M 275 30 H 330 C 365 30, 365 75, 330 75 H 275"
+    stroke="url(#shpGradient)"
+    stroke-width="24"
+    stroke-linecap="round"
+    stroke-linejoin="round"
+    fill="none"
+  />
+
+  <!-- Code Symbol </> inside the P loop -->
+  <g stroke="#0284C7" stroke-width="4" stroke-linecap="round" stroke-linejoin="round">
+    <polyline points="308 46, 302 52, 308 58" />
+    <line x1="316" y1="44" x2="310" y2="60" />
+    <polyline points="318 46, 324 52, 318 58" />
+  </g>
+
+  <!-- Subtitle Text: TECHNOLOGY -->
+  <text
+    x="210"
+    y="142"
+    text-anchor="middle"
+    font-family="Inter, sans-serif"
+    font-weight="900"
+    font-size="28"
+    letter-spacing="6"
+    fill="#0F172A"
+  >
+    TECHNOLOGY
+  </text>
+</svg>
