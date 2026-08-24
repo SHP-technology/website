@@ -42,36 +42,36 @@ export interface CompanyConfig {
 
 export const siteConfig: CompanyConfig = {
   name: 'SHP Technology',
-  legalName: 'SHP Technology LLC',
+  legalName: 'SHP Technology Inc.',
   shortName: 'SHP.',
   tagline: 'Software Development Company — Build • Automate • Grow',
   subTagline: 'Software Development Company',
   motto: 'Build • Automate • Grow',
   description: 'SHP Technology is a premier software development company specializing in custom enterprise software, cloud architecture, automation pipelines, and modern web applications.',
   founded: '2019',
-  headquarters: 'San Francisco, CA & Remote Global',
-  email: 'contact@shptechnologies.example.com',
-  phone: '+1 (415) 890-2341',
+  headquarters: 'Madan Mahal Station, Jabalpur, MP & Remote Global',
+  email: import.meta.env.VITE_SITE_EMAIL || 'founder.shp@gmail.com',
+  phone: import.meta.env.VITE_SITE_PHONE || '+91 9301885654',
   officeLocation: {
-    address: '500 Howard Street, Suite 400',
-    city: 'San Francisco',
-    state: 'CA',
-    zip: '94105',
-    country: 'United States'
+    address: import.meta.env.VITE_SITE_ADDRESS || '1st floor, SHP Technology, Near Underground Bridge, Madan Mahal Station',
+    city: 'Jabalpur',
+    state: 'Madhya Pradesh',
+    zip: '482001',
+    country: 'India'
   },
   contact: {
-    email: 'contact@shptechnologies.example.com',
-    phone: '+1 (415) 890-2341',
-    supportEmail: 'support@shptechnologies.example.com',
+    email: import.meta.env.VITE_SITE_EMAIL || 'founder.shp@gmail.com',
+    phone: import.meta.env.VITE_SITE_PHONE || '+91 9301885654',
+    supportEmail: import.meta.env.VITE_SITE_EMAIL || 'founder.shp@gmail.com',
     responseSLA: '4 business hours'
   },
   socials: {
     linkedin: 'https://linkedin.com/company/shp-technologies',
-    github: 'https://github.com/shp-tech',
+    github: 'https://github.com/sandeshPatel06',
     twitter: 'https://twitter.com/shptech'
   },
   site: {
-    url: 'https://shptechnologies.example.com',
+    url: 'https://sandeshpatel06.github.io/website/',
     apiUrl: 'https://api.shptechnologies.example.com',
     analyticsId: 'G-SHP12345'
   },

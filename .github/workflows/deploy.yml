@@ -25,6 +25,11 @@ jobs:
         run: npm ci
 
       - name: Build Vue Project
+        env:
+          VITE_SITE_EMAIL: ${{ vars.VITE_SITE_EMAIL || 'founder.shp@gmail.com' }}
+          VITE_SITE_PHONE: ${{ vars.VITE_SITE_PHONE || '+91 9301885654' }}
+          VITE_SITE_ADDRESS: ${{ vars.VITE_SITE_ADDRESS || '1st floor, SHP Technology, Near Underground Bridge, Madan Mahal Station' }}
+          VITE_GOOGLE_SHEET_WEBHOOK_URL: ${{ vars.VITE_GOOGLE_SHEET_WEBHOOK_URL }}
         run: |
           npm run build
           cp dist/index.html dist/404.html
