@@ -69,7 +69,7 @@
     <BaseTextarea
       id="applicant-cover"
       v-model="form.cover"
-      label="Cover Message / Why Nexus?"
+      label="Cover Message / Why SHP Technology?"
       placeholder="Briefly describe your relevant technical projects and why you would thrive in this position..."
       :rows="4"
       required

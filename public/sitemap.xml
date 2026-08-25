@@ -5,43 +5,43 @@
                             http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
   <!-- Core Main Pages -->
   <url>
-    <loc>https://shptechnologies.example.com/</loc>
+    <loc>https://shptech.vercel.app/</loc>
     <lastmod>2026-08-24</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://shptechnologies.example.com/about</loc>
+    <loc>https://shptech.vercel.app/about</loc>
     <lastmod>2026-08-24</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://shptechnologies.example.com/services</loc>
+    <loc>https://shptech.vercel.app/services</loc>
     <lastmod>2026-08-24</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://shptechnologies.example.com/portfolio</loc>
+    <loc>https://shptech.vercel.app/portfolio</loc>
     <lastmod>2026-08-24</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://shptechnologies.example.com/careers</loc>
+    <loc>https://shptech.vercel.app/careers</loc>
     <lastmod>2026-08-24</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://shptechnologies.example.com/demo</loc>
+    <loc>https://shptech.vercel.app/demo</loc>
     <lastmod>2026-08-24</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://shptechnologies.example.com/contact</loc>
+    <loc>https://shptech.vercel.app/contact</loc>
     <lastmod>2026-08-24</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
@@ -49,31 +49,31 @@
 
   <!-- Service Detail Pages -->
   <url>
-    <loc>https://shptechnologies.example.com/services/custom-software</loc>
+    <loc>https://shptech.vercel.app/services/custom-software</loc>
     <lastmod>2026-08-24</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://shptechnologies.example.com/services/cloud-infrastructure</loc>
+    <loc>https://shptech.vercel.app/services/cloud-infrastructure</loc>
     <lastmod>2026-08-24</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://shptechnologies.example.com/services/ai-solutions</loc>
+    <loc>https://shptech.vercel.app/services/ai-solutions</loc>
     <lastmod>2026-08-24</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://shptechnologies.example.com/services/microservices-architecture</loc>
+    <loc>https://shptech.vercel.app/services/microservices-architecture</loc>
     <lastmod>2026-08-24</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://shptechnologies.example.com/services/security-audit</loc>
+    <loc>https://shptech.vercel.app/services/security-audit</loc>
     <lastmod>2026-08-24</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
@@ -81,25 +81,25 @@
 
   <!-- Case Study Portfolio Pages -->
   <url>
-    <loc>https://shptechnologies.example.com/portfolio/fintech-realtime-payment-engine</loc>
+    <loc>https://shptech.vercel.app/portfolio/fintech-realtime-payment-engine</loc>
     <lastmod>2026-08-24</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://shptechnologies.example.com/portfolio/healthcare-rag-knowledge-platform</loc>
+    <loc>https://shptech.vercel.app/portfolio/healthcare-rag-knowledge-platform</loc>
     <lastmod>2026-08-24</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://shptechnologies.example.com/portfolio/logistics-fleet-telematics</loc>
+    <loc>https://shptech.vercel.app/portfolio/logistics-fleet-telematics</loc>
     <lastmod>2026-08-24</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://shptechnologies.example.com/portfolio/enterprise-saas-multi-tenant</loc>
+    <loc>https://shptech.vercel.app/portfolio/enterprise-saas-multi-tenant</loc>
     <lastmod>2026-08-24</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
@@ -107,19 +107,19 @@
 
   <!-- Career Job Openings -->
   <url>
-    <loc>https://shptechnologies.example.com/careers/staff-fullstack-engineer-vue-node</loc>
+    <loc>https://shptech.vercel.app/careers/staff-fullstack-engineer-vue-node</loc>
     <lastmod>2026-08-24</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://shptechnologies.example.com/careers/senior-cloud-devops-architect</loc>
+    <loc>https://shptech.vercel.app/careers/senior-cloud-devops-architect</loc>
     <lastmod>2026-08-24</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://shptechnologies.example.com/careers/ai-rag-solutions-engineer</loc>
+    <loc>https://shptech.vercel.app/careers/ai-rag-solutions-engineer</loc>
     <lastmod>2026-08-24</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>

@@ -10,7 +10,7 @@ export interface TestimonialItem {
 export const testimonialsData: TestimonialItem[] = [
   {
     id: 't-1',
-    quote: 'Nexus Technologies delivered our payment processing microservice months ahead of schedule. Their focus on high-availability architecture and automated testing saved us from major outage risks during Black Friday.',
+    quote: 'SHP Technology delivered our payment processing microservice months ahead of schedule. Their focus on high-availability architecture and automated testing saved us from major outage risks during Black Friday.',
     author: 'Elena Rostova',
     role: 'VP of Engineering',
     company: 'PayFlow Global',
@@ -18,7 +18,7 @@ export const testimonialsData: TestimonialItem[] = [
   },
   {
     id: 't-2',
-    quote: 'The HIPAA-compliant RAG AI solution built by Nexus transformed how our medical staff interacts with clinical records. The performance, security, and developer craftsmanship were unmatched.',
+    quote: 'The HIPAA-compliant RAG AI solution built by SHP Technology transformed how our medical staff interacts with clinical records. The performance, security, and developer craftsmanship were unmatched.',
     author: 'Dr. Marcus Vance',
     role: 'Chief Medical Information Officer',
     company: 'Apex Health Systems',
@@ -26,7 +26,7 @@ export const testimonialsData: TestimonialItem[] = [
   },
   {
     id: 't-3',
-    quote: 'Working with Nexus feels like having a senior in-house core architecture team. They take full ownership of complex cloud infrastructure challenges and explain every decision clearly.',
+    quote: 'Working with SHP Technology feels like having a senior in-house core architecture team. They take full ownership of complex cloud infrastructure challenges and explain every decision clearly.',
     author: 'David Chen',
     role: 'CTO',
     company: 'TransWorld Logistics',

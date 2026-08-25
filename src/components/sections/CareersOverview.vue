@@ -7,7 +7,7 @@
     <div class="careers-overview-grid">
       <!-- Culture Value Highlights -->
       <div class="culture-box">
-        <h3 class="box-title">Why Join Nexus?</h3>
+        <h3 class="box-title">Why Join SHP Technology?</h3>
         <div class="values-list">
           <div v-for="val in companyCultureValues" :key="val.title" class="val-item">
             <div class="val-icon">✓</div>

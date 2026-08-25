@@ -79,22 +79,22 @@ useSeoMeta({
 
 const team = [
   {
-    name: 'David Sterling',
-    initials: 'DS',
-    role: 'Chief Executive Officer & Founder',
-    bio: 'Former VP of Infrastructure at CloudScale. 15+ years experience building distributed backend engines and cloud platforms.'
+    name: 'Sandesh Patel',
+    initials: 'SP',
+    role: 'Founder & Lead Full-Stack Developer',
+    bio: 'Associate Developer at REAK INFOTECH and Cybersecurity Enthusiast. Expert in building modern web applications and type-safe systems.'
   },
   {
     name: 'Dr. Aris Thorne',
     initials: 'AT',
-    role: 'Chief Technology Officer',
-    bio: 'Distributed systems researcher and former Principal Architect. Expert in High-Throughput Kafka streaming and Go microservices.'
+    role: 'Principal Cloud Systems Advisor',
+    bio: 'Distributed systems researcher. Expert in High-Throughput Kafka streaming, Go microservices, and Kubernetes architecture.'
   },
   {
     name: 'Sarah Lin',
     initials: 'SL',
-    role: 'Head of Product Design & Frontend Architecture',
-    bio: 'Specialist in Vue 3 component architecture, accessible UI design systems, and enterprise design token orchestration.'
+    role: 'Frontend Architect & UI Designer',
+    bio: 'Specialist in Vue 3 component architecture, accessible design systems, and enterprise UX orchestration.'
   }
 ];
 </script>

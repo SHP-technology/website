@@ -23,7 +23,7 @@ export const jobsData: JobItem[] = [
     employmentType: 'Full-time',
     experienceLevel: '6+ Years',
     shortDescription: 'Lead the architecture and implementation of enterprise web applications using Vue 3, TypeScript, and modern Node.js backends.',
-    fullDescription: 'As a Staff Full-Stack Engineer at Nexus Technologies, you will lead high-impact engineering projects for top-tier enterprise clients. You will design scalable web applications, mentor mid-level developers, and drive technical excellence across our engineering teams.',
+    fullDescription: 'As a Staff Full-Stack Engineer at SHP Technology, you will lead high-impact engineering projects for top-tier enterprise clients. You will design scalable web applications, mentor mid-level developers, and drive technical excellence across our engineering teams.',
     responsibilities: [
       'Architect robust, responsive frontend applications in Vue 3 (Composition API, TypeScript)',
       'Design clean RESTful and GraphQL APIs in Node.js and PostgreSQL',

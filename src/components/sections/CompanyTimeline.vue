@@ -37,7 +37,7 @@ import SectionContainer from '@/components/layout/SectionContainer.vue';
 const milestones = [
   {
     year: '2019',
-    title: 'Company Founding in San Francisco',
+    title: 'Company Founding in Jabalpur',
     description: 'Established SHP Technology with a focus on senior cloud-native engineering and high-availability architecture consultancy.',
     highlights: ['First 5 Enterprise Clients', 'AWS Partner Network']
   },
