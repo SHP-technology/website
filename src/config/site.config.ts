@@ -78,7 +78,7 @@ export const siteConfig: CompanyConfig = {
   },
   site: {
     url: 'https://shptech.vercel.app/',
-    apiUrl: 'https://api.shptechnologies.example.com',
+    apiUrl: 'https://api.shptech.vercel.app',
     analyticsId: 'G-SHP12345'
   },
   metrics: [

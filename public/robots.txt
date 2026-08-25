@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://shptechnologies.example.com/sitemap.xml
+Sitemap: https://shptech.vercel.app/sitemap.xml
