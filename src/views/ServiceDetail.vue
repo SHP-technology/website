@@ -83,12 +83,25 @@ import { useSeoMeta } from '@/composables/useSeoMeta';
 const route = useRoute();
 const service = computed(() => servicesData.find((s) => s.slug === route.params.slug));
 
-if (service.value) {
-  useSeoMeta({
-    title: service.value.title,
-    description: service.value.shortDescription
-  });
-}
+useSeoMeta(() => service.value
+  ? {
+      title: service.value.title,
+      description: service.value.shortDescription,
+      keywords: `${service.value.title}, software development services, ${service.value.technologies.join(', ')}`,
+      jsonLd: {
+        '@context': 'https://schema.org',
+        '@type': 'Service',
+        name: service.value.title,
+        description: service.value.shortDescription,
+        provider: { '@type': 'Organization', name: 'SHP Technology' },
+        areaServed: 'Worldwide'
+      }
+    }
+  : {
+      title: 'Service Not Found',
+      description: 'The requested SHP Technology service page could not be found.',
+      noIndex: true
+    });
 </script>
 
 <style scoped>

@@ -36,11 +36,6 @@ import FaqAccordion from '@/components/common/FaqAccordion.vue';
 import CtaBanner from '@/components/sections/CtaBanner.vue';
 import { useSeoMeta } from '@/composables/useSeoMeta';
 
-useSeoMeta({
-  title: 'Enterprise Software & Cloud Engineering Firm',
-  description: 'SHP Technology engineers high-performance enterprise software, distributed cloud systems, and AI integration for leading technology organizations.'
-});
-
 const homeFaqs = [
   {
     question: 'How quickly can your engineering team onboard and begin development?',
@@ -59,4 +54,19 @@ const homeFaqs = [
     answer: 'Yes. We offer 24/7 Site Reliability Engineering (SRE) monitoring, zero-downtime deployment maintenance, and guaranteed response SLAs.'
   }
 ];
+
+useSeoMeta({
+  title: 'Enterprise Software & Cloud Engineering Firm',
+  description: 'SHP Technology builds custom software, cloud infrastructure, and practical AI integrations for growing businesses.',
+  keywords: 'custom software development, web application development, cloud infrastructure, AI integration, Jabalpur software company',
+  jsonLd: {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: homeFaqs.map(({ question, answer }) => ({
+      '@type': 'Question',
+      name: question,
+      acceptedAnswer: { '@type': 'Answer', text: answer }
+    }))
+  }
+});
 </script>

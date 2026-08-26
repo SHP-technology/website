@@ -34,6 +34,7 @@
           type="button"
           class="p-2 rounded-lg border border-gray-200 dark:border-zinc-800 text-darkText dark:text-white flex items-center justify-center"
           :aria-expanded="mobileMenuOpen"
+          aria-controls="mobile-navigation"
           aria-label="Toggle navigation menu"
           @click="mobileMenuOpen = !mobileMenuOpen"
         >
@@ -46,8 +47,8 @@
     <!-- Mobile Drawer Overlay -->
     <Transition name="drawer">
       <div v-if="mobileMenuOpen" class="fixed inset-x-0 top-[80px] h-[calc(100vh-80px)] bg-darkText/40 backdrop-blur-sm z-[899] lg:hidden" @click.self="mobileMenuOpen = false">
-        <div class="bg-white dark:bg-zinc-900 p-6 border-b border-gray-200 dark:border-zinc-800 flex flex-col gap-6 shadow-xl">
-          <nav class="flex flex-col gap-4">
+        <div id="mobile-navigation" class="bg-white dark:bg-zinc-900 p-6 border-b border-gray-200 dark:border-zinc-800 flex flex-col gap-6 shadow-xl">
+          <nav class="flex flex-col gap-4" aria-label="Mobile navigation">
             <router-link to="/" class="text-lg font-semibold text-darkText dark:text-white py-2 border-b border-gray-100 dark:border-zinc-800" @click="mobileMenuOpen = false">Home</router-link>
             <router-link to="/about" class="text-lg font-semibold text-darkText dark:text-white py-2 border-b border-gray-100 dark:border-zinc-800" @click="mobileMenuOpen = false">About</router-link>
             <router-link to="/services" class="text-lg font-semibold text-darkText dark:text-white py-2 border-b border-gray-100 dark:border-zinc-800" @click="mobileMenuOpen = false">Services</router-link>
@@ -67,7 +68,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref, onMounted, onUnmounted } from 'vue';
+import { ref, watch, onMounted, onUnmounted } from 'vue';
 import BaseButton from '@/components/common/BaseButton.vue';
 import AppLogo from '@/components/common/AppLogo.vue';
 import ThemeToggle from '@/components/common/ThemeToggle.vue';
@@ -79,12 +80,24 @@ const handleScroll = () => {
   isScrolled.value = window.scrollY > 20;
 };
 
+const closeOnEscape = (event: KeyboardEvent) => {
+  if (event.key === 'Escape') mobileMenuOpen.value = false;
+};
+
+watch(mobileMenuOpen, (isOpen) => {
+  document.body.style.overflow = isOpen ? 'hidden' : '';
+});
+
 onMounted(() => {
-  window.addEventListener('scroll', handleScroll);
+  handleScroll();
+  window.addEventListener('scroll', handleScroll, { passive: true });
+  window.addEventListener('keydown', closeOnEscape);
 });
 
 onUnmounted(() => {
   window.removeEventListener('scroll', handleScroll);
+  window.removeEventListener('keydown', closeOnEscape);
+  document.body.style.overflow = '';
 });
 </script>
 

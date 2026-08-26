@@ -3,6 +3,9 @@
     <img
       src="/assets/image.png"
       alt="SHP Technology — Software Development Company"
+      width="64"
+      height="64"
+      decoding="async"
       :class="[
         sizeClass,
         'object-contain transition-transform duration-300 group-hover:scale-105 rounded-full'

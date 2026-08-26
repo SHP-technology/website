@@ -21,11 +21,13 @@
 
         <!-- Quick Newsletter Box -->
         <div class="w-full max-w-sm mt-4">
-          <label class="text-xs font-bold text-secondaryText block mb-2 uppercase tracking-wider">Subscribe to Our Tech Newsletter</label>
+          <label for="newsletter-email" class="text-xs font-bold text-secondaryText block mb-2 uppercase tracking-wider">Subscribe to Our Tech Newsletter</label>
           <form class="flex gap-2" @submit.prevent="handleSubscribe">
             <input
               type="email"
+              id="newsletter-email"
               v-model="subscriberEmail"
+              autocomplete="email"
               placeholder="Enter your work email"
               required
               :disabled="isSubmitting"
@@ -40,8 +42,8 @@
               <span>{{ isSubmitting ? 'Submitting...' : 'Subscribe' }}</span>
             </button>
           </form>
-          <span v-if="subscribed" class="text-[11px] text-emerald-400 font-semibold block mt-1.5">✓ Saved to subscribers list! Thank you.</span>
-          <span v-if="errorMessage" class="text-[11px] text-rose-400 font-semibold block mt-1.5">{{ errorMessage }}</span>
+          <span v-if="subscribed" role="status" class="text-[11px] text-emerald-400 font-semibold block mt-1.5">✓ Saved to subscribers list! Thank you.</span>
+          <span v-if="errorMessage" role="alert" class="text-[11px] text-rose-400 font-semibold block mt-1.5">{{ errorMessage }}</span>
         </div>
       </div>
 
@@ -51,11 +53,11 @@
           <span class="w-1.5 h-1.5 rounded-full bg-brand-yellow"></span>
           Services
         </h4>
-        <router-link to="/services/custom-software" class="text-secondaryText hover:text-brand-hover text-sm transition-all hover:translate-x-1">Custom Enterprise Apps</router-link>
-        <router-link to="/services/cloud-infrastructure" class="text-secondaryText hover:text-brand-hover text-sm transition-all hover:translate-x-1">Cloud & Kubernetes DevOps</router-link>
-        <router-link to="/services/ai-solutions" class="text-secondaryText hover:text-brand-hover text-sm transition-all hover:translate-x-1">AI RAG & Vector Engines</router-link>
-        <router-link to="/services/microservices-architecture" class="text-secondaryText hover:text-brand-hover text-sm transition-all hover:translate-x-1">Microservices Architecture</router-link>
-        <router-link to="/services/security-audit" class="text-secondaryText hover:text-brand-hover text-sm transition-all hover:translate-x-1">Security & Code Compliance</router-link>
+        <router-link to="/services/enterprise-software-development" class="text-secondaryText hover:text-brand-hover text-sm transition-all hover:translate-x-1">Custom Enterprise Apps</router-link>
+        <router-link to="/services/cloud-architecture-devops" class="text-secondaryText hover:text-brand-hover text-sm transition-all hover:translate-x-1">Cloud & Kubernetes DevOps</router-link>
+        <router-link to="/services/ai-machine-learning-integration" class="text-secondaryText hover:text-brand-hover text-sm transition-all hover:translate-x-1">AI RAG & Vector Engines</router-link>
+        <router-link to="/services/distributed-systems-modernization" class="text-secondaryText hover:text-brand-hover text-sm transition-all hover:translate-x-1">Microservices Architecture</router-link>
+        <router-link to="/services/cybersecurity-compliance-audit" class="text-secondaryText hover:text-brand-hover text-sm transition-all hover:translate-x-1">Security & Code Compliance</router-link>
       </div>
 
       <!-- Company Links -->

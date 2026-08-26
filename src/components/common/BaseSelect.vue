@@ -6,10 +6,13 @@
     </label>
     <select
       :id="id"
+      :name="name || id"
       :value="modelValue"
       :required="required"
       :disabled="disabled"
       :class="['form-select', { 'has-error': error }]"
+      :aria-invalid="Boolean(error)"
+      :aria-describedby="error ? `${id}-error` : undefined"
       @change="handleChange"
       @blur="$emit('blur', $event)"
     >
@@ -22,7 +25,7 @@
         {{ opt.label }}
       </option>
     </select>
-    <span v-if="error" class="form-error">{{ error }}</span>
+    <span v-if="error" :id="`${id}-error`" class="form-error">{{ error }}</span>
   </div>
 </template>
 
@@ -37,6 +40,7 @@ defineProps<{
   modelValue: string;
   options: SelectOption[];
   label?: string;
+  name?: string;
   placeholder?: string;
   required?: boolean;
   disabled?: boolean;

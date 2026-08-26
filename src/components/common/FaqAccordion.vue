@@ -9,6 +9,7 @@
         type="button"
         class="w-full px-6 py-5 flex items-center justify-between text-left font-bold text-lg text-darkText dark:text-white hover:text-brand-hover dark:hover:text-brand-yellow transition-colors"
         :aria-expanded="openIndex === index"
+        :aria-controls="`faq-answer-${index}`"
         @click="toggle(index)"
       >
         <span>{{ item.question }}</span>
@@ -18,7 +19,7 @@
       </button>
 
       <Transition name="accordion">
-        <div v-if="openIndex === index" class="px-6 pb-6 text-gray-600 dark:text-zinc-300 text-base leading-relaxed border-t border-gray-100 dark:border-zinc-800/60 pt-4">
+        <div v-if="openIndex === index" :id="`faq-answer-${index}`" class="px-6 pb-6 text-gray-600 dark:text-zinc-300 text-base leading-relaxed border-t border-gray-100 dark:border-zinc-800/60 pt-4">
           {{ item.answer }}
         </div>
       </Transition>

@@ -6,16 +6,20 @@
     </label>
     <textarea
       :id="id"
+      :name="name || id"
+      :autocomplete="autocomplete"
       :value="modelValue"
       :placeholder="placeholder"
       :rows="rows"
       :required="required"
       :disabled="disabled"
       :class="['form-textarea', { 'has-error': error }]"
+      :aria-invalid="Boolean(error)"
+      :aria-describedby="error ? `${id}-error` : undefined"
       @input="handleInput"
       @blur="$emit('blur', $event)"
     ></textarea>
-    <span v-if="error" class="form-error">{{ error }}</span>
+    <span v-if="error" :id="`${id}-error`" class="form-error">{{ error }}</span>
   </div>
 </template>
 
@@ -25,6 +29,8 @@ withDefaults(
     id: string;
     modelValue: string;
     label?: string;
+    name?: string;
+    autocomplete?: string;
     placeholder?: string;
     rows?: number;
     required?: boolean;

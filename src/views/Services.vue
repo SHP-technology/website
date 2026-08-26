@@ -29,12 +29,11 @@
         </div>
 
         <!-- Category Filter Tabs -->
-        <div class="flex flex-wrap justify-center gap-2" role="tablist" aria-label="Service categories">
+        <div class="flex flex-wrap justify-center gap-2" role="group" aria-label="Filter services by category">
           <button
             v-for="cat in categories"
             :key="cat"
-            role="tab"
-            :aria-selected="activeCategory === cat"
+            :aria-pressed="activeCategory === cat"
             :class="['px-4 py-2 rounded-full text-xs font-semibold border transition-all', activeCategory === cat ? 'bg-brand-yellow border-brand-yellow text-darkText shadow-sm' : 'bg-white dark:bg-zinc-900 border-gray-200 dark:border-zinc-800 text-gray-600 dark:text-zinc-300 hover:border-brand-yellow']"
             @click="activeCategory = cat"
           >
@@ -87,6 +86,10 @@
             </BaseButton>
           </div>
         </BaseCard>
+        <div v-if="filteredServices.length === 0" role="status" class="rounded-2xl border border-dashed border-gray-300 dark:border-zinc-700 p-8 text-center text-secondaryText">
+          <h2 class="text-xl font-bold text-primaryText mb-2">No matching services</h2>
+          <p>Try a different keyword or choose another category.</p>
+        </div>
       </div>
     </SectionContainer>
 

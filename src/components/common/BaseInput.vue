@@ -8,16 +8,20 @@
       <input
         :id="id"
         :type="type"
+        :name="name || id"
+        :autocomplete="autocomplete"
         :value="modelValue"
         :placeholder="placeholder"
         :required="required"
         :disabled="disabled"
         :class="['form-input', { 'has-error': error }]"
+        :aria-invalid="Boolean(error)"
+        :aria-describedby="error ? `${id}-error` : undefined"
         @input="handleInput"
         @blur="$emit('blur', $event)"
       />
     </div>
-    <span v-if="error" class="form-error">{{ error }}</span>
+    <span v-if="error" :id="`${id}-error`" class="form-error">{{ error }}</span>
     <span v-else-if="helpText" class="form-help">{{ helpText }}</span>
   </div>
 </template>
@@ -28,6 +32,8 @@ defineProps<{
   modelValue: string;
   label?: string;
   type?: string;
+  name?: string;
+  autocomplete?: string;
   placeholder?: string;
   required?: boolean;
   disabled?: boolean;

@@ -80,12 +80,25 @@ import { useSeoMeta } from '@/composables/useSeoMeta';
 const route = useRoute();
 const study = computed(() => portfolioData.find((p) => p.slug === route.params.slug));
 
-if (study.value) {
-  useSeoMeta({
-    title: study.value.title,
-    description: study.value.summary
-  });
-}
+useSeoMeta(() => study.value
+  ? {
+      title: study.value.title,
+      description: study.value.summary,
+      keywords: `${study.value.industry} software project, ${study.value.technologies.join(', ')}`,
+      jsonLd: {
+        '@context': 'https://schema.org',
+        '@type': 'CreativeWork',
+        name: study.value.title,
+        description: study.value.summary,
+        dateCreated: study.value.completionYear,
+        creator: { '@type': 'Organization', name: 'SHP Technology' }
+      }
+    }
+  : {
+      title: 'Case Study Not Found',
+      description: 'The requested SHP Technology case study could not be found.',
+      noIndex: true
+    });
 </script>
 
 <style scoped>

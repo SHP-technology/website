@@ -2,7 +2,8 @@
   <div class="app-wrapper bg-surface-main min-h-screen text-darkText flex flex-col transition-colors duration-200">
     <ScrollProgress />
     <AppHeader />
-    <main class="app-main flex-1">
+    <a class="skip-link" href="#main-content">Skip to main content</a>
+    <main id="main-content" class="app-main flex-1" tabindex="-1">
       <router-view v-slot="{ Component }">
         <transition name="fade-page" mode="out-in">
           <component :is="Component" />
