@@ -1,7 +1,7 @@
 <template>
-  <section class="py-16 lg:py-20 bg-surface-main dark:bg-zinc-950">
+  <section class="py-16 lg:py-20 bg-surface-main">
     <div class="container">
-      <div class="relative overflow-hidden rounded-3xl bg-gradient-to-br from-slate-900 via-zinc-900 to-black p-8 md:p-14 text-white shadow-2xl border border-zinc-800">
+      <div class="relative overflow-hidden rounded-3xl bg-gradient-to-br from-white via-surface-card to-surface-subtle dark:from-slate-900 dark:via-zinc-900 dark:to-black p-8 md:p-14 text-primaryText dark:text-white shadow-2xl border border-surface-subtle dark:border-zinc-800">
         <!-- Glow Orbs -->
         <div class="absolute -top-24 -right-24 w-80 h-80 rounded-full bg-brand-yellow/15 blur-3xl pointer-events-none"></div>
         <div class="absolute -bottom-24 -left-24 w-80 h-80 rounded-full bg-sky-500/15 blur-3xl pointer-events-none"></div>
@@ -11,10 +11,10 @@
             <span class="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-brand-yellow/20 border border-brand-yellow/40 text-brand-yellow text-xs font-bold uppercase tracking-wider mb-4">
               Ready to Accelerate Growth?
             </span>
-            <h2 class="text-3xl md:text-4xl lg:text-5xl font-extrabold text-white tracking-tight mb-4 leading-tight">
+            <h2 class="text-3xl md:text-4xl lg:text-5xl font-extrabold text-primaryText dark:text-white tracking-tight mb-4 leading-tight">
               Let's Build Your Next High-Impact Software System
             </h2>
-            <p class="text-zinc-300 text-base md:text-lg max-w-xl leading-relaxed">
+            <p class="text-secondaryText dark:text-zinc-300 text-base md:text-lg max-w-xl leading-relaxed">
               Schedule a technical consultation with our senior solutions directors to discuss your enterprise requirements, cloud architecture, or AI roadmap.
             </p>
           </div>
@@ -27,7 +27,7 @@
               </template>
             </BaseButton>
 
-            <div class="flex items-center justify-center gap-3 text-xs text-zinc-400 mt-2">
+            <div class="flex items-center justify-center gap-3 text-xs text-mutedText mt-2">
               <span class="inline-block w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
               <span>Average initial response time: <strong>&lt;4 business hours</strong></span>
             </div>

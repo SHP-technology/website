@@ -1,5 +1,5 @@
 <template>
-  <div class="app-wrapper bg-surface-main dark:bg-zinc-950 min-h-screen text-darkText dark:text-zinc-100 flex flex-col transition-colors duration-200">
+  <div class="app-wrapper bg-surface-main min-h-screen text-darkText flex flex-col transition-colors duration-200">
     <ScrollProgress />
     <AppHeader />
     <main class="app-main flex-1">

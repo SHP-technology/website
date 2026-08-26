@@ -7,12 +7,12 @@
   >
     <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 items-start">
       <!-- Selector Card -->
-      <div class="bg-white dark:bg-zinc-900 border border-gray-200 dark:border-zinc-800 rounded-2xl p-6 shadow-sm flex flex-col gap-6">
+      <div class="bg-surface-card border border-surface-subtle rounded-2xl p-6 shadow-sm flex flex-col gap-6">
         <div>
-          <label class="text-sm font-bold text-darkText dark:text-white block mb-2">1. Select Service Domain:</label>
+          <label class="text-sm font-bold text-darkText block mb-2">1. Select Service Domain:</label>
           <select
             v-model="selectedDomain"
-            class="w-full p-3 rounded-xl border border-gray-200 dark:border-zinc-800 bg-surface-main dark:bg-zinc-800 text-darkText dark:text-white text-sm focus:outline-none focus:border-brand-hover"
+            class="w-full p-3 rounded-xl border border-surface-subtle bg-surface-main text-darkText text-sm focus:outline-none focus:border-brand-hover"
           >
             <option value="enterprise">Custom Enterprise Web Application</option>
             <option value="cloud">Cloud Migration & Kubernetes DevOps</option>
@@ -22,13 +22,13 @@
         </div>
 
         <div>
-          <label class="text-sm font-bold text-darkText dark:text-white block mb-2">2. Estimated Team Scale:</label>
+          <label class="text-sm font-bold text-darkText block mb-2">2. Estimated Team Scale:</label>
           <div class="grid grid-cols-3 gap-3">
             <button
               v-for="scale in teamScales"
               :key="scale.id"
               type="button"
-              :class="['p-3 rounded-xl border text-xs font-semibold flex flex-col items-center gap-1 transition-all', selectedScale === scale.id ? 'border-brand-yellow bg-brand-light dark:bg-zinc-800 text-darkText dark:text-brand-yellow font-bold' : 'border-gray-200 dark:border-zinc-800 text-gray-600 dark:text-zinc-400']"
+              :class="['p-3 rounded-xl border text-xs font-semibold flex flex-col items-center gap-1 transition-all', selectedScale === scale.id ? 'border-brand-yellow bg-brand-light text-darkText dark:text-brand-yellow font-bold' : 'border-surface-subtle text-secondaryText']"
               @click="selectedScale = scale.id"
             >
               <span>{{ scale.label }}</span>
@@ -38,9 +38,9 @@
         </div>
 
         <div>
-          <label class="text-sm font-bold text-darkText dark:text-white block mb-2">3. Target SLA & Compliance:</label>
+          <label class="text-sm font-bold text-darkText block mb-2">3. Target SLA & Compliance:</label>
           <div class="flex flex-wrap gap-2">
-            <label v-for="comp in complianceOptions" :key="comp" class="inline-flex items-center gap-2 px-3 py-1.5 rounded-lg border border-gray-200 dark:border-zinc-800 bg-surface-subtle dark:bg-zinc-800 text-xs font-medium text-darkText dark:text-zinc-200 cursor-pointer">
+            <label v-for="comp in complianceOptions" :key="comp" class="inline-flex items-center gap-2 px-3 py-1.5 rounded-lg border border-surface-subtle bg-surface-subtle text-xs font-medium text-darkText cursor-pointer">
               <input type="checkbox" :value="comp" v-model="selectedCompliance" class="accent-brand-yellow" />
               <span>{{ comp }}</span>
             </label>

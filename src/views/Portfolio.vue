@@ -83,11 +83,11 @@ import { useSeoMeta } from '@/composables/useSeoMeta';
 
 useSeoMeta({
   title: 'Engineering Case Studies & Portfolio Projects',
-  description: 'Discover how SHP Technology builds high-availability cloud platforms, real-time payment engines, and Vue 3 enterprise applications.'
+  description: 'Explore the personal and open source software development portfolio of Sandesh Patel, featuring AI applications, developer tools, and web services.'
 });
 
 const activeCategory = ref('All');
-const categories = ['All', 'Financial Technology', 'Healthcare Analytics', 'Logistics & Supply Chain', 'Enterprise SaaS'];
+const categories = ['All', 'Developer Tools', 'Artificial Intelligence'];
 
 const filteredProjects = computed(() => {
   if (activeCategory.value === 'All') return portfolioData;

@@ -2,7 +2,7 @@
   <SectionContainer
     tag="Our Journey"
     title="Milestones & Engineering Evolution"
-    subtitle="From our founding in 2019 to managing enterprise cloud systems for global industry leaders."
+    subtitle="A timeline of our key open source projects and engineering milestones since 2024."
   >
     <div class="relative border-l-2 border-brand-yellow dark:border-brand-hover ml-4 md:ml-32 space-y-8 py-4">
       <div v-for="item in milestones" :key="item.year" class="relative pl-6 md:pl-8 group">
@@ -15,13 +15,13 @@
         </span>
 
         <!-- Content Card -->
-        <div class="bg-white dark:bg-zinc-900 border border-gray-200 dark:border-zinc-800 rounded-2xl p-6 shadow-sm hover:shadow-md transition-shadow">
+        <div class="bg-surface-card border border-surface-subtle rounded-2xl p-6 shadow-sm hover:shadow-md transition-shadow">
           <span class="md:hidden inline-block bg-brand-light text-darkText font-mono text-xs font-extrabold px-2.5 py-0.5 rounded-full mb-2">{{ item.year }}</span>
-          <h3 class="text-xl font-bold text-darkText dark:text-white mb-2">{{ item.title }}</h3>
-          <p class="text-gray-600 dark:text-zinc-300 text-sm leading-relaxed mb-4">{{ item.description }}</p>
+          <h3 class="text-xl font-bold text-darkText mb-2">{{ item.title }}</h3>
+          <p class="text-secondaryText text-sm leading-relaxed mb-4">{{ item.description }}</p>
 
           <div class="flex flex-wrap gap-2">
-            <span v-for="tag in item.highlights" :key="tag" class="text-xs bg-surface-subtle dark:bg-zinc-800 text-gray-700 dark:text-zinc-300 px-2.5 py-1 rounded-md border border-gray-200 dark:border-zinc-700">
+            <span v-for="tag in item.highlights" :key="tag" class="text-xs bg-surface-subtle text-secondaryText px-2.5 py-1 rounded-md border border-surface-subtle">
               ⚡ {{ tag }}
             </span>
           </div>
@@ -36,28 +36,22 @@ import SectionContainer from '@/components/layout/SectionContainer.vue';
 
 const milestones = [
   {
-    year: '2019',
-    title: 'Company Founding in Jabalpur',
-    description: 'Established SHP Technology with a focus on senior cloud-native engineering and high-availability architecture consultancy.',
-    highlights: ['First 5 Enterprise Clients', 'AWS Partner Network']
+    year: '2024',
+    title: 'Early Automation & Web Projects',
+    description: 'Began publishing open-source applications, building desktop voice control assistants, system scripting, and responsive web portals.',
+    highlights: ['Voice Assistant in Python', 'E-commerce & Web Prototypes']
   },
   {
-    year: '2021',
-    title: 'Expansion into Distributed Microservices',
-    description: 'Built our high-throughput Kafka & Go processing engine framework, achieving sub-100ms payment execution SLA.',
-    highlights: ['Go & Kafka Architecture', '50+ Production Deployments']
+    year: '2025',
+    title: 'Systems Utilities & AI Orchestration',
+    description: 'Expanded into systems utility development in Go and created the Jarvis AI backend orchestrator for managing local scripts and agent tool calling.',
+    highlights: ['Mini-Tracker in Go', 'Jarvis AI Core Backend']
   },
   {
-    year: '2023',
-    title: 'AI RAG & Vector Knowledge Practice',
-    description: 'Launched our dedicated AI integration unit, delivering HIPAA-compliant clinical document vector search platforms.',
-    highlights: ['Vector Search Engines', 'Private LLM Integrations']
-  },
-  {
-    year: '2025 - Present',
-    title: 'Global Senior Engineering Team & Rebranding',
-    description: 'Expanded global engineering team across 12 countries while maintaining 99.99% operational uptime SLA across all client workloads.',
-    highlights: ['140+ Production Releases', '99.999% SLA Track Record']
+    year: '2026 - Present',
+    title: 'Collaborative Web Apps & Frontend Portals',
+    description: 'Developing highly interactive web applications utilizing TypeScript and modern frontend frameworks, focused on real-time sync and markdown engines.',
+    highlights: ['File-Share Vault', 'Jarvis AI Chat Portal']
   }
 ];
 </script>

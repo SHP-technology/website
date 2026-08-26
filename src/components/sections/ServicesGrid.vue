@@ -1,8 +1,8 @@
 <template>
   <SectionContainer
-    tag="Core Services"
-    title="Engineering Excellence Across the Tech Stack"
-    subtitle="We combine domain expertise with practical architecture to deliver scalable, maintainable enterprise software."
+    tag="Our Services"
+    title="The Software and Services We Offer"
+    subtitle="We write clean, simple, and secure code to solve your business needs and make your products run smoothly."
   >
     <div class="services-grid">
       <BaseCard

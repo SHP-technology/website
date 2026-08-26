@@ -1,8 +1,8 @@
 <template>
   <SectionContainer
-    tag="Careers & Culture"
-    title="Build High-Impact Software With Us"
-    subtitle="We are looking for passionate architects, full-stack developers, and DevOps engineers who value technical excellence, autonomy, and pragmatic engineering."
+    tag="Careers"
+    title="Come Work With Us!"
+    subtitle="We are always looking for friendly and skilled developers, designers, and office helpers who love making great software and working together."
   >
     <div class="careers-overview-grid">
       <!-- Culture Value Highlights -->

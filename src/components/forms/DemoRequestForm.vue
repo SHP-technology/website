@@ -123,8 +123,29 @@ const handleSubmit = async () => {
   loading.value = true;
   trackEvent('Demo Request Started', { topic: form.interest });
 
+  const webhookUrl = import.meta.env.VITE_GOOGLE_SHEET_WEBHOOK_URL;
+
   try {
-    await new Promise((resolve) => setTimeout(resolve, 1100));
+    if (webhookUrl) {
+      await fetch(webhookUrl, {
+        method: 'POST',
+        mode: 'no-cors',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          name: form.name,
+          email: form.email,
+          company: form.company,
+          interest: form.interest,
+          notes: form.notes,
+          source: 'Demo Request Form',
+          timestamp: new Date().toISOString()
+        })
+      });
+    } else {
+      await new Promise((resolve) => setTimeout(resolve, 1100));
+    }
     trackEvent('Demo Request Submitted', { topic: form.interest });
 
     toast.title = 'Demo Request Received!';

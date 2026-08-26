@@ -1,8 +1,8 @@
 <template>
   <SectionContainer
-    tag="Working Process"
-    title="Structured Methodology Built for Predictable Success"
-    subtitle="We eliminate ambiguity through a transparent 6-stage engineering process designed to deliver stable production software on time."
+    tag="How We Work"
+    title="How We Work With You Step by Step"
+    subtitle="We follow a simple 6-step plan to design, build, test, and launch your software without any surprises."
     bg-alt
   >
     <div class="methodology-grid">
@@ -46,43 +46,43 @@ const processSteps = [
     number: '01',
     title: 'Understand',
     icon: Search,
-    description: 'We perform deep technical discovery, audit existing systems, and clarify root business goals before writing code.',
-    outcomes: ['Architecture Audit', 'Risk Assessment', 'Requirements Matrix']
+    description: 'We talk with you to understand your goals, look at what you already have, and plan the project before we start writing code.',
+    outcomes: ['Project Goals', 'System Check', 'Feature List']
   },
   {
     number: '02',
     title: 'Plan',
     icon: FileText,
-    description: 'We establish clear system architecture, database schemas, technology choices, and milestones.',
-    outcomes: ['Technical Specification', 'API Blueprint', 'Sprint Milestones']
+    description: 'We plan how the database works, what programming tools to use, and write a schedule for when each part will be finished.',
+    outcomes: ['Step-by-step Plan', 'Database Blueprint', 'Project Schedule']
   },
   {
     number: '03',
     title: 'Build',
     icon: Code,
-    description: 'Our senior engineers develop clean, type-safe, modular software adhering to design system tokens and clean code principles.',
-    outcomes: ['Vue 3 Frontend', 'Microservices APIs', 'CI/CD Automation']
+    description: 'We write clean, safe, and organized code to build your website, database features, and server tools.',
+    outcomes: ['Website Layouts', 'Server Code', 'Automated Builders']
   },
   {
     number: '04',
     title: 'Test',
     icon: CheckCircle2,
-    description: 'Rigorous unit testing, integration tests, load tests, and security vulnerability scans ensure bulletproof stability.',
-    outcomes: ['90%+ Test Coverage', 'Load Benchmark', 'Security Audit']
+    description: 'We test everything carefully to make sure the application is secure, fast, and does not break when users visit.',
+    outcomes: ['Thorough Testing', 'Speed Checks', 'Security Scan']
   },
   {
     number: '05',
     title: 'Deploy',
     icon: Rocket,
-    description: 'We orchestrate zero-downtime production deployments to containerized cloud environments with automated rollback triggers.',
-    outcomes: ['Kubernetes Rollout', 'Zero Downtime', 'DNS & SSL Config']
+    description: 'We upload your new software to secure servers online so your customers can access it without any downtime.',
+    outcomes: ['Live Website Launch', 'SSL Security Setup', 'Domain Linking']
   },
   {
     number: '06',
     title: 'Improve',
     icon: TrendingUp,
-    description: 'Continuous monitoring, APM metrics analysis, cost optimization, and iterative performance tuning.',
-    outcomes: ['24/7 Monitoring', 'Latency Reduction', 'Feature Iterations']
+    description: 'We monitor your servers, keep them running smoothly, and make updates whenever you need new features.',
+    outcomes: ['24/7 Health Tracking', 'Performance Tuning', 'New Feature Updates']
   }
 ];
 </script>

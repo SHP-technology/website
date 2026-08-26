@@ -1,8 +1,8 @@
 <template>
   <SectionContainer
-    tag="Case Studies"
-    title="Featured Client Work & Measured Impact"
-    subtitle="Explore how we helped enterprise engineering teams modernize software infrastructure and accelerate production velocity."
+    tag="Our Work"
+    title="Our Work & What We Solved"
+    subtitle="Read stories about how we helped real businesses make their websites faster, improve their servers, and solve big problems."
     bg-alt
   >
     <div class="portfolio-grid">

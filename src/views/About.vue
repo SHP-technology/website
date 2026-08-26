@@ -6,22 +6,22 @@
           About SHP Technology
         </span>
         <h1 class="text-4xl md:text-5xl font-extrabold text-darkText dark:text-white tracking-tight mb-4 leading-tight">
-          Senior Engineering Craftsmanship for Modern Enterprise Systems
+          We Build Solid Software for Businesses
         </h1>
         <p class="text-lg text-gray-600 dark:text-zinc-300 leading-relaxed">
-          We are a collective of senior architects and software engineers dedicated to building resilient digital foundation platforms.
+          We are a friendly team of developers and software builders who love making tools that work well and help your business grow.
         </p>
       </div>
 
       <div class="about-grid">
         <div class="about-text">
-          <h3>Our Mission</h3>
+          <h3>Our Goal</h3>
           <p>
-            Modern enterprise software is often burdened by legacy technical debt, brittle microservices integrations, and operational bottlenecks. At {{ companyData.name }}, our mission is to deliver clean, predictable, and maintainable software systems that empower engineering teams to release with confidence.
+            Many business software programs are slow, complicated, or break easily. Our goal is to build simple, fast, and reliable software that works perfectly every time.
           </p>
-          <h3>Engineering Philosophy</h3>
+          <h3>Our Way of Working</h3>
           <p>
-            We favor pragmatic architecture over hype. Every system we build emphasizes type-safety, high-availability SLAs, automated test coverage, and transparent code documentation.
+            We focus on what works, not on fancy trends. Everything we build is tested carefully, runs fast without stopping, and comes with easy instructions.
           </p>
         </div>
         <div class="about-card">
@@ -45,9 +45,9 @@
 
     <!-- Team & Leadership Section -->
     <SectionContainer
-      tag="Leadership"
-      title="Founded & Led By Veteran Software Architects"
-      subtitle="Our leadership team brings decades of experience scaling global cloud systems and developer platforms."
+      tag="Our Team"
+      title="Founded & Led by Experienced Developers"
+      subtitle="Our founders bring years of experience building websites, databases, and business tools."
     >
       <div class="team-grid">
         <BaseCard v-for="member in team" :key="member.name" class="team-card">
@@ -73,28 +73,22 @@ import { companyData } from '@/data/company';
 import { useSeoMeta } from '@/composables/useSeoMeta';
 
 useSeoMeta({
-  title: 'About Our Company & Senior Leadership',
-  description: 'Learn about SHP Technology mission, senior software architects, engineering philosophy, and 99.999% SLA track record.'
+  title: 'About Our Company & Leadership',
+  description: 'Learn about SHP Technology, our team of developers, our mission, and our software engineering philosophy.'
 });
 
 const team = [
   {
+    name: 'Harsh Patel',
+    initials: 'HP',
+    role: 'Founder',
+    bio: 'Founder of the company, focused on business strategy, technology solutions, automation, and overall company growth.'
+  },
+  {
     name: 'Sandesh Patel',
     initials: 'SP',
-    role: 'Founder & Lead Full-Stack Developer',
-    bio: 'Associate Developer at REAK INFOTECH and Cybersecurity Enthusiast. Expert in building modern web applications and type-safe systems.'
-  },
-  {
-    name: 'Dr. Aris Thorne',
-    initials: 'AT',
-    role: 'Principal Cloud Systems Advisor',
-    bio: 'Distributed systems researcher. Expert in High-Throughput Kafka streaming, Go microservices, and Kubernetes architecture.'
-  },
-  {
-    name: 'Sarah Lin',
-    initials: 'SL',
-    role: 'Frontend Architect & UI Designer',
-    bio: 'Specialist in Vue 3 component architecture, accessible design systems, and enterprise UX orchestration.'
+    role: 'Co-Founder & Head of Full-Stack Development',
+    bio: 'Co-Founder and Head of Full-Stack Development, specializing in building scalable, modern web applications and robust full-stack solutions.'
   }
 ];
 </script>
@@ -125,15 +119,15 @@ const team = [
 }
 
 .about-card {
-  background-color: var(--bg-dark-surface);
-  color: var(--text-inverse);
+  background-color: var(--bg-surface-subtle);
+  color: var(--text-primary);
   border-radius: var(--radius-xl);
   padding: var(--space-8);
-  border: 1px solid var(--border-color-dark);
+  border: 1px solid var(--border-color);
 }
 
 .card-tag {
-  color: var(--brand-yellow);
+  color: var(--brand-yellow-hover);
   font-size: var(--fs-xs);
   font-weight: 700;
   text-transform: uppercase;
@@ -151,19 +145,19 @@ const team = [
 .metric-row {
   display: flex;
   flex-direction: column;
-  border-bottom: 1px solid #27272A;
+  border-bottom: 1px solid var(--border-color);
   padding-bottom: var(--space-3);
 }
 
 .m-val {
   font-size: var(--fs-2xl);
   font-weight: 800;
-  color: var(--text-inverse);
+  color: var(--text-primary);
 }
 
 .m-lbl {
   font-size: var(--fs-xs);
-  color: #A1A1AA;
+  color: var(--text-secondary);
 }
 
 .team-grid {

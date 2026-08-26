@@ -1,8 +1,8 @@
 <template>
   <SectionContainer
-    tag="Technology Capabilities"
-    title="Modern, Industry-Standard Stack"
-    subtitle="We select battle-tested technologies that balance developer velocity, performance, long-term maintainability, and enterprise security."
+    tag="Our Tech Stack"
+    title="The Technology Tools We Use"
+    subtitle="We choose popular, fast, and safe programming tools to build software that is easy to update and runs without breaking."
   >
     <div class="tech-category-grid">
       <div

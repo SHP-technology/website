@@ -5,7 +5,7 @@
       alt="SHP Technology — Software Development Company"
       :class="[
         sizeClass,
-        'object-contain transition-transform duration-300 group-hover:scale-105'
+        'object-contain transition-transform duration-300 group-hover:scale-105 rounded-full'
       ]"
     />
   </div>

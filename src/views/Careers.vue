@@ -14,15 +14,15 @@
       </div>
 
       <!-- Official Recruitment & Social Connect Hub -->
-      <div class="mb-14 p-8 rounded-2xl bg-gradient-to-br from-zinc-900 via-slate-900 to-zinc-950 text-white shadow-2xl border border-zinc-800 relative overflow-hidden">
+      <div class="mb-14 p-8 rounded-2xl bg-gradient-to-br from-white via-surface-card to-surface-subtle dark:from-zinc-900 dark:via-slate-900 dark:to-zinc-950 text-dark-text dark:text-white shadow-2xl border border-surface-subtle dark:border-zinc-800 relative overflow-hidden">
         <div class="absolute -right-12 -bottom-12 w-64 h-64 bg-brand-yellow/10 rounded-full blur-3xl pointer-events-none"></div>
 
         <div class="relative z-10">
           <div class="flex flex-col lg:flex-row items-start lg:items-center justify-between gap-6 mb-8">
             <div>
               <span class="inline-block bg-brand-yellow text-darkText font-extrabold text-xs px-3 py-1 rounded-full uppercase tracking-wider mb-2">Verified Recruitment Portals</span>
-              <h2 class="text-2xl md:text-3xl font-extrabold text-white">Connect With SHP Technology</h2>
-              <p class="text-zinc-400 text-sm mt-1 max-w-xl">Explore active job listings on Indeed, follow our founder updates on Instagram, and connect with our talent team on LinkedIn & Facebook.</p>
+              <h2 class="text-2xl md:text-3xl font-extrabold text-dark-text dark:text-white">Connect With SHP Technology</h2>
+              <p class="text-secondary-text dark:text-zinc-400 text-sm mt-1 max-w-xl">Explore active job listings on Indeed, follow our founder updates on Instagram, and connect with our talent team on LinkedIn & Facebook.</p>
             </div>
             <a
               :href="siteConfig.socials.indeed"
@@ -42,12 +42,12 @@
               :href="siteConfig.socials.linkedin"
               target="_blank"
               rel="noopener noreferrer"
-              class="p-4 rounded-xl bg-zinc-800/80 hover:bg-zinc-800 border border-zinc-700/80 flex items-center gap-3 transition-all hover:-translate-y-0.5 group"
+              class="p-4 rounded-xl bg-surface-card hover:bg-surface-hover dark:bg-zinc-800/80 dark:hover:bg-zinc-800 border border-surface-subtle dark:border-zinc-700/80 flex items-center gap-3 transition-all hover:-translate-y-0.5 group"
             >
               <div class="w-10 h-10 rounded-lg bg-sky-600/20 text-sky-400 flex items-center justify-center font-bold text-lg group-hover:scale-110 transition-transform">in</div>
               <div>
-                <strong class="text-white text-sm block group-hover:text-brand-yellow transition-colors">LinkedIn Profile</strong>
-                <span class="text-xs text-zinc-400">@shp-technology</span>
+                <strong class="text-dark-text dark:text-white text-sm block group-hover:text-brand-hover transition-colors">LinkedIn Profile</strong>
+                <span class="text-xs text-muted-text">@shp-technology</span>
               </div>
             </a>
 
@@ -55,12 +55,12 @@
               :href="siteConfig.socials.instagram"
               target="_blank"
               rel="noopener noreferrer"
-              class="p-4 rounded-xl bg-zinc-800/80 hover:bg-zinc-800 border border-zinc-700/80 flex items-center gap-3 transition-all hover:-translate-y-0.5 group"
+              class="p-4 rounded-xl bg-surface-card hover:bg-surface-hover dark:bg-zinc-800/80 dark:hover:bg-zinc-800 border border-surface-subtle dark:border-zinc-700/80 flex items-center gap-3 transition-all hover:-translate-y-0.5 group"
             >
               <div class="w-10 h-10 rounded-lg bg-pink-600/20 text-pink-400 flex items-center justify-center font-bold text-lg group-hover:scale-110 transition-transform">📸</div>
               <div>
-                <strong class="text-white text-sm block group-hover:text-brand-yellow transition-colors">Instagram Feed</strong>
-                <span class="text-xs text-zinc-400">@founder.shp</span>
+                <strong class="text-dark-text dark:text-white text-sm block group-hover:text-brand-hover transition-colors">Instagram Feed</strong>
+                <span class="text-xs text-muted-text">@founder.shp</span>
               </div>
             </a>
 
@@ -68,12 +68,12 @@
               :href="siteConfig.socials.facebook"
               target="_blank"
               rel="noopener noreferrer"
-              class="p-4 rounded-xl bg-zinc-800/80 hover:bg-zinc-800 border border-zinc-700/80 flex items-center gap-3 transition-all hover:-translate-y-0.5 group"
+              class="p-4 rounded-xl bg-surface-card hover:bg-surface-hover dark:bg-zinc-800/80 dark:hover:bg-zinc-800 border border-surface-subtle dark:border-zinc-700/80 flex items-center gap-3 transition-all hover:-translate-y-0.5 group"
             >
               <div class="w-10 h-10 rounded-lg bg-blue-600/20 text-blue-400 flex items-center justify-center font-bold text-lg group-hover:scale-110 transition-transform">fb</div>
               <div>
-                <strong class="text-white text-sm block group-hover:text-brand-yellow transition-colors">Facebook Page</strong>
-                <span class="text-xs text-zinc-400">SHP Technology Official</span>
+                <strong class="text-dark-text dark:text-white text-sm block group-hover:text-brand-hover transition-colors">Facebook Page</strong>
+                <span class="text-xs text-muted-text">SHP Technology Official</span>
               </div>
             </a>
 
@@ -81,12 +81,12 @@
               :href="siteConfig.socials.indeed"
               target="_blank"
               rel="noopener noreferrer"
-              class="p-4 rounded-xl bg-zinc-800/80 hover:bg-zinc-800 border border-zinc-700/80 flex items-center gap-3 transition-all hover:-translate-y-0.5 group"
+              class="p-4 rounded-xl bg-surface-card hover:bg-surface-hover dark:bg-zinc-800/80 dark:hover:bg-zinc-800 border border-surface-subtle dark:border-zinc-700/80 flex items-center gap-3 transition-all hover:-translate-y-0.5 group"
             >
               <div class="w-10 h-10 rounded-lg bg-indigo-600/20 text-indigo-400 flex items-center justify-center font-bold text-lg group-hover:scale-110 transition-transform">🎯</div>
               <div>
-                <strong class="text-white text-sm block group-hover:text-brand-yellow transition-colors">Indeed Portal</strong>
-                <span class="text-xs text-zinc-400">Senior Sales Exec Opening</span>
+                <strong class="text-dark-text dark:text-white text-sm block group-hover:text-brand-hover transition-colors">Indeed Portal</strong>
+                <span class="text-xs text-muted-text">Senior Sales Exec Opening</span>
               </div>
             </a>
           </div>
@@ -351,19 +351,20 @@ const perks = [
 }
 
 .spontaneous-apply-banner {
-  background-color: var(--bg-dark-surface);
-  color: var(--text-inverse);
+  background-color: var(--bg-surface-subtle);
+  color: var(--text-primary);
   padding: var(--space-8);
   border-radius: var(--radius-xl);
+  border: 1px solid var(--border-color);
 }
 
 .spontaneous-apply-banner h3 {
-  color: var(--text-inverse);
+  color: var(--text-primary);
   font-size: var(--fs-2xl);
   margin-bottom: var(--space-2);
 }
 
 .spontaneous-apply-banner p {
-  color: #A1A1AA;
+  color: var(--text-secondary);
 }
 </style>

@@ -19,7 +19,6 @@
       </div>
     </SectionContainer>
 
-    <CareersOverview />
     <CtaBanner />
   </div>
 </template>
@@ -34,7 +33,6 @@ import PortfolioSection from '@/components/sections/PortfolioSection.vue';
 import TestimonialsSection from '@/components/sections/TestimonialsSection.vue';
 import SectionContainer from '@/components/layout/SectionContainer.vue';
 import FaqAccordion from '@/components/common/FaqAccordion.vue';
-import CareersOverview from '@/components/sections/CareersOverview.vue';
 import CtaBanner from '@/components/sections/CtaBanner.vue';
 import { useSeoMeta } from '@/composables/useSeoMeta';
 

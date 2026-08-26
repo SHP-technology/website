@@ -1,5 +1,5 @@
 <template>
-  <footer class="relative bg-slate-950 text-white pt-16 pb-12 overflow-hidden border-t border-zinc-800">
+  <footer class="relative bg-surface-subtle text-secondaryText pt-16 pb-12 overflow-hidden border-t border-surface-subtle">
     <!-- Top Gradient Brand Accent Line -->
     <div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-brand-yellow via-sky-400 to-amber-500"></div>
 
@@ -9,19 +9,19 @@
         <router-link to="/" aria-label="SHP Technology Home">
           <AppLogo variant="full" height="h-9" />
         </router-link>
-        <p class="text-zinc-300 text-sm max-w-sm leading-relaxed">
+        <p class="text-secondaryText text-sm max-w-sm leading-relaxed">
           {{ companyData.description }}
         </p>
 
         <!-- SRE Badge -->
-        <div class="inline-flex items-center gap-2.5 px-3.5 py-1.5 rounded-full bg-zinc-900 border border-zinc-800 text-xs font-semibold text-zinc-200 mt-2">
+        <div class="inline-flex items-center gap-2.5 px-3.5 py-1.5 rounded-full bg-surface-card border border-surface-subtle text-xs font-semibold text-secondaryText mt-2">
           <span class="w-2 h-2 rounded-full bg-emerald-400 shadow-[0_0_8px_#34D399]"></span>
-          <span>99.999% SLA • Production SRE Monitoring</span>
+          <span>25+ GitHub Projects • Active Open Source Builders</span>
         </div>
 
         <!-- Quick Newsletter Box -->
         <div class="w-full max-w-sm mt-4">
-          <label class="text-xs font-bold text-zinc-300 block mb-2 uppercase tracking-wider">Stay Updated with Engineering Insights</label>
+          <label class="text-xs font-bold text-secondaryText block mb-2 uppercase tracking-wider">Subscribe to Our Tech Newsletter</label>
           <form class="flex gap-2" @submit.prevent="handleSubscribe">
             <input
               type="email"
@@ -29,7 +29,7 @@
               placeholder="Enter your work email"
               required
               :disabled="isSubmitting"
-              class="w-full px-3.5 py-2 rounded-xl bg-zinc-900 border border-zinc-800 text-white text-xs focus:outline-none focus:border-brand-yellow disabled:opacity-50"
+              class="w-full px-3.5 py-2 rounded-xl bg-surface-card border border-surface-subtle text-primaryText text-xs focus:outline-none focus:border-brand-yellow disabled:opacity-50"
             />
             <button
               type="submit"
@@ -47,62 +47,57 @@
 
       <!-- Services Links -->
       <div class="flex flex-col gap-3">
-        <h4 class="text-white text-sm font-extrabold uppercase tracking-wider mb-2 flex items-center gap-2">
+        <h4 class="text-primaryText text-sm font-extrabold uppercase tracking-wider mb-2 flex items-center gap-2">
           <span class="w-1.5 h-1.5 rounded-full bg-brand-yellow"></span>
           Services
         </h4>
-        <router-link to="/services/custom-software" class="text-zinc-300 hover:text-brand-yellow text-sm transition-all hover:translate-x-1">Custom Enterprise Apps</router-link>
-        <router-link to="/services/cloud-infrastructure" class="text-zinc-300 hover:text-brand-yellow text-sm transition-all hover:translate-x-1">Cloud & Kubernetes DevOps</router-link>
-        <router-link to="/services/ai-solutions" class="text-zinc-300 hover:text-brand-yellow text-sm transition-all hover:translate-x-1">AI RAG & Vector Engines</router-link>
-        <router-link to="/services/microservices-architecture" class="text-zinc-300 hover:text-brand-yellow text-sm transition-all hover:translate-x-1">Microservices Architecture</router-link>
-        <router-link to="/services/security-audit" class="text-zinc-300 hover:text-brand-yellow text-sm transition-all hover:translate-x-1">Security & Code Compliance</router-link>
+        <router-link to="/services/custom-software" class="text-secondaryText hover:text-brand-hover text-sm transition-all hover:translate-x-1">Custom Enterprise Apps</router-link>
+        <router-link to="/services/cloud-infrastructure" class="text-secondaryText hover:text-brand-hover text-sm transition-all hover:translate-x-1">Cloud & Kubernetes DevOps</router-link>
+        <router-link to="/services/ai-solutions" class="text-secondaryText hover:text-brand-hover text-sm transition-all hover:translate-x-1">AI RAG & Vector Engines</router-link>
+        <router-link to="/services/microservices-architecture" class="text-secondaryText hover:text-brand-hover text-sm transition-all hover:translate-x-1">Microservices Architecture</router-link>
+        <router-link to="/services/security-audit" class="text-secondaryText hover:text-brand-hover text-sm transition-all hover:translate-x-1">Security & Code Compliance</router-link>
       </div>
 
       <!-- Company Links -->
       <div class="flex flex-col gap-3">
-        <h4 class="text-white text-sm font-extrabold uppercase tracking-wider mb-2 flex items-center gap-2">
+        <h4 class="text-primaryText text-sm font-extrabold uppercase tracking-wider mb-2 flex items-center gap-2">
           <span class="w-1.5 h-1.5 rounded-full bg-brand-yellow"></span>
           Company
         </h4>
-        <router-link to="/about" class="text-zinc-300 hover:text-brand-yellow text-sm transition-all hover:translate-x-1">About Us</router-link>
-        <router-link to="/portfolio" class="text-zinc-300 hover:text-brand-yellow text-sm transition-all hover:translate-x-1">Case Studies</router-link>
-        <router-link to="/careers" class="text-zinc-300 hover:text-brand-yellow text-sm transition-all hover:translate-x-1">Careers & Hiring</router-link>
-        <router-link to="/demo" class="text-zinc-300 hover:text-brand-yellow text-sm transition-all hover:translate-x-1">Interactive Product Demo</router-link>
-        <router-link to="/contact" class="text-zinc-300 hover:text-brand-yellow text-sm transition-all hover:translate-x-1">Contact Engineering</router-link>
+        <router-link to="/about" class="text-secondaryText hover:text-brand-hover text-sm transition-all hover:translate-x-1">About Us</router-link>
+        <router-link to="/portfolio" class="text-secondaryText hover:text-brand-hover text-sm transition-all hover:translate-x-1">Case Studies</router-link>
+        <router-link to="/demo" class="text-secondaryText hover:text-brand-hover text-sm transition-all hover:translate-x-1">Interactive Product Demo</router-link>
+        <router-link to="/contact" class="text-secondaryText hover:text-brand-hover text-sm transition-all hover:translate-x-1">Contact Engineering</router-link>
       </div>
 
       <!-- Legal & Direct Connect Links -->
       <div class="flex flex-col gap-3">
-        <h4 class="text-white text-sm font-extrabold uppercase tracking-wider mb-2 flex items-center gap-2">
+        <h4 class="text-primaryText text-sm font-extrabold uppercase tracking-wider mb-2 flex items-center gap-2">
           <span class="w-1.5 h-1.5 rounded-full bg-brand-yellow"></span>
-          Social & Hiring
+          Social Channels
         </h4>
-        <a :href="siteConfig.socials.linkedin" target="_blank" rel="noopener noreferrer" class="text-zinc-300 hover:text-brand-yellow text-sm transition-all hover:translate-x-1 flex items-center gap-2">
+        <a :href="siteConfig.socials.linkedin" target="_blank" rel="noopener noreferrer" class="text-secondaryText hover:text-brand-hover text-sm transition-all hover:translate-x-1 flex items-center gap-2">
           <span>🔗</span>
           <span>LinkedIn</span>
         </a>
-        <a :href="siteConfig.socials.instagram" target="_blank" rel="noopener noreferrer" class="text-zinc-300 hover:text-brand-yellow text-sm transition-all hover:translate-x-1 flex items-center gap-2">
+        <a :href="siteConfig.socials.instagram" target="_blank" rel="noopener noreferrer" class="text-secondaryText hover:text-brand-hover text-sm transition-all hover:translate-x-1 flex items-center gap-2">
           <span>📸</span>
           <span>Instagram (@founder.shp)</span>
         </a>
-        <a :href="siteConfig.socials.facebook" target="_blank" rel="noopener noreferrer" class="text-zinc-300 hover:text-brand-yellow text-sm transition-all hover:translate-x-1 flex items-center gap-2">
+        <a :href="siteConfig.socials.facebook" target="_blank" rel="noopener noreferrer" class="text-secondaryText hover:text-brand-hover text-sm transition-all hover:translate-x-1 flex items-center gap-2">
           <span>📘</span>
           <span>Facebook</span>
-        </a>
-        <a :href="siteConfig.socials.indeed" target="_blank" rel="noopener noreferrer" class="text-zinc-300 hover:text-brand-yellow text-sm transition-all hover:translate-x-1 flex items-center gap-2">
-          <span>💼</span>
-          <span>Indeed Jobs</span>
         </a>
       </div>
     </div>
 
     <!-- Bottom Copyright Divider -->
-    <div class="container pt-8 border-t border-zinc-800/80 flex flex-col md:flex-row items-center justify-between gap-4 text-xs text-zinc-400">
+    <div class="container pt-8 border-t border-surface-subtle flex flex-col md:flex-row items-center justify-between gap-4 text-xs text-mutedText">
       <p>© {{ new Date().getFullYear() }} {{ companyData.legalName }}. All rights reserved.</p>
       <div class="flex items-center gap-6">
-        <span class="hover:text-zinc-200 cursor-pointer transition-colors">Privacy Policy</span>
-        <span class="hover:text-zinc-200 cursor-pointer transition-colors">Terms of Service</span>
-        <span class="hover:text-zinc-200 cursor-pointer transition-colors">Security Compliance (SOC 2)</span>
+        <span class="hover:text-primaryText cursor-pointer transition-colors">Privacy Policy</span>
+        <span class="hover:text-primaryText cursor-pointer transition-colors">Terms of Service</span>
+        <span class="hover:text-primaryText cursor-pointer transition-colors">Security Compliance (SOC 2)</span>
       </div>
     </div>
   </footer>

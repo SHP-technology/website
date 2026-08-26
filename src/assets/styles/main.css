@@ -3,6 +3,27 @@
 
 @theme {
   --font-sans: 'Poppins', 'Inter', sans-serif;
+
+  --color-brand-yellow: var(--brand-yellow);
+  --color-brand-hover: var(--brand-yellow-hover);
+  --color-brand-light: var(--brand-yellow-light);
+  --color-brand-border: var(--brand-yellow-border);
+  --color-brand-sky: var(--brand-sky);
+  --color-brand-sky-hover: var(--brand-sky-hover);
+  --color-brand-sky-light: var(--brand-sky-light);
+  --color-brand-navy: var(--bg-dark-surface);
+
+  --color-surface-main: var(--bg-main);
+  --color-surface-card: var(--bg-surface);
+  --color-surface-hover: var(--bg-surface-hover);
+  --color-surface-subtle: var(--bg-surface-subtle);
+  --color-surface-dark: var(--bg-dark-surface);
+  --color-surface-dark-hover: var(--bg-dark-hover);
+
+  --color-primary-text: var(--text-primary);
+  --color-secondary-text: var(--text-secondary);
+  --color-dark-text: var(--text-primary);
+  --color-muted-text: var(--text-muted);
 }
 
 /* Tailwind v4 Class-based Dark Mode Variant Definition */

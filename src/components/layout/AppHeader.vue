@@ -12,7 +12,6 @@
         <router-link to="/about" class="nav-link text-sm font-medium text-gray-600 dark:text-zinc-300 hover:text-darkText dark:hover:text-white transition-colors py-2 relative">About</router-link>
         <router-link to="/services" class="nav-link text-sm font-medium text-gray-600 dark:text-zinc-300 hover:text-darkText dark:hover:text-white transition-colors py-2 relative">Services</router-link>
         <router-link to="/portfolio" class="nav-link text-sm font-medium text-gray-600 dark:text-zinc-300 hover:text-darkText dark:hover:text-white transition-colors py-2 relative">Work</router-link>
-        <router-link to="/careers" class="nav-link text-sm font-medium text-gray-600 dark:text-zinc-300 hover:text-darkText dark:hover:text-white transition-colors py-2 relative">Careers</router-link>
         <router-link to="/demo" class="nav-link text-sm font-medium text-gray-600 dark:text-zinc-300 hover:text-darkText dark:hover:text-white transition-colors py-2 relative">Demo</router-link>
         <router-link to="/contact" class="nav-link text-sm font-medium text-gray-600 dark:text-zinc-300 hover:text-darkText dark:hover:text-white transition-colors py-2 relative">Contact</router-link>
       </nav>
@@ -53,7 +52,6 @@
             <router-link to="/about" class="text-lg font-semibold text-darkText dark:text-white py-2 border-b border-gray-100 dark:border-zinc-800" @click="mobileMenuOpen = false">About</router-link>
             <router-link to="/services" class="text-lg font-semibold text-darkText dark:text-white py-2 border-b border-gray-100 dark:border-zinc-800" @click="mobileMenuOpen = false">Services</router-link>
             <router-link to="/portfolio" class="text-lg font-semibold text-darkText dark:text-white py-2 border-b border-gray-100 dark:border-zinc-800" @click="mobileMenuOpen = false">Work</router-link>
-            <router-link to="/careers" class="text-lg font-semibold text-darkText dark:text-white py-2 border-b border-gray-100 dark:border-zinc-800" @click="mobileMenuOpen = false">Careers</router-link>
             <router-link to="/demo" class="text-lg font-semibold text-darkText dark:text-white py-2 border-b border-gray-100 dark:border-zinc-800" @click="mobileMenuOpen = false">Product Demo</router-link>
             <router-link to="/contact" class="text-lg font-semibold text-darkText dark:text-white py-2 border-b border-gray-100 dark:border-zinc-800" @click="mobileMenuOpen = false">Contact</router-link>
           </nav>

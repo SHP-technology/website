@@ -1,8 +1,8 @@
 <template>
   <SectionContainer
-    tag="Client Feedback"
-    title="What Engineering Leaders Say About Us"
-    subtitle="Read how our software architecture and DevOps teams help enterprise organizations ship reliable software systems."
+    tag="Happy Customers"
+    title="What Our Happy Clients Say"
+    subtitle="Read reviews from real business owners and managers who hired us to build their software projects."
     bg-alt
   >
     <div class="grid grid-cols-1 md:grid-cols-3 gap-6">

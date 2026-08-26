@@ -33,13 +33,11 @@ const routes: Array<RouteRecordRaw> = [
   },
   {
     path: '/careers',
-    name: 'Careers',
-    component: () => import('@/views/Careers.vue')
+    redirect: '/'
   },
   {
     path: '/careers/:slug',
-    name: 'JobDetail',
-    component: () => import('@/views/JobDetail.vue')
+    redirect: '/'
   },
   {
     path: '/demo',

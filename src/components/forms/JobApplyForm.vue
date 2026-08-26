@@ -169,8 +169,31 @@ const handleSubmit = async () => {
   loading.value = true;
   trackEvent('Job Application Started', { jobTitle: props.jobTitle });
 
+  const webhookUrl = import.meta.env.VITE_GOOGLE_SHEET_WEBHOOK_URL;
+
   try {
-    await new Promise((resolve) => setTimeout(resolve, 1400));
+    if (webhookUrl) {
+      await fetch(webhookUrl, {
+        method: 'POST',
+        mode: 'no-cors',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          jobTitle: props.jobTitle,
+          name: form.name,
+          email: form.email,
+          phone: form.phone,
+          portfolio: form.portfolio,
+          cover: form.cover,
+          resume: fileName.value,
+          source: 'Careers Job Application Form',
+          timestamp: new Date().toISOString()
+        })
+      });
+    } else {
+      await new Promise((resolve) => setTimeout(resolve, 1400));
+    }
     trackEvent('Job Application Submitted', { jobTitle: props.jobTitle });
 
     toast.title = 'Application Submitted!';
