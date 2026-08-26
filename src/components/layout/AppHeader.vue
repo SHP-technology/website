@@ -113,7 +113,7 @@ onUnmounted(() => {
   left: 0;
   width: 100%;
   height: 2px;
-  background-color: #FACC15;
+  background-color: var(--brand-yellow);
   border-radius: 9999px;
 }
 </style>

@@ -90,7 +90,7 @@ p {
   padding: 0.75rem 1rem;
   border-radius: var(--radius-md);
   background: var(--bg-dark-surface);
-  color: #fff;
+  color: var(--text-inverse);
   font-weight: 700;
   transform: translate(-50%, -200%);
   transition: transform var(--transition-fast);
@@ -132,10 +132,10 @@ p {
 
 @keyframes pulseGlow {
   0%, 100% {
-    box-shadow: 0 0 15px rgba(250, 204, 21, 0.2);
+    box-shadow: var(--glow-yellow-pulse-start);
   }
   50% {
-    box-shadow: 0 0 30px rgba(250, 204, 21, 0.6);
+    box-shadow: var(--glow-yellow-pulse-end);
   }
 }
 

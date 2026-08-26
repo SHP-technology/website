@@ -223,7 +223,7 @@ useSeoMeta(() => study.value
 
 .spec-group strong {
   font-size: var(--fs-xs);
-  color: #A1A1AA;
+  color: var(--text-on-dark);
   display: block;
 }
 
@@ -241,7 +241,7 @@ useSeoMeta(() => study.value
 }
 
 .tech-tag-badge {
-  background-color: #27272A;
+  background-color: var(--bg-zinc-800);
   color: var(--brand-yellow);
   padding: 2px 8px;
   border-radius: var(--radius-xs);

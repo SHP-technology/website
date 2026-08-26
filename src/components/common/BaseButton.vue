@@ -111,7 +111,7 @@ const handleClick = (e: MouseEvent) => {
 /* Primary: Brand Yellow with High-Contrast Dark Text */
 .variant-primary {
   background-color: var(--brand-yellow);
-  color: #0F172A;
+  color: var(--text-primary);
   border-color: var(--brand-yellow);
 }
 
@@ -125,7 +125,7 @@ const handleClick = (e: MouseEvent) => {
 /* Secondary: Deep Navy */
 .variant-secondary {
   background-color: var(--bg-dark-surface);
-  color: #FFFFFF;
+  color: var(--text-inverse);
   border-color: var(--bg-dark-surface);
 }
 
@@ -160,7 +160,7 @@ const handleClick = (e: MouseEvent) => {
 /* Danger */
 .variant-danger {
   background-color: var(--color-error);
-  color: #FFFFFF;
+  color: var(--text-inverse);
   border-color: var(--color-error);
 }
 

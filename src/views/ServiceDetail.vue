@@ -247,7 +247,7 @@ useSeoMeta(() => service.value
 }
 
 .sticky-inquiry p {
-  color: #A1A1AA;
+  color: var(--text-on-dark);
   font-size: var(--fs-sm);
 }
 
@@ -263,7 +263,7 @@ useSeoMeta(() => service.value
 }
 
 .t-badge {
-  background-color: #27272A;
+  background-color: var(--bg-zinc-800);
   color: var(--brand-yellow);
   padding: 2px 8px;
   border-radius: var(--radius-xs);

@@ -15,7 +15,7 @@
 
         <!-- SRE Badge -->
         <div class="inline-flex items-center gap-2.5 px-3.5 py-1.5 rounded-full bg-surface-card border border-surface-subtle text-xs font-semibold text-secondaryText mt-2">
-          <span class="w-2 h-2 rounded-full bg-emerald-400 shadow-[0_0_8px_#34D399]"></span>
+          <span class="w-2 h-2 rounded-full bg-emerald-400" style="box-shadow: var(--glow-emerald);"></span>
           <span>25+ GitHub Projects • Active Open Source Builders</span>
         </div>
 

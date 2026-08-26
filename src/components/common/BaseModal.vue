@@ -42,7 +42,7 @@ defineEmits<{
 .modal-backdrop {
   position: fixed;
   inset: 0;
-  background-color: rgba(15, 23, 42, 0.6);
+  background-color: var(--backdrop-overlay);
   backdrop-filter: blur(4px);
   z-index: 1000;
   display: flex;

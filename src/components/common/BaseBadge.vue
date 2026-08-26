@@ -36,7 +36,7 @@ withDefaults(
 .badge-sky {
   background-color: var(--brand-sky-light);
   color: var(--brand-sky-hover);
-  border: 1px solid rgba(2, 132, 199, 0.3);
+  border: 1px solid var(--glow-sky-border);
 }
 
 .badge-neutral {
@@ -47,7 +47,7 @@ withDefaults(
 
 .badge-dark {
   background-color: var(--bg-dark-surface);
-  color: #FFFFFF;
+  color: var(--text-inverse);
   border: 1px solid var(--border-color-dark);
 }
 

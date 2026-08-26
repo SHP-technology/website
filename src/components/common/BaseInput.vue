@@ -90,7 +90,7 @@ const handleInput = (e: Event) => {
 .form-input:focus {
   outline: none;
   border-color: var(--brand-yellow-hover);
-  box-shadow: 0 0 0 3px rgba(250, 204, 21, 0.25);
+  box-shadow: var(--focus-ring-yellow);
 }
 
 .form-input.has-error {

@@ -40,6 +40,6 @@ withDefaults(
 .base-card.is-hoverable:hover {
   transform: translateY(-2px);
   box-shadow: var(--shadow-lg);
-  border-color: rgba(250, 204, 21, 0.4);
+  border-color: var(--glow-yellow-hover);
 }
 </style>

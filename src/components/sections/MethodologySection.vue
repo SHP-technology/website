@@ -21,7 +21,7 @@
         <p class="step-desc">{{ step.description }}</p>
         <ul class="step-outcomes">
           <li v-for="outcome in step.outcomes" :key="outcome">
-            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#EAB308" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--brand-yellow-hover)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
             <span>{{ outcome }}</span>
           </li>
         </ul>

@@ -1,9 +1,9 @@
 <template>
-  <section class="relative py-16 lg:py-24 bg-[radial-gradient(circle_at_50%_50%,rgba(250,204,21,0.1)_0%,rgba(248,249,250,0)_60%)] dark:bg-none overflow-hidden">
+  <section class="relative py-16 lg:py-24 overflow-hidden hero-section">
     <div class="container max-w-4xl mx-auto flex flex-col items-center text-center animate-fade-in-up">
       <!-- Tag Badge -->
       <div class="inline-flex items-center gap-2 bg-brand-light dark:bg-zinc-800 border border-brand-border dark:border-zinc-700 px-3.5 py-1.5 rounded-full text-xs font-semibold text-darkText mb-6 shadow-sm">
-        <span class="w-2 h-2 rounded-full bg-brand-hover shadow-[0_0_8px_#FACC15] animate-pulse-glow"></span>
+        <span class="w-2 h-2 rounded-full bg-brand-hover animate-pulse-glow"></span>
         <span>Software Development Company • Simple • Reliable • Fast</span>
       </div>
 
@@ -48,6 +48,10 @@ import { companyData } from '@/data/company';
 </script>
 
 <style scoped>
+.hero-section {
+  background-image: var(--hero-bg-gradient);
+}
+
 .fade-enter-active,
 .fade-leave-active {
   transition: opacity 0.2s ease;
