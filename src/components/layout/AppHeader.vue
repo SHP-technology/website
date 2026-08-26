@@ -1,5 +1,8 @@
 <template>
-  <header :class="['sticky top-0 left-0 w-full h-[80px] z-[900] transition-all duration-300 backdrop-blur-md', isScrolled ? 'bg-white/95 dark:bg-zinc-950/95 border-b border-gray-200 dark:border-zinc-800 shadow-sm' : 'bg-surface-main/85 dark:bg-zinc-950/85 border-b border-transparent']">
+  <header :class="['sticky top-0 left-0 w-full h-[80px] z-[900] transition-all duration-300 backdrop-blur-xl', isScrolled ? 'bg-white/90 dark:bg-slate-900/90 border-b border-slate-200/80 dark:border-slate-800/80 shadow-md shadow-slate-950/5' : 'bg-white/70 dark:bg-slate-900/75 border-b border-slate-200/40 dark:border-slate-800/40']">
+    <!-- Top Brand Gradient Line for Distinct Header Visual Identity -->
+    <div class="absolute top-0 left-0 w-full h-[3px] bg-gradient-to-r from-brand-yellow via-sky-400 to-amber-500"></div>
+
     <div class="container h-full flex items-center justify-between">
       <!-- Logo Component -->
       <router-link to="/" class="flex items-center" aria-label="SHP Technology Home">
@@ -8,12 +11,12 @@
 
       <!-- Desktop Navigation -->
       <nav class="hidden lg:flex items-center gap-8" aria-label="Main Navigation">
-        <router-link to="/" class="nav-link text-sm font-medium text-gray-600 dark:text-zinc-300 hover:text-darkText dark:hover:text-white transition-colors py-2 relative">Home</router-link>
-        <router-link to="/about" class="nav-link text-sm font-medium text-gray-600 dark:text-zinc-300 hover:text-darkText dark:hover:text-white transition-colors py-2 relative">About</router-link>
-        <router-link to="/services" class="nav-link text-sm font-medium text-gray-600 dark:text-zinc-300 hover:text-darkText dark:hover:text-white transition-colors py-2 relative">Services</router-link>
-        <router-link to="/portfolio" class="nav-link text-sm font-medium text-gray-600 dark:text-zinc-300 hover:text-darkText dark:hover:text-white transition-colors py-2 relative">Work</router-link>
-        <router-link to="/demo" class="nav-link text-sm font-medium text-gray-600 dark:text-zinc-300 hover:text-darkText dark:hover:text-white transition-colors py-2 relative">Demo</router-link>
-        <router-link to="/contact" class="nav-link text-sm font-medium text-gray-600 dark:text-zinc-300 hover:text-darkText dark:hover:text-white transition-colors py-2 relative">Contact</router-link>
+        <router-link to="/" class="nav-link text-sm font-medium text-slate-600 dark:text-slate-300 hover:text-slate-950 dark:hover:text-white transition-colors py-2 relative">Home</router-link>
+        <router-link to="/about" class="nav-link text-sm font-medium text-slate-600 dark:text-slate-300 hover:text-slate-950 dark:hover:text-white transition-colors py-2 relative">About</router-link>
+        <router-link to="/services" class="nav-link text-sm font-medium text-slate-600 dark:text-slate-300 hover:text-slate-950 dark:hover:text-white transition-colors py-2 relative">Services</router-link>
+        <router-link to="/portfolio" class="nav-link text-sm font-medium text-slate-600 dark:text-slate-300 hover:text-slate-950 dark:hover:text-white transition-colors py-2 relative">Work</router-link>
+        <router-link to="/demo" class="nav-link text-sm font-medium text-slate-600 dark:text-slate-300 hover:text-slate-950 dark:hover:text-white transition-colors py-2 relative">Demo</router-link>
+        <router-link to="/contact" class="nav-link text-sm font-medium text-slate-600 dark:text-slate-300 hover:text-slate-950 dark:hover:text-white transition-colors py-2 relative">Contact</router-link>
       </nav>
 
       <!-- Desktop Right Controls -->
@@ -32,7 +35,7 @@
         <ThemeToggle />
         <button
           type="button"
-          class="p-2 rounded-lg border border-gray-200 dark:border-zinc-800 text-darkText dark:text-white flex items-center justify-center"
+          class="p-2 rounded-lg border border-slate-200 dark:border-slate-800 text-slate-800 dark:text-white flex items-center justify-center"
           :aria-expanded="mobileMenuOpen"
           aria-controls="mobile-navigation"
           aria-label="Toggle navigation menu"
@@ -46,15 +49,15 @@
 
     <!-- Mobile Drawer Overlay -->
     <Transition name="drawer">
-      <div v-if="mobileMenuOpen" class="fixed inset-x-0 top-[80px] h-[calc(100vh-80px)] bg-darkText/40 backdrop-blur-sm z-[899] lg:hidden" @click.self="mobileMenuOpen = false">
-        <div id="mobile-navigation" class="bg-white dark:bg-zinc-900 p-6 border-b border-gray-200 dark:border-zinc-800 flex flex-col gap-6 shadow-xl">
+      <div v-if="mobileMenuOpen" class="fixed inset-x-0 top-[80px] h-[calc(100vh-80px)] bg-slate-950/60 backdrop-blur-sm z-[899] lg:hidden" @click.self="mobileMenuOpen = false">
+        <div id="mobile-navigation" class="bg-white dark:bg-slate-900 p-6 border-b border-slate-200 dark:border-slate-800 flex flex-col gap-6 shadow-2xl">
           <nav class="flex flex-col gap-4" aria-label="Mobile navigation">
-            <router-link to="/" class="text-lg font-semibold text-darkText dark:text-white py-2 border-b border-gray-100 dark:border-zinc-800" @click="mobileMenuOpen = false">Home</router-link>
-            <router-link to="/about" class="text-lg font-semibold text-darkText dark:text-white py-2 border-b border-gray-100 dark:border-zinc-800" @click="mobileMenuOpen = false">About</router-link>
-            <router-link to="/services" class="text-lg font-semibold text-darkText dark:text-white py-2 border-b border-gray-100 dark:border-zinc-800" @click="mobileMenuOpen = false">Services</router-link>
-            <router-link to="/portfolio" class="text-lg font-semibold text-darkText dark:text-white py-2 border-b border-gray-100 dark:border-zinc-800" @click="mobileMenuOpen = false">Work</router-link>
-            <router-link to="/demo" class="text-lg font-semibold text-darkText dark:text-white py-2 border-b border-gray-100 dark:border-zinc-800" @click="mobileMenuOpen = false">Product Demo</router-link>
-            <router-link to="/contact" class="text-lg font-semibold text-darkText dark:text-white py-2 border-b border-gray-100 dark:border-zinc-800" @click="mobileMenuOpen = false">Contact</router-link>
+            <router-link to="/" class="text-lg font-semibold text-slate-800 dark:text-white py-2 border-b border-slate-100 dark:border-slate-800" @click="mobileMenuOpen = false">Home</router-link>
+            <router-link to="/about" class="text-lg font-semibold text-slate-800 dark:text-white py-2 border-b border-slate-100 dark:border-slate-800" @click="mobileMenuOpen = false">About</router-link>
+            <router-link to="/services" class="text-lg font-semibold text-slate-800 dark:text-white py-2 border-b border-slate-100 dark:border-slate-800" @click="mobileMenuOpen = false">Services</router-link>
+            <router-link to="/portfolio" class="text-lg font-semibold text-slate-800 dark:text-white py-2 border-b border-slate-100 dark:border-slate-800" @click="mobileMenuOpen = false">Work</router-link>
+            <router-link to="/demo" class="text-lg font-semibold text-slate-800 dark:text-white py-2 border-b border-slate-100 dark:border-slate-800" @click="mobileMenuOpen = false">Product Demo</router-link>
+            <router-link to="/contact" class="text-lg font-semibold text-slate-800 dark:text-white py-2 border-b border-slate-100 dark:border-slate-800" @click="mobileMenuOpen = false">Contact</router-link>
           </nav>
           <div>
             <BaseButton to="/contact" variant="primary" full-width @click="mobileMenuOpen = false">
@@ -104,16 +107,18 @@ onUnmounted(() => {
 <style scoped>
 .nav-link.router-link-active {
   font-weight: 600;
+  color: var(--text-primary);
 }
 
 .nav-link.router-link-active::after {
   content: '';
   position: absolute;
-  bottom: 0;
+  bottom: -2px;
   left: 0;
   width: 100%;
-  height: 2px;
-  background-color: var(--brand-yellow);
+  height: 2.5px;
+  background: linear-gradient(90deg, var(--brand-yellow), var(--brand-sky));
   border-radius: 9999px;
+  box-shadow: 0 0 8px rgba(250, 204, 21, 0.4);
 }
 </style>
