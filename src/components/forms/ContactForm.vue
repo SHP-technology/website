@@ -4,8 +4,8 @@
       <BaseInput
         id="name"
         v-model="form.name"
-        label="Full Name"
-        placeholder="Jane Doe"
+        label="Full Name *"
+        placeholder="e.g. Sumit Srivastav"
         required
         :error="errors.name"
         @blur="validateRequired('name', form.name)"
@@ -13,9 +13,9 @@
       <BaseInput
         id="email"
         v-model="form.email"
-        label="Work Email"
+        label="Work Email *"
         type="email"
-        placeholder="jane@company.com"
+        placeholder="e.g. sumit@example.com"
         required
         :error="errors.email"
         @blur="validateEmail('email', form.email)"
@@ -24,31 +24,42 @@
 
     <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
       <BaseInput
+        id="phone"
+        v-model="form.phone"
+        label="Contact Number / WhatsApp *"
+        type="tel"
+        placeholder="+91 93018 85654"
+        required
+        :error="errors.phone"
+        @blur="validateRequired('phone', form.phone)"
+      />
+      <BaseInput
         id="company"
         v-model="form.company"
-        label="Company Name"
-        placeholder="Acme Corp"
+        label="Company / Business Name *"
+        placeholder="e.g. Bima Gurukul or Personal"
         required
         :error="errors.company"
         @blur="validateRequired('company', form.company)"
       />
-      <BaseSelect
-        id="subject"
-        v-model="form.subject"
-        label="Project Type / Inquiry"
-        placeholder="Select inquiry category"
-        required
-        :options="subjectOptions"
-        :error="errors.subject"
-      />
     </div>
+
+    <BaseSelect
+      id="subject"
+      v-model="form.subject"
+      label="Project Type / Inquiry *"
+      placeholder="Select inquiry category"
+      required
+      :options="subjectOptions"
+      :error="errors.subject"
+    />
 
     <BaseTextarea
       id="message"
       v-model="form.message"
-      label="Project Details & Requirements"
+      label="Project Details & Requirements *"
       placeholder="Tell us about your project goals, technical requirements, timeline, and budget..."
-      :rows="5"
+      :rows="4"
       required
       :error="errors.message"
       @blur="validateMinLength('message', form.message, 15)"
@@ -104,6 +115,7 @@ const toast = reactive({
 const form = reactive({
   name: '',
   email: '',
+  phone: '',
   company: '',
   subject: '',
   message: ''
@@ -122,11 +134,12 @@ const handleSubmit = async () => {
   clearErrors();
   const validName = validateRequired('name', form.name);
   const validEmail = validateEmail('email', form.email);
+  const validPhone = validateRequired('phone', form.phone);
   const validCompany = validateRequired('company', form.company);
   const validSubject = validateRequired('subject', form.subject, 'Please select a subject');
   const validMsg = validateMinLength('message', form.message, 15);
 
-  if (!validName || !validEmail || !validCompany || !validSubject || !validMsg) {
+  if (!validName || !validEmail || !validPhone || !validCompany || !validSubject || !validMsg) {
     return;
   }
 
@@ -146,6 +159,7 @@ const handleSubmit = async () => {
         body: JSON.stringify({
           name: form.name,
           email: form.email,
+          phone: form.phone,
           company: form.company,
           subject: form.subject,
           message: form.message,
@@ -166,6 +180,7 @@ const handleSubmit = async () => {
 
     form.name = '';
     form.email = '';
+    form.phone = '';
     form.company = '';
     form.subject = '';
     form.message = '';

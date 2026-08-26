@@ -4,8 +4,8 @@
       <BaseInput
         id="demo-name"
         v-model="form.name"
-        label="Full Name"
-        placeholder="Mark Watson"
+        label="Your Full Name *"
+        placeholder="e.g. Sumit Srivastav"
         required
         :error="errors.name"
         @blur="validateRequired('name', form.name)"
@@ -13,9 +13,9 @@
       <BaseInput
         id="demo-email"
         v-model="form.email"
-        label="Work Email"
+        label="Email Address *"
         type="email"
-        placeholder="mark@company.com"
+        placeholder="e.g. sumit@example.com"
         required
         :error="errors.email"
         @blur="validateEmail('email', form.email)"
@@ -24,30 +24,54 @@
 
     <div class="form-row">
       <BaseInput
+        id="demo-phone"
+        v-model="form.phone"
+        label="Contact Number / WhatsApp *"
+        type="tel"
+        placeholder="+91 93018 85654"
+        required
+        :error="errors.phone"
+        @blur="validateRequired('phone', form.phone)"
+      />
+      <BaseInput
         id="demo-company"
         v-model="form.company"
-        label="Company Name"
-        placeholder="Enterprise Solutions Inc."
+        label="Business or Company Name *"
+        placeholder="e.g. Bima Gurukul or Personal"
         required
         :error="errors.company"
         @blur="validateRequired('company', form.company)"
       />
-      <BaseSelect
-        id="demo-interest"
-        v-model="form.interest"
-        label="Primary Demo Interest"
-        placeholder="Select demo topic"
+    </div>
+
+    <BaseSelect
+      id="demo-interest"
+      v-model="form.interest"
+      label="What Would You Like a Demo Of? *"
+      placeholder="Select software type..."
+      required
+      :options="demoTopics"
+      :error="errors.interest"
+    />
+
+    <!-- Dynamic Custom Project Requirement Input -->
+    <div v-if="form.interest === 'custom'" class="animate-fade-in-down">
+      <BaseInput
+        id="demo-custom-interest"
+        v-model="form.customInterest"
+        label="Specify Your Custom Software Requirement *"
+        placeholder="e.g. School billing system, Real estate portal, Inventory software..."
         required
-        :options="demoTopics"
-        :error="errors.interest"
+        :error="errors.customInterest"
+        @blur="validateRequired('customInterest', form.customInterest)"
       />
     </div>
 
     <BaseTextarea
       id="demo-notes"
       v-model="form.notes"
-      label="Use Case & Custom Questions"
-      placeholder="What specific architecture, throughput, or AI capability would you like to see live?"
+      label="Project Details or Specific Questions (Optional)"
+      placeholder="Tell us a bit about your business goals or any specific features you'd like to see during the live demo..."
       :rows="3"
     />
 
@@ -59,7 +83,7 @@
         :loading="loading"
         full-width
       >
-        Request Live Engineering Demo
+        Schedule Free Live Demo →
       </BaseButton>
     </div>
 
@@ -97,31 +121,42 @@ const toast = reactive({
 const form = reactive({
   name: '',
   email: '',
+  phone: '',
   company: '',
   interest: '',
+  customInterest: '',
   notes: ''
 });
 
 const demoTopics = [
-  { label: 'RAG Knowledge Engine & Vector Search', value: 'rag' },
-  { label: 'High-Throughput Payment Engine', value: 'payments' },
-  { label: 'Kubernetes Multi-Cloud Infrastructure', value: 'k8s' },
-  { label: 'Vue 3 Design System & UI Architecture', value: 'design-system' }
+  { label: 'E-Commerce Store & Web Shop', value: 'ecommerce' },
+  { label: 'Restaurant & Hostel Management Software', value: 'restaurant-hostel' },
+  { label: 'Custom CRM & Lead Management System', value: 'crm' },
+  { label: 'Chrome Extension & Web Automation Tool', value: 'chrome-ext' },
+  { label: 'Hospital & Healthcare Management Software', value: 'healthcare' },
+  { label: 'Custom Business Software (Write your requirement below...)', value: 'custom' }
 ];
 
 const handleSubmit = async () => {
   clearErrors();
   const validName = validateRequired('name', form.name);
   const validEmail = validateEmail('email', form.email);
+  const validPhone = validateRequired('phone', form.phone);
   const validCompany = validateRequired('company', form.company);
-  const validInterest = validateRequired('interest', form.interest, 'Please select a demo topic');
+  const validInterest = validateRequired('interest', form.interest, 'Please select a software type');
+  
+  let validCustom = true;
+  if (form.interest === 'custom') {
+    validCustom = validateRequired('customInterest', form.customInterest, 'Please describe your custom software requirement');
+  }
 
-  if (!validName || !validEmail || !validCompany || !validInterest) {
+  if (!validName || !validEmail || !validPhone || !validCompany || !validInterest || !validCustom) {
     return;
   }
 
   loading.value = true;
-  trackEvent('Demo Request Started', { topic: form.interest });
+  const chosenInterest = form.interest === 'custom' ? `Custom: ${form.customInterest}` : form.interest;
+  trackEvent('Demo Request Started', { topic: chosenInterest });
 
   const webhookUrl = import.meta.env.VITE_GOOGLE_SHEET_WEBHOOK_URL;
 
@@ -136,8 +171,9 @@ const handleSubmit = async () => {
         body: JSON.stringify({
           name: form.name,
           email: form.email,
+          phone: form.phone,
           company: form.company,
-          interest: form.interest,
+          interest: chosenInterest,
           notes: form.notes,
           source: 'Demo Request Form',
           timestamp: new Date().toISOString()
@@ -146,21 +182,23 @@ const handleSubmit = async () => {
     } else {
       await new Promise((resolve) => setTimeout(resolve, 1100));
     }
-    trackEvent('Demo Request Submitted', { topic: form.interest });
+    trackEvent('Demo Request Submitted', { topic: chosenInterest });
 
     toast.title = 'Demo Request Received!';
-    toast.message = 'Our lead solutions architect will send a custom meeting invitation to your work email.';
+    toast.message = 'Our team will contact you shortly via email / phone to confirm your live demo schedule.';
     toast.type = 'success';
     toast.show = true;
 
     form.name = '';
     form.email = '';
+    form.phone = '';
     form.company = '';
     form.interest = '';
+    form.customInterest = '';
     form.notes = '';
   } catch (e) {
     toast.title = 'Request Failed';
-    toast.message = 'An error occurred. Please try requesting your demo again.';
+    toast.message = 'An error occurred. Please try submitting your request again.';
     toast.type = 'error';
     toast.show = true;
   } finally {

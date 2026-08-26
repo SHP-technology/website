@@ -7,7 +7,7 @@
     <div class="relative border-l-2 border-brand-yellow dark:border-brand-hover ml-4 md:ml-32 space-y-8 py-4">
       <div v-for="item in milestones" :key="item.year" class="relative pl-6 md:pl-8 group">
         <!-- Dot -->
-        <span class="absolute -left-[9px] top-1.5 w-4 h-4 rounded-full bg-brand-yellow border-2 border-white dark:border-zinc-900 group-hover:scale-125 transition-transform"></span>
+        <span class="absolute -left-[9px] top-1.5 w-4 h-4 rounded-full bg-brand-yellow border-2 border-white dark:border-slate-900 group-hover:scale-125 transition-transform"></span>
 
         <!-- Year badge on left for desktop -->
         <span class="hidden md:block absolute -left-28 top-1 text-sm font-extrabold text-brand-hover dark:text-brand-yellow font-mono">
@@ -16,8 +16,8 @@
 
         <!-- Content Card -->
         <div class="bg-surface-card border border-surface-subtle rounded-2xl p-6 shadow-sm hover:shadow-md transition-shadow">
-          <span class="md:hidden inline-block bg-brand-light text-darkText font-mono text-xs font-extrabold px-2.5 py-0.5 rounded-full mb-2">{{ item.year }}</span>
-          <h3 class="text-xl font-bold text-darkText mb-2">{{ item.title }}</h3>
+          <span class="md:hidden inline-block bg-brand-light text-primaryText font-mono text-xs font-extrabold px-2.5 py-0.5 rounded-full mb-2">{{ item.year }}</span>
+          <h3 class="text-xl font-bold text-primaryText mb-2">{{ item.title }}</h3>
           <p class="text-secondaryText text-sm leading-relaxed mb-4">{{ item.description }}</p>
 
           <div class="flex flex-wrap gap-2">
@@ -49,9 +49,9 @@ const milestones = [
   },
   {
     year: '2026 - Present',
-    title: 'Collaborative Web Apps & Frontend Portals',
-    description: 'Developing highly interactive web applications utilizing TypeScript and modern frontend frameworks, focused on real-time sync and markdown engines.',
-    highlights: ['File-Share Vault', 'Jarvis AI Chat Portal']
+    title: 'Custom Software & Business Growth',
+    description: 'Developed ready-to-use software and digital solutions for businesses, helping them automate processes, improve customer experience, and build a stronger online presence.',
+    highlights: ['Custom Software', 'Business Automation']
   }
 ];
 </script>

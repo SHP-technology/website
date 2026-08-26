@@ -4,13 +4,13 @@
       <div class="max-w-3xl mx-auto">
         <div class="text-center mb-10 animate-fade-in-up">
           <span class="inline-flex items-center gap-2 bg-brand-light dark:bg-slate-800 border border-brand-border dark:border-slate-700 px-3.5 py-1.5 rounded-full text-xs font-semibold text-primaryText mb-4">
-            Live Demonstration
+            Free Guided Walkthrough
           </span>
           <h1 class="text-4xl md:text-5xl font-extrabold text-primaryText tracking-tight mb-4 leading-tight">
             Request a Live Guided Demo
           </h1>
           <p class="text-lg text-secondaryText leading-relaxed">
-            Fill out the form below and our team will get in touch to schedule a live, personalized walkthrough of our software platforms.
+            Choose what software or business system you want to see. We will give you a simple live walkthrough and answer all your questions.
           </p>
         </div>
 
