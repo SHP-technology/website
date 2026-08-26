@@ -39,7 +39,14 @@ export interface CompanyConfig {
   metrics: Array<{
     label: string;
     value: string;
+    tagline?: string;
     description: string;
+  }>;
+  team: Array<{
+    name: string;
+    initials: string;
+    role: string;
+    bio: string;
   }>;
 }
 
@@ -57,15 +64,15 @@ export const siteConfig: CompanyConfig = {
   phone: import.meta.env.VITE_SITE_PHONE || '+91 9301885654',
   officeLocation: {
     address: import.meta.env.VITE_SITE_ADDRESS || '1st floor, SHP Technology, Near Underground Bridge, Madan Mahal Station',
-    city: 'Jabalpur',
-    state: 'Madhya Pradesh',
-    zip: '482001',
-    country: 'India'
+    city: import.meta.env.VITE_SITE_CITY || 'Jabalpur',
+    state: import.meta.env.VITE_SITE_STATE || 'Madhya Pradesh',
+    zip: import.meta.env.VITE_SITE_ZIP || '482001',
+    country: import.meta.env.VITE_SITE_COUNTRY || 'India'
   },
   contact: {
     email: import.meta.env.VITE_SITE_EMAIL || 'founder.shp@gmail.com',
     phone: import.meta.env.VITE_SITE_PHONE || '+91 9301885654',
-    supportEmail: import.meta.env.VITE_SITE_EMAIL || 'founder.shp@gmail.com',
+    supportEmail: import.meta.env.VITE_SITE_SUPPORT_EMAIL || 'founder.shp@gmail.com',
     responseSLA: '4 business hours'
   },
   socials: {
@@ -82,9 +89,47 @@ export const siteConfig: CompanyConfig = {
     analyticsId: 'G-SHP12345'
   },
   metrics: [
-    { label: 'GitHub Projects', value: '25+', description: 'Public repositories built and shared on GitHub' },
-    { label: 'Community Stars', value: '11', description: 'Total stars received across all projects' },
-    { label: 'Languages Used', value: '6+', description: 'Expertise in TypeScript, Go, Python, JavaScript, HTML, and CSS' },
-    { label: 'Core Team', value: '2', description: 'Harsh Patel & Sandesh Patel leading development' }
+    { label: 'Clients', value: '150+', tagline: 'Trust', description: 'Trust & Long-Term Client Relationships' },
+    { label: 'Projects', value: '80+', tagline: 'Experience', description: 'Delivered Custom Software & Web Platforms' },
+    { label: 'Automations', value: '50+', tagline: 'Technical capability', description: 'Workflow & Task Automation Systems' },
+    { label: 'Industries', value: '20+', tagline: 'Versatility', description: 'Versatility Across Business Verticals' }
+  ],
+  team: [
+    {
+      name: 'Harsh Patel',
+      initials: 'HP',
+      role: 'Founder',
+      bio: 'Founder of the company, focused on business strategy, technology solutions, automation, and overall company growth.'
+    },
+    {
+      name: 'Sandesh Patel',
+      initials: 'SP',
+      role: 'Co-Founder & Head of Full-Stack Development',
+      bio: 'Co-Founder and Head of Full-Stack Development, specializing in building scalable, modern web applications and robust full-stack solutions.'
+    },
+    {
+      name: 'Prachi Dabar',
+      initials: 'PD',
+      role: 'Sales Manager',
+      bio: 'Drives client relations, strategic account management, and business development to align enterprise client goals with SHP Technology engineering solutions.'
+    },
+    {
+      name: 'Shivam Patel',
+      initials: 'SP',
+      role: 'Full-Stack Developer',
+      bio: 'Specializes in building responsive web interfaces, high-performance APIs, and scalable full-stack application components.'
+    },
+    {
+      name: 'Mohit Verma',
+      initials: 'MV',
+      role: 'Sales Lead',
+      bio: 'Leads sales strategy and prospective client engagements, ensuring tailored technical solutions and transparent onboarding for partners.'
+    },
+    {
+      name: 'Aparna Verma',
+      initials: 'AV',
+      role: 'Operations Manager',
+      bio: 'Oversees operational efficiency, project coordination, resource allocation, and team workflows to guarantee seamless project delivery.'
+    }
   ]
 };
