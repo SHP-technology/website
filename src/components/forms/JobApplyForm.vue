@@ -5,7 +5,7 @@
         id="applicant-name"
         v-model="form.name"
         label="Full Name"
-        placeholder="Alex Mercer"
+        placeholder="e.g. Jane Smith"
         required
         :error="errors.name"
         @blur="validateRequired('name', form.name)"
@@ -15,7 +15,7 @@
         v-model="form.email"
         label="Email Address"
         type="email"
-        placeholder="alex@example.com"
+        placeholder="e.g. jane@example.com"
         required
         :error="errors.email"
         @blur="validateEmail('email', form.email)"
@@ -27,7 +27,7 @@
         id="applicant-phone"
         v-model="form.phone"
         label="Phone Number"
-        placeholder="+1 (555) 000-1234"
+        placeholder="e.g. +91 00000 00000"
         required
         :error="errors.phone"
         @blur="validateRequired('phone', form.phone)"

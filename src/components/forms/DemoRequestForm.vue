@@ -5,7 +5,7 @@
         id="demo-name"
         v-model="form.name"
         label="Your Full Name *"
-        placeholder="e.g. Sumit Srivastav"
+        placeholder="e.g. Jane Smith"
         required
         :error="errors.name"
         @blur="validateRequired('name', form.name)"
@@ -15,7 +15,7 @@
         v-model="form.email"
         label="Email Address *"
         type="email"
-        placeholder="e.g. sumit@example.com"
+        placeholder="e.g. jane@example.com"
         required
         :error="errors.email"
         @blur="validateEmail('email', form.email)"
@@ -28,7 +28,7 @@
         v-model="form.phone"
         label="Contact Number / WhatsApp *"
         type="tel"
-        placeholder="+91 93018 85654"
+        placeholder="e.g. +91 00000 00000"
         required
         :error="errors.phone"
         @blur="validateRequired('phone', form.phone)"
@@ -37,7 +37,7 @@
         id="demo-company"
         v-model="form.company"
         label="Business or Company Name *"
-        placeholder="e.g. Bima Gurukul or Personal"
+        placeholder="e.g. Acme Corp or Personal"
         required
         :error="errors.company"
         @blur="validateRequired('company', form.company)"
