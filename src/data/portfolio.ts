@@ -14,79 +14,98 @@ export interface CaseStudyItem {
   technologies: string[];
   featured: boolean;
   completionYear: string;
+  url: string;
 }
 
 export const portfolioData: CaseStudyItem[] = [
   {
-    id: 'cs-1',
-    slug: 'fintech-realtime-payment-engine',
-    title: 'High-Throughput Global Payment Engine Modernization',
-    client: 'PayFlow Global (FinTech)',
-    industry: 'Financial Technology',
-    summary: 'Refactored a legacy payment processing system to handle over 10,000 transactions per second with 99.999% reliability.',
-    challenge: 'PayFlow Global was experiencing peak-hour latency spikes and occasional database transaction deadlocks, causing payment processing delays during global holiday shopping spikes.',
-    solution: 'Engineered an event-driven microservices processing engine utilizing Apache Kafka message queues, Go microservices, and Redis distributed caching on AWS EKS.',
+    id: 'file-share',
+    slug: 'file-share',
+    title: 'Collaborative Notes & File Sharing Vault',
+    client: 'Open Source Community',
+    industry: 'Developer Tools',
+    summary: 'A real-time collaborative notes and secure file sharing vault featuring password-protected workspaces and a live Markdown editor.',
+    challenge: 'Developers and small teams lack simple, instant ways to securely collaborate on Markdown documentation and share assets without high-friction sign-ups.',
+    solution: 'Designed and built a fast, client-side encrypted workspace platform using TypeScript and modern web protocols for zero-config team collaboration.',
     results: [
-      { metric: '10,000+', label: 'Transactions per second throughput' },
-      { metric: '99.999%', label: 'Uptime SLA maintained over 18 months' },
-      { metric: '85ms', label: 'Average global API execution latency' }
+      { metric: 'Live', label: 'Real-time Markdown sync' },
+      { metric: '100%', label: 'Workspaces password protected' }
     ],
-    technologies: ['Go', 'Apache Kafka', 'Redis', 'AWS EKS', 'PostgreSQL', 'Terraform'],
+    technologies: ['TypeScript', 'Vue 3', 'Markdown', 'Web Storage APIs', 'Vite'],
     featured: true,
-    completionYear: '2025'
+    completionYear: '2026',
+    url: 'https://github.com/sandeshPatel06/file-share'
   },
   {
-    id: 'cs-2',
-    slug: 'healthcare-rag-knowledge-platform',
-    title: 'HIPAA-Compliant AI Knowledge Retrieval System',
-    client: 'Apex Health Systems',
-    industry: 'Healthcare Analytics',
-    summary: 'Developed a secure RAG vector search engine enabling medical staff to instantly query 2M+ clinical documentation records.',
-    challenge: 'Clinical researchers lost hours manually searching through unstructured PDF diagnostic records across disparate hospital archives.',
-    solution: 'Built an encrypted, HIPAA-compliant Retrieval-Augmented Generation pipeline using specialized vector embeddings, private LLM endpoints, and fine-grained role-based access control.',
+    id: 'jarvis-chat-app',
+    slug: 'jarvis-chat-app',
+    title: 'Conversational AI Assistant Frontend Portal',
+    client: 'Jarvis AI Open Source',
+    industry: 'Artificial Intelligence',
+    summary: 'A beautiful, feature-rich conversational AI assistant web frontend designed with a responsive chat interface and native dark mode support.',
+    challenge: 'AI chat interfaces are often slow, bulky, or poorly optimized for mobile screens, degrading the user experience during quick prompt cycles.',
+    solution: 'Engineered a highly responsive frontend portal with local storage session caching, markdown streaming rendering, and layout transitions.',
     results: [
-      { metric: '92%', label: 'Reduction in document search time for physicians' },
-      { metric: '2M+', label: 'Clinical records indexed with semantic embeddings' },
-      { metric: '100%', label: 'HIPAA & SOC 2 compliance verification passed' }
+      { metric: 'Instant', label: 'Message streaming rendering' },
+      { metric: '<100ms', label: 'Interface action response time' }
     ],
-    technologies: ['Python', 'FastAPI', 'Pinecone', 'LangChain', 'Vue 3', 'Docker'],
+    technologies: ['TypeScript', 'Vue 3', 'TailwindCSS', 'Vite', 'LocalStorage'],
     featured: true,
-    completionYear: '2025'
+    completionYear: '2026',
+    url: 'https://github.com/sandeshPatel06/jarvis-chat-app'
   },
   {
-    id: 'cs-3',
-    slug: 'logistics-iot-fleet-management',
-    title: 'Real-Time Telemetry & Fleet Operations Platform',
-    client: 'TransWorld Logistics',
-    industry: 'Supply Chain & Logistics',
-    summary: 'Created a centralized cloud telemetry platform tracking 15,000+ IoT-connected freight vehicles in real time.',
-    challenge: 'TransWorld struggled with delayed location updates and inefficient route assignments due to fragmented GPS provider integrations.',
-    solution: 'Designed a unified cloud telemetry ingestion pipeline with real-time web socket dashboards, predictive maintenance notifications, and automated route optimization algorithms.',
+    id: 'mini-tracker',
+    slug: 'mini-tracker',
+    title: 'Privacy-First Linux Productivity Tracker',
+    client: 'Productivity Systems',
+    industry: 'Developer Tools',
+    summary: 'A lightweight Linux application tracking work sessions, offering automatic local Gemini AI batch analysis and multi-tenant team stats.',
+    challenge: 'Commercial trackers violate user privacy by capturing screenshots and sending raw keystrokes to third-party servers.',
+    solution: 'Programmed a local-first system utility in Go that parses active processes and calls Gemini AI to build anonymized hourly work logs.',
     results: [
-      { metric: '15,000+', label: 'Active freight vehicles monitored concurrently' },
-      { metric: '18%', label: 'Reduction in fleet fuel consumption' },
-      { metric: '<500ms', label: 'Telemetry data update latency to dispatcher UI' }
+      { metric: 'Go-Based', label: 'Runs with zero background lag' },
+      { metric: 'Local AI', label: 'Gemini batch analysis' }
     ],
-    technologies: ['Vue.js', 'Node.js', 'TimescaleDB', 'MQTT', 'Google Cloud', 'Kubernetes'],
+    technologies: ['Go', 'Gemini AI API', 'SQLite', 'Linux APIs', 'Multi-tenant Dashboard'],
     featured: true,
-    completionYear: '2024'
+    completionYear: '2025',
+    url: 'https://github.com/sandeshPatel06/mini-tracker'
   },
   {
-    id: 'cs-4',
-    slug: 'ecommerce-omnichannel-design-system',
-    title: 'Omnichannel Enterprise E-Commerce Platform & Design System',
-    client: 'Luminary Retail Tech',
-    industry: 'E-Commerce',
-    summary: 'Architected a headless e-commerce storefront with a unified design system serving 3M+ active monthly shoppers.',
-    challenge: 'Monolithic legacy storefront was slow on mobile devices, difficult to localize, and required weeks of developer effort for minor UI tweaks.',
-    solution: 'Built a decoupled, ultra-fast Vue 3 / Nuxt frontend backed by a centralized UI component design system and headless GraphQL content APIs.',
+    id: 'jarvis-ai',
+    slug: 'jarvis-ai',
+    title: 'Jarvis Virtual Assistant Orchestration Backend',
+    client: 'Jarvis AI Core',
+    industry: 'Artificial Intelligence',
+    summary: 'The main AI core engine and automation orchestrator handling prompt engineering, tool usage, and background system controls.',
+    challenge: 'AI assistants require flexible integrations with system shells, browsers, and automation APIs without leaking authentication tokens.',
+    solution: 'Architected a backend engine in TypeScript to manage session state, execute sandboxed system scripts, and integrate AI models.',
     results: [
-      { metric: '3.4x', label: 'Increase in mobile page load speed' },
-      { metric: '28%', label: 'Improvement in checkout conversion rate' },
-      { metric: '100%', label: 'WCAG 2.1 AA Accessibility rating' }
+      { metric: 'Sandbox', label: 'Safe local command execution' },
+      { metric: 'Dynamic', label: 'Agent tool-calling workflow' }
     ],
-    technologies: ['Vue 3', 'TypeScript', 'GraphQL', 'Vite', 'CSS Modules', 'AWS CloudFront'],
+    technologies: ['TypeScript', 'Node.js', 'LLM Tool Calling', 'CLI Integrations'],
+    featured: true,
+    completionYear: '2025',
+    url: 'https://github.com/sandeshPatel06/jarvis-ai'
+  },
+  {
+    id: 'voice-assistant',
+    slug: 'voice-assistant',
+    title: 'Desktop AI Speech Recognition Assistant',
+    client: 'Personal Automation Project',
+    industry: 'Artificial Intelligence',
+    summary: 'A Python-powered desktop voice assistant implementing local speech recognition, text-to-speech feedback, and desktop control commands.',
+    challenge: 'Standard cloud voice assistants require constant internet connection and suffer from high network round-trip latency.',
+    solution: 'Implemented offline-first speech recognition and local synthesis APIs, creating a responsive hands-free desktop control pipeline.',
+    results: [
+      { metric: 'Offline', label: 'Speech-to-text recognition' },
+      { metric: 'Hands-Free', label: 'Desktop control scripting' }
+    ],
+    technologies: ['Python', 'SpeechRecognition', 'pyttsx3', 'Desktop OS APIs'],
     featured: false,
-    completionYear: '2024'
+    completionYear: '2024',
+    url: 'https://github.com/sandeshPatel06/voice-assistant'
   }
 ];

@@ -50,7 +50,7 @@ export const siteConfig: CompanyConfig = {
   tagline: 'Software Development Company — Build • Automate • Grow',
   subTagline: 'Software Development Company',
   motto: 'Build • Automate • Grow',
-  description: 'SHP Technology is a premier software development company specializing in custom enterprise software, cloud architecture, automation pipelines, and modern web applications.',
+  description: 'SHP Technology is a software development company. We build custom websites, databases, and simple automation tools for your business.',
   founded: '2019',
   headquarters: 'Madan Mahal Station, Jabalpur, MP & Remote Global',
   email: import.meta.env.VITE_SITE_EMAIL || 'founder.shp@gmail.com',
@@ -82,9 +82,9 @@ export const siteConfig: CompanyConfig = {
     analyticsId: 'G-SHP12345'
   },
   metrics: [
-    { label: 'Production Releases', value: '140+', description: 'Successfully deployed enterprise software systems' },
-    { label: 'Uptime SLA', value: '99.99%', description: 'Proven high availability architecture record' },
-    { label: 'Global Engineers', value: '45+', description: 'Senior architects, developers & DevOps specialists' },
-    { label: 'Client Retention', value: '96%', description: 'Long-term engineering partnerships' }
+    { label: 'GitHub Projects', value: '25+', description: 'Public repositories built and shared on GitHub' },
+    { label: 'Community Stars', value: '11', description: 'Total stars received across all projects' },
+    { label: 'Languages Used', value: '6+', description: 'Expertise in TypeScript, Go, Python, JavaScript, HTML, and CSS' },
+    { label: 'Core Team', value: '2', description: 'Harsh Patel & Sandesh Patel leading development' }
   ]
 };
