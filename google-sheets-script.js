@@ -1,8 +1,15 @@
 /**
- * Google Apps Script Webhook
- * Paste this script into your Google Sheet's Extensions -> Apps Script editor.
- * It will capture all website form submissions, categorize them into tabs,
- * and dynamically add new columns if the form fields are modified.
+ * Google Apps Script Webhook for SHP Technology Forms
+ * 
+ * INSTRUCTIONS:
+ * 1. Open your Google Sheet where you want form responses to be saved.
+ * 2. Click on Extensions -> Apps Script.
+ * 3. Replace all code in the editor with this script.
+ * 4. Click Deploy -> New deployment.
+ * 5. Choose "Web app":
+ *    - Execute as: "Me"
+ *    - Who has access: "Anyone" (Critical for public form submissions)
+ * 6. Copy the Web App URL and paste it as VITE_GOOGLE_SHEET_WEBHOOK_URL in your .env file.
  */
 
 function doPost(e) {
@@ -10,7 +17,19 @@ function doPost(e) {
   lock.tryLock(10000); // Prevent concurrent write collisions
   
   try {
-    var data = JSON.parse(e.postData.contents);
+    var data = {};
+    
+    // Support both JSON payload body and form-encoded data
+    if (e.postData && e.postData.contents) {
+      try {
+        data = JSON.parse(e.postData.contents);
+      } catch (jsonErr) {
+        data = e.parameter || {};
+      }
+    } else if (e.parameter) {
+      data = e.parameter;
+    }
+    
     var sheetName = data.source || 'General Inquiries';
     var ss = SpreadsheetApp.getActiveSpreadsheet();
     var sheet = ss.getSheetByName(sheetName);
@@ -18,14 +37,15 @@ function doPost(e) {
     // 1. Auto-create sheet tab if it doesn't exist yet
     if (!sheet) {
       sheet = ss.insertSheet(sheetName);
-      sheet.appendRow(["Timestamp"]); // Default initial header
+      // Initialize with standard headers
+      sheet.appendRow(["Timestamp", "Name", "Email", "Phone", "Company", "Subject/Interest", "Message/Notes"]);
     }
     
     // 2. Read existing headers
     var lastCol = Math.max(1, sheet.getLastColumn());
     var headers = sheet.getRange(1, 1, 1, lastCol).getValues()[0];
     
-    // 3. Find new payload keys (ignoring the source tag)
+    // 3. Find payload keys to map (ignoring source and timestamp)
     var payloadKeys = Object.keys(data).filter(function(k) { 
       return k !== 'source' && k !== 'timestamp'; 
     });
@@ -56,10 +76,10 @@ function doPost(e) {
       return (matchingKey !== undefined && data[matchingKey] !== undefined) ? data[matchingKey] : "";
     });
     
-    // Append the row
+    // Append the row to Google Sheet
     sheet.appendRow(rowValues);
     
-    return ContentService.createTextOutput(JSON.stringify({ status: "success" }))
+    return ContentService.createTextOutput(JSON.stringify({ status: "success", result: "Row appended" }))
       .setMimeType(ContentService.MimeType.JSON);
       
   } catch (err) {
@@ -68,6 +88,12 @@ function doPost(e) {
   } finally {
     lock.releaseLock();
   }
+}
+
+// Enable GET testing
+function doGet(e) {
+  return ContentService.createTextOutput(JSON.stringify({ status: "online", message: "SHP Technology Webhook Endpoint Active" }))
+    .setMimeType(ContentService.MimeType.JSON);
 }
 
 // Enable CORS
