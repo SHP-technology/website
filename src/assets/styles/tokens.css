@@ -28,6 +28,29 @@
   --border-color-dark: #1E293B;
   --border-focus: #0284C7;
 
+  /* Surface Accent Colors (used on both themes) */
+  --text-on-dark: #A1A1AA;
+  --bg-zinc-800: #27272A;
+
+  /* Focus Rings */
+  --focus-ring-yellow: 0 0 0 3px rgba(250, 204, 21, 0.25);
+
+  /* Overlay & Backdrop */
+  --backdrop-overlay: rgba(15, 23, 42, 0.6);
+
+  /* Glow Utilities (rgba only — for box-shadow composition) */
+  --glow-yellow: rgba(250, 204, 21, 0.3);
+  --glow-sky: rgba(2, 132, 199, 0.25);
+  --glow-yellow-hover: rgba(250, 204, 21, 0.4);
+  --glow-sky-border: rgba(2, 132, 199, 0.3);
+  --glow-yellow-pulse: 0 0 15px rgba(250, 204, 21, 0.2), 0 0 30px rgba(250, 204, 21, 0.6);
+  --glow-yellow-pulse-start: 0 0 15px rgba(250, 204, 21, 0.2);
+  --glow-yellow-pulse-end: 0 0 30px rgba(250, 204, 21, 0.6);
+  --glow-emerald: 0 0 8px #34D399;
+
+  /* Hero Section Radial Gradient (light theme only) */
+  --hero-bg-gradient: radial-gradient(circle at 50% 50%, rgba(250, 204, 21, 0.1) 0%, transparent 60%);
+
   /* Status Colors */
   --color-success: #16A34A;
   --color-success-bg: #DCFCE7;
@@ -92,7 +115,8 @@ html.dark {
   --bg-surface: #0F172A;
   --bg-surface-hover: #1E293B;
   --bg-surface-subtle: #1E293B;
-  --bg-dark-surface: #090D16;
+  --bg-dark-surface: #121A2A;
+  --bg-dark-hover: #243044;
 
   --text-primary: #F8FAFC;     /* Contrast ratio > 17:1 */
   --text-secondary: #CBD5E1;   /* Contrast ratio > 10:1 */
@@ -101,6 +125,10 @@ html.dark {
   --border-color: #1E293B;
   --border-color-dark: #334155;
   --border-focus: #38BDF8;
+
+  --backdrop-overlay: rgba(0, 0, 0, 0.75);
+
+  --hero-bg-gradient: none;
 
   --brand-sky: #38BDF8;
   --brand-sky-hover: #7DD3FC;

@@ -35,8 +35,8 @@ export default {
         sans: ['Inter', 'system-ui', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'Roboto', 'sans-serif'],
       },
       boxShadow: {
-        'yellow-glow': '0 10px 25px -5px rgba(250, 204, 21, 0.3)',
-        'sky-glow': '0 10px 25px -5px rgba(2, 132, 199, 0.25)',
+        'yellow-glow': '0 10px 25px -5px var(--glow-yellow)',
+        'sky-glow': '0 10px 25px -5px var(--glow-sky)',
       }
     },
   },
