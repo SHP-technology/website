@@ -30,9 +30,12 @@ function doPost(e) {
       return k !== 'source' && k !== 'timestamp'; 
     });
     
-    // 4. Dynamically append new header columns if fields expand
+    // 4. Dynamically append new header columns if fields expand (case-insensitive check)
     payloadKeys.forEach(function(key) {
-      if (headers.indexOf(key) === -1) {
+      var exists = headers.some(function(h) {
+        return h.toLowerCase() === key.toLowerCase();
+      });
+      if (!exists) {
         headers.push(key);
       }
     });
@@ -40,12 +43,17 @@ function doPost(e) {
     // Rewrite headers row
     sheet.getRange(1, 1, 1, headers.length).setValues([headers]);
     
-    // 5. Map payload data values to header columns
+    // 5. Map payload data values to header columns (case-insensitive matching)
     var rowValues = headers.map(function(header) {
-      if (header === 'Timestamp') {
+      if (header.toLowerCase() === 'timestamp') {
         return data.timestamp ? new Date(data.timestamp) : new Date();
       }
-      return data[header] !== undefined ? data[header] : "";
+      
+      var matchingKey = Object.keys(data).find(function(k) {
+        return k.toLowerCase() === header.toLowerCase();
+      });
+      
+      return (matchingKey !== undefined && data[matchingKey] !== undefined) ? data[matchingKey] : "";
     });
     
     // Append the row
