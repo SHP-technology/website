@@ -10,26 +10,26 @@ export interface TestimonialItem {
 export const testimonialsData: TestimonialItem[] = [
   {
     id: 't-1',
-    quote: 'SHP Technology delivered our payment processing microservice months ahead of schedule. Their focus on high-availability architecture and automated testing saved us from major outage risks during Black Friday.',
-    author: 'Elena Rostova',
-    role: 'VP of Engineering',
-    company: 'PayFlow Global',
-    avatar: 'ER'
+    quote: 'SHP Technologies built a custom CRM system tailored specifically for Bima Gurukul. It has completely transformed our lead tracking, client management, and sales operations with incredible speed and reliability.',
+    author: 'Sumit Srivastav',
+    role: 'Founder',
+    company: 'Bima Gurukul',
+    avatar: 'SS'
   },
   {
     id: 't-2',
-    quote: 'The HIPAA-compliant RAG AI solution built by SHP Technology transformed how our medical staff interacts with clinical records. The performance, security, and developer craftsmanship were unmatched.',
-    author: 'Dr. Marcus Vance',
-    role: 'Chief Medical Information Officer',
-    company: 'Apex Health Systems',
-    avatar: 'MV'
+    quote: 'SHP Technologies developed dedicated hostel management software for Rooms Hostel. It streamlined our room allocations, tenant records, and automated billing, making daily hostel administration effortless.',
+    author: 'Arun Sahu',
+    role: 'Owner',
+    company: 'Rooms Hostel',
+    avatar: 'AS'
   },
   {
     id: 't-3',
-    quote: 'Working with SHP Technology feels like having a senior in-house core architecture team. They take full ownership of complex cloud infrastructure challenges and explain every decision clearly.',
-    author: 'David Chen',
-    role: 'CTO',
-    company: 'TransWorld Logistics',
-    avatar: 'DC'
+    quote: 'SHP Technologies helped ASP Association build a custom Chrome extension to organize and manage workspace browser tabs. Their team delivered a lightweight, lightning-fast tool that greatly boosted our team productivity.',
+    author: 'Astitv Pratap Singh Tomar',
+    role: 'Owner',
+    company: 'ASP Association',
+    avatar: 'AT'
   }
 ];

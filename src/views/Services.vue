@@ -2,13 +2,13 @@
   <div class="page-services">
     <SectionContainer>
       <div class="max-w-4xl mx-auto text-center mb-10 animate-fade-in-up">
-        <span class="inline-flex items-center gap-2 bg-brand-light dark:bg-zinc-800 border border-brand-border dark:border-zinc-700 px-3.5 py-1.5 rounded-full text-xs font-semibold text-darkText dark:text-zinc-200 mb-4">
+        <span class="inline-flex items-center gap-2 bg-brand-light dark:bg-slate-800 border border-brand-border dark:border-slate-700 px-3.5 py-1.5 rounded-full text-xs font-semibold text-primaryText mb-4">
           Our Services Catalog
         </span>
-        <h1 class="text-4xl md:text-5xl font-extrabold text-darkText dark:text-white tracking-tight mb-4 leading-tight">
+        <h1 class="text-4xl md:text-5xl font-extrabold text-primaryText tracking-tight mb-4 leading-tight">
           Comprehensive Enterprise Software Engineering Solutions
         </h1>
-        <p class="text-lg text-gray-600 dark:text-zinc-300 leading-relaxed">
+        <p class="text-lg text-secondaryText leading-relaxed">
           From custom web application development to multi-cloud infrastructure and AI microservices, we build reliable software platforms.
         </p>
       </div>
@@ -23,9 +23,9 @@
             type="text"
             v-model="searchQuery"
             placeholder="Search services or tech..."
-            class="w-full pl-10 pr-4 py-2.5 rounded-xl border border-gray-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 text-darkText dark:text-white text-sm focus:outline-none focus:border-brand-hover shadow-sm"
+            class="w-full pl-10 pr-4 py-2.5 rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 text-primaryText text-sm focus:outline-none focus:border-brand-hover shadow-sm"
           />
-          <svg class="absolute left-3.5 top-3 text-gray-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+          <svg class="absolute left-3.5 top-3 text-slate-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
         </div>
 
         <!-- Category Filter Tabs -->
@@ -34,7 +34,7 @@
             v-for="cat in categories"
             :key="cat"
             :aria-pressed="activeCategory === cat"
-            :class="['px-4 py-2 rounded-full text-xs font-semibold border transition-all', activeCategory === cat ? 'bg-brand-yellow border-brand-yellow text-darkText shadow-sm' : 'bg-white dark:bg-zinc-900 border-gray-200 dark:border-zinc-800 text-gray-600 dark:text-zinc-300 hover:border-brand-yellow']"
+            :class="['px-4 py-2 rounded-full text-xs font-semibold border transition-all', activeCategory === cat ? 'bg-brand-yellow border-brand-yellow text-slate-950 shadow-sm' : 'bg-white dark:bg-slate-900 border-slate-200 dark:border-slate-800 text-secondaryText hover:border-brand-yellow']"
             @click="activeCategory = cat"
           >
             {{ cat }}

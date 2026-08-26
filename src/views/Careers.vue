@@ -2,27 +2,27 @@
   <div class="page-careers">
     <SectionContainer>
       <div class="max-w-4xl mx-auto text-center mb-12 animate-fade-in-up">
-        <span class="inline-flex items-center gap-2 bg-brand-light dark:bg-zinc-800 border border-brand-border dark:border-zinc-700 px-3.5 py-1.5 rounded-full text-xs font-semibold text-darkText dark:text-zinc-200 mb-4">
+        <span class="inline-flex items-center gap-2 bg-brand-light dark:bg-slate-800 border border-brand-border dark:border-slate-700 px-3.5 py-1.5 rounded-full text-xs font-semibold text-primaryText mb-4">
           Engineering Careers & Recruitment
         </span>
-        <h1 class="text-4xl md:text-5xl font-extrabold text-darkText dark:text-white tracking-tight mb-4 leading-tight">
+        <h1 class="text-4xl md:text-5xl font-extrabold text-primaryText tracking-tight mb-4 leading-tight">
           Join a Senior Engineering Pod & Grow Your Career
         </h1>
-        <p class="text-lg text-gray-600 dark:text-zinc-300 leading-relaxed">
+        <p class="text-lg text-secondaryText leading-relaxed">
           We offer remote flexibility, technical autonomy, competitive compensation, and direct career growth paths.
         </p>
       </div>
 
       <!-- Official Recruitment & Social Connect Hub -->
-      <div class="mb-14 p-8 rounded-2xl bg-surface-card text-dark-text dark:text-white shadow-lg border border-surface-subtle dark:border-zinc-800 relative overflow-hidden">
+      <div class="mb-14 p-8 rounded-2xl bg-surface-card text-primaryText shadow-lg border border-surface-subtle dark:border-slate-800 relative overflow-hidden">
         <div class="absolute -right-12 -bottom-12 w-64 h-64 bg-brand-yellow/10 rounded-full blur-3xl pointer-events-none"></div>
 
         <div class="relative z-10">
           <div class="flex flex-col lg:flex-row items-start lg:items-center justify-between gap-6 mb-8">
             <div>
-              <span class="inline-block bg-brand-yellow text-darkText font-extrabold text-xs px-3 py-1 rounded-full uppercase tracking-wider mb-2">Verified Recruitment Portals</span>
-              <h2 class="text-2xl md:text-3xl font-extrabold text-dark-text dark:text-white">Connect With SHP Technology</h2>
-              <p class="text-secondary-text dark:text-zinc-400 text-sm mt-1 max-w-xl">Explore active job listings on Indeed, follow our founder updates on Instagram, and connect with our talent team on LinkedIn & Facebook.</p>
+              <span class="inline-block bg-brand-yellow text-slate-950 font-extrabold text-xs px-3 py-1 rounded-full uppercase tracking-wider mb-2">Verified Recruitment Portals</span>
+              <h2 class="text-2xl md:text-3xl font-extrabold text-primaryText">Connect With SHP Technology</h2>
+              <p class="text-secondaryText text-sm mt-1 max-w-xl">Explore active job listings on Indeed, follow our founder updates on Instagram, and connect with our talent team on LinkedIn & Facebook.</p>
             </div>
             <a
               :href="siteConfig.socials.indeed"
@@ -42,12 +42,12 @@
               :href="siteConfig.socials.linkedin"
               target="_blank"
               rel="noopener noreferrer"
-              class="p-4 rounded-xl bg-surface-card hover:bg-surface-hover dark:bg-zinc-800/80 dark:hover:bg-zinc-800 border border-surface-subtle dark:border-zinc-700/80 flex items-center gap-3 transition-all hover:-translate-y-0.5 group"
+              class="p-4 rounded-xl bg-surface-card hover:bg-surface-hover dark:bg-slate-800/80 dark:hover:bg-slate-800 border border-surface-subtle dark:border-slate-700/80 flex items-center gap-3 transition-all hover:-translate-y-0.5 group"
             >
               <div class="w-10 h-10 rounded-lg bg-sky-600/20 text-sky-400 flex items-center justify-center font-bold text-lg group-hover:scale-110 transition-transform">in</div>
               <div>
-                <strong class="text-dark-text dark:text-white text-sm block group-hover:text-brand-hover transition-colors">LinkedIn Profile</strong>
-                <span class="text-xs text-muted-text">@shp-technology</span>
+                <strong class="text-primaryText text-sm block group-hover:text-brand-hover transition-colors">LinkedIn Profile</strong>
+                <span class="text-xs text-mutedText">@shp-technology</span>
               </div>
             </a>
 
@@ -55,12 +55,12 @@
               :href="siteConfig.socials.instagram"
               target="_blank"
               rel="noopener noreferrer"
-              class="p-4 rounded-xl bg-surface-card hover:bg-surface-hover dark:bg-zinc-800/80 dark:hover:bg-zinc-800 border border-surface-subtle dark:border-zinc-700/80 flex items-center gap-3 transition-all hover:-translate-y-0.5 group"
+              class="p-4 rounded-xl bg-surface-card hover:bg-surface-hover dark:bg-slate-800/80 dark:hover:bg-slate-800 border border-surface-subtle dark:border-slate-700/80 flex items-center gap-3 transition-all hover:-translate-y-0.5 group"
             >
               <div class="w-10 h-10 rounded-lg bg-pink-600/20 text-pink-400 flex items-center justify-center font-bold text-lg group-hover:scale-110 transition-transform">📸</div>
               <div>
-                <strong class="text-dark-text dark:text-white text-sm block group-hover:text-brand-hover transition-colors">Instagram Feed</strong>
-                <span class="text-xs text-muted-text">@founder.shp</span>
+                <strong class="text-primaryText text-sm block group-hover:text-brand-hover transition-colors">Instagram Feed</strong>
+                <span class="text-xs text-mutedText">@founder.shp</span>
               </div>
             </a>
 
@@ -68,12 +68,12 @@
               :href="siteConfig.socials.facebook"
               target="_blank"
               rel="noopener noreferrer"
-              class="p-4 rounded-xl bg-surface-card hover:bg-surface-hover dark:bg-zinc-800/80 dark:hover:bg-zinc-800 border border-surface-subtle dark:border-zinc-700/80 flex items-center gap-3 transition-all hover:-translate-y-0.5 group"
+              class="p-4 rounded-xl bg-surface-card hover:bg-surface-hover dark:bg-slate-800/80 dark:hover:bg-slate-800 border border-surface-subtle dark:border-slate-700/80 flex items-center gap-3 transition-all hover:-translate-y-0.5 group"
             >
               <div class="w-10 h-10 rounded-lg bg-blue-600/20 text-blue-400 flex items-center justify-center font-bold text-lg group-hover:scale-110 transition-transform">fb</div>
               <div>
-                <strong class="text-dark-text dark:text-white text-sm block group-hover:text-brand-hover transition-colors">Facebook Page</strong>
-                <span class="text-xs text-muted-text">SHP Technology Official</span>
+                <strong class="text-primaryText text-sm block group-hover:text-brand-hover transition-colors">Facebook Page</strong>
+                <span class="text-xs text-mutedText">SHP Technology Official</span>
               </div>
             </a>
 
@@ -81,12 +81,12 @@
               :href="siteConfig.socials.indeed"
               target="_blank"
               rel="noopener noreferrer"
-              class="p-4 rounded-xl bg-surface-card hover:bg-surface-hover dark:bg-zinc-800/80 dark:hover:bg-zinc-800 border border-surface-subtle dark:border-zinc-700/80 flex items-center gap-3 transition-all hover:-translate-y-0.5 group"
+              class="p-4 rounded-xl bg-surface-card hover:bg-surface-hover dark:bg-slate-800/80 dark:hover:bg-slate-800 border border-surface-subtle dark:border-slate-700/80 flex items-center gap-3 transition-all hover:-translate-y-0.5 group"
             >
               <div class="w-10 h-10 rounded-lg bg-indigo-600/20 text-indigo-400 flex items-center justify-center font-bold text-lg group-hover:scale-110 transition-transform">🎯</div>
               <div>
-                <strong class="text-dark-text dark:text-white text-sm block group-hover:text-brand-hover transition-colors">Indeed Portal</strong>
-                <span class="text-xs text-muted-text">Senior Sales Exec Opening</span>
+                <strong class="text-primaryText text-sm block group-hover:text-brand-hover transition-colors">Indeed Portal</strong>
+                <span class="text-xs text-mutedText">Senior Sales Exec Opening</span>
               </div>
             </a>
           </div>
@@ -95,10 +95,10 @@
 
       <!-- Perks & Benefits Grid -->
       <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
-        <div v-for="perk in perks" :key="perk.title" class="p-6 rounded-2xl bg-white dark:bg-zinc-900 border border-gray-200 dark:border-zinc-800 shadow-sm flex flex-col gap-2">
+        <div v-for="perk in perks" :key="perk.title" class="p-6 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm flex flex-col gap-2">
           <span class="text-2xl" aria-hidden="true">{{ perk.icon }}</span>
-          <h3 class="font-bold text-darkText dark:text-white text-base">{{ perk.title }}</h3>
-          <p class="text-xs text-gray-500 dark:text-zinc-400 leading-relaxed">{{ perk.desc }}</p>
+          <h3 class="font-bold text-primaryText text-base">{{ perk.title }}</h3>
+          <p class="text-xs text-secondaryText leading-relaxed">{{ perk.desc }}</p>
         </div>
       </div>
 
@@ -139,7 +139,7 @@
           :key="dept"
           role="tab"
           :aria-selected="activeDept === dept"
-          :class="['px-4 py-2 rounded-full text-xs font-semibold border transition-all', activeDept === dept ? 'bg-brand-yellow border-brand-yellow text-darkText shadow-sm font-bold' : 'bg-white dark:bg-zinc-900 border-gray-200 dark:border-zinc-800 text-gray-600 dark:text-zinc-300 hover:border-brand-yellow']"
+          :class="['px-4 py-2 rounded-full text-xs font-semibold border transition-all', activeDept === dept ? 'bg-brand-yellow border-brand-yellow text-slate-950 shadow-sm font-bold' : 'bg-white dark:bg-slate-900 border-slate-200 dark:border-slate-800 text-secondaryText hover:border-brand-yellow']"
           @click="activeDept = dept"
         >
           {{ dept }}

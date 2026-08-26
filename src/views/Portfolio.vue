@@ -2,13 +2,13 @@
   <div class="page-portfolio">
     <SectionContainer>
       <div class="max-w-4xl mx-auto text-center mb-10 animate-fade-in-up">
-        <span class="inline-flex items-center gap-2 bg-brand-light dark:bg-zinc-800 border border-brand-border dark:border-zinc-700 px-3.5 py-1.5 rounded-full text-xs font-semibold text-darkText dark:text-zinc-200 mb-4">
+        <span class="inline-flex items-center gap-2 bg-brand-light dark:bg-slate-800 border border-brand-border dark:border-slate-700 px-3.5 py-1.5 rounded-full text-xs font-semibold text-primaryText mb-4">
           Case Studies & Client Results
         </span>
-        <h1 class="text-4xl md:text-5xl font-extrabold text-darkText dark:text-white tracking-tight mb-4 leading-tight">
+        <h1 class="text-4xl md:text-5xl font-extrabold text-primaryText tracking-tight mb-4 leading-tight">
           Featured Engineering Case Studies & Proven Client Impact
         </h1>
-        <p class="text-lg text-gray-600 dark:text-zinc-300 leading-relaxed">
+        <p class="text-lg text-secondaryText leading-relaxed">
           Explore how we built mission-critical web applications, high-throughput microservices, and multi-cloud infrastructure platforms.
         </p>
       </div>
@@ -20,7 +20,7 @@
           :key="cat"
           role="tab"
           :aria-selected="activeCategory === cat"
-          :class="['px-4 py-2 rounded-full text-xs font-semibold border transition-all', activeCategory === cat ? 'bg-brand-yellow border-brand-yellow text-darkText shadow-sm font-bold' : 'bg-white dark:bg-zinc-900 border-gray-200 dark:border-zinc-800 text-gray-600 dark:text-zinc-300 hover:border-brand-yellow']"
+          :class="['px-4 py-2 rounded-full text-xs font-semibold border transition-all', activeCategory === cat ? 'bg-brand-yellow border-brand-yellow text-slate-950 shadow-sm font-bold' : 'bg-white dark:bg-slate-900 border-slate-200 dark:border-slate-800 text-secondaryText hover:border-brand-yellow']"
           @click="activeCategory = cat"
         >
           {{ cat }}
@@ -39,20 +39,20 @@
               <span class="text-xs text-emerald-600 dark:text-emerald-400 font-bold">⚡ {{ project.results[0]?.metric }}</span>
             </div>
 
-            <h2 class="text-2xl font-bold text-darkText dark:text-white mb-2">{{ project.title }}</h2>
-            <p class="text-gray-600 dark:text-zinc-300 text-sm leading-relaxed mb-6">{{ project.summary }}</p>
+            <h2 class="text-2xl font-bold text-primaryText mb-2">{{ project.title }}</h2>
+            <p class="text-secondaryText text-sm leading-relaxed mb-6">{{ project.summary }}</p>
 
             <!-- Results grid -->
-            <div class="grid grid-cols-2 gap-3 mb-6 p-3.5 rounded-xl bg-surface-subtle dark:bg-zinc-800 border border-gray-200 dark:border-zinc-700">
+            <div class="grid grid-cols-2 gap-3 mb-6 p-3.5 rounded-xl bg-surface-subtle dark:bg-slate-800/70 border border-slate-200 dark:border-slate-700">
               <div v-for="res in project.results" :key="res.label">
-                <span class="text-base font-extrabold text-darkText dark:text-white block leading-none">{{ res.metric }}</span>
-                <span class="text-[11px] text-gray-500 dark:text-zinc-400 font-medium">{{ res.label }}</span>
+                <span class="text-base font-extrabold text-primaryText block leading-none">{{ res.metric }}</span>
+                <span class="text-[11px] text-secondaryText font-medium">{{ res.label }}</span>
               </div>
             </div>
 
             <!-- Tech Badges -->
             <div class="flex flex-wrap gap-1.5 mb-6">
-              <span v-for="tech in project.technologies" :key="tech" class="text-[11px] px-2 py-0.5 rounded bg-gray-100 dark:bg-zinc-800 text-gray-700 dark:text-zinc-300 border border-gray-200 dark:border-zinc-700">
+              <span v-for="tech in project.technologies" :key="tech" class="text-[11px] px-2 py-0.5 rounded bg-slate-100 dark:bg-slate-800 text-secondaryText border border-slate-200 dark:border-slate-700 font-medium">
                 {{ tech }}
               </span>
             </div>

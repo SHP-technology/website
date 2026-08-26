@@ -1,17 +1,17 @@
 <template>
   <section class="py-16 lg:py-20 bg-surface-main">
     <div class="container">
-      <div class="relative overflow-hidden rounded-3xl bg-surface-card p-8 md:p-14 text-primaryText dark:text-white shadow-lg border border-surface-subtle dark:border-zinc-800">
+      <div class="relative overflow-hidden rounded-3xl bg-surface-card p-8 md:p-14 text-primaryText shadow-lg border border-surface-subtle dark:border-slate-800">
 
         <div class="relative z-10 grid grid-cols-1 lg:grid-cols-[1.2fr_0.8fr] gap-8 items-center">
           <div>
             <span class="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-brand-light border border-brand-border text-primaryText text-xs font-bold uppercase tracking-wider mb-4">
               Ready to Accelerate Growth?
             </span>
-            <h2 class="text-3xl md:text-4xl lg:text-5xl font-extrabold text-primaryText dark:text-white tracking-tight mb-4 leading-tight">
+            <h2 class="text-3xl md:text-4xl lg:text-5xl font-extrabold text-primaryText tracking-tight mb-4 leading-tight">
               Let's Build Your Next High-Impact Software System
             </h2>
-            <p class="text-secondaryText dark:text-zinc-300 text-base md:text-lg max-w-xl leading-relaxed">
+            <p class="text-secondaryText text-base md:text-lg max-w-xl leading-relaxed">
               Schedule a technical consultation with our senior solutions directors to discuss your enterprise requirements, cloud architecture, or AI roadmap.
             </p>
           </div>

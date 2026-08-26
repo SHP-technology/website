@@ -24,6 +24,11 @@
   --color-secondary-text: var(--text-secondary);
   --color-dark-text: var(--text-primary);
   --color-muted-text: var(--text-muted);
+
+  --color-primaryText: var(--text-primary);
+  --color-secondaryText: var(--text-secondary);
+  --color-darkText: var(--text-primary);
+  --color-mutedText: var(--text-muted);
 }
 
 /* Tailwind v4 Class-based Dark Mode Variant Definition */

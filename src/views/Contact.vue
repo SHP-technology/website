@@ -2,13 +2,13 @@
   <div class="page-contact">
     <SectionContainer>
       <div class="max-w-4xl mx-auto text-center mb-10 animate-fade-in-up">
-        <span class="inline-flex items-center gap-2 bg-brand-light dark:bg-zinc-800 border border-brand-border dark:border-zinc-700 px-3.5 py-1.5 rounded-full text-xs font-semibold text-darkText dark:text-zinc-200 mb-4">
+        <span class="inline-flex items-center gap-2 bg-brand-light dark:bg-slate-800 border border-brand-border dark:border-slate-700 px-3.5 py-1.5 rounded-full text-xs font-semibold text-primaryText mb-4">
           Contact Engineering
         </span>
-        <h1 class="text-4xl md:text-5xl font-extrabold text-darkText dark:text-white tracking-tight mb-4 leading-tight">
+        <h1 class="text-4xl md:text-5xl font-extrabold text-primaryText tracking-tight mb-4 leading-tight">
           Let’s Discuss Your Enterprise Engineering Goals
         </h1>
-        <p class="text-lg text-gray-600 dark:text-zinc-300 leading-relaxed">
+        <p class="text-lg text-secondaryText leading-relaxed">
           Whether you need cloud infrastructure modernization, custom enterprise software development, or an AI RAG pipeline, our senior engineering directors are ready to assist.
         </p>
       </div>
@@ -16,20 +16,20 @@
       <div class="contact-layout grid grid-cols-1 lg:grid-cols-[0.9fr_1.1fr] gap-8 mb-16">
         <!-- Contact Information & Office Details -->
         <div class="info-sidebar animate-fade-in-up">
-          <div class="info-card bg-surface-card text-primary-text p-8 rounded-2xl flex flex-col gap-6 h-full shadow-lg border border-surface-subtle dark:border-zinc-800">
-            <h2 class="text-primary-text text-2xl font-bold">Direct Contact Channels</h2>
-            <p class="text-secondary-text text-base">Our team responds to all business inquiries within {{ siteConfig.contact.responseSLA }}.</p>
+          <div class="info-card bg-surface-card text-primaryText p-8 rounded-2xl flex flex-col gap-6 h-full shadow-lg border border-surface-subtle dark:border-slate-800">
+            <h2 class="text-primaryText text-2xl font-bold">Direct Contact Channels</h2>
+            <p class="text-secondaryText text-base">Our team responds to all business inquiries within {{ siteConfig.contact.responseSLA }}.</p>
 
             <ul class="contact-details-list flex flex-col gap-6">
               <li class="flex gap-4 items-start">
-                <div class="w-11 h-11 rounded-xl bg-surface-subtle border border-surface-subtle dark:bg-zinc-800 dark:border-zinc-700 flex items-center justify-center text-xl shrink-0" aria-hidden="true">📧</div>
+                <div class="w-11 h-11 rounded-xl bg-surface-subtle border border-surface-subtle dark:bg-slate-800 dark:border-slate-700 flex items-center justify-center text-xl shrink-0" aria-hidden="true">📧</div>
                 <div class="flex-1 min-w-0">
-                  <strong class="text-xs text-muted-text uppercase tracking-wider block">Email Inquiry</strong>
+                  <strong class="text-xs text-mutedText uppercase tracking-wider block">Email Inquiry</strong>
                   <div class="flex flex-wrap items-center gap-2 mt-1">
                     <a :href="`mailto:${siteConfig.contact.email}`" class="text-sm font-semibold text-brand-hover dark:text-brand-yellow hover:underline break-all">{{ siteConfig.contact.email }}</a>
                     <button
                       type="button"
-                      class="text-xs text-secondary-text hover:text-primary-text px-2 py-0.5 rounded bg-surface-card border border-surface-subtle dark:bg-zinc-800 dark:border-zinc-700 transition-colors"
+                      class="text-xs text-secondaryText hover:text-primaryText px-2 py-0.5 rounded bg-surface-card border border-surface-subtle dark:bg-slate-800 dark:border-slate-700 transition-colors"
                       @click="copyText(siteConfig.contact.email, 'Email')"
                     >
                       Copy
@@ -38,14 +38,14 @@
                 </div>
               </li>
               <li class="flex gap-4 items-start">
-                <div class="w-11 h-11 rounded-xl bg-surface-subtle border border-surface-subtle dark:bg-zinc-800 dark:border-zinc-700 flex items-center justify-center text-xl shrink-0" aria-hidden="true">📞</div>
+                <div class="w-11 h-11 rounded-xl bg-surface-subtle border border-surface-subtle dark:bg-slate-800 dark:border-slate-700 flex items-center justify-center text-xl shrink-0" aria-hidden="true">📞</div>
                 <div class="flex-1 min-w-0">
-                  <strong class="text-xs text-muted-text uppercase tracking-wider block">Phone Support</strong>
+                  <strong class="text-xs text-mutedText uppercase tracking-wider block">Phone Support</strong>
                   <div class="flex flex-wrap items-center gap-2 mt-1">
                     <a :href="`tel:${siteConfig.contact.phone}`" class="text-sm font-semibold text-brand-hover dark:text-brand-yellow hover:underline break-all">{{ siteConfig.contact.phone }}</a>
                     <button
                       type="button"
-                      class="text-xs text-secondary-text hover:text-primary-text px-2 py-0.5 rounded bg-surface-card border border-surface-subtle dark:bg-zinc-800 dark:border-zinc-700 transition-colors"
+                      class="text-xs text-secondaryText hover:text-primaryText px-2 py-0.5 rounded bg-surface-card border border-surface-subtle dark:bg-slate-800 dark:border-slate-700 transition-colors"
                       @click="copyText(siteConfig.contact.phone, 'Phone number')"
                     >
                       Copy
@@ -54,18 +54,18 @@
                 </div>
               </li>
               <li class="flex gap-4 items-start">
-                <div class="w-11 h-11 rounded-xl bg-surface-subtle border border-surface-subtle dark:bg-zinc-800 dark:border-zinc-700 flex items-center justify-center text-xl shrink-0" aria-hidden="true">📍</div>
+                <div class="w-11 h-11 rounded-xl bg-surface-subtle border border-surface-subtle dark:bg-slate-800 dark:border-slate-700 flex items-center justify-center text-xl shrink-0" aria-hidden="true">📍</div>
                 <div>
-                  <strong class="text-xs text-muted-text uppercase tracking-wider block">Headquarters & Office</strong>
-                  <p class="text-sm font-semibold text-primary-text">{{ siteConfig.officeLocation.address }}</p>
-                  <p class="text-xs text-muted-text">{{ siteConfig.officeLocation.city }}, {{ siteConfig.officeLocation.state }} {{ siteConfig.officeLocation.zip }} — {{ siteConfig.officeLocation.country }}</p>
+                  <strong class="text-xs text-mutedText uppercase tracking-wider block">Headquarters & Office</strong>
+                  <p class="text-sm font-semibold text-primaryText">{{ siteConfig.officeLocation.address }}</p>
+                  <p class="text-xs text-mutedText">{{ siteConfig.officeLocation.city }}, {{ siteConfig.officeLocation.state }} {{ siteConfig.officeLocation.zip }} — {{ siteConfig.officeLocation.country }}</p>
                 </div>
               </li>
             </ul>
 
-            <div class="sla-box mt-auto bg-surface-card border border-surface-subtle dark:bg-zinc-800/80 dark:border-zinc-700 rounded-xl p-4">
-              <span class="inline-block bg-brand-yellow text-darkText text-xs font-bold px-2 py-0.5 rounded-full mb-2">Response SLA Guarantee</span>
-              <p class="text-xs text-secondary-text">Inquiries received Monday through Friday are assigned a lead solutions architect within {{ siteConfig.contact.responseSLA }}.</p>
+            <div class="sla-box mt-auto bg-surface-card border border-surface-subtle dark:bg-slate-800/80 dark:border-slate-700 rounded-xl p-4">
+              <span class="inline-block bg-brand-yellow text-slate-950 text-xs font-bold px-2 py-0.5 rounded-full mb-2">Response SLA Guarantee</span>
+              <p class="text-xs text-secondaryText">Inquiries received Monday through Friday are assigned a lead solutions architect within {{ siteConfig.contact.responseSLA }}.</p>
             </div>
           </div>
         </div>
@@ -78,7 +78,7 @@
 
       <!-- Contact Pre-Contract FAQ Accordion -->
       <div class="max-w-4xl mx-auto pt-8">
-        <h2 class="text-2xl font-bold text-darkText dark:text-white mb-6 text-center">Frequently Asked Engagement Questions</h2>
+        <h2 class="text-2xl font-bold text-primaryText mb-6 text-center">Frequently Asked Engagement Questions</h2>
         <FaqAccordion :items="contactFaqs" />
       </div>
     </SectionContainer>

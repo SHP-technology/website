@@ -2,13 +2,13 @@
   <section class="relative py-16 lg:py-24 overflow-hidden hero-section">
     <div class="container max-w-4xl mx-auto flex flex-col items-center text-center animate-fade-in-up">
       <!-- Tag Badge -->
-      <div class="inline-flex items-center gap-2 bg-brand-light dark:bg-zinc-800 border border-brand-border dark:border-zinc-700 px-3.5 py-1.5 rounded-full text-xs font-semibold text-darkText mb-6 shadow-sm">
+      <div class="inline-flex items-center gap-2 bg-brand-light dark:bg-slate-800 border border-brand-border dark:border-slate-700 px-3.5 py-1.5 rounded-full text-xs font-semibold text-primaryText mb-6 shadow-sm">
         <span class="w-2 h-2 rounded-full bg-brand-hover animate-pulse-glow"></span>
         <span>Software Development Company • Simple • Reliable • Fast</span>
       </div>
 
       <!-- Headline -->
-      <h1 class="text-4xl md:text-5xl lg:text-6xl font-extrabold text-darkText leading-tight tracking-tight mb-6 max-w-3xl">
+      <h1 class="text-4xl md:text-5xl lg:text-6xl font-extrabold text-primaryText leading-tight tracking-tight mb-6 max-w-3xl">
         We Build Custom Software and Web Apps That Help Your Business Grow
       </h1>
 
@@ -26,16 +26,20 @@
           </template>
         </BaseButton>
 
-        <BaseButton to="/portfolio" variant="outline" size="lg" class="hover:bg-gray-100 dark:hover:bg-zinc-800 transition-all duration-200">
+        <BaseButton to="/portfolio" variant="outline" size="lg" class="hover:bg-slate-100 dark:hover:bg-slate-800 transition-all duration-200">
           Explore Our Work
         </BaseButton>
       </div>
 
       <!-- Metric Badges -->
-      <div class="grid grid-cols-2 sm:grid-cols-4 gap-6 w-full pt-6 border-t border-gray-200 dark:border-zinc-800 justify-center">
+      <div class="grid grid-cols-2 sm:grid-cols-4 gap-6 w-full pt-6 border-t border-slate-200 dark:border-slate-800 justify-center">
         <div v-for="stat in companyData.metrics" :key="stat.label" class="flex flex-col items-center group">
-          <span class="text-2xl font-extrabold text-darkText leading-none group-hover:text-brand-hover dark:group-hover:text-brand-yellow transition-colors">{{ stat.value }}</span>
-          <span class="text-xs text-mutedText font-medium mt-1">{{ stat.label }}</span>
+          <span class="text-2xl font-extrabold text-primaryText leading-none group-hover:text-brand-hover dark:group-hover:text-brand-yellow transition-colors">{{ stat.value }}</span>
+          <span class="text-xs text-primaryText font-bold mt-1.5">{{ stat.label }}</span>
+          <span class="text-[11px] text-brand-sky font-semibold mt-0.5 flex items-center gap-1">
+            <span>→</span>
+            <span>{{ stat.tagline }}</span>
+          </span>
         </div>
       </div>
     </div>

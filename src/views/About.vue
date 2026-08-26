@@ -2,13 +2,13 @@
   <div class="page-about">
     <SectionContainer>
       <div class="max-w-4xl mx-auto text-center mb-12 animate-fade-in-up">
-        <span class="inline-flex items-center gap-2 bg-brand-light dark:bg-zinc-800 border border-brand-border dark:border-zinc-700 px-3.5 py-1.5 rounded-full text-xs font-semibold text-darkText dark:text-zinc-200 mb-4">
+        <span class="inline-flex items-center gap-2 bg-brand-light dark:bg-slate-800 border border-brand-border dark:border-slate-700 px-3.5 py-1.5 rounded-full text-xs font-semibold text-primaryText mb-4">
           About SHP Technology
         </span>
-        <h1 class="text-4xl md:text-5xl font-extrabold text-darkText dark:text-white tracking-tight mb-4 leading-tight">
+        <h1 class="text-4xl md:text-5xl font-extrabold text-primaryText tracking-tight mb-4 leading-tight">
           We Build Solid Software for Businesses
         </h1>
-        <p class="text-lg text-gray-600 dark:text-zinc-300 leading-relaxed">
+        <p class="text-lg text-secondaryText leading-relaxed">
           We are a friendly team of developers and software builders who love making tools that work well and help your business grow.
         </p>
       </div>
@@ -29,8 +29,8 @@
             <span class="card-tag">Company Performance Metrics</span>
             <div class="metrics-stack">
               <div v-for="m in companyData.metrics" :key="m.label" class="metric-row">
-                <span class="m-val">{{ m.value }}</span>
-                <span class="m-lbl">{{ m.description }}</span>
+                <span class="m-val">{{ m.value }} {{ m.label }}</span>
+                <span class="m-lbl">→ {{ m.tagline }} — {{ m.description }}</span>
               </div>
             </div>
           </div>
@@ -46,11 +46,11 @@
     <!-- Team & Leadership Section -->
     <SectionContainer
       tag="Our Team"
-      title="Founded & Led by Experienced Developers"
-      subtitle="Our founders bring years of experience building websites, databases, and business tools."
+      title="Led by Experienced Engineering, Sales & Operations Leaders"
+      subtitle="Our team brings deep domain experience across software development, full-stack engineering, client relations, and operational excellence."
     >
       <div class="team-grid">
-        <BaseCard v-for="member in team" :key="member.name" class="team-card">
+        <BaseCard v-for="member in companyData.team" :key="member.name" class="team-card">
           <div class="avatar-circle" aria-hidden="true">{{ member.initials }}</div>
           <h3 class="member-name">{{ member.name }}</h3>
           <p class="member-role">{{ member.role }}</p>
@@ -76,21 +76,6 @@ useSeoMeta({
   title: 'About Our Company & Leadership',
   description: 'Learn about SHP Technology, our team of developers, our mission, and our software engineering philosophy.'
 });
-
-const team = [
-  {
-    name: 'Harsh Patel',
-    initials: 'HP',
-    role: 'Founder',
-    bio: 'Founder of the company, focused on business strategy, technology solutions, automation, and overall company growth.'
-  },
-  {
-    name: 'Sandesh Patel',
-    initials: 'SP',
-    role: 'Co-Founder & Head of Full-Stack Development',
-    bio: 'Co-Founder and Head of Full-Stack Development, specializing in building scalable, modern web applications and robust full-stack solutions.'
-  }
-];
 </script>
 
 <style scoped>
