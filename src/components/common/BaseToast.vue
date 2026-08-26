@@ -50,6 +50,9 @@ defineEmits<{
   z-index: 1100;
   max-width: 420px;
   border-left: 4px solid var(--brand-yellow);
+  border-top: 1px solid var(--border-color-dark);
+  border-right: 1px solid var(--border-color-dark);
+  border-bottom: 1px solid var(--border-color-dark);
 }
 
 .toast-notification.type-error {
@@ -73,7 +76,7 @@ defineEmits<{
 
 .toast-message {
   font-size: var(--fs-xs);
-  color: #A1A1AA;
+  color: var(--text-secondary);
   margin-top: 2px;
 }
 
@@ -85,6 +88,10 @@ defineEmits<{
   line-height: 1;
   cursor: pointer;
   margin-left: auto;
+}
+
+.toast-close:hover {
+  color: var(--text-inverse);
 }
 
 @media (max-width: 639px) {

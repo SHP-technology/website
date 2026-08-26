@@ -23,10 +23,10 @@
             <ul class="contact-details-list flex flex-col gap-6">
               <li class="flex gap-4 items-start">
                 <div class="w-11 h-11 rounded-xl bg-surface-subtle border border-surface-subtle dark:bg-zinc-800 dark:border-zinc-700 flex items-center justify-center text-xl shrink-0" aria-hidden="true">📧</div>
-                <div class="flex-1">
+                <div class="flex-1 min-w-0">
                   <strong class="text-xs text-muted-text uppercase tracking-wider block">Email Inquiry</strong>
-                  <div class="flex items-center gap-2 mt-1">
-                    <a :href="`mailto:${siteConfig.contact.email}`" class="text-sm font-semibold text-brand-hover dark:text-brand-yellow hover:underline">{{ siteConfig.contact.email }}</a>
+                  <div class="flex flex-wrap items-center gap-2 mt-1">
+                    <a :href="`mailto:${siteConfig.contact.email}`" class="text-sm font-semibold text-brand-hover dark:text-brand-yellow hover:underline break-all">{{ siteConfig.contact.email }}</a>
                     <button
                       type="button"
                       class="text-xs text-secondary-text hover:text-primary-text px-2 py-0.5 rounded bg-surface-card border border-surface-subtle dark:bg-zinc-800 dark:border-zinc-700 transition-colors"
@@ -39,10 +39,10 @@
               </li>
               <li class="flex gap-4 items-start">
                 <div class="w-11 h-11 rounded-xl bg-surface-subtle border border-surface-subtle dark:bg-zinc-800 dark:border-zinc-700 flex items-center justify-center text-xl shrink-0" aria-hidden="true">📞</div>
-                <div class="flex-1">
+                <div class="flex-1 min-w-0">
                   <strong class="text-xs text-muted-text uppercase tracking-wider block">Phone Support</strong>
-                  <div class="flex items-center gap-2 mt-1">
-                    <a :href="`tel:${siteConfig.contact.phone}`" class="text-sm font-semibold text-brand-hover dark:text-brand-yellow hover:underline">{{ siteConfig.contact.phone }}</a>
+                  <div class="flex flex-wrap items-center gap-2 mt-1">
+                    <a :href="`tel:${siteConfig.contact.phone}`" class="text-sm font-semibold text-brand-hover dark:text-brand-yellow hover:underline break-all">{{ siteConfig.contact.phone }}</a>
                     <button
                       type="button"
                       class="text-xs text-secondary-text hover:text-primary-text px-2 py-0.5 rounded bg-surface-card border border-surface-subtle dark:bg-zinc-800 dark:border-zinc-700 transition-colors"

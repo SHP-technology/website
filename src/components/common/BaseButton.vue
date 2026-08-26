@@ -161,6 +161,7 @@ const handleClick = (e: MouseEvent) => {
 .variant-danger {
   background-color: var(--color-error);
   color: #FFFFFF;
+  border-color: var(--color-error);
 }
 
 .variant-danger:hover:not(:disabled) {

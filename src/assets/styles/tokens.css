@@ -33,6 +33,8 @@
   --color-success-bg: #DCFCE7;
   --color-error: #DC2626;
   --color-error-bg: #FEE2E2;
+  --color-warning: #A16207;
+  --color-warning-bg: #FEF3C7;
 
   /* Typography Scale — Poppins Primary */
   --font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
@@ -98,7 +100,18 @@ html.dark {
 
   --border-color: #1E293B;
   --border-color-dark: #334155;
+  --border-focus: #38BDF8;
 
+  --brand-sky: #38BDF8;
+  --brand-sky-hover: #7DD3FC;
+  --brand-sky-light: rgba(56, 189, 248, 0.14);
   --brand-yellow-light: rgba(250, 204, 21, 0.15);
   --brand-yellow-border: rgba(250, 204, 21, 0.3);
+
+  --color-success: #4ADE80;
+  --color-success-bg: rgba(74, 222, 128, 0.14);
+  --color-error: #F87171;
+  --color-error-bg: rgba(248, 113, 113, 0.14);
+  --color-warning: #FCD34D;
+  --color-warning-bg: rgba(252, 211, 77, 0.14);
 }

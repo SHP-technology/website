@@ -29,7 +29,7 @@ withDefaults(
 
 .badge-yellow {
   background-color: var(--brand-yellow-light);
-  color: #0F172A;
+  color: var(--text-primary);
   border: 1px solid var(--brand-yellow-border);
 }
 
@@ -48,6 +48,7 @@ withDefaults(
 .badge-dark {
   background-color: var(--bg-dark-surface);
   color: #FFFFFF;
+  border: 1px solid var(--border-color-dark);
 }
 
 .badge-success {
