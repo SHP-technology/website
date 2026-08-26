@@ -1,14 +1,11 @@
 <template>
   <section class="py-16 lg:py-20 bg-surface-main">
     <div class="container">
-      <div class="relative overflow-hidden rounded-3xl bg-gradient-to-br from-white via-surface-card to-surface-subtle dark:from-slate-900 dark:via-zinc-900 dark:to-black p-8 md:p-14 text-primaryText dark:text-white shadow-2xl border border-surface-subtle dark:border-zinc-800">
-        <!-- Glow Orbs -->
-        <div class="absolute -top-24 -right-24 w-80 h-80 rounded-full bg-brand-yellow/15 blur-3xl pointer-events-none"></div>
-        <div class="absolute -bottom-24 -left-24 w-80 h-80 rounded-full bg-sky-500/15 blur-3xl pointer-events-none"></div>
+      <div class="relative overflow-hidden rounded-3xl bg-surface-card p-8 md:p-14 text-primaryText dark:text-white shadow-lg border border-surface-subtle dark:border-zinc-800">
 
         <div class="relative z-10 grid grid-cols-1 lg:grid-cols-[1.2fr_0.8fr] gap-8 items-center">
           <div>
-            <span class="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-brand-yellow/20 border border-brand-yellow/40 text-brand-yellow text-xs font-bold uppercase tracking-wider mb-4">
+            <span class="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-brand-light border border-brand-border text-primaryText text-xs font-bold uppercase tracking-wider mb-4">
               Ready to Accelerate Growth?
             </span>
             <h2 class="text-3xl md:text-4xl lg:text-5xl font-extrabold text-primaryText dark:text-white tracking-tight mb-4 leading-tight">

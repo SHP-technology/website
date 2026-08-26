@@ -1,5 +1,5 @@
 <template>
-  <form class="contact-form flex flex-col gap-5 bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 p-6 md:p-8 rounded-2xl shadow-xl transition-colors" @submit.prevent="handleSubmit">
+  <form class="contact-form flex flex-col gap-5 bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 p-6 md:p-8 rounded-2xl shadow-lg transition-colors" @submit.prevent="handleSubmit">
     <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
       <BaseInput
         id="name"

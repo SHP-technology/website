@@ -73,14 +73,20 @@ const handleInput = (e: Event) => {
 
 .form-textarea {
   width: 100%;
-  padding: 0.75rem 1rem;
+  min-height: 7.5rem;
+  padding: 0.75rem 0.875rem;
   font-size: var(--fs-base);
   border: 1px solid var(--border-color);
   border-radius: var(--radius-md);
   background-color: var(--bg-surface);
   color: var(--text-primary);
   resize: vertical;
-  transition: all var(--transition-fast);
+  transition: border-color var(--transition-fast), box-shadow var(--transition-fast), background-color var(--transition-fast);
+}
+
+.form-textarea::placeholder {
+  color: var(--text-muted);
+  opacity: 0.85;
 }
 
 .form-textarea:focus {
@@ -91,6 +97,7 @@ const handleInput = (e: Event) => {
 
 .form-textarea.has-error {
   border-color: var(--color-error);
+  background-color: var(--color-error-bg);
 }
 
 .form-error {

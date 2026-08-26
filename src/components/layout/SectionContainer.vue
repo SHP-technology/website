@@ -1,6 +1,6 @@
 <template>
   <section :class="['section-container', { 'bg-alt': bgAlt }]">
-    <div class="container section-padding">
+    <div :class="['container', compact ? 'section-padding-compact' : 'section-padding']">
       <div v-if="title || tag" class="section-header">
         <span v-if="tag" class="tag">{{ tag }}</span>
         <h2 v-if="title">{{ title }}</h2>
@@ -18,9 +18,11 @@ withDefaults(
     title?: string;
     subtitle?: string;
     bgAlt?: boolean;
+    compact?: boolean;
   }>(),
   {
-    bgAlt: false
+    bgAlt: false,
+    compact: false
   }
 );
 </script>

@@ -28,7 +28,7 @@ withDefaults(
   color: var(--text-primary);
   border-radius: var(--radius-lg);
   padding: var(--space-6);
-  transition: all var(--transition-normal);
+  transition: transform var(--transition-normal), box-shadow var(--transition-normal), border-color var(--transition-normal);
   position: relative;
   box-shadow: var(--shadow-sm);
 }
@@ -38,8 +38,8 @@ withDefaults(
 }
 
 .base-card.is-hoverable:hover {
-  transform: translateY(-4px);
-  box-shadow: var(--shadow-xl);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-lg);
   border-color: rgba(250, 204, 21, 0.4);
 }
 </style>

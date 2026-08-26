@@ -14,7 +14,7 @@
       </div>
 
       <!-- Official Recruitment & Social Connect Hub -->
-      <div class="mb-14 p-8 rounded-2xl bg-gradient-to-br from-white via-surface-card to-surface-subtle dark:from-zinc-900 dark:via-slate-900 dark:to-zinc-950 text-dark-text dark:text-white shadow-2xl border border-surface-subtle dark:border-zinc-800 relative overflow-hidden">
+      <div class="mb-14 p-8 rounded-2xl bg-surface-card text-dark-text dark:text-white shadow-lg border border-surface-subtle dark:border-zinc-800 relative overflow-hidden">
         <div class="absolute -right-12 -bottom-12 w-64 h-64 bg-brand-yellow/10 rounded-full blur-3xl pointer-events-none"></div>
 
         <div class="relative z-10">

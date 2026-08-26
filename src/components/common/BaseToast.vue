@@ -87,6 +87,16 @@ defineEmits<{
   margin-left: auto;
 }
 
+@media (max-width: 639px) {
+  .toast-notification {
+    right: var(--space-4);
+    bottom: var(--space-4);
+    left: var(--space-4);
+    max-width: none;
+    padding: var(--space-4);
+  }
+}
+
 /* Vue Toast Transition */
 .toast-enter-active,
 .toast-leave-active {

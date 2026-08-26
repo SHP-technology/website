@@ -14,7 +14,7 @@
           </p>
         </div>
 
-        <div class="demo-card bg-surface-card text-primary-text p-6 md:p-8 rounded-3xl border border-surface-subtle shadow-2xl animate-fade-in-up">
+        <div class="demo-card bg-surface-card text-primary-text p-6 md:p-8 rounded-3xl border border-surface-subtle shadow-lg animate-fade-in-up">
           <DemoRequestForm />
         </div>
       </div>

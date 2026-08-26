@@ -1,5 +1,5 @@
 <template>
-  <SectionContainer bg-alt>
+  <SectionContainer bg-alt compact>
     <div class="trust-content">
       <p class="trust-heading">Trusted by companies worldwide to build their software</p>
       <div class="client-logos">

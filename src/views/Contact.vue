@@ -16,7 +16,7 @@
       <div class="contact-layout grid grid-cols-1 lg:grid-cols-[0.9fr_1.1fr] gap-8 mb-16">
         <!-- Contact Information & Office Details -->
         <div class="info-sidebar animate-fade-in-up">
-          <div class="info-card bg-gradient-to-br from-white via-surface-card to-surface-subtle dark:from-zinc-900 dark:via-slate-900 dark:to-zinc-950 text-primary-text p-8 rounded-2xl flex flex-col gap-6 h-full shadow-xl border border-surface-subtle dark:border-zinc-800">
+          <div class="info-card bg-surface-card text-primary-text p-8 rounded-2xl flex flex-col gap-6 h-full shadow-lg border border-surface-subtle dark:border-zinc-800">
             <h2 class="text-primary-text text-2xl font-bold">Direct Contact Channels</h2>
             <p class="text-secondary-text text-base">Our team responds to all business inquiries within {{ siteConfig.contact.responseSLA }}.</p>
 

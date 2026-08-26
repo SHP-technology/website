@@ -70,7 +70,8 @@ const handleClick = (e: MouseEvent) => {
   gap: var(--space-2);
   font-weight: 700;
   border-radius: var(--radius-md);
-  transition: all var(--transition-fast);
+  min-height: 2.75rem;
+  transition: background-color var(--transition-fast), border-color var(--transition-fast), color var(--transition-fast), box-shadow var(--transition-fast), transform var(--transition-fast);
   cursor: pointer;
   border: 1px solid transparent;
   white-space: nowrap;
@@ -91,7 +92,8 @@ const handleClick = (e: MouseEvent) => {
 
 /* Sizes */
 .size-sm {
-  padding: 0.5rem 0.875rem;
+  min-height: 2.25rem;
+  padding: 0.4375rem 0.75rem;
   font-size: var(--fs-xs);
 }
 
@@ -101,7 +103,8 @@ const handleClick = (e: MouseEvent) => {
 }
 
 .size-lg {
-  padding: 0.875rem 1.75rem;
+  min-height: 3rem;
+  padding: 0.8125rem 1.5rem;
   font-size: var(--fs-base);
 }
 

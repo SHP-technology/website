@@ -8,18 +8,12 @@
     <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 items-start">
       <!-- Selector Card -->
       <div class="bg-surface-card border border-surface-subtle rounded-2xl p-6 shadow-sm flex flex-col gap-6">
-        <div>
-          <label class="text-sm font-bold text-darkText block mb-2">1. Select Service Domain:</label>
-          <select
-            v-model="selectedDomain"
-            class="w-full p-3 rounded-xl border border-surface-subtle bg-surface-main text-darkText text-sm focus:outline-none focus:border-brand-hover"
-          >
-            <option value="enterprise">Custom Enterprise Web Application</option>
-            <option value="cloud">Cloud Migration & Kubernetes DevOps</option>
-            <option value="ai">AI LLM & RAG Vector Integration</option>
-            <option value="distributed">High-Throughput Microservices Backend</option>
-          </select>
-        </div>
+        <BaseSelect
+          id="project-domain"
+          v-model="selectedDomain"
+          label="1. Select Service Domain"
+          :options="domainOptions"
+        />
 
         <div>
           <label class="text-sm font-bold text-darkText block mb-2">2. Estimated Team Scale:</label>
@@ -49,7 +43,7 @@
       </div>
 
       <!-- Result Summary Card -->
-      <div class="bg-surface-dark text-white rounded-2xl p-6 border border-gray-800 shadow-xl flex flex-col justify-between h-full">
+      <div class="bg-surface-dark text-white rounded-2xl p-6 border border-gray-800 shadow-lg flex flex-col justify-between h-full">
         <div>
           <span class="inline-block bg-brand-light text-darkText text-xs font-bold px-3 py-1 rounded-full mb-4">Estimated Scope</span>
           <h3 class="text-2xl font-bold text-white mb-2">{{ activeEstimation.title }}</h3>
@@ -91,6 +85,7 @@
 import { ref, computed } from 'vue';
 import SectionContainer from '@/components/layout/SectionContainer.vue';
 import BaseButton from '@/components/common/BaseButton.vue';
+import BaseSelect from '@/components/common/BaseSelect.vue';
 
 type DomainType = 'enterprise' | 'cloud' | 'ai' | 'distributed';
 type ScaleType = 'pod' | 'team' | 'department';
@@ -98,6 +93,13 @@ type ScaleType = 'pod' | 'team' | 'department';
 const selectedDomain = ref<DomainType>('enterprise');
 const selectedScale = ref<ScaleType>('pod');
 const selectedCompliance = ref<string[]>(['SOC 2 Type II']);
+
+const domainOptions = [
+  { value: 'enterprise', label: 'Custom Enterprise Web Application' },
+  { value: 'cloud', label: 'Cloud Migration & Kubernetes DevOps' },
+  { value: 'ai', label: 'AI LLM & RAG Vector Integration' },
+  { value: 'distributed', label: 'High-Throughput Microservices Backend' }
+];
 
 const teamScales: Array<{ id: ScaleType; label: string; desc: string }> = [
   { id: 'pod', label: 'Dedicated Pod', desc: '2-3 Senior Engineers' },
