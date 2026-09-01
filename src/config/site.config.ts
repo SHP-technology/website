@@ -79,7 +79,7 @@ export const siteConfig: CompanyConfig = {
     linkedin: 'https://www.linkedin.com/in/shp-technology-5b8ba1430/?utm_source=linkedin&utm_medium=social&utm_campaign=shp_technology',
     instagram: 'https://www.instagram.com/founder.shp/?utm_source=instagram&utm_medium=social&utm_campaign=shp_technology',
     facebook: 'https://www.facebook.com/profile.php?id=61593774120280&utm_source=facebook&utm_medium=social&utm_campaign=shp_technology',
-    github: 'https://github.com/sandeshPatel06',
+    github: '',
     twitter: 'https://twitter.com/shptech',
     indeed: 'https://in.indeed.com/job/senior-sales-executive-a12c481dc18fc1c2?utm_source=indeed&utm_medium=job_portal&utm_campaign=shp_recruitment'
   },
