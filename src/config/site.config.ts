@@ -86,7 +86,7 @@ export const siteConfig: CompanyConfig = {
   site: {
     url: 'https://www.shptechnology.online/',
     apiUrl: 'https://api.shptechnology.online',
-    analyticsId: 'G-SHP12345'
+    analyticsId: 'G-NGNQ155J9K'
   },
   metrics: [
     { label: 'Clients', value: '150+', tagline: 'Trust', description: 'Trust & Long-Term Client Relationships' },
