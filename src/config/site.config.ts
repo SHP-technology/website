@@ -84,8 +84,8 @@ export const siteConfig: CompanyConfig = {
     indeed: 'https://in.indeed.com/job/senior-sales-executive-a12c481dc18fc1c2?utm_source=indeed&utm_medium=job_portal&utm_campaign=shp_recruitment'
   },
   site: {
-    url: 'https://shptech.vercel.app/',
-    apiUrl: 'https://api.shptech.vercel.app',
+    url: 'https://www.shptechnology.online/',
+    apiUrl: 'https://api.shptechnology.online',
     analyticsId: 'G-SHP12345'
   },
   metrics: [
