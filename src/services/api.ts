@@ -32,11 +32,24 @@ export interface ApiTestimonial {
   order: number | string;
 }
 
+async function fetchWithRetry(url: string, retries = 2, delayMs = 1500): Promise<any> {
+  for (let i = 0; i <= retries; i++) {
+    try {
+      const res = await fetch(url);
+      if (res.ok) {
+        return await res.json();
+      }
+    } catch (err) {
+      if (i === retries) throw err;
+    }
+    await new Promise((r) => setTimeout(r, delayMs));
+  }
+  throw new Error(`Failed to fetch ${url} after retries`);
+}
+
 export async function fetchFaqs(fallback: ApiFaq[]): Promise<ApiFaq[]> {
   try {
-    const res = await fetch(`${API_BASE_URL}/faqs/`);
-    if (!res.ok) throw new Error(`HTTP error ${res.status}`);
-    const data = await res.json();
+    const data = await fetchWithRetry(`${API_BASE_URL}/faqs/`);
     return data && data.length > 0 ? data : fallback;
   } catch (err) {
     console.warn('Backend API unavailable, using fallback FAQs:', err);
@@ -46,9 +59,7 @@ export async function fetchFaqs(fallback: ApiFaq[]): Promise<ApiFaq[]> {
 
 export async function fetchTeamMembers(fallback: ApiTeamMember[]): Promise<ApiTeamMember[]> {
   try {
-    const res = await fetch(`${API_BASE_URL}/team/`);
-    if (!res.ok) throw new Error(`HTTP error ${res.status}`);
-    const data = await res.json();
+    const data = await fetchWithRetry(`${API_BASE_URL}/team/`);
     return data && data.length > 0 ? data : fallback;
   } catch (err) {
     console.warn('Backend API unavailable, using fallback Team Members:', err);
@@ -58,9 +69,7 @@ export async function fetchTeamMembers(fallback: ApiTeamMember[]): Promise<ApiTe
 
 export async function fetchTestimonials(fallback: ApiTestimonial[]): Promise<ApiTestimonial[]> {
   try {
-    const res = await fetch(`${API_BASE_URL}/testimonials/`);
-    if (!res.ok) throw new Error(`HTTP error ${res.status}`);
-    const data = await res.json();
+    const data = await fetchWithRetry(`${API_BASE_URL}/testimonials/`);
     return data && data.length > 0 ? data : fallback;
   } catch (err) {
     console.warn('Backend API unavailable, using fallback Testimonials:', err);
