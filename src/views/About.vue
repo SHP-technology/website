@@ -50,8 +50,8 @@
       subtitle="Our team brings deep domain experience across software development, full-stack engineering, client relations, and operational excellence."
     >
       <div class="team-grid">
-        <BaseCard v-for="member in companyData.team" :key="member.name" class="team-card">
-          <div class="avatar-circle" aria-hidden="true">{{ member.initials }}</div>
+        <BaseCard v-for="member in teamMembers" :key="member.id || member.name" class="team-card">
+          <div class="avatar-circle" aria-hidden="true">{{ member.initials || member.name.split(' ').map(n => n[0]).join('').substring(0, 2) }}</div>
           <h3 class="member-name">{{ member.name }}</h3>
           <p class="member-role">{{ member.role }}</p>
           <p class="member-bio">{{ member.bio }}</p>
@@ -64,6 +64,7 @@
 </template>
 
 <script setup lang="ts">
+import { ref, onMounted } from 'vue';
 import SectionContainer from '@/components/layout/SectionContainer.vue';
 import MethodologySection from '@/components/sections/MethodologySection.vue';
 import CompanyTimeline from '@/components/sections/CompanyTimeline.vue';
@@ -71,6 +72,20 @@ import CtaBanner from '@/components/sections/CtaBanner.vue';
 import BaseCard from '@/components/common/BaseCard.vue';
 import { companyData } from '@/data/company';
 import { useSeoMeta } from '@/composables/useSeoMeta';
+import { fetchTeamMembers, type ApiTeamMember } from '@/services/api';
+
+const teamMembers = ref<ApiTeamMember[]>(companyData.team.map((m, i) => ({
+  id: i + 1,
+  name: m.name,
+  initials: m.initials,
+  role: m.role,
+  bio: m.bio,
+  order: i + 1
+})));
+
+onMounted(async () => {
+  teamMembers.value = await fetchTeamMembers(teamMembers.value);
+});
 
 useSeoMeta({
   title: 'About Our Company & Leadership',

@@ -24,6 +24,7 @@
 </template>
 
 <script setup lang="ts">
+import { ref, onMounted } from 'vue';
 import HeroSection from '@/components/sections/HeroSection.vue';
 import TrustSection from '@/components/sections/TrustSection.vue';
 import ServicesGrid from '@/components/sections/ServicesGrid.vue';
@@ -35,25 +36,44 @@ import SectionContainer from '@/components/layout/SectionContainer.vue';
 import FaqAccordion from '@/components/common/FaqAccordion.vue';
 import CtaBanner from '@/components/sections/CtaBanner.vue';
 import { useSeoMeta } from '@/composables/useSeoMeta';
+import { fetchFaqs, type ApiFaq } from '@/services/api';
 
-const homeFaqs = [
+const defaultFaqs: ApiFaq[] = [
   {
+    id: 1,
     question: 'How quickly can your engineering team onboard and begin development?',
-    answer: 'Our senior engineering pods can integrate into your project repository within 3 to 5 business days following initial technical alignment and NDA execution.'
+    answer: 'Our senior engineering pods can integrate into your project repository within 3 to 5 business days following initial technical alignment and NDA execution.',
+    category: 'Onboarding',
+    order: 1
   },
   {
+    id: 2,
     question: 'Who owns the intellectual property (IP) of code written by SHP Technology?',
-    answer: 'You retain 100% full ownership of all code, architecture blueprints, database schemas, and documentation produced during our contract.'
+    answer: 'You retain 100% full ownership of all code, architecture blueprints, database schemas, and documentation produced during our contract.',
+    category: 'Legal & IP',
+    order: 2
   },
   {
+    id: 3,
     question: 'What software development methodology do you follow?',
-    answer: 'We utilize a transparent 6-stage engineering process (Understand -> Plan -> Build -> Test -> Deploy -> Improve) with bi-weekly sprint demos and continuous integration.'
+    answer: 'We utilize a transparent 6-stage engineering process (Understand -> Plan -> Build -> Test -> Deploy -> Improve) with bi-weekly sprint demos and continuous integration.',
+    category: 'Process',
+    order: 3
   },
   {
+    id: 4,
     question: 'Do you provide post-deployment maintenance and SLA support?',
-    answer: 'Yes. We offer 24/7 Site Reliability Engineering (SRE) monitoring, zero-downtime deployment maintenance, and guaranteed response SLAs.'
+    answer: 'Yes. We offer 24/7 Site Reliability Engineering (SRE) monitoring, zero-downtime deployment maintenance, and guaranteed response SLAs.',
+    category: 'Support',
+    order: 4
   }
 ];
+
+const homeFaqs = ref<ApiFaq[]>(defaultFaqs);
+
+onMounted(async () => {
+  homeFaqs.value = await fetchFaqs(defaultFaqs);
+});
 
 useSeoMeta({
   title: 'Enterprise Software & Cloud Engineering Firm',
@@ -62,7 +82,7 @@ useSeoMeta({
   jsonLd: {
     '@context': 'https://schema.org',
     '@type': 'FAQPage',
-    mainEntity: homeFaqs.map(({ question, answer }) => ({
+    mainEntity: defaultFaqs.map(({ question, answer }) => ({
       '@type': 'Question',
       name: question,
       acceptedAnswer: { '@type': 'Answer', text: answer }
