@@ -17,3 +17,21 @@ class TestimonialViewSet(viewsets.ReadOnlyModelViewSet):
 class ServiceViewSet(viewsets.ReadOnlyModelViewSet):
     queryset = Service.objects.filter(is_active=True)
     serializer_class = ServiceSerializer
+
+from rest_framework.decorators import api_view
+from rest_framework.response import Response
+
+@api_view(['GET'])
+def root_api_index(request):
+    return Response({
+        "status": "online",
+        "service": "SHP Technology Backend API",
+        "version": "1.0.0",
+        "admin_dashboard": "/admin/",
+        "endpoints": {
+            "faqs": "/api/faqs/",
+            "team": "/api/team/",
+            "testimonials": "/api/testimonials/",
+            "services": "/api/services/"
+        }
+    })
