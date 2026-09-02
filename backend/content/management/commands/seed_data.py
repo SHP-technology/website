@@ -9,27 +9,30 @@ class Command(BaseCommand):
     def handle(self, *args, **options):
         self.stdout.write("Seeding data...")
 
-        # 0. Create Superuser if not exists
-        User = get_user_model()
-        admin_username = os.environ.get('ADMIN_USERNAME', 'admin')
-        admin_email = os.environ.get('ADMIN_EMAIL', 'admin@shptechnology.online')
-        admin_password = os.environ.get('ADMIN_PASSWORD', 'admin123')
+        # 0. Create Superuser if env vars are provided
+        admin_username = os.environ.get('ADMIN_USERNAME')
+        admin_email = os.environ.get('ADMIN_EMAIL', '')
+        admin_password = os.environ.get('ADMIN_PASSWORD')
 
-        user, created = User.objects.get_or_create(username=admin_username, defaults={'email': admin_email})
-        if created:
-            user.set_password(admin_password)
-            user.is_staff = True
-            user.is_superuser = True
-            user.save()
-            self.stdout.write(self.style.SUCCESS(f"Created superuser '{admin_username}' ({admin_email})"))
+        if admin_username and admin_password:
+            User = get_user_model()
+            user, created = User.objects.get_or_create(username=admin_username, defaults={'email': admin_email})
+            if created:
+                user.set_password(admin_password)
+                user.is_staff = True
+                user.is_superuser = True
+                user.save()
+                self.stdout.write(self.style.SUCCESS(f"Created superuser '{admin_username}'"))
+            else:
+                if admin_email:
+                    user.email = admin_email
+                user.set_password(admin_password)
+                user.is_staff = True
+                user.is_superuser = True
+                user.save()
+                self.stdout.write(f"Updated superuser '{admin_username}' credentials.")
         else:
-            # Ensure email and password are updated if needed
-            user.email = admin_email
-            user.set_password(admin_password)
-            user.is_staff = True
-            user.is_superuser = True
-            user.save()
-            self.stdout.write(f"Updated superuser '{admin_username}' credentials.")
+            self.stdout.write("ADMIN_USERNAME / ADMIN_PASSWORD env vars not set, skipping superuser creation.")
 
         # 1. FAQs
         faqs = [
