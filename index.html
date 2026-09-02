@@ -10,6 +10,12 @@
   <meta name="author" content="SHP Technology" />
   <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
 
+  <!-- Automatic Domain Redirect from Vercel to Custom Domain -->
+  <script type="text/javascript">
+    if (window.location.hostname.endsWith('vercel.app')) {
+      window.location.replace('https://www.shptechnology.online' + window.location.pathname + window.location.search + window.location.hash);
+    }
+  </script>
   <!-- SPA Single Page App Redirect Script for GitHub Pages Direct Route Refreshes -->
   <script type="text/javascript">
     (function (l) {
