@@ -29,7 +29,17 @@ tsconfig.tsbuildinfo
 .env
 .env.local
 .env.*.local
-
-# Vercel local directory
-.vercel
 .env*
+!.env.example
+!*.env.example
+
+# Python & Virtual Environments
+venv/
+.venv/
+backend/venv/
+*/venv/
+__pycache__/
+*.py[cod]
+*$py.class
+*.sqlite3
+backend/staticfiles/
