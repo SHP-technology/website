@@ -4,6 +4,9 @@ services:
     env: python
     region: singapore
     plan: free
+    repo: https://github.com/SHP-technology/website
+    autoDeploy: true
+    branch: main
     buildCommand: "pip install -r backend/requirements.txt && python backend/manage.py makemigrations --noinput && python backend/manage.py migrate --noinput && python backend/manage.py seed_data && python backend/manage.py collectstatic --noinput"
     startCommand: "cd backend && gunicorn core.wsgi:application --bind 0.0.0.0:$PORT"
     envVars:
