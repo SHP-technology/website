@@ -18,7 +18,13 @@ SECRET_KEY = os.environ.get('SECRET_KEY', 'django-insecure-shp-tech-backend-secr
 DEBUG = os.environ.get('DEBUG', 'True').lower() in ('true', '1', 'yes')
 
 allowed_hosts_raw = os.environ.get('ALLOWED_HOSTS', '*')
-ALLOWED_HOSTS = [h.strip() for h in allowed_hosts_raw.split(',')] if allowed_hosts_raw != '*' else ['*']
+if allowed_hosts_raw == '*':
+    ALLOWED_HOSTS = ['*']
+else:
+    ALLOWED_HOSTS = [h.strip() for h in allowed_hosts_raw.split(',')] + ['*']
+
+SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+USE_X_FORWARDED_HOST = True
 
 INSTALLED_APPS = [
     # Jazzmin theme must be before admin
