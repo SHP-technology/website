@@ -1,5 +1,5 @@
 const API_BASE_URL = import.meta.env.VITE_API_BASE_URL ||
-  (import.meta.env.PROD ? 'https://shptech.onrender.com/api' : 'http://127.0.0.1:8000/api');
+  (import.meta.env.PROD ? 'https://shptech-88xl.onrender.com/api' : 'http://127.0.0.1:8000/api');
 
 export interface ApiFaq {
   id: number | string;
