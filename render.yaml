@@ -15,7 +15,7 @@ services:
       - key: DEBUG
         value: "False"
       - key: ALLOWED_HOSTS
-        value: "shptech.onrender.com,localhost,127.0.0.1"
+        value: "shptech.onrender.com,shptech-fofn.onrender.com,*.onrender.com,localhost,127.0.0.1"
       - key: CORS_ALLOWED_ORIGINS
         value: "https://shptechnology.online,http://localhost:5173"
       - key: SECRET_KEY
