@@ -19,21 +19,21 @@
           <div>
             <span class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full backdrop-blur-md bg-white/80 dark:bg-slate-900/70 border border-slate-200/80 dark:border-white/12 text-xs font-bold uppercase tracking-wider text-slate-900 dark:text-white shadow-sm">
               <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse inline-block"></span>
-              Ready to Accelerate Growth?
+              Fast, Reliable & Cost-Effective
             </span>
             <h2 class="text-3xl md:text-4xl lg:text-5xl font-extrabold text-slate-900 dark:text-white tracking-tight mb-4 leading-tight mt-4">
-              Let's Build Your Next<br class="hidden lg:block"/>
-              <span class="text-gradient-gold">High-Impact</span> Software System
+              Get Your Project Shipped<br class="hidden lg:block"/>
+              <span class="text-gradient-gold">Faster & Under Budget</span>
             </h2>
             <p class="text-slate-600 dark:text-slate-300 text-base md:text-lg max-w-xl leading-relaxed">
-              Schedule a technical consultation with our senior solutions directors to discuss your enterprise requirements, cloud architecture, or AI roadmap.
+              We deliver premium software solutions with an unwavering focus on speed, reliability, and cost-efficiency. Schedule a technical consultation to see how we can accelerate your business without breaking the bank.
             </p>
 
             <!-- Trust badges row -->
             <div class="flex flex-wrap items-center gap-3 mt-6">
-              <span class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full backdrop-blur-md bg-white/80 dark:bg-slate-900/70 border border-slate-200/80 dark:border-white/12 text-xs font-semibold text-slate-800 dark:text-slate-200 shadow-sm">⚡ Response &lt; 4 Hours</span>
-              <span class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full backdrop-blur-md bg-white/80 dark:bg-slate-900/70 border border-slate-200/80 dark:border-white/12 text-xs font-semibold text-slate-800 dark:text-slate-200 shadow-sm">🔒 NDA on Request</span>
-              <span class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full backdrop-blur-md bg-white/80 dark:bg-slate-900/70 border border-slate-200/80 dark:border-white/12 text-xs font-semibold text-slate-800 dark:text-slate-200 shadow-sm">🌍 Global Remote Team</span>
+              <span class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full backdrop-blur-md bg-white/80 dark:bg-slate-900/70 border border-slate-200/80 dark:border-white/12 text-xs font-semibold text-slate-800 dark:text-slate-200 shadow-sm">⚡ Lightning Fast Delivery</span>
+              <span class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full backdrop-blur-md bg-white/80 dark:bg-slate-900/70 border border-slate-200/80 dark:border-white/12 text-xs font-semibold text-slate-800 dark:text-slate-200 shadow-sm">💰 Budget-Friendly Pricing</span>
+              <span class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full backdrop-blur-md bg-white/80 dark:bg-slate-900/70 border border-slate-200/80 dark:border-white/12 text-xs font-semibold text-slate-800 dark:text-slate-200 shadow-sm">🛡️ 100% Reliable Services</span>
             </div>
           </div>
 

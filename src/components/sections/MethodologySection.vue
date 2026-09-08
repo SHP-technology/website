@@ -1,8 +1,8 @@
 <template>
   <SectionContainer
-    tag="How We Work"
-    title="How We Work With You Step by Step"
-    subtitle="We follow a simple 6-step plan to design, build, test, and launch your software without any surprises."
+    tag="Fast & Reliable Process"
+    title="Rapid Delivery, Zero Surprises"
+    subtitle="Our proven 6-step methodology ensures we ship your software on time, under budget, and with 100% reliability."
     bg-alt
   >
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">

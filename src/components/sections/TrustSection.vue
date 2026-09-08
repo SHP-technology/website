@@ -1,7 +1,7 @@
 <template>
   <SectionContainer bg-alt compact>
     <div class="trust-content">
-      <p class="trust-heading">Trusted by companies worldwide to build their software</p>
+      <p class="trust-heading">Trusted by global companies for fast, reliable & cost-effective engineering</p>
       <div class="client-logos">
         <div v-for="client in clientDomains" :key="client" class="logo-item">
           <span class="logo-icon-svg">❖</span>

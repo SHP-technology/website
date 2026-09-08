@@ -11,7 +11,7 @@
     <!-- FAQ Accordion Section -->
     <SectionContainer
       tag="Frequently Asked Questions"
-      title="Common Engineering & Engagement Questions"
+      title="Clear Answers on Pricing, Speed & Reliability"
       subtitle="Here are answers to common questions about working with SHP Technology."
     >
       <div class="max-w-4xl mx-auto">

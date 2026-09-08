@@ -1,8 +1,8 @@
 <template>
   <SectionContainer
-    tag="Our Services"
-    title="The Software and Services We Offer"
-    subtitle="We write clean, simple, and secure code to solve your business needs and make your products run smoothly."
+    tag="High-Speed, Low-Cost Services"
+    title="Premium Engineering at an Unbeatable Value"
+    subtitle="We write clean, secure code and deploy robust systems incredibly fast—saving you both time and money."
   >
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
       <BaseCard

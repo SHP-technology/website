@@ -9,17 +9,17 @@
       <!-- Tag Badge — glass pill -->
       <div class="inline-flex items-center gap-2 px-3.5 py-1.5 text-xs font-semibold rounded-full backdrop-blur-md bg-white/80 dark:bg-slate-900/70 border border-slate-200/80 dark:border-white/12 text-slate-900 dark:text-white mb-6 shadow-sm">
         <span class="w-2 h-2 rounded-full bg-brand-hover dark:bg-brand-yellow animate-pulse-glow"></span>
-        <span>Software Development Company • Simple • Reliable • Fast</span>
+        <span class="uppercase tracking-wider">Unbeatable Prices • Lightning Fast • 100% Reliable</span>
       </div>
 
       <!-- Headline -->
       <h1 class="text-4xl md:text-5xl lg:text-6xl font-extrabold text-slate-900 dark:text-white leading-tight tracking-tight mb-6 max-w-3xl">
-        We Build Custom Software and Web Apps That Help Your Business Grow
+        Ship Premium Custom Software at a <span class="text-emerald-500">Fraction of the Cost</span>
       </h1>
 
       <!-- Subtitle -->
       <p class="text-lg md:text-xl text-slate-600 dark:text-slate-300 leading-relaxed mb-8 max-w-2xl">
-        We help companies write code, setup databases, manage web servers, and add smart tools to make daily work faster and easier.
+        Get enterprise-grade web apps, cloud infrastructure, and AI tools built with unmatched speed and bulletproof reliability—without breaking your budget.
       </p>
 
       <!-- CTA Action Buttons -->

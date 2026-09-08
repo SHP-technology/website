@@ -1,8 +1,8 @@
 <template>
   <SectionContainer
-    tag="Our Tech Stack"
-    title="The Technology Tools We Use"
-    subtitle="We choose popular, fast, and safe programming tools to build software that is easy to update and runs without breaking."
+    tag="High-Performance Tech Stack"
+    title="Modern Tools for Maximum Efficiency"
+    subtitle="We leverage the best open-source and enterprise tools to deliver blazing-fast software while keeping development costs aggressively low."
   >
     <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
       <div

@@ -1,8 +1,8 @@
 <template>
   <SectionContainer
-    tag="Our Work"
-    title="Our Work & What We Solved"
-    subtitle="Read stories about how we helped real businesses make their websites faster, improve their servers, and solve big problems."
+    tag="Proven Results"
+    title="Real Value Delivered Fast"
+    subtitle="See how we've helped companies ship reliable software quickly, slashing their budgets without compromising on quality."
     bg-alt
   >
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
