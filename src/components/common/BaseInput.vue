@@ -1,10 +1,10 @@
 <template>
-  <div class="form-group">
-    <label v-if="label" :for="id" class="form-label">
+  <div class="flex flex-col gap-1.5 mb-4">
+    <label v-if="label" :for="id" class="text-sm font-bold text-slate-900 dark:text-white">
       {{ label }}
-      <span v-if="required" class="required-star">*</span>
+      <span v-if="required" class="text-red-500">*</span>
     </label>
-    <div class="input-wrapper">
+    <div class="relative">
       <input
         :id="id"
         :type="type"
@@ -14,15 +14,21 @@
         :placeholder="placeholder"
         :required="required"
         :disabled="disabled"
-        :class="['form-input', { 'has-error': error }]"
+        :class="[
+          'w-full min-h-[2.875rem] px-3.5 py-2.5 text-base md:text-sm rounded-xl backdrop-blur-md transition-all duration-200 focus:outline-none',
+          'bg-white/80 dark:bg-slate-900/60 text-slate-900 dark:text-white placeholder-slate-400 dark:placeholder-slate-500',
+          error
+            ? 'border-2 border-red-500 focus:border-red-500 focus:ring-2 focus:ring-red-500/20'
+            : 'border border-slate-300 dark:border-white/15 focus:border-amber-400 dark:focus:border-amber-400 focus:ring-2 focus:ring-amber-400/25'
+        ]"
         :aria-invalid="Boolean(error)"
         :aria-describedby="error ? `${id}-error` : undefined"
         @input="handleInput"
         @blur="$emit('blur', $event)"
       />
     </div>
-    <span v-if="error" :id="`${id}-error`" class="form-error">{{ error }}</span>
-    <span v-else-if="helpText" class="form-help">{{ helpText }}</span>
+    <span v-if="error" :id="`${id}-error`" class="text-xs font-semibold text-red-500">{{ error }}</span>
+    <span v-else-if="helpText" class="text-xs text-slate-500 dark:text-slate-400">{{ helpText }}</span>
   </div>
 </template>
 
@@ -51,61 +57,3 @@ const handleInput = (e: Event) => {
   emit('update:modelValue', target.value);
 };
 </script>
-
-<style scoped>
-.form-group {
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-2);
-  margin-bottom: var(--space-4);
-}
-
-.form-label {
-  font-size: var(--fs-sm);
-  font-weight: 600;
-  color: var(--text-primary);
-}
-
-.required-star {
-  color: var(--color-error);
-}
-
-.form-input {
-  width: 100%;
-  min-height: 2.875rem;
-  padding: 0.6875rem 0.875rem;
-  font-size: var(--fs-base);
-  border: 1px solid var(--border-color);
-  border-radius: var(--radius-md);
-  background-color: var(--bg-surface);
-  color: var(--text-primary);
-  transition: border-color var(--transition-fast), box-shadow var(--transition-fast), background-color var(--transition-fast);
-}
-
-.form-input::placeholder {
-  color: var(--text-muted);
-  opacity: 0.85;
-}
-
-.form-input:focus {
-  outline: none;
-  border-color: var(--brand-yellow-hover);
-  box-shadow: var(--focus-ring-yellow);
-}
-
-.form-input.has-error {
-  border-color: var(--color-error);
-  background-color: var(--color-error-bg);
-}
-
-.form-error {
-  font-size: var(--fs-xs);
-  color: var(--color-error);
-  font-weight: 500;
-}
-
-.form-help {
-  font-size: var(--fs-xs);
-  color: var(--text-muted);
-}
-</style>

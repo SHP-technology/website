@@ -4,24 +4,24 @@
     title="Milestones & Engineering Evolution"
     subtitle="A timeline of our key open source projects and engineering milestones since 2024."
   >
-    <div class="relative border-l-2 border-brand-yellow dark:border-brand-hover ml-4 md:ml-32 space-y-8 py-4">
+    <div class="relative border-l-2 border-amber-400 dark:border-amber-400 ml-4 md:ml-32 space-y-8 py-4">
       <div v-for="item in milestones" :key="item.year" class="relative pl-6 md:pl-8 group">
         <!-- Dot -->
-        <span class="absolute -left-[9px] top-1.5 w-4 h-4 rounded-full bg-brand-yellow border-2 border-white dark:border-slate-900 group-hover:scale-125 transition-transform"></span>
+        <span class="absolute -left-[9px] top-2 w-4 h-4 rounded-full bg-amber-400 border-2 border-white dark:border-slate-900 group-hover:scale-125 transition-transform shadow-xs"></span>
 
         <!-- Year badge on left for desktop -->
-        <span class="hidden md:block absolute -left-28 top-1 text-sm font-extrabold text-brand-hover dark:text-brand-yellow font-mono">
+        <span class="hidden md:block absolute -left-28 top-1.5 text-sm font-extrabold text-amber-600 dark:text-amber-400 font-mono">
           {{ item.year }}
         </span>
 
         <!-- Content Card -->
-        <div class="bg-surface-card border border-surface-subtle rounded-2xl p-6 shadow-sm hover:shadow-md transition-shadow">
-          <span class="md:hidden inline-block bg-brand-light text-primaryText font-mono text-xs font-extrabold px-2.5 py-0.5 rounded-full mb-2">{{ item.year }}</span>
-          <h3 class="text-xl font-bold text-primaryText mb-2">{{ item.title }}</h3>
-          <p class="text-secondaryText text-sm leading-relaxed mb-4">{{ item.description }}</p>
+        <div class="p-6 rounded-2xl backdrop-blur-xl bg-white/80 dark:bg-slate-900/65 border border-slate-200/80 dark:border-white/12 shadow-md hover:shadow-lg transition-all">
+          <span class="md:hidden inline-block bg-amber-500/15 text-amber-800 dark:text-amber-300 font-mono text-xs font-extrabold px-2.5 py-0.5 rounded-full mb-2 border border-amber-500/30">{{ item.year }}</span>
+          <h3 class="text-xl font-bold text-slate-900 dark:text-white mb-2">{{ item.title }}</h3>
+          <p class="text-slate-600 dark:text-slate-300 text-sm leading-relaxed mb-4">{{ item.description }}</p>
 
           <div class="flex flex-wrap gap-2">
-            <span v-for="tag in item.highlights" :key="tag" class="text-xs bg-surface-subtle text-secondaryText px-2.5 py-1 rounded-md border border-surface-subtle">
+            <span v-for="tag in item.highlights" :key="tag" class="text-xs bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 px-2.5 py-1 rounded-md border border-slate-200 dark:border-white/10 font-medium">
               ⚡ {{ tag }}
             </span>
           </div>

@@ -5,23 +5,23 @@
     subtitle="We follow a simple 6-step plan to design, build, test, and launch your software without any surprises."
     bg-alt
   >
-    <div class="methodology-grid">
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
       <div
         v-for="step in processSteps"
         :key="step.number"
-        class="step-card"
+        class="relative p-6 md:p-8 rounded-2xl transition-all duration-300 backdrop-blur-xl bg-white/80 dark:bg-slate-900/65 border border-slate-200/80 dark:border-white/12 shadow-md hover:shadow-xl dark:shadow-2xl hover:-translate-y-1 hover:border-brand-hover dark:hover:border-brand-yellow"
       >
-        <div class="step-header">
-          <span class="step-number">{{ step.number }}</span>
-          <div class="step-icon-bg">
-            <component :is="step.icon" class="step-icon" />
+        <div class="flex items-center justify-between mb-4">
+          <span class="text-3xl font-extrabold text-brand-hover dark:text-brand-yellow tracking-tight">{{ step.number }}</span>
+          <div class="w-10 h-10 rounded-xl bg-slate-100 dark:bg-slate-800/80 border border-slate-200 dark:border-white/10 flex items-center justify-center text-slate-800 dark:text-slate-200 shadow-sm">
+            <component :is="step.icon" class="w-5 h-5" />
           </div>
         </div>
-        <h3 class="step-title">{{ step.title }}</h3>
-        <p class="step-desc">{{ step.description }}</p>
-        <ul class="step-outcomes">
-          <li v-for="outcome in step.outcomes" :key="outcome">
-            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--brand-yellow-hover)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+        <h3 class="text-xl font-bold text-slate-900 dark:text-white mb-2">{{ step.title }}</h3>
+        <p class="text-sm text-slate-600 dark:text-slate-300 leading-relaxed mb-5">{{ step.description }}</p>
+        <ul class="pt-4 border-t border-dashed border-slate-200 dark:border-white/10 flex flex-col gap-2.5">
+          <li v-for="outcome in step.outcomes" :key="outcome" class="flex items-center gap-2 text-xs font-semibold text-slate-800 dark:text-slate-200">
+            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" class="text-brand-hover dark:text-brand-yellow shrink-0" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
             <span>{{ outcome }}</span>
           </li>
         </ul>
@@ -86,97 +86,3 @@ const processSteps = [
   }
 ];
 </script>
-
-<style scoped>
-.methodology-grid {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: var(--space-6);
-}
-
-@media (min-width: 640px) {
-  .methodology-grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
-}
-
-@media (min-width: 1024px) {
-  .methodology-grid {
-    grid-template-columns: repeat(3, 1fr);
-  }
-}
-
-.step-card {
-  background-color: var(--bg-surface);
-  border: 1px solid var(--border-color);
-  border-radius: var(--radius-lg);
-  padding: var(--space-6);
-  position: relative;
-  transition: all var(--transition-normal);
-}
-
-.step-card:hover {
-  transform: translateY(-4px);
-  box-shadow: var(--shadow-lg);
-  border-color: var(--brand-yellow);
-}
-
-.step-header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  margin-bottom: var(--space-4);
-}
-
-.step-number {
-  font-size: var(--fs-2xl);
-  font-weight: 800;
-  color: var(--brand-yellow-hover);
-  letter-spacing: -0.05em;
-}
-
-.step-icon-bg {
-  width: 40px;
-  height: 40px;
-  border-radius: var(--radius-md);
-  background-color: var(--bg-surface-subtle);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: var(--text-primary);
-}
-
-.step-icon {
-  width: 20px;
-  height: 20px;
-}
-
-.step-title {
-  font-size: var(--fs-lg);
-  margin-bottom: var(--space-2);
-}
-
-.step-desc {
-  font-size: var(--fs-sm);
-  color: var(--text-secondary);
-  margin-bottom: var(--space-4);
-}
-
-.step-outcomes {
-  list-style: none;
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-2);
-  padding-top: var(--space-3);
-  border-top: 1px dashed var(--border-color);
-}
-
-.step-outcomes li {
-  display: flex;
-  align-items: center;
-  gap: var(--space-2);
-  font-size: var(--fs-xs);
-  font-weight: 600;
-  color: var(--text-primary);
-}
-</style>

@@ -2,7 +2,7 @@
   <div
     :class="[
       'base-card',
-      { 'is-hoverable': hoverable, 'has-border': border }
+      { 'is-hoverable': hoverable, 'has-border': border, 'glass-card': glass }
     ]"
   >
     <slot />
@@ -14,10 +14,12 @@ withDefaults(
   defineProps<{
     hoverable?: boolean;
     border?: boolean;
+    glass?: boolean;
   }>(),
   {
     hoverable: true,
-    border: true
+    border: true,
+    glass: false
   }
 );
 </script>

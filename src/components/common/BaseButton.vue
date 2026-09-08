@@ -5,21 +5,21 @@
     :type="isButton ? type : undefined"
     :disabled="disabled || loading"
     :class="[
-      'base-button',
-      `variant-${variant}`,
-      `size-${size}`,
-      { 'is-loading': loading, 'is-full-width': fullWidth }
+      'inline-flex items-center justify-center gap-2 font-bold rounded-full cursor-pointer whitespace-nowrap select-none transition-all duration-200 relative overflow-hidden backdrop-blur-md',
+      sizeClasses,
+      variantClasses,
+      { 'opacity-50 cursor-not-allowed': disabled || loading, 'w-full': fullWidth }
     ]"
     @click="handleClick"
   >
-    <span v-if="loading" class="spinner"></span>
-    <span v-else-if="$slots.iconLeft" class="icon-left">
+    <span v-if="loading" class="w-4 h-4 border-2 border-current border-r-transparent rounded-full animate-spin"></span>
+    <span v-else-if="$slots.iconLeft" class="inline-flex items-center shrink-0">
       <slot name="iconLeft" />
     </span>
-    <span class="button-label">
+    <span>
       <slot />
     </span>
-    <span v-if="!loading && $slots.iconRight" class="icon-right">
+    <span v-if="!loading && $slots.iconRight" class="inline-flex items-center shrink-0">
       <slot name="iconRight" />
     </span>
   </component>
@@ -60,127 +60,33 @@ const handleClick = (e: MouseEvent) => {
     emit('click', e);
   }
 };
-</script>
 
-<style scoped>
-.base-button {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: var(--space-2);
-  font-weight: 700;
-  border-radius: var(--radius-md);
-  min-height: 2.75rem;
-  transition: background-color var(--transition-fast), border-color var(--transition-fast), color var(--transition-fast), box-shadow var(--transition-fast), transform var(--transition-fast);
-  cursor: pointer;
-  border: 1px solid transparent;
-  white-space: nowrap;
-  text-decoration: none;
-  position: relative;
-  overflow: hidden;
-}
-
-.base-button:disabled,
-.base-button.is-loading {
-  opacity: 0.65;
-  cursor: not-allowed;
-}
-
-.is-full-width {
-  width: 100%;
-}
-
-/* Sizes */
-.size-sm {
-  min-height: 2.25rem;
-  padding: 0.4375rem 0.75rem;
-  font-size: var(--fs-xs);
-}
-
-.size-md {
-  padding: 0.75rem 1.25rem;
-  font-size: var(--fs-sm);
-}
-
-.size-lg {
-  min-height: 3rem;
-  padding: 0.8125rem 1.5rem;
-  font-size: var(--fs-base);
-}
-
-/* Primary: Brand Yellow with High-Contrast Dark Text */
-.variant-primary {
-  background-color: var(--brand-yellow);
-  color: var(--text-primary);
-  border-color: var(--brand-yellow);
-}
-
-.variant-primary:hover:not(:disabled) {
-  background-color: var(--brand-yellow-hover);
-  border-color: var(--brand-yellow-hover);
-  box-shadow: var(--shadow-yellow);
-  transform: translateY(-1px);
-}
-
-/* Secondary: Deep Navy */
-.variant-secondary {
-  background-color: var(--bg-dark-surface);
-  color: var(--text-inverse);
-  border-color: var(--bg-dark-surface);
-}
-
-.variant-secondary:hover:not(:disabled) {
-  background-color: var(--bg-dark-hover);
-  transform: translateY(-1px);
-  box-shadow: var(--shadow-md);
-}
-
-/* Outline: Subtle Border */
-.variant-outline {
-  background-color: transparent;
-  color: var(--text-primary);
-  border-color: var(--border-color);
-}
-
-.variant-outline:hover:not(:disabled) {
-  background-color: var(--bg-surface-hover);
-  border-color: var(--text-primary);
-}
-
-/* Ghost */
-.variant-ghost {
-  background-color: transparent;
-  color: var(--text-primary);
-}
-
-.variant-ghost:hover:not(:disabled) {
-  background-color: var(--bg-surface-hover);
-}
-
-/* Danger */
-.variant-danger {
-  background-color: var(--color-error);
-  color: var(--text-inverse);
-  border-color: var(--color-error);
-}
-
-.variant-danger:hover:not(:disabled) {
-  opacity: 0.9;
-}
-
-/* Loading Spinner */
-.spinner {
-  width: 1rem;
-  height: 1rem;
-  border: 2px solid currentColor;
-  border-right-color: transparent;
-  border-radius: 50%;
-  animation: spin 0.75s linear infinite;
-}
-
-@keyframes spin {
-  to {
-    transform: rotate(360deg);
+const sizeClasses = computed(() => {
+  switch (props.size) {
+    case 'sm':
+      return 'min-h-[2.25rem] px-3.5 py-1.5 text-xs';
+    case 'lg':
+      return 'min-h-[3rem] px-7 py-3 text-base';
+    case 'md':
+    default:
+      return 'min-h-[2.625rem] px-5 py-2.5 text-sm';
   }
-}
-</style>
+});
+
+const variantClasses = computed(() => {
+  switch (props.variant) {
+    case 'primary':
+      return 'bg-amber-400 hover:bg-amber-300 text-slate-950 font-extrabold border border-amber-300 shadow-md hover:shadow-lg shadow-amber-500/20 active:scale-95';
+    case 'secondary':
+      return 'bg-slate-100 dark:bg-slate-800/80 text-slate-900 dark:text-white border border-slate-300 dark:border-white/12 hover:bg-slate-200 dark:hover:bg-slate-700 shadow-xs active:scale-95';
+    case 'outline':
+      return 'bg-white/80 dark:bg-slate-900/60 text-slate-900 dark:text-white border border-slate-300 dark:border-white/20 hover:bg-slate-100 dark:hover:bg-slate-800 shadow-xs active:scale-95';
+    case 'ghost':
+      return 'bg-transparent text-slate-700 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800 active:scale-95';
+    case 'danger':
+      return 'bg-red-600 hover:bg-red-500 text-white border border-red-500 shadow-sm active:scale-95';
+    default:
+      return 'bg-amber-400 hover:bg-amber-300 text-slate-950 font-extrabold border border-amber-300 shadow-md';
+  }
+});
+</script>

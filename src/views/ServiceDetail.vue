@@ -1,42 +1,44 @@
 <template>
   <div v-if="service" class="page-service-detail">
     <SectionContainer>
-      <div class="breadcrumb">
-        <router-link to="/services">← Back to All Services</router-link>
+      <div class="mb-6">
+        <router-link to="/services" class="text-sm font-semibold text-slate-600 dark:text-slate-300 hover:text-brand-hover dark:hover:text-brand-yellow transition-colors">← Back to All Services</router-link>
       </div>
 
-      <div class="header-block">
+      <div class="flex flex-col items-start gap-3 mb-12 pb-8 border-b border-slate-200 dark:border-white/10">
         <BaseBadge variant="yellow">{{ service.category }}</BaseBadge>
-        <h1 class="service-heading">{{ service.title }}</h1>
-        <p class="service-lead">{{ service.fullDescription }}</p>
+        <h1 class="text-3xl md:text-4xl lg:text-5xl font-extrabold text-slate-900 dark:text-white tracking-tight leading-tight">{{ service.title }}</h1>
+        <p class="text-lg md:text-xl text-slate-600 dark:text-slate-300 max-w-3xl leading-relaxed">{{ service.fullDescription }}</p>
       </div>
 
-      <div class="detail-grid">
+      <div class="grid grid-cols-1 lg:grid-cols-[2fr_1fr] gap-8">
         <!-- Main Column -->
-        <div class="main-info">
+        <div class="flex flex-col gap-8">
           <!-- Problem & Solution Breakdown -->
-          <div class="info-card">
-            <h3>Problem We Solve</h3>
-            <p class="problem-callout">{{ service.problemSolved }}</p>
+          <div class="p-6 md:p-8 rounded-2xl backdrop-blur-xl bg-white/80 dark:bg-slate-900/65 border border-slate-200/80 dark:border-white/12 shadow-md">
+            <h3 class="text-xl font-bold text-slate-900 dark:text-white mb-4">Problem We Solve</h3>
+            <div class="p-4 rounded-xl bg-amber-500/10 dark:bg-amber-500/15 border-l-4 border-amber-500 text-slate-900 dark:text-slate-100 font-medium leading-relaxed">
+              {{ service.problemSolved }}
+            </div>
           </div>
 
           <!-- Benefits -->
-          <div class="info-card">
-            <h3>Key Advantages & Value Delivered</h3>
-            <ul class="benefits-list">
-              <li v-for="b in service.benefits" :key="b">
-                <span class="bullet">✦</span>
+          <div class="p-6 md:p-8 rounded-2xl backdrop-blur-xl bg-white/80 dark:bg-slate-900/65 border border-slate-200/80 dark:border-white/12 shadow-md">
+            <h3 class="text-xl font-bold text-slate-900 dark:text-white mb-4">Key Advantages & Value Delivered</h3>
+            <ul class="flex flex-col gap-3">
+              <li v-for="b in service.benefits" :key="b" class="flex items-start gap-3 text-base text-slate-700 dark:text-slate-200">
+                <span class="text-brand-hover dark:text-brand-yellow shrink-0">✦</span>
                 <span>{{ b }}</span>
               </li>
             </ul>
           </div>
 
           <!-- Deliverables -->
-          <div class="info-card">
-            <h3>Core Deliverables</h3>
-            <div class="deliverables-grid">
-              <div v-for="d in service.deliverables" :key="d" class="deliv-item">
-                <span class="deliv-icon">📦</span>
+          <div class="p-6 md:p-8 rounded-2xl backdrop-blur-xl bg-white/80 dark:bg-slate-900/65 border border-slate-200/80 dark:border-white/12 shadow-md">
+            <h3 class="text-xl font-bold text-slate-900 dark:text-white mb-4">Core Deliverables</h3>
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div v-for="d in service.deliverables" :key="d" class="p-3.5 rounded-xl bg-slate-100 dark:bg-slate-800/80 border border-slate-200 dark:border-white/10 flex items-center gap-3 text-sm font-semibold text-slate-900 dark:text-white">
+                <span class="text-base">📦</span>
                 <span>{{ d }}</span>
               </div>
             </div>
@@ -44,17 +46,17 @@
         </div>
 
         <!-- Sidebar Inquiry Card -->
-        <div class="sidebar">
-          <div class="sticky-inquiry">
-            <h3>Schedule a Service Consultation</h3>
-            <p>Speak with a senior solutions architect specialized in {{ service.title }}.</p>
-            <div class="tech-stack-used">
-              <strong>Technologies Used:</strong>
-              <div class="tags-row">
-                <span v-for="t in service.technologies" :key="t" class="t-badge">{{ t }}</span>
+        <div>
+          <div class="sticky top-28 p-6 rounded-2xl bg-slate-900 dark:bg-slate-900/90 text-white border border-slate-800 dark:border-white/15 shadow-2xl flex flex-col gap-4">
+            <h3 class="text-xl font-bold text-white">Schedule a Service Consultation</h3>
+            <p class="text-sm text-slate-300">Speak with a senior solutions architect specialized in {{ service.title }}.</p>
+            <div class="text-xs">
+              <strong class="text-slate-400 block mb-2">Technologies Used:</strong>
+              <div class="flex flex-wrap gap-2">
+                <span v-for="t in service.technologies" :key="t" class="px-2.5 py-1 rounded-md bg-slate-800 text-amber-300 font-semibold text-xs border border-slate-700">{{ t }}</span>
               </div>
             </div>
-            <BaseButton to="/contact" variant="primary" full-width>
+            <BaseButton to="/contact" variant="primary" full-width class="mt-2">
               Inquire About {{ service.title }}
             </BaseButton>
           </div>
@@ -65,7 +67,7 @@
     <CtaBanner />
   </div>
   <div v-else class="container section-padding text-center">
-    <h2>Service Not Found</h2>
+    <h2 class="text-2xl font-bold text-slate-900 dark:text-white">Service Not Found</h2>
     <BaseButton to="/services" variant="outline" class="mt-4">Back to Services</BaseButton>
   </div>
 </template>
@@ -108,170 +110,3 @@ useSeoMeta(() => service.value
       noIndex: true
     });
 </script>
-
-<style scoped>
-.breadcrumb {
-  margin-bottom: var(--space-6);
-  font-size: var(--fs-sm);
-}
-
-.breadcrumb a {
-  color: var(--text-secondary);
-  font-weight: 600;
-}
-
-.breadcrumb a:hover {
-  color: var(--brand-yellow-hover);
-}
-
-.header-block {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  gap: var(--space-3);
-  margin-bottom: var(--space-12);
-  border-bottom: 1px solid var(--border-color);
-  padding-bottom: var(--space-8);
-}
-
-.service-heading {
-  font-size: var(--fs-4xl);
-  color: var(--text-primary);
-}
-
-.service-lead {
-  font-size: var(--fs-xl);
-  color: var(--text-secondary);
-  max-width: 800px;
-}
-
-.detail-grid {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: var(--space-8);
-}
-
-@media (min-width: 1024px) {
-  .detail-grid {
-    grid-template-columns: 2fr 1fr;
-  }
-}
-
-.main-info {
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-8);
-}
-
-.info-card {
-  background-color: var(--bg-surface);
-  border: 1px solid var(--border-color);
-  border-radius: var(--radius-lg);
-  padding: var(--space-6);
-}
-
-.info-card h3 {
-  font-size: var(--fs-xl);
-  margin-bottom: var(--space-4);
-}
-
-.problem-callout {
-  background-color: var(--brand-yellow-light);
-  border-left: 4px solid var(--brand-yellow-hover);
-  padding: var(--space-4);
-  border-radius: var(--radius-sm);
-  font-size: var(--fs-base);
-  color: var(--text-primary);
-  font-weight: 500;
-}
-
-.benefits-list {
-  list-style: none;
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-3);
-}
-
-.benefits-list li {
-  display: flex;
-  align-items: flex-start;
-  gap: var(--space-3);
-  font-size: var(--fs-base);
-  color: var(--text-secondary);
-}
-
-.bullet {
-  color: var(--brand-yellow-hover);
-}
-
-.deliverables-grid {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: var(--space-4);
-}
-
-@media (min-width: 640px) {
-  .deliverables-grid {
-    grid-template-columns: 1fr 1fr;
-  }
-}
-
-.deliv-item {
-  background-color: var(--bg-surface-subtle);
-  border: 1px solid var(--border-color);
-  border-radius: var(--radius-md);
-  padding: var(--space-3) var(--space-4);
-  display: flex;
-  align-items: center;
-  gap: var(--space-3);
-  font-size: var(--fs-sm);
-  font-weight: 600;
-}
-
-.sidebar {
-  display: flex;
-  flex-direction: column;
-}
-
-.sticky-inquiry {
-  position: sticky;
-  top: 100px;
-  background-color: var(--bg-dark-surface);
-  color: var(--text-inverse);
-  padding: var(--space-6);
-  border-radius: var(--radius-xl);
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-4);
-  box-shadow: var(--shadow-xl);
-}
-
-.sticky-inquiry h3 {
-  color: var(--text-inverse);
-  font-size: var(--fs-xl);
-}
-
-.sticky-inquiry p {
-  color: var(--text-on-dark);
-  font-size: var(--fs-sm);
-}
-
-.tech-stack-used {
-  font-size: var(--fs-xs);
-}
-
-.tags-row {
-  display: flex;
-  flex-wrap: wrap;
-  gap: var(--space-2);
-  margin-top: var(--space-2);
-}
-
-.t-badge {
-  background-color: var(--bg-zinc-800);
-  color: var(--brand-yellow);
-  padding: 2px 8px;
-  border-radius: var(--radius-xs);
-  font-size: var(--fs-xs);
-}
-</style>

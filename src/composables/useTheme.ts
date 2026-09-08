@@ -2,13 +2,15 @@ import { ref, onMounted } from 'vue';
 
 export type Theme = 'light' | 'dark';
 
-const theme = ref<Theme>('light');
+const theme = ref<Theme>('dark');
 
 export function useTheme() {
   const initTheme = () => {
     const savedTheme = localStorage.getItem('shp-theme') as Theme | null;
     if (savedTheme) {
       theme.value = savedTheme;
+    } else if (document.documentElement.classList.contains('dark')) {
+      theme.value = 'dark';
     } else if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
       theme.value = 'dark';
     } else {

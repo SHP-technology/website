@@ -3,7 +3,7 @@
     <div
       v-for="(item, index) in items"
       :key="index"
-      class="border border-slate-200 dark:border-slate-800 rounded-2xl bg-white dark:bg-slate-900 overflow-hidden transition-all duration-200 shadow-sm"
+      class="glass-card overflow-hidden transition-all duration-200 border border-slate-200/80 dark:border-white/10"
     >
       <button
         type="button"
@@ -13,13 +13,13 @@
         @click="toggle(index)"
       >
         <span>{{ item.question }}</span>
-        <span class="ml-4 flex-shrink-0 w-8 h-8 rounded-full bg-surface-subtle dark:bg-slate-800 flex items-center justify-center text-slate-900 dark:text-white transition-transform duration-300" :class="{ 'rotate-180 bg-brand-light dark:bg-slate-700': openIndex === index }">
+        <span class="ml-4 flex-shrink-0 w-8 h-8 rounded-full bg-slate-100 dark:bg-slate-800 flex items-center justify-center text-slate-900 dark:text-white transition-transform duration-300" :class="{ 'rotate-180 bg-brand-light dark:bg-slate-700': openIndex === index }">
           <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
         </span>
       </button>
 
       <Transition name="accordion">
-        <div v-if="openIndex === index" :id="`faq-answer-${index}`" class="px-6 pb-6 text-slate-600 dark:text-slate-300 text-base leading-relaxed border-t border-slate-100 dark:border-slate-800/60 pt-4">
+        <div v-if="openIndex === index" :id="`faq-answer-${index}`" class="px-6 pb-6 text-slate-700 dark:text-slate-300 text-base leading-relaxed border-t border-slate-200/80 dark:border-white/10 pt-4">
           {{ item.answer }}
         </div>
       </Transition>

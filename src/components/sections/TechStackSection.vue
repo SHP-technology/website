@@ -4,24 +4,24 @@
     title="The Technology Tools We Use"
     subtitle="We choose popular, fast, and safe programming tools to build software that is easy to update and runs without breaking."
   >
-    <div class="tech-category-grid">
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
       <div
         v-for="cat in techStackData"
         :key="cat.category"
-        class="category-card"
+        class="p-6 md:p-8 rounded-2xl transition-all duration-300 backdrop-blur-xl bg-white/80 dark:bg-slate-900/65 border border-slate-200/80 dark:border-white/12 shadow-md hover:shadow-xl dark:shadow-2xl"
       >
-        <h3 class="cat-title">{{ cat.category }}</h3>
-        <div class="items-grid">
+        <h3 class="text-xl font-extrabold text-slate-900 dark:text-white mb-6 pb-2 border-b-2 border-brand-yellow inline-block">{{ cat.category }}</h3>
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
           <div
             v-for="item in cat.items"
             :key="item.name"
-            class="tech-item"
+            class="p-4 rounded-xl backdrop-blur-md bg-slate-50/90 dark:bg-slate-800/60 border border-slate-200/70 dark:border-white/10 shadow-xs hover:border-brand-yellow/50 transition-colors"
           >
-            <div class="item-header">
-              <span class="tech-icon-symbol">⚡</span>
-              <span class="tech-name">{{ item.name }}</span>
+            <div class="flex items-center gap-2 mb-1">
+              <span class="text-brand-hover dark:text-brand-yellow text-xs font-black">⚡</span>
+              <span class="text-sm font-bold text-slate-900 dark:text-white">{{ item.name }}</span>
             </div>
-            <p class="tech-desc">{{ item.description }}</p>
+            <p class="text-xs text-slate-600 dark:text-slate-300 leading-normal">{{ item.description }}</p>
           </div>
         </div>
       </div>
@@ -33,75 +33,3 @@
 import SectionContainer from '@/components/layout/SectionContainer.vue';
 import { techStackData } from '@/data/techStack';
 </script>
-
-<style scoped>
-.tech-category-grid {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: var(--space-6);
-}
-
-@media (min-width: 768px) {
-  .tech-category-grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
-}
-
-.category-card {
-  background-color: var(--bg-surface);
-  border: 1px solid var(--border-color);
-  border-radius: var(--radius-xl);
-  padding: var(--space-6);
-}
-
-.cat-title {
-  font-size: var(--fs-xl);
-  color: var(--text-primary);
-  margin-bottom: var(--space-6);
-  padding-bottom: var(--space-3);
-  border-bottom: 2px solid var(--brand-yellow);
-  display: inline-block;
-}
-
-.items-grid {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: var(--space-4);
-}
-
-@media (min-width: 480px) {
-  .items-grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
-}
-
-.tech-item {
-  background-color: var(--bg-surface-subtle);
-  border: 1px solid var(--border-color);
-  border-radius: var(--radius-md);
-  padding: var(--space-3) var(--space-4);
-}
-
-.item-header {
-  display: flex;
-  align-items: center;
-  gap: var(--space-2);
-  margin-bottom: 2px;
-}
-
-.tech-icon-symbol {
-  color: var(--brand-yellow-hover);
-  font-size: var(--fs-xs);
-}
-
-.tech-name {
-  font-size: var(--fs-sm);
-  font-weight: 700;
-  color: var(--text-primary);
-}
-
-.tech-desc {
-  font-size: var(--fs-xs);
-  color: var(--text-muted);
-}
-</style>

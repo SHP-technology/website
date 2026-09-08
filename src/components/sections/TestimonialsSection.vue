@@ -6,7 +6,7 @@
     bg-alt
   >
     <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-      <BaseCard v-for="t in testimonials" :key="t.id" class="flex flex-col justify-between h-full">
+      <BaseCard v-for="t in testimonials" :key="t.id" :glass="true" class="flex flex-col justify-between h-full">
         <div>
           <!-- Star Rating -->
           <div class="flex text-brand-hover gap-1 mb-4">
