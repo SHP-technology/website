@@ -43,3 +43,4 @@ __pycache__/
 *$py.class
 *.sqlite3
 backend/staticfiles/
+.kilo
