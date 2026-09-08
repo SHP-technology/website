@@ -57,7 +57,7 @@ export const siteConfig: CompanyConfig = {
   tagline: 'Software Development Company — Build • Automate • Grow',
   subTagline: 'Software Development Company',
   motto: 'Build • Automate • Grow',
-  description: 'SHP Technology is a software development company. We build custom websites, databases, and simple automation tools for your business.',
+  description: 'SHP Technology is a premier software development company. We build high-performance custom enterprise web applications, cloud architecture, microservices, and AI automation solutions for businesses globally.',
   founded: '2019',
   headquarters: 'Madan Mahal Station, Jabalpur, MP & Remote Global',
   email: import.meta.env.VITE_SITE_EMAIL || 'founder.shp@gmail.com',
