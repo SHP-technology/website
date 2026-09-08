@@ -58,12 +58,17 @@ body {
   background-color: var(--bg-main);
   color: var(--text-primary);
   transition: background-color 250ms ease, color 250ms ease;
-  /* Ambient mesh background — warm living-room glow matching reference image */
+  /* Ambient mesh background — executive subtle ambient lighting */
   background-image:
-    radial-gradient(ellipse 80% 55% at 15% 5%, rgba(200, 150, 70, 0.14) 0%, transparent 55%),
-    radial-gradient(ellipse 70% 50% at 85% 90%, rgba(110, 150, 200, 0.11) 0%, transparent 55%),
-    radial-gradient(ellipse 45% 40% at 50% 50%, rgba(255, 255, 255, 0.04) 0%, transparent 60%);
+    radial-gradient(ellipse 75% 45% at 15% 0%, rgba(234, 179, 8, 0.06) 0%, transparent 60%),
+    radial-gradient(ellipse 65% 45% at 85% 100%, rgba(37, 99, 235, 0.05) 0%, transparent 60%);
   background-attachment: fixed;
+}
+
+html.dark body {
+  background-image:
+    radial-gradient(ellipse 75% 45% at 15% 0%, rgba(245, 158, 11, 0.07) 0%, transparent 60%),
+    radial-gradient(ellipse 65% 45% at 85% 100%, rgba(59, 130, 246, 0.06) 0%, transparent 60%);
 }
 
 h1, h2, h3, h4 {

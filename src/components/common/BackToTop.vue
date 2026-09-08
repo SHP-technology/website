@@ -3,7 +3,7 @@
     <button
       v-if="visible"
       type="button"
-      class="fixed bottom-6 right-24 z-[800] p-3 rounded-full bg-brand-yellow hover:bg-brand-hover text-darkText shadow-xl border border-brand-border transition-all duration-300 hover:-translate-y-1 focus:outline-none focus:ring-2 focus:ring-brand-hover flex items-center justify-center"
+      class="fixed bottom-24 right-8 z-[800] p-3 rounded-full bg-brand-yellow hover:bg-brand-hover text-darkText shadow-xl border border-brand-border transition-all duration-300 hover:-translate-y-1 focus:outline-none focus:ring-2 focus:ring-brand-hover flex items-center justify-center"
       aria-label="Scroll back to top"
       @click="scrollToTop"
     >
