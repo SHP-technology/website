@@ -1,0 +1,1 @@
+import{P as e,S as t,a as n,g as r,w as i,y as a}from"./index-BlxRWVBI.js";var o=n(a({__name:`BaseBadge`,props:{variant:{default:`yellow`}},setup(n){return(a,o)=>(t(),r(`span`,{class:e([`base-badge`,`badge-${n.variant}`])},[i(a.$slots,`default`,{},void 0,!0)],2))}}),[[`__scopeId`,`data-v-05a46f88`]]);export{o as t};
