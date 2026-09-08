@@ -19,6 +19,42 @@ export interface CaseStudyItem {
 
 export const portfolioData: CaseStudyItem[] = [
   {
+    id: 'shp-elearning',
+    slug: 'shp-elearning',
+    title: 'SHP E-Learning Platform & Learning Management System',
+    client: 'SHP Education',
+    industry: 'EdTech & Learning',
+    summary: 'A full-featured cloud E-Learning platform with student portals, course enrollment, video lessons, quiz attempts, and automated certificates.',
+    challenge: 'Educational institutions require scalable LMS platforms to stream video courses, manage student enrollments, and track quiz attempts without expensive server hosting overhead.',
+    solution: 'Engineered a modern React & Vite frontend deployed to Cloudflare Pages edge CDN, backed by Django REST APIs and cloud PostgreSQL.',
+    results: [
+      { metric: 'Live LMS', label: 'Edge-rendered platform' },
+      { metric: '100%', label: 'Cloudflare Pages CDN' }
+    ],
+    technologies: ['React', 'TypeScript', 'TailwindCSS', 'Django REST', 'Cloudflare Pages'],
+    featured: true,
+    completionYear: '2026',
+    url: 'https://elearning.shptechnology.online/'
+  },
+  {
+    id: 'shp-restro',
+    slug: 'shp-restro',
+    title: 'SHP Restro & POS Management System',
+    client: 'SHP Hospitality',
+    industry: 'Hospitality & Restaurant Tech',
+    summary: 'A modern cloud-based restaurant POS and order management web system featuring real-time menu tracking, table ordering, and kitchen workflows.',
+    challenge: 'Restaurants need fast, responsive POS interfaces that operate reliably on mobile tablets and desktops for rapid order processing.',
+    solution: 'Designed and deployed a responsive single-page web app with instant menu item search, table status management, and receipt calculation.',
+    results: [
+      { metric: 'Cloud POS', label: 'Instant order processing' },
+      { metric: '<50ms', label: 'Local search latency' }
+    ],
+    technologies: ['React', 'TypeScript', 'TailwindCSS', 'Cloudflare Edge', 'Netlify'],
+    featured: true,
+    completionYear: '2026',
+    url: 'https://restro.shptechnology.online/'
+  },
+  {
     id: 'file-share',
     slug: 'file-share',
     title: 'Collaborative Notes & File Sharing Vault',
