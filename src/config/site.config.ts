@@ -63,19 +63,19 @@ export const siteConfig: CompanyConfig = {
   description: 'SHP Technology is a premier software development company. We build high-performance custom enterprise web applications, cloud architecture, microservices, and AI automation solutions for businesses globally.',
   founded: '2019',
   headquarters: 'Madan Mahal Station, Jabalpur, MP & Remote Global',
-  email: import.meta.env.VITE_SITE_EMAIL || 'founder.shp@gmail.com',
-  phone: import.meta.env.VITE_SITE_PHONE || '+91 9301885654',
+  email: process.env.NEXT_PUBLIC_SITE_EMAIL || 'founder.shp@gmail.com',
+  phone: process.env.NEXT_PUBLIC_SITE_PHONE || '+91 9301885654',
   officeLocation: {
-    address: import.meta.env.VITE_SITE_ADDRESS || '1st floor, SHP Technology, Near Underground Bridge, Madan Mahal Station',
-    city: import.meta.env.VITE_SITE_CITY || 'Jabalpur',
-    state: import.meta.env.VITE_SITE_STATE || 'Madhya Pradesh',
-    zip: import.meta.env.VITE_SITE_ZIP || '482001',
-    country: import.meta.env.VITE_SITE_COUNTRY || 'India'
+    address: process.env.NEXT_PUBLIC_SITE_ADDRESS || '1st floor, SHP Technology, Near Underground Bridge, Madan Mahal Station',
+    city: process.env.NEXT_PUBLIC_SITE_CITY || 'Jabalpur',
+    state: process.env.NEXT_PUBLIC_SITE_STATE || 'Madhya Pradesh',
+    zip: process.env.NEXT_PUBLIC_SITE_ZIP || '482001',
+    country: process.env.NEXT_PUBLIC_SITE_COUNTRY || 'India'
   },
   contact: {
-    email: import.meta.env.VITE_SITE_EMAIL || 'founder.shp@gmail.com',
-    phone: import.meta.env.VITE_SITE_PHONE || '+91 9301885654',
-    supportEmail: import.meta.env.VITE_SITE_SUPPORT_EMAIL || 'founder.shp@gmail.com',
+    email: process.env.NEXT_PUBLIC_SITE_EMAIL || 'founder.shp@gmail.com',
+    phone: process.env.NEXT_PUBLIC_SITE_PHONE || '+91 9301885654',
+    supportEmail: process.env.NEXT_PUBLIC_SITE_SUPPORT_EMAIL || 'founder.shp@gmail.com',
     responseSLA: '4 business hours',
     whatsappNumber: '+919301885654',
     whatsapp: 'https://wa.me/919301885654?text=Hi%20SHP%20Technology,%20I%20visited%20your%20website%20and%20would%20like%20to%20discuss%20a%20software%20project.'
