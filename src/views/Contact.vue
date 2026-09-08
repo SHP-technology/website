@@ -104,8 +104,30 @@ import { siteConfig } from '@/config/site.config';
 import { useSeoMeta } from '@/composables/useSeoMeta';
 
 useSeoMeta({
-  title: 'Contact Engineering & Request Proposal',
-  description: `Get in touch with ${siteConfig.name} solutions directors. Submit your project requirements, request technical consultation, or ask business inquiries.`
+  title: 'Contact Software Engineers & Request Project Proposal',
+  description: `Get in touch with ${siteConfig.name} software solutions directors. Submit your custom software project requirements, request a technical proposal, or schedule an engineering consultation.`,
+  keywords: 'Contact Software Development Company, Request Software Proposal, Hire Developers Jabalpur India, Software Engineering Consultation, SHP Technology Contact',
+  jsonLd: {
+    '@context': 'https://schema.org',
+    '@type': 'ContactPage',
+    name: 'Contact SHP Technology Engineering Team',
+    description: 'Submit software project requirements or contact solutions directors.',
+    mainEntity: {
+      '@type': 'Organization',
+      name: 'SHP Technology',
+      url: 'https://www.shptechnology.online/',
+      telephone: '+91-9301885654',
+      email: 'founder.shp@gmail.com',
+      address: {
+        '@type': 'PostalAddress',
+        streetAddress: '1st floor, SHP Technology, Near Underground Bridge, Madan Mahal Station',
+        addressLocality: 'Jabalpur',
+        addressRegion: 'MP',
+        postalCode: '482001',
+        addressCountry: 'India'
+      }
+    }
+  }
 });
 
 const toast = reactive({

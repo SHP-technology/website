@@ -88,8 +88,25 @@ onMounted(async () => {
 });
 
 useSeoMeta({
-  title: 'About Our Company & Leadership',
-  description: 'Learn about SHP Technology, our team of developers, our mission, and our software engineering philosophy.'
+  title: 'About Our Software Development Company & Engineering Leadership',
+  description: 'Learn about SHP Technology, our founder Harsh Patel, co-founder Sandesh Patel, software development philosophy, and company history.',
+  keywords: 'About SHP Technology, Software Development Company Leadership, Harsh Patel Founder, Sandesh Patel Full-Stack Developer, Software Engineers Jabalpur India, Enterprise Software Firm',
+  jsonLd: {
+    '@context': 'https://schema.org',
+    '@type': 'AboutPage',
+    name: 'About SHP Technology',
+    description: 'Learn about SHP Technology, our team of developers, our mission, and our software engineering philosophy.',
+    mainEntity: {
+      '@type': 'Organization',
+      name: 'SHP Technology',
+      url: 'https://www.shptechnology.online/',
+      foundingDate: '2019',
+      founders: [
+        { '@type': 'Person', name: 'Harsh Patel', jobTitle: 'Founder' },
+        { '@type': 'Person', name: 'Sandesh Patel', jobTitle: 'Co-Founder & Head of Full-Stack Development' }
+      ]
+    }
+  }
 });
 </script>
 

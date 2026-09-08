@@ -198,8 +198,20 @@ import { siteConfig } from '@/config/site.config';
 import { useSeoMeta } from '@/composables/useSeoMeta';
 
 useSeoMeta({
-  title: 'Careers & Open Senior Engineering Roles',
-  description: 'Explore job opportunities at SHP Technology. View our Indeed portal, LinkedIn, Instagram, and Facebook recruitment channels.'
+  title: 'Engineering Careers & Remote Software Job Openings',
+  description: 'Join SHP Technology engineering pods. Explore active software development job opportunities, remote engineering roles, Sales Executive positions, and apply via Indeed or directly.',
+  keywords: 'Software Engineering Careers, Developer Jobs Jabalpur, Senior Sales Executive Jobs, Full Stack Developer Openings, Remote Software Jobs, SHP Technology Recruitment',
+  jsonLd: {
+    '@context': 'https://schema.org',
+    '@type': 'ItemList',
+    name: 'SHP Technology Current Open Job Openings',
+    itemListElement: jobsData.map((j, idx) => ({
+      '@type': 'ListItem',
+      position: idx + 1,
+      url: `https://www.shptechnology.online/careers/${j.slug}`,
+      name: j.title
+    }))
+  }
 });
 
 const activeDept = ref('All');

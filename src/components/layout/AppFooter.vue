@@ -68,7 +68,8 @@
         </h4>
         <router-link to="/about" class="text-secondaryText hover:text-brand-hover text-sm transition-all hover:translate-x-1">About Us</router-link>
         <router-link to="/portfolio" class="text-secondaryText hover:text-brand-hover text-sm transition-all hover:translate-x-1">Case Studies</router-link>
-        <router-link to="/demo" class="text-secondaryText hover:text-brand-hover text-sm transition-all hover:translate-x-1">Interactive Product Demo</router-link>
+        <router-link to="/demo" class="text-secondaryText hover:text-brand-hover text-sm transition-all hover:translate-x-1">Interactive Product Demos</router-link>
+        <router-link to="/careers" class="text-secondaryText hover:text-brand-hover text-sm transition-all hover:translate-x-1">Careers & Open Roles</router-link>
         <router-link to="/contact" class="text-secondaryText hover:text-brand-hover text-sm transition-all hover:translate-x-1">Contact Engineering</router-link>
       </div>
 

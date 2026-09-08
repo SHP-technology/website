@@ -112,8 +112,30 @@ import { servicesData } from '@/data/services';
 import { useSeoMeta } from '@/composables/useSeoMeta';
 
 useSeoMeta({
-  title: 'Engineering Services & Technology Solutions',
-  description: 'Explore SHP Technology enterprise software development, cloud infrastructure, AI RAG vector engines, and security audit offerings.'
+  title: 'Custom Software Development Services & Engineering Solutions',
+  description: 'Explore SHP Technology custom software development services: enterprise web apps, Kubernetes cloud architecture, AI RAG engines, microservices, and security audits.',
+  keywords: 'Software Development Services, Enterprise Software Development, Cloud Architecture Services, AI RAG Integration, Microservices Modernization, Cybersecurity Audit Services, Custom Software Company',
+  jsonLd: {
+    '@context': 'https://schema.org',
+    '@type': 'Service',
+    name: 'SHP Technology Engineering Services Catalog',
+    description: 'Comprehensive enterprise software engineering, cloud architecture, and AI development services.',
+    provider: { '@type': 'Organization', name: 'SHP Technology', url: 'https://www.shptechnology.online/' },
+    hasOfferCatalog: {
+      '@type': 'OfferCatalog',
+      name: 'Software Engineering Services Catalog',
+      itemListElement: servicesData.map((s, idx) => ({
+        '@type': 'Offer',
+        itemOffered: {
+          '@type': 'Service',
+          name: s.title,
+          description: s.shortDescription,
+          url: `https://www.shptechnology.online/services/${s.slug}`
+        },
+        position: idx + 1
+      }))
+    }
+  }
 });
 
 const searchQuery = ref('');

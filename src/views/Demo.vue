@@ -74,7 +74,30 @@ import CtaBanner from '@/components/sections/CtaBanner.vue';
 import { useSeoMeta } from '@/composables/useSeoMeta';
 
 useSeoMeta({
-  title: 'Request a Live Guided Demo',
-  description: 'Fill out our inquiry form to schedule a live, personalized walkthrough of our custom software platforms.'
+  title: 'Interactive Software Product Demos & Guided Walkthrough',
+  description: 'Test live online product demos including the SHP E-Learning Platform and SHP Restro POS System, or request a personalized walkthrough with our engineering team.',
+  keywords: 'Live Software Demo, E-Learning Platform Demo, Restaurant POS System Demo, Cloud Application Demos, Custom Web App Demos, SHP Technology Product Demos',
+  jsonLd: {
+    '@context': 'https://schema.org',
+    '@type': 'WebPage',
+    name: 'SHP Technology Interactive Software Demos',
+    description: 'Explore live web application demos built by SHP Technology.',
+    mainEntity: [
+      {
+        '@type': 'SoftwareApplication',
+        name: 'SHP E-Learning Platform',
+        applicationCategory: 'EducationalApplication',
+        operatingSystem: 'Web',
+        url: 'https://elearning.shptechnology.online/'
+      },
+      {
+        '@type': 'SoftwareApplication',
+        name: 'SHP Restro POS System',
+        applicationCategory: 'BusinessApplication',
+        operatingSystem: 'Web',
+        url: 'https://restro.shptechnology.online/'
+      }
+    ]
+  }
 });
 </script>

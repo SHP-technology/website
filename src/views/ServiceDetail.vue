@@ -85,16 +85,21 @@ const service = computed(() => servicesData.find((s) => s.slug === route.params.
 
 useSeoMeta(() => service.value
   ? {
-      title: service.value.title,
+      title: `${service.value.title} — Software Development Service`,
       description: service.value.shortDescription,
-      keywords: `${service.value.title}, software development services, ${service.value.technologies.join(', ')}`,
+      keywords: `${service.value.title}, custom software development, enterprise software, ${service.value.technologies.join(', ')}, SHP Technology services`,
       jsonLd: {
         '@context': 'https://schema.org',
         '@type': 'Service',
         name: service.value.title,
         description: service.value.shortDescription,
-        provider: { '@type': 'Organization', name: 'SHP Technology' },
-        areaServed: 'Worldwide'
+        provider: {
+          '@type': 'Organization',
+          name: 'SHP Technology',
+          url: 'https://www.shptechnology.online/'
+        },
+        areaServed: 'Worldwide',
+        serviceType: service.value.category
       }
     }
   : {

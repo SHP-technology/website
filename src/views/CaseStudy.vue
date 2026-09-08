@@ -82,16 +82,18 @@ const study = computed(() => portfolioData.find((p) => p.slug === route.params.s
 
 useSeoMeta(() => study.value
   ? {
-      title: study.value.title,
+      title: `${study.value.title} — Software Case Study`,
       description: study.value.summary,
-      keywords: `${study.value.industry} software project, ${study.value.technologies.join(', ')}`,
+      keywords: `${study.value.title}, software engineering case study, ${study.value.industry} software project, ${study.value.technologies.join(', ')}, SHP Technology case studies`,
       jsonLd: {
         '@context': 'https://schema.org',
-        '@type': 'CreativeWork',
-        name: study.value.title,
+        '@type': 'TechArticle',
+        headline: study.value.title,
         description: study.value.summary,
-        dateCreated: study.value.completionYear,
-        creator: { '@type': 'Organization', name: 'SHP Technology' }
+        datePublished: study.value.completionYear,
+        author: { '@type': 'Organization', name: 'SHP Technology', url: 'https://www.shptechnology.online/' },
+        publisher: { '@type': 'Organization', name: 'SHP Technology', logo: { '@type': 'ImageObject', url: 'https://www.shptechnology.online/assets/image.png' } },
+        about: study.value.technologies
       }
     }
   : {

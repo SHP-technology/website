@@ -103,12 +103,45 @@ const job = computed(() => {
   return jobsData.find((j) => j.slug === route.params.slug) || jobsData[0];
 });
 
-if (job.value) {
-  useSeoMeta({
-    title: `${job.value.title} — Career Opportunity`,
-    description: job.value.shortDescription
-  });
-}
+useSeoMeta(() => job.value
+  ? {
+      title: `${job.value.title} — Career Opening`,
+      description: job.value.shortDescription,
+      keywords: `${job.value.title}, ${job.value.department} jobs, ${job.value.location} software jobs, SHP Technology careers`,
+      jsonLd: {
+        '@context': 'https://schema.org',
+        '@type': 'JobPosting',
+        title: job.value.title,
+        description: job.value.fullDescription,
+        datePosted: '2026-08-01',
+        employmentType: job.value.employmentType === 'Full-time' ? 'FULL_TIME' : 'CONTRACTOR',
+        hiringOrganization: {
+          '@type': 'Organization',
+          name: 'SHP Technology',
+          sameAs: 'https://www.shptechnology.online/',
+          logo: 'https://www.shptechnology.online/assets/image.png'
+        },
+        jobLocation: {
+          '@type': 'Place',
+          address: {
+            '@type': 'PostalAddress',
+            addressLocality: 'Jabalpur',
+            addressRegion: 'MP',
+            addressCountry: 'India'
+          }
+        },
+        applicantLocationRequirements: {
+          '@type': 'Country',
+          name: 'India'
+        },
+        jobLocationType: job.value.location.includes('Remote') ? 'TELECOMMUTE' : undefined
+      }
+    }
+  : {
+      title: 'Job Opening Not Found',
+      description: 'The requested job opening could not be found.',
+      noIndex: true
+    });
 </script>
 
 <style scoped>

@@ -76,9 +76,9 @@ onMounted(async () => {
 });
 
 useSeoMeta({
-  title: 'Enterprise Software & Cloud Engineering Firm',
-  description: 'SHP Technology builds custom software, cloud infrastructure, and practical AI integrations for growing businesses.',
-  keywords: 'custom software development, web application development, cloud infrastructure, AI integration, Jabalpur software company',
+  title: 'Software Development Company — Custom Web Apps, Cloud & AI Engineering',
+  description: 'SHP Technology is a software development company engineering high-performance enterprise web applications, cloud infrastructure, microservices, and AI integrations.',
+  keywords: 'Software Development Company, Custom Web Application Development, Enterprise Software, Cloud Architecture, Kubernetes DevOps, AI RAG Engine, Microservices, Software Development Company Jabalpur, Software Engineering Agency India, Vue 3, Node.js, Hire Software Developers',
   jsonLd: {
     '@context': 'https://schema.org',
     '@type': 'FAQPage',

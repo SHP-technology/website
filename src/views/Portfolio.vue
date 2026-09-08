@@ -82,8 +82,24 @@ import { portfolioData } from '@/data/portfolio';
 import { useSeoMeta } from '@/composables/useSeoMeta';
 
 useSeoMeta({
-  title: 'Engineering Case Studies & Portfolio Projects',
-  description: 'Explore the personal and open source software development portfolio of Sandesh Patel, featuring AI applications, developer tools, and web services.'
+  title: 'Software Development Case Studies & Engineering Portfolio',
+  description: 'Explore SHP Technology software development case studies, full-stack projects, AI applications, developer tools, and client results.',
+  keywords: 'Software Development Portfolio, Engineering Case Studies, Full Stack Projects, Vue 3 Applications, AI Developer Tools, Sandesh Patel Projects',
+  jsonLd: {
+    '@context': 'https://schema.org',
+    '@type': 'CollectionPage',
+    name: 'SHP Technology Engineering Case Studies',
+    description: 'Explore software development case studies and project highlights.',
+    mainEntity: {
+      '@type': 'ItemList',
+      itemListElement: portfolioData.map((p, idx) => ({
+        '@type': 'ListItem',
+        position: idx + 1,
+        url: `https://www.shptechnology.online/portfolio/${p.slug}`,
+        name: p.title
+      }))
+    }
+  }
 });
 
 const activeCategory = ref('All');
