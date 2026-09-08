@@ -11,6 +11,7 @@
       </router-view>
     </main>
     <AppFooter />
+    <FloatingContactWidget />
     <BackToTop />
   </div>
 </template>
@@ -20,6 +21,7 @@ import AppHeader from '@/components/layout/AppHeader.vue';
 import AppFooter from '@/components/layout/AppFooter.vue';
 import ScrollProgress from '@/components/common/ScrollProgress.vue';
 import BackToTop from '@/components/common/BackToTop.vue';
+import FloatingContactWidget from '@/components/common/FloatingContactWidget.vue';
 </script>
 
 <style>

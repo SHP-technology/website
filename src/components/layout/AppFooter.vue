@@ -79,6 +79,10 @@
           <span class="w-1.5 h-1.5 rounded-full bg-brand-yellow"></span>
           Social Channels
         </h4>
+        <a :href="siteConfig.socials.whatsapp" target="_blank" rel="noopener noreferrer" class="text-secondaryText hover:text-emerald-400 text-sm transition-all hover:translate-x-1 flex items-center gap-2">
+          <span>💬</span>
+          <span>WhatsApp (Instant Chat)</span>
+        </a>
         <a :href="siteConfig.socials.linkedin" target="_blank" rel="noopener noreferrer" class="text-secondaryText hover:text-brand-hover text-sm transition-all hover:translate-x-1 flex items-center gap-2">
           <span>🔗</span>
           <span>LinkedIn</span>
@@ -98,9 +102,9 @@
     <div class="container pt-8 border-t border-surface-subtle flex flex-col md:flex-row items-center justify-between gap-4 text-xs text-mutedText">
       <p>© {{ new Date().getFullYear() }} {{ companyData.legalName }}. All rights reserved.</p>
       <div class="flex items-center gap-6">
-        <span class="hover:text-primaryText cursor-pointer transition-colors">Privacy Policy</span>
-        <span class="hover:text-primaryText cursor-pointer transition-colors">Terms of Service</span>
-        <span class="hover:text-primaryText cursor-pointer transition-colors">Security Compliance (SOC 2)</span>
+        <a :href="`mailto:${siteConfig.contact.email}?subject=Privacy%20Policy%20Inquiry`" class="hover:text-primaryText transition-colors">Privacy Policy</a>
+        <a :href="`mailto:${siteConfig.contact.email}?subject=Terms%20of%20Service%20Inquiry`" class="hover:text-primaryText transition-colors">Terms of Service</a>
+        <a :href="siteConfig.contact.whatsapp" target="_blank" rel="noopener noreferrer" class="hover:text-emerald-400 transition-colors">💬 WhatsApp</a>
       </div>
     </div>
   </footer>
