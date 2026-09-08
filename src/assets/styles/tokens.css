@@ -1,65 +1,67 @@
 :root {
-  /* Color Palette - Light Theme */
-  --bg-main: #F8FAFC;
-  --bg-surface: #FFFFFF;
-  --bg-surface-hover: #F1F5F9;
-  --bg-surface-subtle: #F1F5F9;
-  --bg-dark-surface: #0F172A;
-  --bg-dark-hover: #1E293B;
+  /* ════════════════════════════════════════════════════
+     EXECUTIVE ENTERPRISE COLOR PALETTE - LIGHT THEME
+     Sophisticated Titanium Slate, Antique Amber & Sapphire Blue
+     ════════════════════════════════════════════════════ */
 
-  /* Brand Colors */
-  --brand-yellow: #FACC15;
-  --brand-yellow-hover: #EAB308;
-  --brand-yellow-light: #FEF9C3;
-  --brand-yellow-border: #FDE047;
+  /* Canvas & Surface Layers */
+  --bg-main: #F8FAFC;            /* Clean Slate Canvas */
+  --bg-surface: #FFFFFF;         /* Crisp White Card Surface */
+  --bg-surface-hover: #F1F5F9;   /* Hover State */
+  --bg-surface-subtle: #F1F5F9;  /* Section Alt Background */
+  --bg-dark-surface: #0F172A;    /* Contrast Dark Accent Surface */
+  --bg-dark-hover: #1E293B;      /* Contrast Dark Hover */
 
-  --brand-sky: #0284C7;
-  --brand-sky-hover: #0369A1;
-  --brand-sky-light: #E0F2FE;
+  /* Executive Brand Accents — Warm Amber Gold & Sapphire Blue */
+  --brand-yellow: #EAB308;        /* Executive Amber Gold (amber-500) */
+  --brand-yellow-hover: #D97706;  /* Deep Amber Gold (amber-600) */
+  --brand-yellow-light: #FEF3C7;  /* Soft Warm Amber Tint */
+  --brand-yellow-border: #FDE047; /* Delicate Gold Outline */
 
-  /* Typography Colors - High Contrast WCAG AA Compliant */
-  --text-primary: #0F172A;     /* Contrast ratio > 15:1 */
-  --text-secondary: #475569;   /* Contrast ratio > 7:1 */
-  --text-muted: #64748B;       /* Contrast ratio > 4.8:1 */
+  --brand-sky: #2563EB;          /* Royal Sapphire Blue (blue-600) */
+  --brand-sky-hover: #1D4ED8;    /* Deep Sapphire (blue-700) */
+  --brand-sky-light: #DBEAFE;    /* Soft Sky Tint */
+
+  /* High-Contrast WCAG AA Compliant Typography */
+  --text-primary: #0F172A;       /* Slate-900 (Contrast > 15:1) */
+  --text-secondary: #475569;     /* Slate-600 (Contrast > 7:1) */
+  --text-muted: #64748B;         /* Slate-500 (Contrast > 4.8:1) */
   --text-inverse: #FFFFFF;
 
-  /* Border & Divider */
+  /* Borders & Focus */
   --border-color: #E2E8F0;
   --border-color-dark: #1E293B;
-  --border-focus: #0284C7;
+  --border-focus: #2563EB;
 
-  /* Surface Accent Colors (used on both themes) */
+  /* Surface Accent Colors */
   --text-on-dark: #A1A1AA;
   --bg-zinc-800: #27272A;
 
-  /* Focus Rings */
-  --focus-ring-yellow: 0 0 0 3px rgba(250, 204, 21, 0.25);
-
-  /* Overlay & Backdrop */
+  /* Focus Rings & Glows */
+  --focus-ring-yellow: 0 0 0 3px rgba(234, 179, 8, 0.25);
   --backdrop-overlay: rgba(15, 23, 42, 0.6);
 
-  /* Glow Utilities (rgba only — for box-shadow composition) */
-  --glow-yellow: rgba(250, 204, 21, 0.3);
-  --glow-sky: rgba(2, 132, 199, 0.25);
-  --glow-yellow-hover: rgba(250, 204, 21, 0.4);
-  --glow-sky-border: rgba(2, 132, 199, 0.3);
-  --glow-yellow-pulse: 0 0 15px rgba(250, 204, 21, 0.2), 0 0 30px rgba(250, 204, 21, 0.6);
-  --glow-yellow-pulse-start: 0 0 15px rgba(250, 204, 21, 0.2);
-  --glow-yellow-pulse-end: 0 0 30px rgba(250, 204, 21, 0.6);
-  --glow-emerald: 0 0 8px #34D399;
+  --glow-yellow: rgba(234, 179, 8, 0.25);
+  --glow-sky: rgba(37, 99, 235, 0.20);
+  --glow-yellow-hover: rgba(217, 119, 6, 0.35);
+  --glow-sky-border: rgba(37, 99, 235, 0.30);
+  --glow-yellow-pulse: 0 0 15px rgba(234, 179, 8, 0.2), 0 0 30px rgba(234, 179, 8, 0.5);
+  --glow-yellow-pulse-start: 0 0 15px rgba(234, 179, 8, 0.2);
+  --glow-yellow-pulse-end: 0 0 30px rgba(234, 179, 8, 0.5);
+  --glow-emerald: 0 0 8px #10B981;
 
-  /* Hero Section Radial Gradient (light theme only) */
-  --hero-bg-gradient: radial-gradient(circle at 50% 50%, rgba(250, 204, 21, 0.1) 0%, transparent 60%);
+  /* Hero Radial Ambient Gradient */
+  --hero-bg-gradient: radial-gradient(circle at 50% 40%, rgba(234, 179, 8, 0.08) 0%, transparent 65%);
 
-  /* Status Colors */
+  /* Status Indicators */
   --color-success: #16A34A;
   --color-success-bg: #DCFCE7;
   --color-error: #DC2626;
   --color-error-bg: #FEE2E2;
-  --color-warning: #A16207;
+  --color-warning: #D97706;
   --color-warning-bg: #FEF3C7;
 
-  /* Typography Scale — Poppins Primary */
+  /* Typography Scale */
   --font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
   --font-display: 'Poppins', 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
   --fs-xs: 0.75rem;
@@ -92,14 +94,14 @@
   --radius-xl: 20px;
   --radius-full: 9999px;
 
-  /* Elevation & Shadows */
+  /* Elevation Shadows */
   --shadow-sm: 0 1px 2px 0 rgba(15, 23, 42, 0.05);
   --shadow-md: 0 4px 12px rgba(15, 23, 42, 0.06);
   --shadow-lg: 0 10px 24px rgba(15, 23, 42, 0.08);
   --shadow-xl: 0 16px 32px rgba(15, 23, 42, 0.1);
-  --shadow-yellow: 0 6px 16px rgba(234, 179, 8, 0.22);
+  --shadow-yellow: 0 6px 18px rgba(217, 119, 6, 0.20);
 
-  /* Layout Containers */
+  /* Layout */
   --container-max-width: 1280px;
   --header-height: 80px;
 
@@ -108,87 +110,81 @@
   --transition-normal: 250ms cubic-bezier(0.4, 0, 0.2, 1);
   --transition-slow: 350ms cubic-bezier(0.4, 0, 0.2, 1);
 
-  /* ── Glassmorphism Design Tokens - Light Theme ── */
-  --glass-bg:               rgba(255, 255, 255, 0.72);
-  --glass-bg-strong:        rgba(255, 255, 255, 0.88);
-  --glass-bg-subtle:        rgba(255, 255, 255, 0.50);
-  --glass-border:           rgba(15, 23, 42, 0.10);
-  --glass-border-strong:    rgba(15, 23, 42, 0.18);
+  /* ── Glassmorphism Tokens — Light Mode ── */
+  --glass-bg:               rgba(255, 255, 255, 0.78);
+  --glass-bg-strong:        rgba(255, 255, 255, 0.92);
+  --glass-bg-subtle:        rgba(255, 255, 255, 0.55);
+  --glass-border:           rgba(148, 163, 184, 0.25);
+  --glass-border-strong:    rgba(148, 163, 184, 0.40);
   --glass-blur:             blur(18px);
   --glass-blur-strong:      blur(26px);
-  --glass-shadow:           0 14px 40px rgba(15, 23, 42, 0.12), inset 0 1px 0 rgba(255, 255, 255, 0.9);
-  --glass-shadow-glow:      0 14px 40px rgba(234, 179, 8, 0.22), inset 0 1px 0 rgba(255, 255, 255, 0.9);
-  --glass-shadow-emerald:   0 14px 40px rgba(16, 185, 129, 0.22), inset 0 1px 0 rgba(255, 255, 255, 0.9);
+  --glass-shadow:           0 12px 32px rgba(15, 23, 42, 0.06), inset 0 1px 0 rgba(255, 255, 255, 0.9);
+  --glass-shadow-glow:      0 12px 32px rgba(217, 119, 6, 0.14), inset 0 1px 0 rgba(255, 255, 255, 0.9);
+  --glass-shadow-emerald:   0 12px 32px rgba(16, 185, 129, 0.14), inset 0 1px 0 rgba(255, 255, 255, 0.9);
 }
 
-/* Dark Theme Overrides — Layered Navy Palette with 4 Distinct Depth Steps */
+/* ════════════════════════════════════════════════════
+   EXECUTIVE ENTERPRISE COLOR PALETTE - DARK THEME
+   Deep Obsidian Slate, Warm Honey Amber & Electric Blue
+   ════════════════════════════════════════════════════ */
 html.dark {
-  /*
-   * Visual hierarchy (darkest → lightest):
-   *   Page       — #060B13  (navy-950 — canvas)
-   *   Alt/Footer — #0B1424  (subtle sections — 1 step above page)
-   *   Cards      — #111D32  (panels, modals — 2 steps above page)
-   *   Hover      — #1B2D4A  (interactive highlight — clearly distinct)
-   *   Dark CTA   — #0D1B2E  (conspicuous dark accent for toasts, CTAs, badges)
-   */
+  /* Canvas & Surface Layers */
+  --bg-main: #0B0F19;           /* Deep Obsidian Slate Canvas */
+  --bg-surface: #111827;        /* Elevated Obsidian Card Surface */
+  --bg-surface-subtle: #0F1626; /* Section Alt Background */
+  --bg-surface-hover: #1F2937;  /* Interactive Hover State */
+  --bg-dark-surface: #090D16;   /* Deep Accent Surface */
+  --bg-dark-hover: #141C2B;     /* Deep Accent Hover */
 
-   /* ── Background Layers ── */
-   --bg-main: #07090F;           /* Page backdrop — deepest */
-   --bg-surface-subtle: #0C1018; /* Alt sections, footer — 1 step above */
-   --bg-surface: #121720;        /* Elevated cards — 2 steps above */
-   --bg-surface-hover: #19202B;  /* Hover/active — clearly distinct */
-   --bg-dark-surface: #0D1219;   /* Dark accent */
-   --bg-dark-hover: #141C26;     /* Dark accent hover */
+  /* Executive Brand Accents — Dark Theme */
+  --brand-yellow: #F59E0B;        /* Warm Honey Amber (amber-500) */
+  --brand-yellow-hover: #FBBF24;  /* Luminous Amber (amber-400) */
+  --brand-yellow-light: rgba(245, 158, 11, 0.14);
+  --brand-yellow-border: rgba(245, 158, 11, 0.35);
 
-  /* ── Typography (Slate scale for readability on navy) ── */
-  --text-primary: #F8FAFC;      /* slate-50 — headings/body */
-  --text-secondary: #CBD5E1;    /* slate-300 — descriptions */
-  --text-muted: #94A3B8;        /* slate-400 — captions/metadata */
-  --text-inverse: #FFFFFF;      /* text on dark CTA surfaces (uses bg-dark-surface) */
+  --brand-sky: #3B82F6;          /* Sapphire Blue (blue-500) */
+  --brand-sky-hover: #60A5FA;    /* Sky Sapphire (blue-400) */
+  --brand-sky-light: rgba(59, 130, 246, 0.15);
 
-  /* ── Borders ── */
-  --border-color: #1B2D4A;      /* Between surface and surface-hover */
-  --border-color-dark: #253D5F; /* Stronger — form inputs, emphasis */
-  --border-focus: #38BDF8;      /* Sky-400 — focus ring */
+  /* High-Contrast Dark Theme Typography */
+  --text-primary: #F9FAFB;       /* Gray-50 (Crisp & High Contrast) */
+  --text-secondary: #D1D5DB;     /* Gray-300 (Readable Body) */
+  --text-muted: #9CA3AF;         /* Gray-400 (Metadata) */
+  --text-inverse: #FFFFFF;
 
-  /* ── Overlay ── */
-  --backdrop-overlay: rgba(6, 11, 19, 0.85);
+  /* Borders & Focus */
+  --border-color: rgba(255, 255, 255, 0.10);
+  --border-color-dark: rgba(255, 255, 255, 0.18);
+  --border-focus: #3B82F6;
 
-  /* ── Hero Section ── */
-  --hero-bg-gradient: radial-gradient(circle at 50% 30%, rgba(56, 189, 248, 0.06) 0%, transparent 65%);
+  /* Overlays */
+  --backdrop-overlay: rgba(11, 15, 25, 0.85);
 
-  /* ── Brand Sky — lifted for dark backgrounds ── */
-  --brand-sky: #38BDF8;         /* sky-400 */
-  --brand-sky-hover: #7DD3FC;   /* sky-300 */
-  --brand-sky-light: rgba(56, 189, 248, 0.14);
+  /* Hero Radial Ambient Gradient */
+  --hero-bg-gradient: radial-gradient(circle at 50% 30%, rgba(245, 158, 11, 0.08) 0%, transparent 65%);
 
-  /* ── Brand Yellow — slightly warmer glow on dark ── */
-  --brand-yellow-light: rgba(250, 204, 21, 0.12);
-  --brand-yellow-border: rgba(250, 204, 21, 0.35);
-
-  /* ── Status Colors ── */
-  --color-success: #4ADE80;
-  --color-success-bg: rgba(74, 222, 128, 0.14);
+  /* Status Colors */
+  --color-success: #34D399;
+  --color-success-bg: rgba(52, 211, 153, 0.14);
   --color-error: #F87171;
   --color-error-bg: rgba(248, 113, 113, 0.14);
-  --color-warning: #FCD34D;
-  --color-warning-bg: rgba(252, 211, 77, 0.14);
+  --color-warning: #FBBF24;
+  --color-warning-bg: rgba(251, 191, 36, 0.14);
 
-  /* ── Shadows — intensified for depth perception on dark ── */
+  /* Elevation Shadows */
   --shadow-sm: 0 2px 4px 0 rgba(0, 0, 0, 0.4);
-  --shadow-md: 0 4px 14px rgba(0, 0, 0, 0.45);
-  --shadow-lg: 0 10px 28px rgba(0, 0, 0, 0.55);
-  --shadow-xl: 0 16px 36px rgba(0, 0, 0, 0.65);
-  --shadow-yellow: 0 6px 20px rgba(250, 204, 21, 0.25);
+  --shadow-md: 0 4px 14px rgba(0, 0, 0, 0.5);
+  --shadow-lg: 0 10px 28px rgba(0, 0, 0, 0.6);
+  --shadow-xl: 0 16px 36px rgba(0, 0, 0, 0.7);
+  --shadow-yellow: 0 6px 20px rgba(245, 158, 11, 0.25);
 
-  /* ── Glassmorphism — Dark Theme Overrides ── */
-  /* Reference-matched: dark navy glass with ambient glow */
-  --glass-bg:               rgba(15, 23, 42, 0.65);
-  --glass-bg-strong:        rgba(15, 23, 42, 0.85);
-  --glass-bg-subtle:        rgba(15, 23, 42, 0.45);
-  --glass-border:           rgba(255, 255, 255, 0.12);
-  --glass-border-strong:    rgba(255, 255, 255, 0.22);
-  --glass-shadow:           0 12px 36px rgba(0, 0, 0, 0.50), inset 0 1px 0 rgba(255, 255, 255, 0.12);
-  --glass-shadow-glow:      0 12px 36px rgba(250, 204, 21, 0.15), inset 0 1px 0 rgba(255, 255, 255, 0.12);
-  --glass-shadow-emerald:   0 12px 36px rgba(52, 211, 153, 0.15), inset 0 1px 0 rgba(255, 255, 255, 0.12);
+  /* ── Glassmorphism Tokens — Dark Mode ── */
+  --glass-bg:               rgba(17, 24, 39, 0.70);
+  --glass-bg-strong:        rgba(17, 24, 39, 0.88);
+  --glass-bg-subtle:        rgba(17, 24, 39, 0.48);
+  --glass-border:           rgba(255, 255, 255, 0.10);
+  --glass-border-strong:    rgba(255, 255, 255, 0.18);
+  --glass-shadow:           0 16px 40px rgba(0, 0, 0, 0.55), inset 0 1px 0 rgba(255, 255, 255, 0.12);
+  --glass-shadow-glow:      0 16px 40px rgba(245, 158, 11, 0.14), inset 0 1px 0 rgba(255, 255, 255, 0.12);
+  --glass-shadow-emerald:   0 16px 40px rgba(52, 211, 153, 0.14), inset 0 1px 0 rgba(255, 255, 255, 0.12);
 }
