@@ -53,6 +53,7 @@ export const metadata: Metadata = {
 };
 
 import { ThemeProvider } from '@/hooks/useTheme';
+import { AppBackground } from '@/components/common/AppBackground';
 
 export default function RootLayout({
   children,
@@ -61,11 +62,12 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" className="dark scroll-smooth" suppressHydrationWarning>
-      <body className="bg-surface-main text-primaryText transition-colors duration-300 min-h-screen flex flex-col" suppressHydrationWarning>
+      <body className="bg-surface-main text-primaryText transition-colors duration-300 min-h-screen flex flex-col relative" suppressHydrationWarning>
         <ThemeProvider>
+          <AppBackground />
           <ScrollProgress />
           <AppHeader />
-          <main className="flex-1">{children}</main>
+          <main className="flex-1 relative z-10">{children}</main>
           <AppFooter />
           <FloatingContactWidget />
           <BackToTop />

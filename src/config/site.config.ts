@@ -19,8 +19,16 @@ export interface CompanyConfig {
   };
   contact: {
     email: string;
-    phone: string;
+    helloEmail: string;
+    contactEmail: string;
     supportEmail: string;
+    salesEmail: string;
+    careersEmail: string;
+    hrEmail: string;
+    infoEmail: string;
+    adminEmail: string;
+    billingEmail: string;
+    phone: string;
     responseSLA: string;
     whatsapp: string;
     whatsappNumber: string;
@@ -63,7 +71,7 @@ export const siteConfig: CompanyConfig = {
   description: 'SHP Technology is a premier software development company. We build high-performance custom enterprise web applications, cloud architecture, microservices, and AI automation solutions for businesses globally.',
   founded: '2019',
   headquarters: 'Madan Mahal Station, Jabalpur, MP & Remote Global',
-  email: process.env.NEXT_PUBLIC_SITE_EMAIL || 'founder.shp@gmail.com',
+  email: process.env.NEXT_PUBLIC_SITE_EMAIL || 'hello@shptechnology.online',
   phone: process.env.NEXT_PUBLIC_SITE_PHONE || '+91 9301885654',
   officeLocation: {
     address: process.env.NEXT_PUBLIC_SITE_ADDRESS || '1st floor, SHP Technology, Near Underground Bridge, Madan Mahal Station',
@@ -73,9 +81,17 @@ export const siteConfig: CompanyConfig = {
     country: process.env.NEXT_PUBLIC_SITE_COUNTRY || 'India'
   },
   contact: {
-    email: process.env.NEXT_PUBLIC_SITE_EMAIL || 'founder.shp@gmail.com',
+    email: process.env.NEXT_PUBLIC_SITE_EMAIL || 'hello@shptechnology.online',
+    helloEmail: 'hello@shptechnology.online',
+    contactEmail: 'contact@shptechnology.online',
+    supportEmail: 'support@shptechnology.online',
+    salesEmail: 'sales@shptechnology.online',
+    careersEmail: 'careers@shptechnology.online',
+    hrEmail: 'hr@shptechnology.online',
+    infoEmail: 'info@shptechnology.online',
+    adminEmail: 'admin@shptechnology.online',
+    billingEmail: 'billing@shptechnology.online',
     phone: process.env.NEXT_PUBLIC_SITE_PHONE || '+91 9301885654',
-    supportEmail: process.env.NEXT_PUBLIC_SITE_SUPPORT_EMAIL || 'founder.shp@gmail.com',
     responseSLA: '4 business hours',
     whatsappNumber: '+919301885654',
     whatsapp: 'https://api.whatsapp.com/send?phone=919301885654&text=Hi%20SHP%20Technology,%20I%20visited%20your%20website%20and%20would%20like%20to%20discuss%20a%20software%20project.'
