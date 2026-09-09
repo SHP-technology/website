@@ -4,6 +4,8 @@ import { BaseBadge } from '@/components/common/BaseBadge';
 import { siteConfig } from '@/src/config/site.config';
 import { Mail, Phone, MapPin, Clock, MessageSquare } from 'lucide-react';
 
+import { PlatformIcon } from '@/components/common/PlatformIcon';
+
 export const metadata: Metadata = {
   title: 'Contact Engineering | Get in Touch',
   description: 'Contact SHP Technology engineering team. Discuss custom software development, cloud infrastructure, AI automation, or request a quote.'
@@ -37,7 +39,7 @@ export default function ContactPage() {
               <div className="flex flex-col gap-5">
                 <a href={`mailto:${siteConfig.contact.email}`} className="flex items-center gap-3.5 text-secondaryText hover:text-brand-primary transition-colors group">
                   <div className="p-3 rounded-2xl bg-brand-primary/10 border border-brand-primary/20 text-brand-primary group-hover:scale-110 transition-transform">
-                    <Mail className="w-5 h-5" />
+                    <PlatformIcon platform="email" className="w-5 h-5" />
                   </div>
                   <div>
                     <span className="text-xs text-mutedText block font-semibold">Email Founder Directly</span>
@@ -47,7 +49,7 @@ export default function ContactPage() {
 
                 <a href={`tel:${siteConfig.contact.phone.replace(/\s+/g, '')}`} className="flex items-center gap-3.5 text-secondaryText hover:text-brand-primary transition-colors group">
                   <div className="p-3 rounded-2xl bg-brand-primary/10 border border-brand-primary/20 text-brand-primary group-hover:scale-110 transition-transform">
-                    <Phone className="w-5 h-5" />
+                    <PlatformIcon platform="phone" className="w-5 h-5" />
                   </div>
                   <div>
                     <span className="text-xs text-mutedText block font-semibold">Call Direct Line</span>
@@ -55,13 +57,13 @@ export default function ContactPage() {
                   </div>
                 </a>
 
-                <a href={siteConfig.contact.whatsapp} target="_blank" rel="noopener noreferrer" className="flex items-center gap-3.5 text-secondaryText hover:text-brand-accent transition-colors group">
-                  <div className="p-3 rounded-2xl bg-brand-accent/10 border border-brand-accent/20 text-brand-accent group-hover:scale-110 transition-transform">
-                    <MessageSquare className="w-5 h-5" />
+                <a href={siteConfig.contact.whatsapp} target="_blank" rel="noopener noreferrer" className="flex items-center gap-3.5 text-secondaryText hover:text-[#25D366] transition-colors group">
+                  <div className="p-3 rounded-2xl bg-[#25D366]/10 border border-[#25D366]/30 text-[#25D366] group-hover:scale-110 transition-transform">
+                    <PlatformIcon platform="whatsapp" className="w-5 h-5" />
                   </div>
                   <div>
                     <span className="text-xs text-mutedText block font-semibold">WhatsApp Instant Chat</span>
-                    <span className="text-sm font-bold text-brand-accent">Instant Response (&lt;5 mins)</span>
+                    <span className="text-sm font-bold text-[#25D366]">Instant Response (&lt;5 mins)</span>
                   </div>
                 </a>
               </div>

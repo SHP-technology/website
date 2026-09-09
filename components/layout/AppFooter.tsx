@@ -4,6 +4,8 @@ import { siteConfig } from '@/src/config/site.config';
 import { AppLogo } from '@/components/common/AppLogo';
 import { ArrowRight } from 'lucide-react';
 
+import { PlatformIcon } from '@/components/common/PlatformIcon';
+
 export const AppFooter: React.FC = () => {
   const currentYear = new Date().getFullYear();
 
@@ -25,11 +27,12 @@ export const AppFooter: React.FC = () => {
   ];
 
   const socialLinks = [
-    { label: 'LinkedIn', href: siteConfig.socials.linkedin },
-    { label: 'Instagram', href: siteConfig.socials.instagram },
-    { label: 'Facebook', href: siteConfig.socials.facebook },
-    { label: 'Twitter', href: siteConfig.socials.twitter },
-    { label: 'Indeed Careers', href: siteConfig.socials.indeed },
+    { label: 'LinkedIn', platform: 'linkedin', href: siteConfig.socials.linkedin, color: 'hover:text-[#0A66C2]' },
+    { label: 'WhatsApp', platform: 'whatsapp', href: siteConfig.contact.whatsapp, color: 'hover:text-[#25D366]' },
+    { label: 'Instagram', platform: 'instagram', href: siteConfig.socials.instagram, color: 'hover:text-[#E4405F]' },
+    { label: 'Facebook', platform: 'facebook', href: siteConfig.socials.facebook, color: 'hover:text-[#1877F2]' },
+    { label: 'Twitter / X', platform: 'x', href: siteConfig.socials.twitter, color: 'hover:text-primaryText' },
+    { label: 'Indeed Careers', platform: 'indeed', href: siteConfig.socials.indeed, color: 'hover:text-[#2164f3]' },
   ].filter((item) => item.href);
 
   return (
@@ -77,18 +80,21 @@ export const AppFooter: React.FC = () => {
           </div>
 
           <div>
-            <h4 className="text-sm font-bold text-primaryText uppercase tracking-wider mb-4">Social & Connect</h4>
-            <ul className="flex flex-col gap-2.5">
+            <h4 className="text-sm font-bold text-primaryText uppercase tracking-wider mb-4">Official Platforms</h4>
+            <ul className="flex flex-col gap-3">
               {socialLinks.map((link) => (
                 <li key={link.label}>
                   <a
                     href={link.href}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="text-xs text-secondaryText hover:text-brand-accent transition-colors flex items-center gap-1.5"
+                    className={`text-xs text-secondaryText ${link.color} transition-all duration-200 flex items-center gap-2.5 group`}
                   >
-                    <span>{link.label}</span>
-                    <ArrowRight className="w-3 h-3 text-mutedText" />
+                    <div className="p-1.5 rounded-lg bg-surface-subtle border border-surface-border group-hover:border-current transition-colors">
+                      <PlatformIcon platform={link.platform} className="w-4 h-4" />
+                    </div>
+                    <span className="font-semibold">{link.label}</span>
+                    <ArrowRight className="w-3 h-3 text-mutedText ml-auto group-hover:translate-x-1 transition-transform" />
                   </a>
                 </li>
               ))}
