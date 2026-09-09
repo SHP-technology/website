@@ -34,10 +34,10 @@ export default async function HomePage() {
             <BaseBadge variant="amber" className="mb-4 uppercase tracking-widest text-[10px]">
               Frequently Asked Questions
             </BaseBadge>
-            <h2 className="text-3xl md:text-5xl font-extrabold text-slate-900 dark:text-white tracking-tight mb-4">
+            <h2 className="text-3xl md:text-5xl font-extrabold text-primaryText tracking-tight mb-4">
               Everything You Need to Know
             </h2>
-            <p className="text-slate-600 dark:text-slate-300 text-base md:text-lg">
+            <p className="text-secondaryText text-base md:text-lg">
               Got questions about our technical stack, process, pricing, or support? We've got answers.
             </p>
           </div>

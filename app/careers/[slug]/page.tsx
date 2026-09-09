@@ -32,16 +32,16 @@ export default function JobDetailPage({ params }: Props) {
   }
 
   return (
-    <div className="py-16 md:py-24 bg-slate-950 text-white relative overflow-hidden">
+    <div className="py-16 md:py-24 bg-surface-main text-primaryText relative overflow-hidden">
       {/* Ambient backdrop */}
       <div className="absolute inset-0 pointer-events-none" aria-hidden="true">
-        <div className="absolute -top-32 left-1/2 -translate-x-1/2 w-[600px] h-[300px] rounded-full bg-amber-500/10 blur-[120px]" />
+        <div className="absolute -top-32 left-1/2 -translate-x-1/2 w-[600px] h-[300px] rounded-full bg-brand-primary/10 blur-[120px]" />
       </div>
 
       <div className="container max-w-5xl mx-auto relative z-10">
         <Link
           href="/careers"
-          className="inline-flex items-center gap-2 text-xs font-bold text-amber-400 hover:text-amber-300 mb-8 transition-colors"
+          className="inline-flex items-center gap-2 text-xs font-bold text-brand-primary hover:text-brand-accent mb-8 transition-colors"
         >
           <ArrowLeft className="w-4 h-4" />
           <span>← Back to All Open Roles</span>
@@ -49,45 +49,45 @@ export default function JobDetailPage({ params }: Props) {
 
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-10">
           <div className="lg:col-span-2">
-            <div className="p-8 rounded-3xl bg-slate-900 border border-slate-800 shadow-2xl mb-8">
+            <div className="p-8 rounded-3xl bg-surface-card border border-surface-border shadow-2xl mb-8">
               <div className="flex flex-wrap items-center gap-2 mb-3">
                 <BaseBadge variant="amber" className="text-[10px]">
                   {job.department}
                 </BaseBadge>
-                <span className="text-xs text-slate-300 flex items-center gap-1 font-semibold">
-                  <MapPin className="w-3.5 h-3.5 text-amber-400" /> {job.location}
+                <span className="text-xs text-secondaryText flex items-center gap-1 font-semibold">
+                  <MapPin className="w-3.5 h-3.5 text-brand-primary" /> {job.location}
                 </span>
-                <span className="text-xs text-slate-300 flex items-center gap-1 font-semibold">
-                  <Briefcase className="w-3.5 h-3.5 text-emerald-400" /> {job.employmentType}
+                <span className="text-xs text-secondaryText flex items-center gap-1 font-semibold">
+                  <Briefcase className="w-3.5 h-3.5 text-brand-accent" /> {job.employmentType}
                 </span>
               </div>
 
-              <h1 className="text-3xl md:text-4xl font-extrabold text-white mb-4">
+              <h1 className="text-3xl md:text-4xl font-extrabold text-primaryText mb-4">
                 {job.title}
               </h1>
 
-              <p className="text-slate-300 text-base leading-relaxed mb-8 font-normal">
+              <p className="text-secondaryText text-base leading-relaxed mb-8 font-normal">
                 {job.fullDescription}
               </p>
 
-              <div className="mb-8 pt-6 border-t border-slate-800">
-                <h3 className="text-lg font-bold text-white mb-4">Responsibilities</h3>
+              <div className="mb-8 pt-6 border-t border-surface-border">
+                <h3 className="text-lg font-bold text-primaryText mb-4">Responsibilities</h3>
                 <ul className="flex flex-col gap-2.5">
                   {job.responsibilities.map((r, idx) => (
-                    <li key={idx} className="text-xs md:text-sm text-slate-300 flex items-start gap-2">
-                      <CheckCircle2 className="w-4 h-4 text-amber-400 shrink-0 mt-0.5" />
+                    <li key={idx} className="text-xs md:text-sm text-secondaryText flex items-start gap-2">
+                      <CheckCircle2 className="w-4 h-4 text-brand-primary shrink-0 mt-0.5" />
                       <span>{r}</span>
                     </li>
                   ))}
                 </ul>
               </div>
 
-              <div className="mb-8 pt-6 border-t border-slate-800">
-                <h3 className="text-lg font-bold text-white mb-4">Requirements</h3>
+              <div className="mb-8 pt-6 border-t border-surface-border">
+                <h3 className="text-lg font-bold text-primaryText mb-4">Requirements</h3>
                 <ul className="flex flex-col gap-2.5">
                   {job.requirements.map((req, idx) => (
-                    <li key={idx} className="text-xs md:text-sm text-slate-300 flex items-start gap-2">
-                      <CheckCircle2 className="w-4 h-4 text-emerald-400 shrink-0 mt-0.5" />
+                    <li key={idx} className="text-xs md:text-sm text-secondaryText flex items-start gap-2">
+                      <CheckCircle2 className="w-4 h-4 text-brand-accent shrink-0 mt-0.5" />
                       <span>{req}</span>
                     </li>
                   ))}
@@ -95,12 +95,12 @@ export default function JobDetailPage({ params }: Props) {
               </div>
 
               {job.niceToHave && job.niceToHave.length > 0 && (
-                <div className="pt-6 border-t border-slate-800">
-                  <h3 className="text-lg font-bold text-white mb-4">Nice to Have</h3>
+                <div className="pt-6 border-t border-surface-border">
+                  <h3 className="text-lg font-bold text-primaryText mb-4">Nice to Have</h3>
                   <ul className="flex flex-col gap-2.5">
                     {job.niceToHave.map((nth, idx) => (
-                      <li key={idx} className="text-xs md:text-sm text-slate-400 flex items-start gap-2">
-                        <span className="w-1.5 h-1.5 rounded-full bg-slate-400 mt-2 shrink-0" />
+                      <li key={idx} className="text-xs md:text-sm text-mutedText flex items-start gap-2">
+                        <span className="w-1.5 h-1.5 rounded-full bg-mutedText mt-2 shrink-0" />
                         <span>{nth}</span>
                       </li>
                     ))}

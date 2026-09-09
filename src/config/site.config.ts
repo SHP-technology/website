@@ -78,7 +78,7 @@ export const siteConfig: CompanyConfig = {
     supportEmail: process.env.NEXT_PUBLIC_SITE_SUPPORT_EMAIL || 'founder.shp@gmail.com',
     responseSLA: '4 business hours',
     whatsappNumber: '+919301885654',
-    whatsapp: 'https://wa.me/919301885654?text=Hi%20SHP%20Technology,%20I%20visited%20your%20website%20and%20would%20like%20to%20discuss%20a%20software%20project.'
+    whatsapp: 'https://api.whatsapp.com/send?phone=919301885654&text=Hi%20SHP%20Technology,%20I%20visited%20your%20website%20and%20would%20like%20to%20discuss%20a%20software%20project.'
   },
   socials: {
     linkedin: 'https://www.linkedin.com/in/shp-technology-5b8ba1430/?utm_source=linkedin&utm_medium=social&utm_campaign=shp_technology',
@@ -87,7 +87,7 @@ export const siteConfig: CompanyConfig = {
     github: '',
     twitter: 'https://twitter.com/shptech',
     indeed: 'https://in.indeed.com/job/senior-sales-executive-a12c481dc18fc1c2?utm_source=indeed&utm_medium=job_portal&utm_campaign=shp_recruitment',
-    whatsapp: 'https://wa.me/919301885654?text=Hi%20SHP%20Technology,%20I%20visited%20your%20website%20and%20would%20like%20to%20discuss%20a%20software%20project.'
+    whatsapp: 'https://api.whatsapp.com/send?phone=919301885654&text=Hi%20SHP%20Technology,%20I%20visited%20your%20website%20and%20would%20like%20to%20discuss%20a%20software%20project.'
   },
   site: {
     url: 'https://www.shptechnology.online/',

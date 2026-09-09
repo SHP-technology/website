@@ -17,7 +17,7 @@ export const BaseButton: React.FC<BaseButtonProps> = ({
   children,
   ...props
 }) => {
-  const baseStyles = 'inline-flex items-center justify-center font-semibold rounded-xl transition-all duration-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-amber-500 active:scale-[0.98] disabled:opacity-50 disabled:pointer-events-none cursor-pointer';
+  const baseStyles = 'inline-flex items-center justify-center font-semibold rounded-xl transition-all duration-300 focus:outline-none active:scale-[0.98] disabled:opacity-50 disabled:pointer-events-none cursor-pointer';
 
   const sizeStyles = {
     sm: 'px-3.5 py-1.5 text-xs gap-1.5 shadow-sm',
@@ -26,11 +26,11 @@ export const BaseButton: React.FC<BaseButtonProps> = ({
   };
 
   const variantStyles = {
-    primary: 'bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-600 hover:to-amber-700 text-slate-950 shadow-amber-500/25 hover:shadow-amber-500/40 font-bold',
-    amber: 'bg-amber-500 hover:bg-amber-600 text-slate-950 font-bold shadow-amber-500/20 hover:shadow-amber-500/35',
-    secondary: 'bg-blue-600 hover:bg-blue-700 text-white shadow-blue-600/20 hover:shadow-blue-600/35',
-    outline: 'border-2 border-slate-300 dark:border-slate-700 text-slate-800 dark:text-slate-100 hover:border-amber-500 hover:text-amber-500 dark:hover:border-amber-400 dark:hover:text-amber-400 bg-transparent',
-    ghost: 'text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800/60 hover:text-slate-900 dark:hover:text-white',
+    primary: 'bg-brand-primary hover:bg-brand-accent text-brand-buttonText font-extrabold shadow-yellow-glow',
+    amber: 'bg-brand-primary hover:bg-brand-accent text-brand-buttonText font-extrabold shadow-yellow-glow',
+    secondary: 'bg-brand-accent hover:bg-brand-primary text-brand-buttonText font-extrabold shadow-sky-glow',
+    outline: 'border-2 border-surface-border text-primaryText hover:border-brand-primary hover:text-brand-primary bg-transparent',
+    ghost: 'text-secondaryText hover:bg-surface-subtle hover:text-primaryText',
   };
 
   const combinedClasses = `${baseStyles} ${sizeStyles[size]} ${variantStyles[variant]} ${className}`;

@@ -43,9 +43,9 @@ export const JobApplyForm: React.FC<JobApplyFormProps> = ({ jobTitle }) => {
   };
 
   return (
-    <form onSubmit={handleSubmit} className="glass-card p-6 md:p-8 rounded-3xl flex flex-col gap-5 border border-slate-200/80 dark:border-slate-800">
-      <h3 className="text-xl font-bold text-slate-900 dark:text-white pb-3 border-b border-slate-200 dark:border-slate-800">
-        Apply for: <span className="text-amber-500">{jobTitle}</span>
+    <form onSubmit={handleSubmit} className="glass-card p-6 md:p-8 rounded-3xl flex flex-col gap-5 border border-surface-border">
+      <h3 className="text-xl font-bold text-primaryText pb-3 border-b border-surface-border">
+        Apply for: <span className="text-brand-primary">{jobTitle}</span>
       </h3>
 
       {submitted && (

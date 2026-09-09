@@ -10,6 +10,13 @@ export default {
     extend: {
       colors: {
         brand: {
+          primary: 'var(--brand-sky)',
+          primaryHover: 'var(--brand-sky-hover)',
+          primaryLight: 'var(--brand-sky-light)',
+          accent: 'var(--brand-yellow)',
+          accentHover: 'var(--brand-yellow-hover)',
+          accentLight: 'var(--brand-yellow-light)',
+          accentBorder: 'var(--brand-yellow-border)',
           yellow: 'var(--brand-yellow)',
           hover: 'var(--brand-yellow-hover)',
           light: 'var(--brand-yellow-light)',
@@ -26,6 +33,7 @@ export default {
           subtle: 'var(--bg-surface-subtle)',
           dark: 'var(--bg-dark-surface)',
           darkHover: 'var(--bg-dark-hover)',
+          border: 'var(--border-color)',
         },
         primaryText: 'var(--text-primary)',
         secondaryText: 'var(--text-secondary)',

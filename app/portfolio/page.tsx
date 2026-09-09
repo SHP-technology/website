@@ -10,10 +10,9 @@ export const metadata: Metadata = {
 
 export default function PortfolioPage() {
   return (
-    <div className="py-16 md:py-24 bg-slate-950 text-white relative overflow-hidden">
-      {/* Ambient background glow */}
+    <div className="py-16 md:py-24 bg-surface-main text-primaryText relative overflow-hidden">
       <div className="absolute inset-0 pointer-events-none" aria-hidden="true">
-        <div className="absolute -top-32 left-1/2 -translate-x-1/2 w-[600px] h-[300px] rounded-full bg-amber-500/10 blur-[120px]" />
+        <div className="absolute -top-32 left-1/2 -translate-x-1/2 w-[600px] h-[300px] rounded-full bg-brand-accent/10 blur-[120px]" />
       </div>
 
       <div className="container max-w-6xl mx-auto relative z-10">
@@ -21,10 +20,10 @@ export default function PortfolioPage() {
           <BaseBadge variant="amber" className="mb-4 uppercase tracking-widest text-[10px]">
             Engineering Portfolio
           </BaseBadge>
-          <h1 className="text-4xl md:text-6xl font-extrabold text-white tracking-tight mb-6 leading-tight">
-            Proven Client & <span className="bg-gradient-to-r from-amber-400 to-emerald-400 bg-clip-text text-transparent">Open Source Projects</span>
+          <h1 className="text-4xl md:text-6xl font-extrabold text-primaryText tracking-tight mb-6 leading-tight">
+            Proven Client & <span className="bg-gradient-to-r from-brand-accent to-brand-primary bg-clip-text text-transparent">Open Source Projects</span>
           </h1>
-          <p className="text-slate-300 text-lg md:text-xl leading-relaxed font-normal">
+          <p className="text-secondaryText text-lg md:text-xl leading-relaxed font-normal">
             Real software built for real businesses. Browse live case studies, live online platforms, and technical architecture specifications.
           </p>
         </div>

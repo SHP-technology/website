@@ -52,20 +52,24 @@ export const metadata: Metadata = {
   }
 };
 
+import { ThemeProvider } from '@/hooks/useTheme';
+
 export default function RootLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className="dark scroll-smooth">
-      <body className="bg-slate-50 dark:bg-slate-950 text-slate-900 dark:text-white transition-colors duration-300 min-h-screen flex flex-col">
-        <ScrollProgress />
-        <AppHeader />
-        <main className="flex-1">{children}</main>
-        <AppFooter />
-        <FloatingContactWidget />
-        <BackToTop />
+    <html lang="en" className="dark scroll-smooth" suppressHydrationWarning>
+      <body className="bg-surface-main text-primaryText transition-colors duration-300 min-h-screen flex flex-col" suppressHydrationWarning>
+        <ThemeProvider>
+          <ScrollProgress />
+          <AppHeader />
+          <main className="flex-1">{children}</main>
+          <AppFooter />
+          <FloatingContactWidget />
+          <BackToTop />
+        </ThemeProvider>
       </body>
     </html>
   );

@@ -8,29 +8,34 @@ export const BackToTop: React.FC = () => {
 
   useEffect(() => {
     const handleScroll = () => {
-      if (window.scrollY > 400) {
-        setShow(true);
-      } else {
-        setShow(false);
-      }
+      setShow(window.scrollY > 250);
     };
-    window.addEventListener('scroll', handleScroll);
+    handleScroll();
+    window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  const scrollToTop = () => {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+  const scrollToTop = (e?: React.MouseEvent) => {
+    if (e) e.preventDefault();
+    try {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+      document.documentElement.scrollTo({ top: 0, behavior: 'smooth' });
+    } catch {
+      window.scrollTo(0, 0);
+    }
   };
 
   if (!show) return null;
 
   return (
     <button
+      type="button"
       onClick={scrollToTop}
-      className="fixed bottom-24 right-6 z-40 p-3 rounded-2xl bg-amber-500 hover:bg-amber-600 text-slate-950 font-bold shadow-xl shadow-amber-500/30 hover:scale-110 active:scale-95 transition-all duration-300 cursor-pointer"
+      className="fixed bottom-20 right-4 sm:bottom-24 sm:right-6 z-[60] p-3 rounded-2xl bg-brand-primary hover:bg-brand-accent text-brand-buttonText font-extrabold shadow-2xl shadow-brand-primary/40 active:scale-90 hover:scale-110 transition-all duration-300 cursor-pointer flex items-center justify-center border border-white/20 touch-manipulation select-none"
       aria-label="Back to top"
+      title="Scroll to top"
     >
-      <ArrowUp className="w-5 h-5" />
+      <ArrowUp className="w-5 h-5 stroke-[2.5]" />
     </button>
   );
 };
