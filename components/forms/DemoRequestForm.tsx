@@ -42,7 +42,7 @@ export const DemoRequestForm: React.FC = () => {
   };
 
   return (
-    <form onSubmit={handleSubmit} className="glass-card p-6 md:p-8 rounded-3xl flex flex-col gap-5 border border-slate-200/80 dark:border-slate-800">
+    <form onSubmit={handleSubmit} className="glass-card p-6 md:p-8 rounded-3xl flex flex-col gap-5 border border-surface-border">
       {submitted && (
         <div className="p-4 rounded-2xl bg-emerald-500/10 border border-emerald-500/30 text-emerald-600 dark:text-emerald-400 text-sm font-semibold flex items-center gap-2">
           <CheckCircle2 className="w-5 h-5 shrink-0" />

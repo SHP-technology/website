@@ -19,10 +19,10 @@ export const AppLogo: React.FC<AppLogoProps> = ({ className = '', showText = tru
       </div>
       {showText && (
         <div className="flex flex-col">
-          <span className="font-extrabold text-xl tracking-tight text-slate-900 dark:text-white group-hover:text-amber-500 dark:group-hover:text-amber-400 transition-colors">
-            SHP<span className="text-amber-500 dark:text-amber-400">.</span>
+          <span className="font-extrabold text-xl tracking-tight text-primaryText group-hover:text-brand-primary transition-colors">
+            SHP<span className="text-brand-primary">.</span>
           </span>
-          <span className="text-[10px] font-semibold tracking-widest text-slate-500 dark:text-slate-400 uppercase -mt-1">
+          <span className="text-[10px] font-semibold tracking-widest text-mutedText uppercase -mt-1">
             Technology
           </span>
         </div>

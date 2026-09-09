@@ -29,6 +29,9 @@ export const AppHeader: React.FC = () => {
     } else {
       document.body.style.overflow = '';
     }
+    return () => {
+      document.body.style.overflow = '';
+    };
   }, [mobileMenuOpen]);
 
   const navItems = [
@@ -41,100 +44,130 @@ export const AppHeader: React.FC = () => {
   ];
 
   return (
-    <header className={`glass-nav sticky top-0 left-0 w-full h-[80px] z-[900] transition-all duration-300 border-b border-slate-200/80 dark:border-white/10 ${isScrolled ? 'shadow-md' : ''}`}>
-      {/* Top Brand Gradient Accent Line */}
-      <div className="absolute top-0 left-0 w-full h-[3px] bg-gradient-to-r from-amber-500 via-sky-400 to-amber-400" />
+    <>
+      <header className={`sticky top-0 left-0 w-full h-[80px] z-50 bg-surface-card/90 backdrop-blur-md transition-all duration-300 border-b border-surface-border ${isScrolled ? 'shadow-lg' : ''}`}>
+        <div className="absolute top-0 left-0 w-full h-[3px] bg-gradient-to-r from-brand-accent via-brand-primary to-brand-accent" />
 
-      <div className="container h-full flex items-center justify-between">
-        {/* Logo Component */}
-        <AppLogo />
+        <div className="container h-full flex items-center justify-between">
+          <AppLogo />
 
-        {/* Desktop Navigation */}
-        <nav className="hidden lg:flex items-center gap-8" aria-label="Main Navigation">
-          {navItems.map((item) => {
-            const isActive = pathname === item.href;
-            return (
-              <Link
-                key={item.href}
-                href={item.href}
-                className={`text-sm font-semibold transition-colors py-2 relative ${
-                  isActive
-                    ? 'text-slate-900 dark:text-white font-bold'
-                    : 'text-slate-700 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white'
-                }`}
-              >
-                {item.label}
-                {isActive && (
-                  <span className="absolute bottom-0 left-0 w-full h-[2.5px] bg-gradient-to-r from-amber-500 to-blue-600 rounded-full shadow-[0_0_8px_rgba(234,179,8,0.4)]" />
-                )}
-              </Link>
-            );
-          })}
-        </nav>
-
-        {/* Desktop Right Controls */}
-        <div className="hidden lg:flex items-center gap-4">
-          <ThemeToggle />
-          <BaseButton href="/contact" variant="primary" size="sm">
-            Let's Talk
-            <ArrowRight className="w-4 h-4" />
-          </BaseButton>
-        </div>
-
-        {/* Mobile Right Controls */}
-        <div className="flex items-center gap-3 lg:hidden">
-          <ThemeToggle />
-          <button
-            type="button"
-            className="p-2.5 rounded-xl border border-slate-200 dark:border-slate-800 text-slate-800 dark:text-white bg-slate-100/80 dark:bg-slate-800/80 flex items-center justify-center cursor-pointer"
-            aria-expanded={mobileMenuOpen}
-            aria-label="Toggle navigation menu"
-            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-          >
-            {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
-          </button>
-        </div>
-      </div>
-
-      {/* Mobile Drawer */}
-      {mobileMenuOpen && (
-        <div
-          className="fixed inset-x-0 top-[80px] h-[calc(100vh-80px)] bg-slate-950/60 backdrop-blur-md z-[899] lg:hidden animate-fade-in-up"
-          onClick={() => setMobileMenuOpen(false)}
-        >
-          <div
-            className="bg-white/95 dark:bg-slate-900/95 p-6 border-b border-slate-200 dark:border-white/10 flex flex-col gap-6 shadow-2xl"
-            onClick={(e) => e.stopPropagation()}
-          >
-            <nav className="flex flex-col gap-3" aria-label="Mobile navigation">
-              {navItems.map((item) => (
+          {/* Desktop Navigation */}
+          <nav className="hidden lg:flex items-center gap-8" aria-label="Main Navigation">
+            {navItems.map((item) => {
+              const isActive = pathname === item.href;
+              return (
                 <Link
                   key={item.href}
                   href={item.href}
-                  className="text-lg font-bold text-slate-900 dark:text-white py-2.5 border-b border-slate-100 dark:border-slate-800/80"
-                  onClick={() => setMobileMenuOpen(false)}
+                  className={`text-sm font-semibold transition-colors py-2 relative ${
+                    isActive
+                      ? 'text-primaryText font-bold'
+                      : 'text-secondaryText hover:text-primaryText'
+                  }`}
                 >
                   {item.label}
+                  {isActive && (
+                    <span className="absolute bottom-0 left-0 w-full h-[2.5px] bg-gradient-to-r from-brand-accent to-brand-primary rounded-full" />
+                  )}
                 </Link>
-              ))}
-            </nav>
-            <div className="flex flex-col gap-3 pt-2">
-              <BaseButton href="/contact" variant="primary" className="w-full" onClick={() => setMobileMenuOpen(false)}>
-                Let's Talk
+              );
+            })}
+          </nav>
+
+          <div className="hidden lg:flex items-center gap-4">
+            <ThemeToggle />
+            <BaseButton href="/contact" variant="primary" size="sm">
+              Let's Talk
+              <ArrowRight className="w-4 h-4" />
+            </BaseButton>
+          </div>
+
+          {/* Mobile Actions Header Bar */}
+          <div className="flex items-center gap-2 lg:hidden">
+            <BaseButton href="/contact" variant="primary" size="sm" className="hidden sm:inline-flex px-3 py-1.5 text-xs font-bold shrink-0">
+              Let's Talk
+            </BaseButton>
+            <ThemeToggle />
+            <button
+              type="button"
+              className="w-10 h-10 rounded-xl border border-surface-border text-primaryText bg-surface-card flex items-center justify-center cursor-pointer active:scale-95 transition-transform touch-manipulation select-none shrink-0"
+              aria-expanded={mobileMenuOpen}
+              aria-label="Open navigation menu"
+              onClick={() => setMobileMenuOpen(true)}
+            >
+              <Menu className="w-5 h-5" />
+            </button>
+          </div>
+        </div>
+      </header>
+
+      {/* Mobile Navigation Fullscreen Modal - z-[99999] */}
+      {mobileMenuOpen && (
+        <div className="fixed inset-0 z-[99999] bg-surface-main text-primaryText flex flex-col lg:hidden animate-fade-in-up">
+          {/* Mobile Drawer Top Header Bar */}
+          <div className="h-[80px] px-4 sm:px-8 border-b border-surface-border flex items-center justify-between bg-surface-card/90 backdrop-blur-md shrink-0">
+            <AppLogo />
+            <div className="flex items-center gap-2.5">
+              <ThemeToggle />
+              <button
+                type="button"
+                className="w-10 h-10 rounded-xl border border-surface-border text-primaryText bg-surface-subtle flex items-center justify-center cursor-pointer active:scale-95 transition-transform touch-manipulation select-none shrink-0"
+                aria-label="Close navigation menu"
+                onClick={() => setMobileMenuOpen(false)}
+              >
+                <X className="w-5 h-5" />
+              </button>
+            </div>
+          </div>
+
+          {/* Mobile Drawer Scrollable Content */}
+          <div className="flex-1 p-6 overflow-y-auto flex flex-col justify-between gap-8">
+            <div className="flex flex-col gap-6">
+              <span className="text-xs font-bold uppercase tracking-wider text-mutedText px-2">Navigation</span>
+              <nav className="flex flex-col gap-1" aria-label="Mobile navigation">
+                {navItems.map((item) => {
+                  const isActive = pathname === item.href;
+                  return (
+                    <Link
+                      key={item.href}
+                      href={item.href}
+                      className={`text-xl font-bold py-3.5 px-4 rounded-2xl transition-all border-b border-surface-border/40 flex items-center justify-between touch-manipulation ${
+                        isActive
+                          ? 'bg-brand-primary/10 text-brand-primary border-brand-primary/30'
+                          : 'text-primaryText hover:bg-surface-subtle'
+                      }`}
+                      onClick={() => setMobileMenuOpen(false)}
+                    >
+                      <span>{item.label}</span>
+                      <ArrowRight className="w-5 h-5 text-mutedText" />
+                    </Link>
+                  );
+                })}
+              </nav>
+
+              <div className="pt-2">
+                <ThemeToggle showLabel className="w-full" />
+              </div>
+            </div>
+
+            {/* Mobile Bottom Call-To-Actions */}
+            <div className="flex flex-col gap-3 pt-6 border-t border-surface-border mt-auto">
+              <BaseButton href="/contact" variant="primary" className="w-full py-4 text-base font-extrabold touch-manipulation" onClick={() => setMobileMenuOpen(false)}>
+                Start Your Project Today
+                <ArrowRight className="w-5 h-5 ml-1" />
               </BaseButton>
               <a
                 href={siteConfig.contact.whatsapp}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center justify-center gap-2.5 py-3 px-4 rounded-xl backdrop-blur-md bg-emerald-500/10 dark:bg-emerald-500/15 border border-emerald-500/40 text-emerald-700 dark:text-emerald-300 font-bold text-sm transition-colors"
-                onClick={() => setMobileMenuOpen(false)}
+                className="flex items-center justify-center gap-2.5 py-3.5 px-4 rounded-2xl bg-brand-primary hover:bg-brand-accent text-brand-buttonText font-bold text-sm transition-colors shadow-md touch-manipulation active:scale-95"
               >
-                WhatsApp — Instant Chat
+                💬 WhatsApp — Instant Chat
               </a>
             </div>
           </div>
         </div>
       )}
-    </header>
+    </>
   );
 };

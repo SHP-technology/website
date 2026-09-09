@@ -16,10 +16,10 @@ export const CompanyTimeline: React.FC = () => {
           <BaseBadge variant="amber" className="mb-4 uppercase tracking-widest text-[10px]">
             Company Journey
           </BaseBadge>
-          <h2 className="text-3xl md:text-5xl font-extrabold text-slate-900 dark:text-white tracking-tight mb-4">
+          <h2 className="text-3xl md:text-5xl font-extrabold text-primaryText tracking-tight mb-4">
             Our Track Record & Milestones
           </h2>
-          <p className="text-slate-600 dark:text-slate-300 text-base md:text-lg">
+          <p className="text-secondaryText text-base md:text-lg">
             From a local development studio to an enterprise software & AI engineering firm.
           </p>
         </div>
@@ -28,12 +28,12 @@ export const CompanyTimeline: React.FC = () => {
           {milestones.map((m, i) => (
             <div
               key={i}
-              className="glass-card p-6 rounded-3xl flex flex-col justify-between border border-slate-200/80 dark:border-slate-800"
+              className="glass-card p-6 rounded-3xl flex flex-col justify-between border border-surface-border"
             >
               <div>
-                <span className="text-3xl font-extrabold text-amber-500 block mb-2">{m.year}</span>
-                <h3 className="text-lg font-bold text-slate-900 dark:text-white mb-2">{m.title}</h3>
-                <p className="text-xs text-slate-600 dark:text-slate-400 leading-relaxed">{m.desc}</p>
+                <span className="text-3xl font-extrabold text-brand-primary block mb-2">{m.year}</span>
+                <h3 className="text-lg font-bold text-primaryText mb-2">{m.title}</h3>
+                <p className="text-xs text-secondaryText leading-relaxed">{m.desc}</p>
               </div>
             </div>
           ))}

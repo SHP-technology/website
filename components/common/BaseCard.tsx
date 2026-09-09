@@ -14,8 +14,8 @@ export const BaseCard: React.FC<BaseCardProps> = ({
   onClick
 }) => {
   const glassClasses = glass
-    ? 'glass-card border border-slate-200/80 dark:border-slate-800/80 shadow-lg hover:shadow-amber-500/10'
-    : 'bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl shadow-md';
+    ? 'glass-card border border-surface-border shadow-lg hover:shadow-brand-primary/10'
+    : 'bg-surface-card border border-surface-border rounded-2xl shadow-md';
 
   return (
     <div
