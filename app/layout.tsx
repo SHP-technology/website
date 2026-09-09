@@ -4,6 +4,7 @@ import { AppHeader } from '@/components/layout/AppHeader';
 import { AppFooter } from '@/components/layout/AppFooter';
 import { ScrollProgress } from '@/components/common/ScrollProgress';
 import { BackToTop } from '@/components/common/BackToTop';
+import { FloatingContactWidget } from '@/components/common/FloatingContactWidget';
 import { siteConfig } from '@/src/config/site.config';
 
 export const metadata: Metadata = {
@@ -63,6 +64,7 @@ export default function RootLayout({
         <AppHeader />
         <main className="flex-1">{children}</main>
         <AppFooter />
+        <FloatingContactWidget />
         <BackToTop />
       </body>
     </html>
