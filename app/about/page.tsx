@@ -4,11 +4,11 @@ import { BaseBadge } from '@/components/common/BaseBadge';
 import { CompanyTimeline } from '@/components/sections/CompanyTimeline';
 import { CtaBanner } from '@/components/sections/CtaBanner';
 import { siteConfig } from '@/src/config/site.config';
-import { Linkedin } from 'lucide-react';
+import { Linkedin, Target, Eye, ShieldCheck } from 'lucide-react';
 
 export const metadata: Metadata = {
-  title: 'About Us | Leadership & Story',
-  description: 'Learn about SHP Technology, our leadership team, company timeline, and engineering principles.'
+  title: 'About Us | Leadership & Engineering Story',
+  description: 'Learn about SHP Technology, our leadership team, company timeline, and core engineering principles.'
 };
 
 export const revalidate = 60;
@@ -17,38 +17,54 @@ export default async function AboutPage() {
   const teamMembers = await fetchTeamMembers();
 
   return (
-    <div className="py-12 md:py-20">
-      <div className="container">
+    <div className="py-16 md:py-24 bg-slate-950 text-white relative overflow-hidden">
+      {/* Ambient background glow */}
+      <div className="absolute inset-0 pointer-events-none" aria-hidden="true">
+        <div className="absolute -top-32 left-1/2 -translate-x-1/2 w-[600px] h-[300px] rounded-full bg-amber-500/10 blur-[120px]" />
+      </div>
+
+      <div className="container max-w-6xl mx-auto relative z-10">
         {/* Header */}
-        <div className="text-center max-w-3xl mx-auto mb-16">
+        <div className="text-center max-w-3xl mx-auto mb-20">
           <BaseBadge variant="amber" className="mb-4 uppercase tracking-widest text-[10px]">
             About SHP Technology
           </BaseBadge>
-          <h1 className="text-4xl md:text-6xl font-extrabold text-slate-900 dark:text-white tracking-tight mb-6">
-            Building Software for the <span className="text-amber-500">Next Generation</span>
+          <h1 className="text-4xl md:text-6xl font-extrabold text-white tracking-tight mb-6 leading-tight">
+            Building High-Performance Software for the <span className="bg-gradient-to-r from-amber-400 to-emerald-400 bg-clip-text text-transparent">Next Generation</span>
           </h1>
-          <p className="text-slate-600 dark:text-slate-300 text-lg leading-relaxed">
+          <p className="text-slate-300 text-lg md:text-xl leading-relaxed">
             {siteConfig.description}
           </p>
         </div>
 
-        {/* Core Values */}
+        {/* Core Values / Mission Cards */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-24">
-          <div className="glass-card p-8 rounded-3xl">
-            <h3 className="text-xl font-bold text-slate-900 dark:text-white mb-3">Our Mission</h3>
-            <p className="text-slate-600 dark:text-slate-400 text-sm leading-relaxed">
+          <div className="p-8 rounded-3xl bg-slate-900 border border-slate-800 hover:border-amber-500/40 shadow-xl transition-all duration-300">
+            <div className="p-3.5 rounded-2xl bg-amber-500/10 border border-amber-500/20 w-fit mb-6 text-amber-400">
+              <Target className="w-6 h-6" />
+            </div>
+            <h3 className="text-xl font-bold text-white mb-3">Our Mission</h3>
+            <p className="text-slate-400 text-sm leading-relaxed">
               Empower enterprise businesses worldwide with high-velocity, clean, and secure software solutions that automate operations and accelerate growth.
             </p>
           </div>
-          <div className="glass-card p-8 rounded-3xl">
-            <h3 className="text-xl font-bold text-slate-900 dark:text-white mb-3">Our Vision</h3>
-            <p className="text-slate-600 dark:text-slate-400 text-sm leading-relaxed">
+
+          <div className="p-8 rounded-3xl bg-slate-900 border border-slate-800 hover:border-sky-500/40 shadow-xl transition-all duration-300">
+            <div className="p-3.5 rounded-2xl bg-sky-500/10 border border-sky-500/20 w-fit mb-6 text-sky-400">
+              <Eye className="w-6 h-6" />
+            </div>
+            <h3 className="text-xl font-bold text-white mb-3">Our Vision</h3>
+            <p className="text-slate-400 text-sm leading-relaxed">
               Become a globally recognized engineering powerhouse known for transparent client partnerships, top-tier technical craft, and reliable delivery.
             </p>
           </div>
-          <div className="glass-card p-8 rounded-3xl">
-            <h3 className="text-xl font-bold text-slate-900 dark:text-white mb-3">Our Guarantee</h3>
-            <p className="text-slate-600 dark:text-slate-400 text-sm leading-relaxed">
+
+          <div className="p-8 rounded-3xl bg-slate-900 border border-slate-800 hover:border-emerald-500/40 shadow-xl transition-all duration-300">
+            <div className="p-3.5 rounded-2xl bg-emerald-500/10 border border-emerald-500/20 w-fit mb-6 text-emerald-400">
+              <ShieldCheck className="w-6 h-6" />
+            </div>
+            <h3 className="text-xl font-bold text-white mb-3">Our Guarantee</h3>
+            <p className="text-slate-400 text-sm leading-relaxed">
               Unbeatable pricing, zero hidden fees, bi-weekly working demos, and ongoing 24/7 post-launch support backed by robust SLAs.
             </p>
           </div>
@@ -60,11 +76,11 @@ export default async function AboutPage() {
             <BaseBadge variant="amber" className="mb-4 uppercase tracking-widest text-[10px]">
               Leadership & Engineering
             </BaseBadge>
-            <h2 className="text-3xl md:text-5xl font-extrabold text-slate-900 dark:text-white tracking-tight mb-4">
+            <h2 className="text-3xl md:text-5xl font-extrabold text-white tracking-tight mb-4">
               Meet the People Behind SHP
             </h2>
-            <p className="text-slate-600 dark:text-slate-300 text-base md:text-lg">
-              Experienced software architects, developers, and project leaders committed to your success.
+            <p className="text-slate-300 text-base md:text-lg">
+              Experienced software architects, full-stack developers, and project leaders committed to your success.
             </p>
           </div>
 
@@ -72,30 +88,30 @@ export default async function AboutPage() {
             {teamMembers.map((member) => (
               <div
                 key={member.id || member.name}
-                className="glass-card p-8 rounded-3xl flex flex-col justify-between group hover:border-amber-500/50 transition-all duration-300"
+                className="p-8 rounded-3xl bg-slate-900 border border-slate-800 hover:border-amber-500/50 shadow-xl flex flex-col justify-between group transition-all duration-300 hover:-translate-y-1"
               >
                 <div>
                   <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-amber-500 to-amber-600 flex items-center justify-center text-slate-950 font-extrabold text-xl mb-6 shadow-lg shadow-amber-500/20 group-hover:scale-105 transition-transform">
                     {member.initials || member.name.split(' ').map((n) => n[0]).join('')}
                   </div>
-                  <h3 className="text-xl font-bold text-slate-900 dark:text-white mb-1">
+                  <h3 className="text-xl font-bold text-white mb-1">
                     {member.name}
                   </h3>
-                  <span className="text-xs font-bold text-amber-500 uppercase tracking-wider block mb-4">
+                  <span className="text-xs font-bold text-amber-400 uppercase tracking-wider block mb-4">
                     {member.role}
                   </span>
-                  <p className="text-slate-600 dark:text-slate-400 text-sm leading-relaxed">
+                  <p className="text-slate-400 text-sm leading-relaxed">
                     {member.bio}
                   </p>
                 </div>
 
-                <div className="flex items-center gap-3 pt-6 mt-6 border-t border-slate-200/60 dark:border-slate-800">
+                <div className="flex items-center gap-3 pt-6 mt-6 border-t border-slate-800">
                   {member.linkedin_url && (
                     <a
                       href={member.linkedin_url}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="p-2 rounded-xl bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:text-amber-500 transition-colors"
+                      className="p-2 rounded-xl bg-slate-800 text-slate-300 hover:text-amber-400 transition-colors"
                       aria-label="LinkedIn Profile"
                     >
                       <Linkedin className="w-4 h-4" />
@@ -106,7 +122,7 @@ export default async function AboutPage() {
                       href={member.github_url}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="p-2 rounded-xl bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:text-amber-500 transition-colors"
+                      className="p-2 rounded-xl bg-slate-800 text-slate-300 hover:text-amber-400 transition-colors"
                       aria-label="GitHub Profile"
                     >
                       <svg className="w-4 h-4 fill-current" viewBox="0 0 24 24">
@@ -123,7 +139,7 @@ export default async function AboutPage() {
         {/* Company Timeline */}
         <CompanyTimeline />
 
-        {/* CTA */}
+        {/* Call to Action Banner */}
         <CtaBanner />
       </div>
     </div>
