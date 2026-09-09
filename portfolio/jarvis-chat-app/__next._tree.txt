@@ -1,3 +1,3 @@
-:HL["/_next/static/chunks/0lb0nowkysxe4.css","style"]
+:HL["/_next/static/chunks/06p_8pd0rzrf6.css","style"]
 :HL["/assets/image.png","image"]
-0:{"tree":{"name":"","param":null,"prefetchHints":4112,"slots":{"children":{"name":"portfolio","param":null,"prefetchHints":4160,"slots":{"children":{"name":"slug","param":{"type":"d","key":"jarvis-chat-app","siblings":[]},"prefetchHints":4192,"slots":{"children":{"name":"__PAGE__","param":null,"prefetchHints":4256,"slots":null}}}}}}},"staleTime":300,"buildId":"AhpSP9ApRAo3yS6heL1Qy"}
+0:{"tree":{"name":"","param":null,"prefetchHints":4112,"slots":{"children":{"name":"portfolio","param":null,"prefetchHints":4160,"slots":{"children":{"name":"slug","param":{"type":"d","key":"jarvis-chat-app","siblings":[]},"prefetchHints":4192,"slots":{"children":{"name":"__PAGE__","param":null,"prefetchHints":4256,"slots":null}}}}}}},"staleTime":300,"buildId":"2tVp3KYR9uvVCP2JhPbFL"}
