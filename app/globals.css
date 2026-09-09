@@ -35,10 +35,6 @@
     background-color: var(--bg-main);
     color: var(--text-primary);
     transition: background-color 250ms ease, color 250ms ease;
-    background-image:
-      radial-gradient(ellipse 75% 45% at 15% 0%, var(--brand-yellow-light) 0%, transparent 60%),
-      radial-gradient(ellipse 65% 45% at 85% 100%, var(--brand-sky-light) 0%, transparent 60%);
-    background-attachment: fixed;
   }
 
   main {
@@ -50,9 +46,6 @@
   html.dark body {
     background-color: var(--bg-main);
     color: var(--text-primary);
-    background-image:
-      radial-gradient(ellipse 75% 45% at 15% 0%, var(--brand-yellow-light) 0%, transparent 60%),
-      radial-gradient(ellipse 65% 45% at 85% 100%, var(--brand-sky-light) 0%, transparent 60%);
   }
 
   h1, h2, h3, h4 {
@@ -168,4 +161,71 @@
     padding-top: 5.5rem;
     padding-bottom: 5.5rem;
   }
+}
+
+/* High-Tech Background Grid & Dot Matrix System */
+.bg-tech-grid {
+  background-size: 44px 44px;
+  background-image: 
+    linear-gradient(to right, rgba(148, 163, 184, 0.12) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(148, 163, 184, 0.12) 1px, transparent 1px);
+}
+
+html.dark .bg-tech-grid {
+  background-image: 
+    linear-gradient(to right, rgba(255, 255, 255, 0.04) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.04) 1px, transparent 1px);
+}
+
+.bg-dot-grid {
+  background-size: 28px 28px;
+  background-image: radial-gradient(circle, rgba(245, 158, 11, 0.28) 1.2px, transparent 1.2px);
+}
+
+html.dark .bg-dot-grid {
+  background-image: radial-gradient(circle, rgba(16, 185, 129, 0.25) 1.2px, transparent 1.2px);
+}
+
+@keyframes pulseSlow {
+  0%, 100% {
+    transform: scale(1) translateY(0);
+    opacity: 0.75;
+  }
+  50% {
+    transform: scale(1.12) translateY(-25px);
+    opacity: 0.95;
+  }
+}
+
+@keyframes floatSlow {
+  0%, 100% {
+    transform: translateY(0) translateX(0) scale(1);
+  }
+  50% {
+    transform: translateY(-35px) translateX(25px) scale(1.08);
+  }
+}
+
+.animate-pulse-slow {
+  animation: pulseSlow 14s ease-in-out infinite;
+}
+
+.animate-float-slow {
+  animation: floatSlow 18s ease-in-out infinite;
+}
+
+@keyframes laserSweep {
+  0% {
+    transform: translateX(-100%);
+  }
+  50% {
+    transform: translateX(100%);
+  }
+  100% {
+    transform: translateX(-100%);
+  }
+}
+
+.animate-laser-sweep {
+  animation: laserSweep 10s ease-in-out infinite;
 }

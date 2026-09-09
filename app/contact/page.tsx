@@ -37,13 +37,43 @@ export default function ContactPage() {
             <div className="p-8 rounded-3xl bg-surface-card border border-surface-border shadow-2xl">
               <h3 className="text-xl font-bold text-primaryText mb-6">Direct Engineering Contact</h3>
               <div className="flex flex-col gap-5">
-                <a href={`mailto:${siteConfig.contact.email}`} className="flex items-center gap-3.5 text-secondaryText hover:text-brand-primary transition-colors group">
+                <a href={`mailto:${siteConfig.contact.contactEmail}`} className="flex items-center gap-3.5 text-secondaryText hover:text-brand-primary transition-colors group">
                   <div className="p-3 rounded-2xl bg-brand-primary/10 border border-brand-primary/20 text-brand-primary group-hover:scale-110 transition-transform">
                     <PlatformIcon platform="email" className="w-5 h-5" />
                   </div>
                   <div>
-                    <span className="text-xs text-mutedText block font-semibold">Email Founder Directly</span>
-                    <span className="text-sm font-bold text-primaryText group-hover:text-brand-primary">{siteConfig.contact.email}</span>
+                    <span className="text-xs text-mutedText block font-semibold">General Contact & Queries</span>
+                    <span className="text-sm font-bold text-primaryText group-hover:text-brand-primary">{siteConfig.contact.contactEmail}</span>
+                  </div>
+                </a>
+
+                <a href={`mailto:${siteConfig.contact.supportEmail}`} className="flex items-center gap-3.5 text-secondaryText hover:text-brand-primary transition-colors group">
+                  <div className="p-3 rounded-2xl bg-brand-primary/10 border border-brand-primary/20 text-brand-primary group-hover:scale-110 transition-transform">
+                    <PlatformIcon platform="email" className="w-5 h-5" />
+                  </div>
+                  <div>
+                    <span className="text-xs text-mutedText block font-semibold">Customer & Tech Support</span>
+                    <span className="text-sm font-bold text-primaryText group-hover:text-brand-primary">{siteConfig.contact.supportEmail}</span>
+                  </div>
+                </a>
+
+                <a href={`mailto:${siteConfig.contact.salesEmail}`} className="flex items-center gap-3.5 text-secondaryText hover:text-brand-primary transition-colors group">
+                  <div className="p-3 rounded-2xl bg-brand-primary/10 border border-brand-primary/20 text-brand-primary group-hover:scale-110 transition-transform">
+                    <PlatformIcon platform="email" className="w-5 h-5" />
+                  </div>
+                  <div>
+                    <span className="text-xs text-mutedText block font-semibold">Sales & Business Inquiries</span>
+                    <span className="text-sm font-bold text-primaryText group-hover:text-brand-primary">{siteConfig.contact.salesEmail}</span>
+                  </div>
+                </a>
+
+                <a href={`mailto:${siteConfig.contact.careersEmail}`} className="flex items-center gap-3.5 text-secondaryText hover:text-brand-primary transition-colors group">
+                  <div className="p-3 rounded-2xl bg-brand-primary/10 border border-brand-primary/20 text-brand-primary group-hover:scale-110 transition-transform">
+                    <PlatformIcon platform="email" className="w-5 h-5" />
+                  </div>
+                  <div>
+                    <span className="text-xs text-mutedText block font-semibold">Jobs & Recruitment</span>
+                    <span className="text-sm font-bold text-primaryText group-hover:text-brand-primary">{siteConfig.contact.careersEmail}</span>
                   </div>
                 </a>
 

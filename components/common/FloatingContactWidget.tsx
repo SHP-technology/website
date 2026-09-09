@@ -60,12 +60,12 @@ export const FloatingContactWidget: React.FC = () => {
             </a>
 
             <a
-              href={`mailto:${email}`}
+              href={`mailto:${siteConfig.contact.supportEmail}`}
               onClick={() => handleTrack('Email Direct Floating Widget')}
               className="flex items-center gap-3 px-4 py-2.5 rounded-xl bg-surface-subtle hover:bg-surface-subtle/80 border border-surface-border text-secondaryText hover:text-primaryText font-medium text-xs transition-all duration-200"
             >
               <Mail className="w-4 h-4 text-mutedText shrink-0" />
-              <span>Email Founder Directly</span>
+              <span>Contact Support Email</span>
             </a>
 
             <a
