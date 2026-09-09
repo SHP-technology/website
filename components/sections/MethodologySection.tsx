@@ -1,28 +1,57 @@
 import React from 'react';
-import { BaseBadge } from '@/components/common/BaseBadge';
 
 export const MethodologySection: React.FC = () => {
   const steps = [
-    { num: '01', title: 'Discovery & Planning', desc: 'Detailed requirement analysis, domain modeling, and technical spec alignment.' },
-    { num: '02', title: 'Architecture & UX Design', desc: 'Designing interactive wireframes, component design systems, and database schemas.' },
-    { num: '03', title: 'Agile Development', desc: 'Bi-weekly sprint iterations delivering clean, typed code with automated test coverage.' },
-    { num: '04', title: 'Testing & Hardening', desc: 'End-to-end security audits, load benchmarks, and automated QA verification.' },
-    { num: '05', title: 'Cloud Deployment', desc: 'Zero-downtime CI/CD release to production with automated monitoring.' },
-    { num: '06', title: '24/7 SLA Support', desc: 'Continuous performance monitoring, security patches, and scaling support.' }
+    {
+      num: '01',
+      title: 'Discovery & Fixed Scope',
+      badge: 'Day 1 - 3',
+      desc: 'We analyze your requirements, define explicit architecture specs, and provide an upfront fixed-rate quotation with zero surprise costs.'
+    },
+    {
+      num: '02',
+      title: 'Architecture & UX Wireframes',
+      badge: 'Week 1',
+      desc: 'Interactive Figma design systems, database schema modeling, and API contract specs aligned before writing code.'
+    },
+    {
+      num: '03',
+      title: 'Agile Sprints & Live Demos',
+      badge: 'Bi-Weekly',
+      desc: 'High-velocity sprint releases. Test live working builds every 2 weeks to provide immediate feedback and shape the product.'
+    },
+    {
+      num: '04',
+      title: 'Security & QA Hardening',
+      badge: 'Pre-Launch',
+      desc: 'Comprehensive OWASP security scanning, database indexing, stress load tests, and multi-browser accessibility verification.'
+    },
+    {
+      num: '05',
+      title: 'Zero-Downtime Deployment',
+      badge: 'Production Launch',
+      desc: 'Automated CI/CD deployment pipelines on Cloudflare / AWS / GCP edge servers with automated domain SSL & CDN caching.'
+    },
+    {
+      num: '06',
+      title: '24/7 SLA & Maintenance',
+      badge: 'Post-Launch',
+      desc: 'Dedicated 4-hour response SLA support, automated backups, continuous security patches, and scalable feature expansion.'
+    }
   ];
 
   return (
-    <section className="py-20 relative">
-      <div className="container">
+    <section className="py-24 bg-slate-900 border-y border-slate-800 text-white relative overflow-hidden">
+      <div className="container max-w-6xl mx-auto relative z-10">
         <div className="text-center max-w-3xl mx-auto mb-16">
-          <BaseBadge variant="amber" className="mb-4 uppercase tracking-widest text-[10px]">
-            Engineering Process
-          </BaseBadge>
-          <h2 className="text-3xl md:text-5xl font-extrabold text-slate-900 dark:text-white tracking-tight mb-4">
-            Our 6-Step Development Workflow
+          <span className="text-xs font-extrabold uppercase tracking-widest text-amber-400 block mb-3">
+            Predictable Engineering Process
+          </span>
+          <h2 className="text-3xl md:text-5xl font-extrabold text-white tracking-tight mb-4">
+            How We Deliver Your Software Project
           </h2>
-          <p className="text-slate-600 dark:text-slate-300 text-base md:text-lg">
-            Structured execution ensuring predictable delivery, bulletproof quality, and zero surprises.
+          <p className="text-slate-300 text-base md:text-lg leading-relaxed">
+            Our structured 6-step methodology guarantees bi-weekly progress visibility, bulletproof code quality, and on-time launch.
           </p>
         </div>
 
@@ -30,16 +59,23 @@ export const MethodologySection: React.FC = () => {
           {steps.map((step, i) => (
             <div
               key={i}
-              className="p-8 rounded-3xl bg-white/80 dark:bg-slate-900/80 border border-slate-200/80 dark:border-slate-800 backdrop-blur-md relative flex flex-col justify-between hover:border-amber-500/50 transition-all duration-300 group"
+              className="p-8 rounded-3xl bg-slate-950 border border-slate-800 hover:border-amber-500/50 shadow-xl transition-all duration-300 relative flex flex-col justify-between group hover:-translate-y-1"
             >
               <div>
-                <span className="text-4xl font-extrabold text-amber-500/40 dark:text-amber-400/30 group-hover:text-amber-500 transition-colors">
-                  {step.num}
-                </span>
-                <h3 className="text-xl font-bold text-slate-900 dark:text-white mt-3 mb-2">
+                <div className="flex items-center justify-between mb-4">
+                  <span className="text-3xl font-extrabold text-amber-400 group-hover:scale-110 transition-transform">
+                    {step.num}
+                  </span>
+                  <span className="text-[10px] font-bold uppercase tracking-wider px-3 py-1 rounded-full bg-slate-900 text-slate-300 border border-slate-800">
+                    {step.badge}
+                  </span>
+                </div>
+
+                <h3 className="text-xl font-bold text-white mb-3 group-hover:text-amber-400 transition-colors">
                   {step.title}
                 </h3>
-                <p className="text-slate-600 dark:text-slate-400 text-sm leading-relaxed">
+
+                <p className="text-slate-400 text-sm leading-relaxed">
                   {step.desc}
                 </p>
               </div>
