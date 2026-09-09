@@ -1,39 +1,46 @@
 import React from 'react';
 import Link from 'next/link';
-import { ArrowRight, Sparkles } from 'lucide-react';
+import { ArrowRight, Sparkles, ShieldCheck, Zap, MessageSquare, Play } from 'lucide-react';
 import { BaseButton } from '@/components/common/BaseButton';
 import { siteConfig } from '@/src/config/site.config';
 
 export const HeroSection: React.FC = () => {
   return (
-    <section className="relative py-16 lg:py-24 overflow-hidden">
-      {/* Ambient orbs */}
+    <section className="relative py-20 lg:py-32 overflow-hidden bg-slate-950 text-white">
+      {/* Dynamic Ambient Background Glows */}
       <div className="absolute inset-0 pointer-events-none" aria-hidden="true">
-        <div className="absolute -top-32 left-1/4 w-96 h-96 rounded-full bg-amber-500/10 blur-[100px]" />
-        <div className="absolute top-1/2 -right-24 w-72 h-72 rounded-full bg-blue-500/10 blur-[80px]" />
+        <div className="absolute -top-40 left-1/2 -translate-x-1/2 w-[700px] h-[400px] rounded-full bg-gradient-to-tr from-amber-500/20 via-emerald-500/15 to-sky-500/20 blur-[130px] opacity-80" />
+        <div className="absolute bottom-0 right-10 w-96 h-96 rounded-full bg-emerald-500/10 blur-[110px]" />
+        <div className="absolute top-1/3 -left-20 w-80 h-80 rounded-full bg-indigo-500/10 blur-[100px]" />
       </div>
 
-      <div className="container max-w-4xl mx-auto flex flex-col items-center text-center animate-fade-in-up relative z-10">
-        {/* Tag Badge */}
-        <div className="inline-flex items-center gap-2 px-3.5 py-1.5 text-xs font-semibold rounded-full backdrop-blur-md bg-white/80 dark:bg-slate-900/70 border border-slate-200/80 dark:border-slate-800 text-slate-900 dark:text-white mb-6 shadow-sm">
-          <span className="w-2 h-2 rounded-full bg-amber-500 animate-pulse" />
-          <span className="uppercase tracking-wider">Unbeatable Quality • Fast Delivery • Enterprise Reliable</span>
+      <div className="container max-w-5xl mx-auto flex flex-col items-center text-center relative z-10">
+        {/* Client Guarantee Badge */}
+        <div className="inline-flex items-center gap-2.5 px-4 py-2 rounded-full backdrop-blur-xl bg-white/10 dark:bg-slate-900/80 border border-slate-700/80 text-white mb-8 shadow-xl hover:border-amber-500/60 transition-all cursor-default">
+          <span className="flex h-2 w-2 rounded-full bg-emerald-400 animate-ping" />
+          <span className="text-xs font-bold uppercase tracking-wider text-slate-200">
+            Unbeatable Value • Bulletproof Security • 4-Hour Response SLA
+          </span>
+          <Sparkles className="w-3.5 h-3.5 text-amber-400 ml-0.5" />
         </div>
 
-        {/* Headline */}
-        <h1 className="text-4xl md:text-5xl lg:text-6xl font-extrabold text-slate-900 dark:text-white leading-tight tracking-tight mb-6 max-w-3xl">
-          Ship Premium Custom Software at a <span className="text-emerald-500 dark:text-emerald-400">Fraction of the Cost</span>
+        {/* Attention-Grabbing Headline */}
+        <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold leading-[1.1] tracking-tight mb-8 max-w-4xl text-white">
+          We Build Enterprise-Grade Software at a{' '}
+          <span className="bg-gradient-to-r from-amber-400 via-amber-300 to-emerald-400 bg-clip-text text-transparent drop-shadow-sm">
+            Fraction of standard costs
+          </span>
         </h1>
 
-        {/* Subtitle */}
-        <p className="text-lg md:text-xl text-slate-600 dark:text-slate-300 leading-relaxed mb-8 max-w-2xl">
-          Get enterprise-grade web apps, cloud infrastructure, and AI tools built with unmatched speed and bulletproof reliability—without breaking your budget.
+        {/* Client-Centric Subtitle */}
+        <p className="text-lg md:text-2xl text-slate-300 font-normal leading-relaxed mb-10 max-w-3xl">
+          From custom web applications & cloud architecture to AI automation engines—we help visionary businesses launch faster, scale reliably, and save up to 60% on development.
         </p>
 
-        {/* CTA Action Buttons */}
-        <div className="flex flex-wrap justify-center items-center gap-4 mb-12 w-full sm:w-auto">
-          <BaseButton href="/contact" variant="primary" size="lg" className="group">
-            Start a Conversation
+        {/* High-Converting Action CTAs */}
+        <div className="flex flex-wrap justify-center items-center gap-4 mb-16 w-full sm:w-auto">
+          <BaseButton href="/contact" variant="primary" size="lg" className="group text-base font-bold shadow-xl shadow-amber-500/20">
+            <span>Start Your Project Today</span>
             <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
           </BaseButton>
 
@@ -41,32 +48,38 @@ export const HeroSection: React.FC = () => {
             href={siteConfig.contact.whatsapp}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-2.5 px-6 py-3.5 rounded-xl backdrop-blur-md bg-emerald-500/10 dark:bg-emerald-500/15 border border-emerald-500/40 text-emerald-700 dark:text-emerald-300 font-bold text-base hover:bg-emerald-500/20 transition-all duration-200 shadow-sm"
+            className="inline-flex items-center gap-2.5 px-7 py-4 rounded-xl backdrop-blur-xl bg-emerald-500 hover:bg-emerald-600 text-white font-bold text-base shadow-xl shadow-emerald-500/20 hover:scale-105 active:scale-95 transition-all duration-200"
           >
-            <span>💬 Chat on WhatsApp</span>
+            <MessageSquare className="w-5 h-5 fill-current" />
+            <span>Chat on WhatsApp (Instant)</span>
           </a>
 
-          <BaseButton href="/portfolio" variant="outline" size="lg">
-            Explore Our Work
-          </BaseButton>
+          <Link
+            href="/demo"
+            className="inline-flex items-center gap-2 px-6 py-4 rounded-xl backdrop-blur-md bg-slate-800/80 hover:bg-slate-700 text-slate-200 font-semibold text-base border border-slate-700 hover:border-slate-500 transition-all duration-200"
+          >
+            <Play className="w-4 h-4 text-amber-400 fill-current" />
+            <span>Launch Live Demos</span>
+          </Link>
         </div>
 
-        {/* Metric Badges */}
-        <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 w-full pt-6 border-t border-slate-200/80 dark:border-slate-800">
-          {siteConfig.metrics.map((stat) => (
+        {/* Live Client Metrics Grid */}
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 w-full pt-8 border-t border-slate-800/80">
+          {[
+            { metric: '150+', label: 'Global Clients', detail: 'Trust & Partnerships' },
+            { metric: '80+', label: 'Delivered Projects', detail: '100% On-Time Record' },
+            { metric: '50+', label: 'Automations Built', detail: 'Saving 1,000+ Hours' },
+            { metric: '<4 Hours', label: 'Response Guarantee', detail: 'Direct Engineer SLA' }
+          ].map((stat, idx) => (
             <div
-              key={stat.label}
-              className="p-4 rounded-2xl flex flex-col items-center group hover:-translate-y-1 transition-all duration-200 backdrop-blur-xl bg-white/80 dark:bg-slate-900/65 border border-slate-200/80 dark:border-slate-800 shadow-md hover:shadow-lg"
+              key={idx}
+              className="p-5 rounded-2xl flex flex-col items-center text-center glass-card border border-slate-800 hover:border-amber-500/50 hover:-translate-y-1 transition-all duration-300 group"
             >
-              <span className="text-2xl font-extrabold text-slate-900 dark:text-white leading-none group-hover:text-amber-500 transition-colors">
-                {stat.value}
+              <span className="text-3xl lg:text-4xl font-extrabold text-white group-hover:text-amber-400 transition-colors">
+                {stat.metric}
               </span>
-              <span className="text-xs font-bold text-slate-700 dark:text-slate-200 mt-1.5">
-                {stat.label}
-              </span>
-              <span className="text-[11px] font-semibold text-blue-600 dark:text-blue-400 mt-0.5">
-                → {stat.tagline}
-              </span>
+              <span className="text-sm font-bold text-slate-200 mt-2">{stat.label}</span>
+              <span className="text-xs font-semibold text-emerald-400 mt-1">✓ {stat.detail}</span>
             </div>
           ))}
         </div>
