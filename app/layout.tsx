@@ -33,7 +33,7 @@ export const metadata: Metadata = {
     siteName: siteConfig.name,
     images: [
       {
-        url: `${siteConfig.site.url}assets/logo.png`,
+        url: `${siteConfig.site.url}assets/image.webp`,
         width: 1200,
         height: 630,
         alt: siteConfig.name
@@ -60,8 +60,36 @@ export default function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": siteConfig.name,
+    "legalName": siteConfig.legalName,
+    "url": siteConfig.site.url,
+    "logo": `${siteConfig.site.url}assets/logo.svg`,
+    "description": siteConfig.description,
+    "contactPoint": {
+      "@type": "ContactPoint",
+      "telephone": siteConfig.contact.phone,
+      "contactType": "customer service",
+      "email": siteConfig.contact.email,
+    },
+    "sameAs": [
+      siteConfig.socials.linkedin,
+      siteConfig.socials.instagram,
+      siteConfig.socials.facebook,
+      siteConfig.socials.twitter
+    ].filter(Boolean)
+  };
+
   return (
     <html lang="en" className="dark scroll-smooth" suppressHydrationWarning>
+      <head>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        />
+      </head>
       <body className="bg-surface-main text-primaryText transition-colors duration-300 min-h-screen flex flex-col relative" suppressHydrationWarning>
         <ThemeProvider>
           <AppBackground />

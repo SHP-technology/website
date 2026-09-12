@@ -12,7 +12,7 @@ export const AppLogo: React.FC<AppLogoProps> = ({ className = '', showText = tru
     <Link href="/" className={`inline-flex items-center gap-3 group select-none ${className}`} aria-label="SHP Technology Home">
       <div className="relative flex items-center justify-center transition-transform duration-300 group-hover:scale-105">
         <img
-          src="/assets/image.png"
+          src="/assets/image.webp"
           alt="SHP Technology — Software Development Company"
           className={`${height} w-auto object-contain rounded-xl shadow-sm`}
         />
