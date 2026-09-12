@@ -54,6 +54,13 @@ export const metadata: Metadata = {
 
 import { ThemeProvider } from '@/hooks/useTheme';
 import { AppBackground } from '@/components/common/AppBackground';
+import { Inter } from 'next/font/google';
+
+const inter = Inter({
+  subsets: ['latin'],
+  variable: '--font-sans',
+  display: 'swap',
+});
 
 export default function RootLayout({
   children,
@@ -83,7 +90,7 @@ export default function RootLayout({
   };
 
   return (
-    <html lang="en" className="dark scroll-smooth" suppressHydrationWarning>
+    <html lang="en" className={`dark scroll-smooth ${inter.variable}`} suppressHydrationWarning>
       <head>
         <script
           type="application/ld+json"
