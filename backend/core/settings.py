@@ -384,8 +384,14 @@ if _cors_allowed_raw:
     CORS_ALLOWED_ORIGINS = [o.strip() for o in _cors_allowed_raw.split(',') if o.strip()]
     CORS_ALLOW_ALL_ORIGINS = False
 else:
-    # Dev fallback — allow all (never ship this to prod without CORS_ALLOWED_ORIGINS set)
-    CORS_ALLOW_ALL_ORIGINS = True
+    CORS_ALLOWED_ORIGINS = [
+        'https://api.shptechnology.online',
+        'https://shptechnology.online',
+        'https://www.shptechnology.online',
+        'http://localhost:3000',
+        'http://localhost:5173',
+    ]
+    CORS_ALLOW_ALL_ORIGINS = False
 
 CORS_ALLOW_CREDENTIALS = True
 
@@ -422,6 +428,7 @@ else:
         'http://127.0.0.1:8000',
         'http://localhost:5173',
         'http://127.0.0.1:5173',
+        'https://api.shptechnology.online',
         'https://shptechnology.online',
         'https://www.shptechnology.online',
         'https://shptech.onrender.com',
