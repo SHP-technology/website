@@ -1,864 +1,735 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="dark">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Email Studio — SHP Technology</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Email Studio — SHP Technology</title>
 
-    <!-- AdminLTE / Jazzmin base CSS (already served by Django staticfiles) -->
-    <link rel="stylesheet" href="/static/vendor/adminlte/dist/css/adminlte.min.css">
-    <!-- Bootstrap 4 (Jazzmin uses Bootstrap 4) -->
-    <link rel="stylesheet" href="/static/vendor/bootstrap/css/bootstrap.min.css">
-    <!-- Font Awesome 5 (same as Jazzmin) -->
-    <link rel="stylesheet" href="/static/vendor/fontawesome-free/css/all.min.css">
+<!-- Tailwind CSS CDN -->
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+tailwind.config = {
+  darkMode: 'class',
+  theme: {
+    extend: {
+      colors: {
+        d: {
+          bg:      '#222222',
+          surf:    '#303030',
+          head:    '#282828',
+          inp:     '#1a1a1a',
+          bord:    '#444444',
+          hov:     '#3a3a3a',
+          pri:     '#375a7f',
+          prih:    '#2b4764',
+          suc:     '#00bc8c',
+          dan:     '#e74c3c',
+          warn:    '#f39c12',
+          info:    '#3498db',
+          mut:     '#adb5bd',
+        }
+      }
+    }
+  }
+}
+</script>
 
-    <style>
-        /* ── Use the same CSS variables Jazzmin injects for the darkly theme ── */
-        :root {
-            --jz-bg:       #222222;
-            --jz-surface:  #303030;
-            --jz-header:   #282828;
-            --jz-border:   #444444;
-            --jz-input:    #1a1a1a;
-            --jz-hover:    #3a3a3a;
-            --jz-muted:    #adb5bd;
-        }
+<!-- Font Awesome -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
-        html, body {
-            background-color: var(--jz-bg) !important;
-            color: #fff !important;
-            font-family: "Source Sans Pro", "Helvetica Neue", Helvetica, Arial, sans-serif;
-            font-size: 14px;
-            min-height: 100vh;
-        }
-
-        /* ── Top navbar strip ── */
-        .shp-navbar {
-            background-color: var(--jz-surface);
-            border-bottom: 1px solid var(--jz-border);
-            padding: .55rem 1rem;
-            position: sticky;
-            top: 0;
-            z-index: 1040;
-            box-shadow: 0 1px 4px rgba(0,0,0,.5);
-        }
-
-        /* ── Generic card wrapper ── */
-        .shp-card {
-            background-color: var(--jz-surface);
-            border: 1px solid var(--jz-border);
-            border-radius: .35rem;
-        }
-        .shp-card-header {
-            background-color: var(--jz-header);
-            border-bottom: 1px solid var(--jz-border);
-            padding: .6rem 1rem;
-        }
-
-        /* ── Input overrides ── */
-        .shp-input {
-            background-color: var(--jz-input) !important;
-            border: 1px solid var(--jz-border) !important;
-            color: #fff !important;
-            border-radius: .25rem;
-        }
-        .shp-input:focus {
-            border-color: #375a7f !important;
-            box-shadow: 0 0 0 .15rem rgba(55,90,127,.35) !important;
-            background-color: var(--jz-input) !important;
-            color: #fff !important;
-        }
-        .shp-input::placeholder { color: #6c757d !important; }
-        select.shp-input option { background: var(--jz-input); color: #fff; }
-
-        /* ── Table ── */
-        .shp-table { width: 100%; border-collapse: collapse; }
-        .shp-table thead th {
-            background-color: var(--jz-input);
-            border-bottom: 1px solid var(--jz-border);
-            color: var(--jz-muted);
-            text-transform: uppercase;
-            font-size: .7rem;
-            letter-spacing: .07em;
-            font-weight: 700;
-            padding: .6rem 1rem;
-            white-space: nowrap;
-        }
-        .shp-table tbody td {
-            padding: .7rem 1rem;
-            border-bottom: 1px solid var(--jz-border);
-            vertical-align: middle;
-            font-size: .85rem;
-        }
-        .shp-table tbody tr:hover { background-color: var(--jz-hover); }
-        .shp-table tbody tr:last-child td { border-bottom: none; }
-
-        /* ── Stat cards ── */
-        .stat-card {
-            background-color: var(--jz-surface);
-            border: 1px solid var(--jz-border);
-            border-radius: .35rem;
-            padding: 1rem;
-            transition: border-color .2s;
-        }
-        .stat-card:hover { border-color: #555; }
-        .stat-icon {
-            width: 36px; height: 36px;
-            display: flex; align-items: center; justify-content: center;
-            border-radius: .25rem;
-            font-size: .9rem;
-        }
-
-        /* ── Scrollbar ── */
-        ::-webkit-scrollbar { width: 5px; height: 5px; }
-        ::-webkit-scrollbar-track { background: var(--jz-bg); }
-        ::-webkit-scrollbar-thumb { background: #555; border-radius: 3px; }
-
-        /* ── Modal ── */
-        .shp-modal-backdrop {
-            position: fixed; inset: 0;
-            background: rgba(0,0,0,.75);
-            backdrop-filter: blur(3px);
-            z-index: 1060;
-            display: none;
-            align-items: center; justify-content: center;
-            padding: 1rem;
-            overflow-y: auto;
-        }
-        .shp-modal-backdrop.show { display: flex; }
-        .shp-modal-box {
-            background-color: var(--jz-surface);
-            border: 1px solid var(--jz-border);
-            border-radius: .4rem;
-            width: 100%; max-width: 680px;
-            max-height: 92vh;
-            display: flex; flex-direction: column;
-            box-shadow: 0 8px 32px rgba(0,0,0,.7);
-        }
-        .shp-modal-header {
-            background-color: var(--jz-header);
-            border-bottom: 1px solid var(--jz-border);
-            padding: .75rem 1rem;
-            display: flex; align-items: center; justify-content: space-between;
-            flex-shrink: 0;
-        }
-        .shp-modal-body {
-            padding: 1.1rem;
-            overflow-y: auto;
-            flex: 1;
-        }
-        .shp-modal-footer {
-            border-top: 1px solid var(--jz-border);
-            padding: .75rem 1rem;
-            flex-shrink: 0;
-        }
-
-        /* ── Label ── */
-        .shp-label {
-            font-size: .7rem;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: .06em;
-            color: var(--jz-muted);
-            margin-bottom: .35rem;
-            display: block;
-        }
-
-        /* ── Monospace tag ── */
-        .mono-tag {
-            font-family: "SFMono-Regular", Consolas, monospace;
-            font-size: .7rem;
-            background: var(--jz-input);
-            border: 1px solid var(--jz-border);
-            border-radius: .2rem;
-            padding: .1rem .35rem;
-        }
-
-        /* ── Pill filter buttons ── */
-        .filter-pills { display: flex; gap: .25rem; background: var(--jz-input); padding: .25rem; border-radius: .25rem; border: 1px solid var(--jz-border); }
-        .filter-pill { padding: .25rem .75rem; border-radius: .2rem; font-size: .75rem; font-weight: 600; border: none; cursor: pointer; color: var(--jz-muted); background: transparent; white-space: nowrap; transition: background .15s, color .15s; }
-        .filter-pill.active { background: #375a7f; color: #fff; }
-        .filter-pill:not(.active):hover { color: #fff; }
-
-        /* ── Preview pane (white bg for email rendering) ── */
-        .email-preview { background: #fff; color: #333; border-radius: .25rem; min-height: 160px; max-height: 280px; overflow-y: auto; padding: 1rem; font-size: .85rem; }
-
-        /* ── Resend status dot ── */
-        .status-dot { width: 8px; height: 8px; border-radius: 50%; display: inline-block; }
-
-        /* ── Responsive hide ── */
-        @media (max-width: 576px) {
-            .hide-xs { display: none !important; }
-        }
-        @media (max-width: 768px) {
-            .hide-sm { display: none !important; }
-        }
-    </style>
+<style>
+  *,:before,:after{box-sizing:border-box}
+  body{margin:0;font-family:"Source Sans Pro","Helvetica Neue",Arial,sans-serif;background:#222;color:#fff;min-height:100vh;font-size:14px}
+  ::-webkit-scrollbar{width:5px;height:5px}
+  ::-webkit-scrollbar-track{background:#222}
+  ::-webkit-scrollbar-thumb{background:#555;border-radius:3px}
+  input,select,textarea{font-family:inherit}
+  input::placeholder,textarea::placeholder{color:#6c757d}
+  select option{background:#1a1a1a;color:#fff}
+  .inp{background:#1a1a1a;border:1px solid #444;color:#fff;border-radius:4px;padding:.45rem .75rem;font-size:.85rem;width:100%;transition:border-color .15s}
+  .inp:focus{outline:none;border-color:#375a7f;box-shadow:0 0 0 2px rgba(55,90,127,.3)}
+  textarea.inp{resize:vertical;font-family:monospace}
+  /* pills */
+  .pill{padding:.25rem .7rem;border-radius:3px;font-size:.72rem;font-weight:700;border:none;cursor:pointer;color:#adb5bd;background:transparent;white-space:nowrap;transition:background .12s,color .12s}
+  .pill.on{background:#375a7f;color:#fff}
+  .pill:not(.on):hover{color:#fff}
+  /* modal */
+  .modal{display:none;position:fixed;inset:0;background:rgba(0,0,0,.8);backdrop-filter:blur(4px);z-index:9999;align-items:center;justify-content:center;padding:1rem;overflow-y:auto}
+  .modal.open{display:flex}
+  /* badge */
+  .badge{display:inline-flex;align-items:center;gap:3px;padding:.15rem .5rem;border-radius:3px;font-size:.68rem;font-weight:700;letter-spacing:.03em}
+  .badge-sent{background:rgba(0,188,140,.15);color:#00bc8c;border:1px solid rgba(0,188,140,.3)}
+  .badge-fail{background:rgba(231,76,60,.15);color:#e74c3c;border:1px solid rgba(231,76,60,.3)}
+  .badge-pend{background:rgba(243,156,18,.15);color:#f39c12;border:1px solid rgba(243,156,18,.3)}
+  /* email white preview */
+  .eml-prev{background:#fff;color:#222;border-radius:4px;min-height:140px;max-height:260px;overflow-y:auto;padding:1rem;font-size:.85rem}
+  /* stat card */
+  .scard{background:#303030;border:1px solid #444;border-radius:5px;padding:1rem;transition:border-color .15s}
+  .scard:hover{border-color:#555}
+  /* table */
+  .tbl{width:100%;border-collapse:collapse}
+  .tbl thead th{background:#1a1a1a;color:#adb5bd;text-transform:uppercase;font-size:.68rem;letter-spacing:.07em;font-weight:700;padding:.6rem 1rem;white-space:nowrap;border-bottom:1px solid #444}
+  .tbl tbody td{padding:.65rem 1rem;border-bottom:1px solid #383838;vertical-align:middle;font-size:.83rem}
+  .tbl tbody tr:last-child td{border-bottom:none}
+  .tbl tbody tr:hover{background:#3a3a3a}
+  @media(max-width:640px){.sm-hide{display:none!important}}
+  @media(max-width:768px){.md-hide{display:none!important}}
+  /* btn */
+  .btn{display:inline-flex;align-items:center;gap:5px;padding:.35rem .75rem;border-radius:4px;font-size:.78rem;font-weight:600;border:none;cursor:pointer;transition:background .15s,opacity .15s;white-space:nowrap}
+  .btn:disabled{opacity:.55;cursor:not-allowed}
+  .btn-pri{background:#375a7f;color:#fff}.btn-pri:hover{background:#2b4764}
+  .btn-sec{background:#3a3a3a;color:#ccc;border:1px solid #444}.btn-sec:hover{background:#444;color:#fff}
+  .btn-xs{padding:.22rem .55rem;font-size:.72rem}
+  /* nav */
+  .topnav{background:#303030;border-bottom:1px solid #444;padding:.5rem 1rem;position:sticky;top:0;z-index:100;box-shadow:0 1px 6px rgba(0,0,0,.5)}
+  /* alert */
+  .alert{border-radius:4px;padding:.7rem 1rem;font-size:.83rem;display:flex;align-items:center;justify-content:space-between;gap:.5rem}
+  .alert-ok{background:rgba(0,188,140,.12);border:1px solid rgba(0,188,140,.3);color:#00bc8c}
+  .alert-err{background:rgba(231,76,60,.12);border:1px solid rgba(231,76,60,.3);color:#e74c3c}
+  /* mono */
+  .mono{font-family:"SFMono-Regular",Consolas,monospace;font-size:.72rem;background:#1a1a1a;border:1px solid #444;border-radius:3px;padding:.1rem .35rem}
+</style>
 </head>
+
 <body>
 
-<!-- ═══════════════════════════════════════════════════════ TOP NAVBAR ══ -->
-<nav class="shp-navbar d-flex align-items-center justify-content-between">
-    <div class="d-flex align-items-center">
-        <a href="/admin/" class="btn btn-primary btn-sm mr-2" title="Django Admin">
-            <i class="fas fa-envelope-open-text"></i>
-        </a>
-        <div>
-            <div class="d-flex align-items-center">
-                <a href="/admin/" class="text-white font-weight-bold mr-2" style="font-size:.95rem;text-decoration:none;">SHP Admin</a>
-                <span class="text-muted mr-1 hide-xs">/</span>
-                <span class="badge badge-primary hide-xs">Email Studio</span>
-            </div>
-            <small class="text-muted hide-xs">Transactional Dispatcher &amp; Audit Log</small>
-        </div>
+<!-- ╔══════════════════════════════════════════╗
+     ║  TOP NAVIGATION                          ║
+     ╚══════════════════════════════════════════╝ -->
+<nav class="topnav flex items-center justify-between">
+  <!-- Left: Brand -->
+  <div class="flex items-center gap-3">
+    <a href="/admin/" class="btn btn-pri" style="padding:.35rem .6rem;font-size:.75rem;" title="Django Admin">
+      <i class="fas fa-envelope-open-text"></i>
+    </a>
+    <div>
+      <div class="flex items-center gap-2">
+        <a href="/admin/" class="text-white font-bold text-sm no-underline hover:text-blue-300 transition">SHP Admin</a>
+        <span class="text-gray-500 sm-hide">/</span>
+        <span class="text-xs px-2 py-0.5 rounded font-semibold sm-hide" style="background:rgba(55,90,127,.25);color:#7cb3e0;border:1px solid rgba(55,90,127,.4)">Email Studio</span>
+      </div>
+      <p class="text-xs sm-hide" style="color:#adb5bd;margin:0">Transactional Dispatcher &amp; Audit Log</p>
     </div>
-    <div class="d-flex align-items-center">
-        <!-- Resend status badge -->
-        <span class="d-flex align-items-center mr-2 text-muted hide-xs" style="font-size:.75rem;">
-            <span class="status-dot {% if resend_configured %}bg-success{% else %}bg-warning{% endif %} mr-1"></span>
-            Resend: <strong class="ml-1 text-white">{% if resend_configured %}Active{% else %}No Key{% endif %}</strong>
-        </span>
-        <a href="/admin/" class="btn btn-secondary btn-sm mr-2 hide-xs">
-            <i class="fas fa-gauge mr-1"></i> Admin
-        </a>
-        <button onclick="openComposeModal()" class="btn btn-primary btn-sm">
-            <i class="fas fa-paper-plane mr-1"></i> Send Mail
-        </button>
+  </div>
+
+  <!-- Right: Actions -->
+  <div class="flex items-center gap-2">
+    <!-- Resend status -->
+    <div class="flex items-center gap-1.5 text-xs md-hide" style="color:#adb5bd">
+      <span style="width:8px;height:8px;border-radius:50%;display:inline-block;background:{% if resend_configured %}#00bc8c{% else %}#f39c12{% endif %}"></span>
+      Resend: <strong class="text-white">{% if resend_configured %}Active{% else %}No Key{% endif %}</strong>
     </div>
+    <a href="/admin/" class="btn btn-sec sm-hide"><i class="fas fa-gauge"></i><span>Admin</span></a>
+    <button onclick="openCompose()" class="btn btn-pri"><i class="fas fa-paper-plane"></i><span>Send Mail</span></button>
+  </div>
 </nav>
 
-<!-- ═══════════════════════════════════════════════════════ MAIN ══ -->
-<div class="container-fluid py-4 px-3 px-md-4" style="max-width:1280px;">
+<!-- ╔══════════════════════════════════════════╗
+     ║  MAIN CONTENT                            ║
+     ╚══════════════════════════════════════════╝ -->
+<div style="max-width:1280px;margin:0 auto;padding:1.25rem 1rem">
 
-    <!-- Alert Banner -->
-    <div id="alertBanner" class="alert d-none d-flex align-items-center justify-content-between mb-3" role="alert">
-        <div class="d-flex align-items-center">
-            <i id="alertIcon" class="fas mr-2"></i>
-            <span id="alertMessage" class="font-weight-medium"></span>
+  <!-- Alert -->
+  <div id="alertBox" class="alert alert-ok mb-4 hidden">
+    <div class="flex items-center gap-2">
+      <i id="alertIco" class="fas"></i>
+      <span id="alertMsg"></span>
+    </div>
+    <button onclick="hideAlert()" style="background:none;border:none;cursor:pointer;color:inherit;font-size:1rem;line-height:1"><i class="fas fa-times"></i></button>
+  </div>
+
+  <!-- ── KPI Cards ── -->
+  <div class="grid grid-cols-2 gap-3 mb-4" style="grid-template-columns:repeat(auto-fit,minmax(140px,1fr))">
+
+    <!-- Total -->
+    <div class="scard">
+      <div class="flex items-center justify-between mb-2">
+        <span class="text-xs font-bold uppercase tracking-wider" style="color:#adb5bd">Total Emails</span>
+        <div style="width:34px;height:34px;border-radius:4px;background:rgba(55,90,127,.25);display:flex;align-items:center;justify-content:center">
+          <i class="fas fa-envelopes-bulk" style="color:#7cb3e0;font-size:.85rem"></i>
         </div>
-        <button type="button" onclick="dismissAlert()" class="close ml-3" style="color:inherit;">
-            <i class="fas fa-times"></i>
+      </div>
+      <div class="flex items-baseline gap-2">
+        <span style="font-size:2rem;font-weight:800;line-height:1">{{ total_count }}</span>
+        <span class="text-xs sm-hide" style="color:#adb5bd">logged</span>
+      </div>
+    </div>
+
+    <!-- Delivered -->
+    <div class="scard">
+      <div class="flex items-center justify-between mb-2">
+        <span class="text-xs font-bold uppercase tracking-wider" style="color:#adb5bd">Delivered</span>
+        <div style="width:34px;height:34px;border-radius:4px;background:rgba(0,188,140,.2);display:flex;align-items:center;justify-content:center">
+          <i class="fas fa-circle-check" style="color:#00bc8c;font-size:.85rem"></i>
+        </div>
+      </div>
+      <div class="flex items-baseline gap-2">
+        <span style="font-size:2rem;font-weight:800;line-height:1;color:#00bc8c">{{ sent_count }}</span>
+        <span class="text-xs font-bold px-1.5 py-0.5 rounded" style="background:rgba(0,188,140,.2);color:#00bc8c">{{ success_rate }}%</span>
+      </div>
+    </div>
+
+    <!-- Failed -->
+    <div class="scard">
+      <div class="flex items-center justify-between mb-2">
+        <span class="text-xs font-bold uppercase tracking-wider" style="color:#adb5bd">Failed</span>
+        <div style="width:34px;height:34px;border-radius:4px;background:rgba(231,76,60,.2);display:flex;align-items:center;justify-content:center">
+          <i class="fas fa-triangle-exclamation" style="color:#e74c3c;font-size:.85rem"></i>
+        </div>
+      </div>
+      <div class="flex items-baseline gap-2">
+        <span style="font-size:2rem;font-weight:800;line-height:1{% if failed_count > 0 %};color:#e74c3c{% endif %}">{{ failed_count }}</span>
+        <span class="text-xs sm-hide" style="color:#adb5bd">issues</span>
+      </div>
+    </div>
+
+    <!-- Senders -->
+    <div class="scard">
+      <div class="flex items-center justify-between mb-2">
+        <span class="text-xs font-bold uppercase tracking-wider" style="color:#adb5bd">Senders</span>
+        <div style="width:34px;height:34px;border-radius:4px;background:rgba(52,152,219,.2);display:flex;align-items:center;justify-content:center">
+          <i class="fas fa-users-gear" style="color:#3498db;font-size:.85rem"></i>
+        </div>
+      </div>
+      <div class="flex items-baseline gap-2">
+        <span style="font-size:2rem;font-weight:800;line-height:1">{{ sender_options|length }}</span>
+        <span class="text-xs sm-hide" style="color:#adb5bd">roles</span>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- ── Search + Filter Bar ── -->
+  <div style="background:#303030;border:1px solid #444;border-radius:5px;padding:.75rem;margin-bottom:.75rem">
+    <div class="flex flex-wrap items-center gap-2">
+
+      <!-- Search -->
+      <div style="position:relative;flex:1;min-width:200px;max-width:380px">
+        <i class="fas fa-search" style="position:absolute;left:.65rem;top:50%;transform:translateY(-50%);color:#adb5bd;font-size:.72rem"></i>
+        <input type="text" id="searchInp" oninput="filterTable()" placeholder="Search recipient, subject, Resend ID…"
+          class="inp" style="padding-left:2rem;padding-right:2rem">
+        <button id="clearBtn" onclick="clearSearch()" class="hidden" style="position:absolute;right:.6rem;top:50%;transform:translateY(-50%);background:none;border:none;cursor:pointer;color:#adb5bd;font-size:.8rem">
+          <i class="fas fa-circle-xmark"></i>
         </button>
+      </div>
+
+      <!-- Status pills -->
+      <div class="flex gap-1 items-center" style="background:#1a1a1a;padding:.25rem;border-radius:4px;border:1px solid #444">
+        <button onclick="setFilter('all')" id="f-all" class="pill on">All ({{ total_count }})</button>
+        <button onclick="setFilter('sent')" id="f-sent" class="pill">Sent ({{ sent_count }})</button>
+        <button onclick="setFilter('failed')" id="f-failed" class="pill">Failed ({{ failed_count }})</button>
+      </div>
+
+      <!-- Right actions -->
+      <div class="flex gap-2 ml-auto">
+        <button onclick="location.reload()" class="btn btn-sec btn-xs"><i class="fas fa-rotate"></i></button>
+        <button onclick="openCompose()" class="btn btn-pri btn-xs"><i class="fas fa-pen-to-square"></i><span>Compose</span></button>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ── Email Log Table ── -->
+  <div style="background:#303030;border:1px solid #444;border-radius:5px;overflow:hidden">
+    <!-- Card header -->
+    <div style="background:#282828;border-bottom:1px solid #444;padding:.6rem 1rem;display:flex;align-items:center;justify-content:space-between">
+      <div class="flex items-center gap-2">
+        <i class="fas fa-list-check" style="color:#adb5bd;font-size:.8rem"></i>
+        <strong style="font-size:.82rem">Outbound Email Audit Trail</strong>
+      </div>
+      <span class="text-xs" style="color:#adb5bd" id="rowCount">{{ email_logs|length }} entries</span>
     </div>
 
-    <!-- ── KPI Stat Cards ── -->
-    <div class="row mb-4">
-        <!-- Total Emails -->
-        <div class="col-6 col-lg-3 mb-3">
-            <div class="stat-card">
-                <div class="d-flex align-items-center justify-content-between mb-2">
-                    <span class="text-muted" style="font-size:.7rem;font-weight:700;text-transform:uppercase;letter-spacing:.06em;">Total Emails</span>
-                    <div class="stat-icon bg-primary" style="opacity:.85;">
-                        <i class="fas fa-envelopes-bulk text-white"></i>
-                    </div>
-                </div>
-                <div class="d-flex align-items-baseline">
-                    <span style="font-size:1.9rem;font-weight:800;">{{ total_count }}</span>
-                    <small class="text-muted ml-2 hide-xs">logged</small>
-                </div>
-            </div>
-        </div>
+    <!-- Table scroll wrapper -->
+    <div style="overflow-x:auto">
+      <table class="tbl" id="emailTable">
+        <thead>
+          <tr>
+            <th>Status</th>
+            <th>Recipient</th>
+            <th>From</th>
+            <th>Subject</th>
+            <th class="md-hide">Resend ID</th>
+            <th class="sm-hide">Date &amp; Time</th>
+            <th style="text-align:right">Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for log in email_logs %}
+          <tr data-status="{{ log.status }}" data-q="{{ log.recipient }} {{ log.sender }} {{ log.subject }} {{ log.resend_id|default:'' }}">
 
-        <!-- Delivered -->
-        <div class="col-6 col-lg-3 mb-3">
-            <div class="stat-card">
-                <div class="d-flex align-items-center justify-content-between mb-2">
-                    <span class="text-muted" style="font-size:.7rem;font-weight:700;text-transform:uppercase;letter-spacing:.06em;">Delivered</span>
-                    <div class="stat-icon bg-success" style="opacity:.85;">
-                        <i class="fas fa-circle-check text-white"></i>
-                    </div>
-                </div>
-                <div class="d-flex align-items-baseline">
-                    <span style="font-size:1.9rem;font-weight:800;" class="text-success">{{ sent_count }}</span>
-                    <span class="badge badge-success ml-2">{{ success_rate }}%</span>
-                </div>
-            </div>
-        </div>
+            <td>
+              {% if log.status == 'sent' %}
+                <span class="badge badge-sent"><i class="fas fa-check"></i> SENT</span>
+              {% elif log.status == 'failed' %}
+                <span class="badge badge-fail" title="{{ log.error_message }}"><i class="fas fa-xmark"></i> FAILED</span>
+              {% else %}
+                <span class="badge badge-pend"><i class="fas fa-clock"></i> PENDING</span>
+              {% endif %}
+            </td>
 
-        <!-- Failed -->
-        <div class="col-6 col-lg-3 mb-3">
-            <div class="stat-card">
-                <div class="d-flex align-items-center justify-content-between mb-2">
-                    <span class="text-muted" style="font-size:.7rem;font-weight:700;text-transform:uppercase;letter-spacing:.06em;">Failed</span>
-                    <div class="stat-icon bg-danger" style="opacity:.85;">
-                        <i class="fas fa-triangle-exclamation text-white"></i>
-                    </div>
-                </div>
-                <div class="d-flex align-items-baseline">
-                    <span style="font-size:1.9rem;font-weight:800;" class="{% if failed_count > 0 %}text-danger{% endif %}">{{ failed_count }}</span>
-                    <small class="text-muted ml-2">issues</small>
-                </div>
-            </div>
-        </div>
+            <td style="max-width:180px">
+              <span class="block truncate font-semibold" title="{{ log.recipient }}">{{ log.recipient }}</span>
+            </td>
 
-        <!-- Sender Accounts -->
-        <div class="col-6 col-lg-3 mb-3">
-            <div class="stat-card">
-                <div class="d-flex align-items-center justify-content-between mb-2">
-                    <span class="text-muted" style="font-size:.7rem;font-weight:700;text-transform:uppercase;letter-spacing:.06em;">Sender Accounts</span>
-                    <div class="stat-icon bg-info" style="opacity:.85;">
-                        <i class="fas fa-users-gear text-white"></i>
-                    </div>
-                </div>
-                <div class="d-flex align-items-baseline">
-                    <span style="font-size:1.9rem;font-weight:800;">{{ sender_options|length }}</span>
-                    <small class="text-muted ml-2 hide-xs">roles</small>
-                </div>
-            </div>
+            <td class="sm-hide" style="max-width:160px;color:#adb5bd;font-size:.75rem">
+              <span class="block truncate" title="{{ log.sender }}">{{ log.sender }}</span>
+            </td>
+
+            <td style="max-width:220px">
+              <span class="block truncate" title="{{ log.subject }}">{{ log.subject }}</span>
+            </td>
+
+            <td class="md-hide">
+              {% if log.resend_id %}
+                <span class="mono" title="{{ log.resend_id }}">{{ log.resend_id|slice:":12" }}…</span>
+              {% else %}
+                <span style="color:#555">—</span>
+              {% endif %}
+            </td>
+
+            <td class="sm-hide" style="white-space:nowrap;color:#adb5bd;font-size:.75rem">
+              {{ log.created_at|date:"M d, Y · H:i" }}
+            </td>
+
+            <td style="text-align:right;white-space:nowrap">
+              <button onclick="viewDetail({{ log.id }})" class="btn btn-sec btn-xs" style="margin-right:4px">
+                <i class="far fa-eye"></i> Preview
+              </button>
+              <button onclick="resendEmail({{ log.id }})" class="btn btn-xs" style="background:rgba(55,90,127,.2);color:#7cb3e0;border:1px solid rgba(55,90,127,.4)">
+                <i class="fas fa-rotate-right"></i> Resend
+              </button>
+            </td>
+
+          </tr>
+          {% empty %}
+          <tr>
+            <td colspan="7" style="text-align:center;padding:3rem;color:#adb5bd">
+              <i class="far fa-envelope-open" style="font-size:2.5rem;display:block;margin-bottom:.75rem;color:#444"></i>
+              <strong style="color:#fff;display:block;margin-bottom:.25rem">No outbound emails logged yet</strong>
+              Click <strong>Compose</strong> above to send your first email!
+            </td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+</div><!-- /main -->
+
+
+<!-- ╔══════════════════════════════════════════╗
+     ║  COMPOSE MODAL                           ║
+     ╚══════════════════════════════════════════╝ -->
+<div id="composeModal" class="modal" onclick="backdropClose(event,'composeModal')">
+  <div style="background:#303030;border:1px solid #444;border-radius:6px;width:100%;max-width:660px;max-height:92vh;display:flex;flex-direction:column;box-shadow:0 16px 48px rgba(0,0,0,.8)" onclick="event.stopPropagation()">
+
+    <!-- Header -->
+    <div style="background:#282828;border-bottom:1px solid #444;padding:.7rem 1rem;display:flex;align-items:center;justify-content:space-between;flex-shrink:0">
+      <div class="flex items-center gap-2">
+        <div style="width:28px;height:28px;border-radius:4px;background:#375a7f;display:flex;align-items:center;justify-content:center">
+          <i class="fas fa-paper-plane" style="font-size:.7rem;color:#fff"></i>
         </div>
+        <strong>Compose Transactional Email</strong>
+      </div>
+      <button onclick="closeCompose()" style="background:none;border:none;cursor:pointer;color:#adb5bd;font-size:1.1rem;line-height:1">&times;</button>
     </div>
 
-    <!-- ── Filter & Search Bar ── -->
-    <div class="shp-card p-3 mb-3">
-        <div class="d-flex flex-column flex-md-row align-items-stretch align-items-md-center" style="gap:.6rem;">
-            <!-- Search -->
-            <div class="flex-grow-1 position-relative" style="max-width:420px;">
-                <i class="fas fa-search position-absolute text-muted" style="left:.75rem;top:50%;transform:translateY(-50%);font-size:.75rem;"></i>
-                <input type="text" id="searchInput" onkeyup="filterTable()"
-                    placeholder="Search recipient, subject, Resend ID..."
-                    class="form-control shp-input pl-4" style="font-size:.82rem;">
-                <button onclick="clearSearch()" id="clearSearchBtn" class="d-none position-absolute btn btn-link p-0 text-muted"
-                    style="right:.6rem;top:50%;transform:translateY(-50%);">
-                    <i class="fas fa-circle-xmark" style="font-size:.8rem;"></i>
-                </button>
-            </div>
+    <!-- Form body (scrollable) -->
+    <form id="composeForm" onsubmit="submitCompose(event)" style="padding:1.1rem;overflow-y:auto;flex:1;display:flex;flex-direction:column;gap:1rem">
+      {% csrf_token %}
 
-            <!-- Status pills -->
-            <div class="filter-pills">
-                <button onclick="setStatusFilter('all')" id="filter-all" class="filter-pill active">All ({{ total_count }})</button>
-                <button onclick="setStatusFilter('sent')" id="filter-sent" class="filter-pill">Sent ({{ sent_count }})</button>
-                <button onclick="setStatusFilter('failed')" id="filter-failed" class="filter-pill">Failed ({{ failed_count }})</button>
-            </div>
-
-            <!-- Toolbar -->
-            <div class="d-flex ml-auto" style="gap:.4rem;">
-                <button onclick="window.location.reload()" class="btn btn-secondary btn-sm" title="Refresh">
-                    <i class="fas fa-rotate"></i>
-                </button>
-                <button onclick="openComposeModal()" class="btn btn-primary btn-sm">
-                    <i class="fas fa-pen-to-square mr-1"></i> Compose
-                </button>
-            </div>
+      <!-- From -->
+      <div>
+        <div class="flex items-center justify-between mb-1">
+          <label class="text-xs font-bold uppercase tracking-wider" style="color:#adb5bd">Send From (Role) <span style="color:#e74c3c">*</span></label>
+          <span class="text-xs" style="color:#3498db">Company identities</span>
         </div>
+        <select id="fromSel" onchange="onSenderChange(this.value)" class="inp">
+          {% for opt in sender_options %}
+          <option value="{{ opt.full }}" {% if opt.id == 'hello' %}selected{% endif %}>
+            {{ opt.name }} — {{ opt.address }} [{{ opt.badge }}]
+          </option>
+          {% endfor %}
+          <option value="CUSTOM">✏️ Custom Address (Enter manually)…</option>
+        </select>
+        <div id="customBox" class="hidden mt-2">
+          <input type="text" id="customFrom" placeholder='Custom Name <custom@shptechnology.online>' class="inp">
+          <p class="text-xs mt-1" style="color:#adb5bd">Format: <code style="background:#1a1a1a;padding:.1rem .3rem;border-radius:2px">Display Name &lt;email@domain&gt;</code></p>
+        </div>
+        <p class="text-xs mt-1" style="color:#6c757d">
+          <i class="fas fa-circle-info" style="color:#3498db;margin-right:3px"></i>
+          Sandbox mode: emails route via <code style="background:#1a1a1a;padding:.1rem .3rem;border-radius:2px">onboarding@resend.dev</code>. Verify
+          <code style="background:#1a1a1a;padding:.1rem .3rem;border-radius:2px">shptechnology.online</code> at
+          <a href="https://resend.com/domains" target="_blank" style="color:#3498db">resend.com/domains</a> to unlock.
+        </p>
+      </div>
+
+      <!-- To -->
+      <div>
+        <label class="text-xs font-bold uppercase tracking-wider mb-1 block" style="color:#adb5bd">Recipient (To) <span style="color:#e74c3c">*</span></label>
+        <input type="email" id="toEmail" required value="founder.shp@gmail.com" placeholder="client@example.com" class="inp">
+      </div>
+
+      <!-- Template -->
+      <div>
+        <label class="text-xs font-bold uppercase tracking-wider mb-1 block" style="color:#adb5bd">Quick Template</label>
+        <select id="tmplSel" onchange="applyTemplate(this.value)" class="inp">
+          <option value="welcome">Client Inquiry Response &amp; Welcome (Hello)</option>
+          <option value="support">Support Ticket Acknowledgement (Support)</option>
+          <option value="proposal">Enterprise Solution Proposal (Sales)</option>
+          <option value="consultation">Technical Architecture Consultation</option>
+          <option value="custom">Custom Blank Email</option>
+        </select>
+      </div>
+
+      <!-- Subject -->
+      <div>
+        <label class="text-xs font-bold uppercase tracking-wider mb-1 block" style="color:#adb5bd">Subject Line <span style="color:#e74c3c">*</span></label>
+        <input type="text" id="subjectInp" required placeholder="Subject…" class="inp">
+      </div>
+
+      <!-- Body + Preview tabs -->
+      <div>
+        <div class="flex items-center justify-between mb-1">
+          <label class="text-xs font-bold uppercase tracking-wider" style="color:#adb5bd">Email Body (HTML supported)</label>
+          <div class="flex items-center gap-1" style="font-size:.75rem">
+            <button type="button" onclick="setTab('edit')" id="tab-edit"
+              style="background:none;border:none;cursor:pointer;color:#3498db;font-weight:700;text-decoration:underline">Edit</button>
+            <span style="color:#444">|</span>
+            <button type="button" onclick="setTab('prev')" id="tab-prev"
+              style="background:none;border:none;cursor:pointer;color:#adb5bd">Preview</button>
+          </div>
+        </div>
+        <div id="editBox">
+          <textarea id="bodyInp" rows="8" required placeholder="Write message or HTML…" class="inp"></textarea>
+        </div>
+        <div id="prevBox" class="hidden eml-prev"></div>
+      </div>
+
+    </form>
+
+    <!-- Footer -->
+    <div style="border-top:1px solid #444;padding:.7rem 1rem;display:flex;align-items:center;justify-content:flex-end;gap:.5rem;flex-shrink:0">
+      <button type="button" onclick="closeCompose()" class="btn btn-sec">Cancel</button>
+      <button type="submit" form="composeForm" id="sendBtn" class="btn btn-pri">
+        <i class="fas fa-paper-plane"></i> Dispatch Email
+      </button>
     </div>
 
-    <!-- ── Email Audit Table ── -->
-    <div class="shp-card" style="overflow:hidden;">
-        <div class="shp-card-header d-flex align-items-center justify-content-between">
-            <div class="d-flex align-items-center">
-                <i class="fas fa-list-check text-muted mr-2"></i>
-                <strong style="font-size:.85rem;">Outbound Email Audit Trail</strong>
-            </div>
-            <small class="text-muted" id="rowCountText">{{ email_logs|length }} entries</small>
-        </div>
-        <div class="table-responsive">
-            <table class="shp-table" id="emailTable">
-                <thead>
-                    <tr>
-                        <th>Status</th>
-                        <th>Recipient</th>
-                        <th>From</th>
-                        <th>Subject</th>
-                        <th class="hide-sm">Resend ID</th>
-                        <th class="hide-xs">Date &amp; Time</th>
-                        <th class="text-right">Actions</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {% for log in email_logs %}
-                    <tr data-status="{{ log.status }}" data-search="{{ log.recipient }} {{ log.sender }} {{ log.subject }} {{ log.resend_id|default:'' }}">
-                        <!-- Status -->
-                        <td>
-                            {% if log.status == 'sent' %}
-                                <span class="badge badge-success"><i class="fas fa-check mr-1"></i>SENT</span>
-                            {% elif log.status == 'failed' %}
-                                <span class="badge badge-danger" title="{{ log.error_message }}"><i class="fas fa-xmark mr-1"></i>FAILED</span>
-                            {% else %}
-                                <span class="badge badge-warning"><i class="fas fa-clock mr-1"></i>PENDING</span>
-                            {% endif %}
-                        </td>
-                        <!-- Recipient -->
-                        <td class="font-weight-bold" style="max-width:180px;">
-                            <span class="d-block text-truncate" title="{{ log.recipient }}">{{ log.recipient }}</span>
-                        </td>
-                        <!-- Sender -->
-                        <td class="text-muted" style="font-size:.78rem;max-width:150px;">
-                            <span class="d-block text-truncate" title="{{ log.sender }}">{{ log.sender }}</span>
-                        </td>
-                        <!-- Subject -->
-                        <td style="max-width:220px;">
-                            <span class="d-block text-truncate" title="{{ log.subject }}">{{ log.subject }}</span>
-                        </td>
-                        <!-- Resend ID -->
-                        <td class="hide-sm">
-                            {% if log.resend_id %}
-                                <span class="mono-tag" title="{{ log.resend_id }}">{{ log.resend_id|slice:":12" }}…</span>
-                            {% else %}
-                                <span class="text-muted">—</span>
-                            {% endif %}
-                        </td>
-                        <!-- Timestamp -->
-                        <td class="text-muted hide-xs" style="font-size:.78rem;white-space:nowrap;">
-                            {{ log.created_at|date:"M d, Y · H:i" }}
-                        </td>
-                        <!-- Actions -->
-                        <td class="text-right" style="white-space:nowrap;">
-                            <button onclick="viewEmailDetail({{ log.id }})" class="btn btn-secondary btn-xs mr-1" title="Preview">
-                                <i class="far fa-eye mr-1"></i>Preview
-                            </button>
-                            <button onclick="resendEmail({{ log.id }})" class="btn btn-primary btn-xs" title="Retry / Resend">
-                                <i class="fas fa-rotate-right mr-1"></i>Resend
-                            </button>
-                        </td>
-                    </tr>
-                    {% empty %}
-                    <tr>
-                        <td colspan="7" class="text-center py-5 text-muted">
-                            <i class="far fa-envelope-open fa-3x mb-3 d-block"></i>
-                            <strong class="d-block text-white mb-1">No outbound emails logged yet</strong>
-                            Click <strong>"Compose"</strong> above to send your first email!
-                        </td>
-                    </tr>
-                    {% endfor %}
-                </tbody>
-            </table>
-        </div>
-    </div>
-
-</div><!-- /container-fluid -->
-
-
-<!-- ═══════════════════════ COMPOSE MODAL ═══════════════════════════════════ -->
-<div id="composeModal" class="shp-modal-backdrop" onclick="handleBackdropClick(event,'composeModal')">
-    <div class="shp-modal-box" onclick="event.stopPropagation()">
-        <div class="shp-modal-header">
-            <div class="d-flex align-items-center">
-                <span class="btn btn-primary btn-sm mr-2 p-1" style="width:28px;height:28px;display:flex;align-items:center;justify-content:center;">
-                    <i class="fas fa-paper-plane" style="font-size:.7rem;"></i>
-                </span>
-                <strong>Compose Transactional Email</strong>
-            </div>
-            <button onclick="closeComposeModal()" class="close text-white" style="opacity:.7;">&times;</button>
-        </div>
-
-        <form id="composeForm" onsubmit="handleComposeSubmit(event)" class="shp-modal-body">
-            {% csrf_token %}
-
-            <!-- 1. Sender identity -->
-            <div class="form-group">
-                <label class="shp-label d-flex justify-content-between">
-                    <span>Send From (Role / Identity) <span class="text-danger">*</span></span>
-                    <span class="text-info" style="font-size:.65rem;font-weight:400;text-transform:none;letter-spacing:0;">Company email accounts</span>
-                </label>
-                <select id="fromEmailSelect" onchange="handleSenderChange(this.value)" class="form-control shp-input">
-                    {% for opt in sender_options %}
-                    <option value="{{ opt.full }}" {% if opt.id == 'hello' %}selected{% endif %}>
-                        {{ opt.name }} — {{ opt.address }} [{{ opt.badge }}]
-                    </option>
-                    {% endfor %}
-                    <option value="CUSTOM">Custom Address (Enter manually)…</option>
-                </select>
-                <!-- Custom sender input -->
-                <div id="customSenderContainer" class="d-none mt-2">
-                    <input type="text" id="customFromEmail" placeholder='Custom Name <custom@shptechnology.online>'
-                        class="form-control shp-input">
-                    <small class="text-muted">Format: <code>Display Name &lt;email@domain.com&gt;</code></small>
-                </div>
-                <small class="text-muted mt-1 d-block">
-                    <i class="fas fa-circle-info text-info mr-1"></i>
-                    Sandbox mode: emails go via <code>onboarding@resend.dev</code>. Verify
-                    <code>shptechnology.online</code> at
-                    <a href="https://resend.com/domains" target="_blank" class="text-info">resend.com/domains</a>
-                    to unlock company addresses.
-                </small>
-            </div>
-
-            <!-- 2. Recipient -->
-            <div class="form-group">
-                <label class="shp-label">Recipient (To) <span class="text-danger">*</span></label>
-                <input type="email" id="toEmail" required value="founder.shp@gmail.com"
-                    placeholder="client@example.com" class="form-control shp-input">
-            </div>
-
-            <!-- 3. Quick Template -->
-            <div class="form-group">
-                <label class="shp-label">Quick Template</label>
-                <select id="templateSelector" onchange="applyTemplate(this.value)" class="form-control shp-input">
-                    <option value="welcome">Client Inquiry Response &amp; Welcome (Hello)</option>
-                    <option value="support">Support Ticket Acknowledgement (Support)</option>
-                    <option value="proposal">Enterprise Solution Proposal (Sales)</option>
-                    <option value="consultation">Technical Architecture Consultation (Engineering)</option>
-                    <option value="custom">Custom Blank Email</option>
-                </select>
-            </div>
-
-            <!-- 4. Subject -->
-            <div class="form-group">
-                <label class="shp-label">Subject Line <span class="text-danger">*</span></label>
-                <input type="text" id="subjectEmail" required placeholder="Subject…"
-                    class="form-control shp-input">
-            </div>
-
-            <!-- 5. Body + Live Preview tabs -->
-            <div class="form-group">
-                <div class="d-flex justify-content-between align-items-center mb-1">
-                    <label class="shp-label mb-0">Email Body (HTML supported)</label>
-                    <div>
-                        <button type="button" onclick="setEditorTab('editor')" id="tab-editor"
-                            class="btn btn-link btn-sm p-0 font-weight-bold text-info" style="font-size:.75rem;">Edit</button>
-                        <span class="text-muted mx-1" style="font-size:.75rem;">|</span>
-                        <button type="button" onclick="setEditorTab('preview')" id="tab-preview"
-                            class="btn btn-link btn-sm p-0 text-muted" style="font-size:.75rem;">Live Preview</button>
-                    </div>
-                </div>
-                <div id="editorContainer">
-                    <textarea id="bodyContent" rows="7" required
-                        placeholder="Write your message or HTML…"
-                        class="form-control shp-input" style="font-family:monospace;font-size:.8rem;"></textarea>
-                </div>
-                <div id="previewContainer" class="d-none email-preview border" style="border-color:var(--jz-border)!important;"></div>
-            </div>
-        </form>
-
-        <div class="shp-modal-footer d-flex align-items-center justify-content-end" style="gap:.5rem;">
-            <button type="button" onclick="closeComposeModal()" class="btn btn-secondary btn-sm">Cancel</button>
-            <button type="submit" form="composeForm" id="sendBtn" class="btn btn-primary btn-sm">
-                <i class="fas fa-paper-plane mr-1"></i> Dispatch Email
-            </button>
-        </div>
-    </div>
+  </div>
 </div>
 
 
-<!-- ═══════════════════════ DETAIL MODAL ════════════════════════════════════ -->
-<div id="detailModal" class="shp-modal-backdrop" onclick="handleBackdropClick(event,'detailModal')">
-    <div class="shp-modal-box" style="max-width:760px;" onclick="event.stopPropagation()">
-        <div class="shp-modal-header">
-            <div class="d-flex align-items-center" style="gap:.5rem;">
-                <span id="detailStatusBadge" class="badge"></span>
-                <strong id="detailSubject" class="text-truncate" style="max-width:480px;"></strong>
-            </div>
-            <button onclick="closeDetailModal()" class="close text-white" style="opacity:.7;">&times;</button>
-        </div>
+<!-- ╔══════════════════════════════════════════╗
+     ║  DETAIL MODAL                            ║
+     ╚══════════════════════════════════════════╝ -->
+<div id="detailModal" class="modal" onclick="backdropClose(event,'detailModal')">
+  <div style="background:#303030;border:1px solid #444;border-radius:6px;width:100%;max-width:740px;max-height:92vh;display:flex;flex-direction:column;box-shadow:0 16px 48px rgba(0,0,0,.8)" onclick="event.stopPropagation()">
 
-        <div class="shp-modal-body">
-            <!-- Metadata grid -->
-            <div class="shp-card p-3 mb-3" style="background:var(--jz-input);">
-                <div class="row text-sm" style="font-size:.82rem;">
-                    <div class="col-6 mb-2">
-                        <span class="text-muted">Recipient (To):</span>
-                        <div id="detailRecipient" class="font-weight-bold text-white"></div>
-                    </div>
-                    <div class="col-6 mb-2">
-                        <span class="text-muted">Sender (From):</span>
-                        <div id="detailSender" class="font-weight-bold text-white"></div>
-                    </div>
-                    <div class="col-6">
-                        <span class="text-muted">Resend Message ID:</span>
-                        <div id="detailResendId" class="text-info" style="font-family:monospace;font-size:.75rem;"></div>
-                    </div>
-                    <div class="col-6">
-                        <span class="text-muted">Timestamp:</span>
-                        <div id="detailTimestamp" class="text-white"></div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Error box -->
-            <div id="detailErrorBox" class="alert alert-danger d-none" style="font-size:.8rem;">
-                <i class="fas fa-triangle-exclamation mr-1"></i>
-                <strong>Delivery Error:</strong>
-                <span id="detailErrorMessage" class="font-monospace"></span>
-            </div>
-
-            <!-- HTML Preview -->
-            <div>
-                <label class="shp-label">Rendered Email Body Preview</label>
-                <div class="email-preview" id="detailHtmlPreview"></div>
-            </div>
-        </div>
-
-        <div class="shp-modal-footer d-flex align-items-center justify-content-between">
-            <small class="text-muted" id="detailLogId"></small>
-            <div style="display:flex;gap:.5rem;">
-                <button onclick="closeDetailModal()" class="btn btn-secondary btn-sm">Close</button>
-                <button id="detailResendBtn" class="btn btn-primary btn-sm">
-                    <i class="fas fa-rotate-right mr-1"></i> Resend Email
-                </button>
-            </div>
-        </div>
+    <!-- Header -->
+    <div style="background:#282828;border-bottom:1px solid #444;padding:.7rem 1rem;display:flex;align-items:center;justify-content:space-between;flex-shrink:0">
+      <div class="flex items-center gap-2">
+        <span id="dBadge" class="badge"></span>
+        <strong id="dSubject" class="truncate" style="max-width:500px"></strong>
+      </div>
+      <button onclick="closeDetail()" style="background:none;border:none;cursor:pointer;color:#adb5bd;font-size:1.1rem;line-height:1">&times;</button>
     </div>
+
+    <!-- Body -->
+    <div style="padding:1.1rem;overflow-y:auto;flex:1;display:flex;flex-direction:column;gap:1rem">
+
+      <!-- Meta grid -->
+      <div style="background:#1a1a1a;border:1px solid #444;border-radius:4px;padding:.85rem;display:grid;grid-template-columns:1fr 1fr;gap:.85rem;font-size:.8rem">
+        <div><span style="color:#adb5bd;display:block;margin-bottom:2px">Recipient (To)</span><div id="dTo" class="font-semibold"></div></div>
+        <div><span style="color:#adb5bd;display:block;margin-bottom:2px">Sender (From)</span><div id="dFrom" class="font-semibold"></div></div>
+        <div><span style="color:#adb5bd;display:block;margin-bottom:2px">Resend Message ID</span><div id="dRid" style="font-family:monospace;font-size:.72rem;color:#3498db"></div></div>
+        <div><span style="color:#adb5bd;display:block;margin-bottom:2px">Timestamp</span><div id="dTime"></div></div>
+      </div>
+
+      <!-- Error -->
+      <div id="dErrBox" class="hidden" style="background:rgba(231,76,60,.1);border:1px solid rgba(231,76,60,.3);border-radius:4px;padding:.75rem;font-size:.8rem;color:#e74c3c">
+        <i class="fas fa-triangle-exclamation mr-1"></i><strong>Delivery Error:</strong>
+        <span id="dErrMsg" style="font-family:monospace;word-break:break-all"></span>
+      </div>
+
+      <!-- HTML preview -->
+      <div>
+        <label class="text-xs font-bold uppercase tracking-wider mb-1 block" style="color:#adb5bd">Rendered Email Body</label>
+        <div id="dHtml" class="eml-prev" style="border:1px solid #444"></div>
+      </div>
+
+    </div>
+
+    <!-- Footer -->
+    <div style="border-top:1px solid #444;padding:.7rem 1rem;display:flex;align-items:center;justify-content:space-between;flex-shrink:0">
+      <small id="dLogId" style="color:#adb5bd"></small>
+      <div class="flex items-center gap-2">
+        <button onclick="closeDetail()" class="btn btn-sec btn-xs">Close</button>
+        <button id="dResendBtn" class="btn btn-pri btn-xs"><i class="fas fa-rotate-right"></i> Resend Email</button>
+      </div>
+    </div>
+
+  </div>
 </div>
 
 
-<!-- ═══════════════════════════════════════════ SCRIPTS ═════════════════════ -->
+<!-- ╔══════════════════════════════════════════╗
+     ║  JAVASCRIPT                              ║
+     ╚══════════════════════════════════════════╝ -->
 <script>
-    let currentFilter = 'all';
+// ── Templates ─────────────────────────────────────────────────────────────
+const TEMPLATES = {
+  welcome: {
+    sid:'hello',
+    sub:'Thank you for connecting with SHP Technology',
+    body:`<div style="font-family:Arial,sans-serif;line-height:1.6;color:#1e293b;max-width:600px;margin:0 auto;border:1px solid #e2e8f0;border-radius:8px;padding:24px">
+  <h2 style="color:#0f172a;margin-top:0">Welcome to SHP Technology</h2>
+  <p>We received your inquiry regarding custom software development &amp; enterprise cloud solutions.</p>
+  <p>Our senior technical architects are reviewing your specifications and will respond within 24 hours.</p>
+  <hr style="border:none;border-top:1px solid #e2e8f0;margin:20px 0">
+  <p style="font-size:13px;color:#64748b">SHP Technology — Build &bull; Automate &bull; Grow<br>
+  Website: <a href="https://shptechnology.online" style="color:#2563eb">shptechnology.online</a></p>
+</div>`
+  },
+  support: {
+    sid:'support',
+    sub:'[Ticket #SHP] We received your support request',
+    body:`<div style="font-family:Arial,sans-serif;line-height:1.6;color:#1e293b;max-width:600px;margin:0 auto;border:1px solid #e2e8f0;border-radius:8px;padding:24px">
+  <h2 style="color:#0f172a;margin-top:0">SHP Support Helpdesk</h2>
+  <p>Your support ticket has been registered. A specialist has been assigned.</p>
+  <p><strong>Status:</strong> Under Active Investigation<br><strong>SLA:</strong> Under 2 hours</p>
+  <p>Reply to this email with additional logs or screenshots.</p>
+  <p>Sincerely,<br><strong>SHP Technology Customer Support</strong></p>
+</div>`
+  },
+  proposal: {
+    sid:'sales',
+    sub:'SHP Technology — Enterprise Engineering Solution & Proposal',
+    body:`<div style="font-family:Arial,sans-serif;line-height:1.6;color:#1e293b;max-width:600px;margin:0 auto;border:1px solid #e2e8f0;border-radius:8px;padding:24px">
+  <h2 style="color:#0f172a;margin-top:0">Project Architecture Proposal</h2>
+  <p>Following our technical evaluation, we have outlined the roadmap:</p>
+  <ul>
+    <li>High-performance microservices architecture</li>
+    <li>Multi-region cloud infrastructure &amp; automated CI/CD</li>
+    <li>Production enterprise security &amp; SLA guarantees</li>
+  </ul>
+  <p>Please let us know your availability for a deep-dive walkthrough.</p>
+  <p>Sincerely,<br><strong>SHP Technology Solutions Team</strong></p>
+</div>`
+  },
+  consultation: {
+    sid:'hello',
+    sub:'Invitation: 1-on-1 Technical Architecture Consultation',
+    body:`<div style="font-family:Arial,sans-serif;line-height:1.6;color:#1e293b;max-width:600px;margin:0 auto;border:1px solid #e2e8f0;border-radius:8px;padding:24px">
+  <h2 style="color:#0f172a;margin-top:0">Schedule Your Technical Strategy Session</h2>
+  <p>We invite you to a complimentary 30-minute consultation with our lead architects.</p>
+  <p>Reply with your preferred schedule or WhatsApp us at <strong>+91 9301885654</strong>.</p>
+  <p>Warm regards,<br>SHP Technology Engineering</p>
+</div>`
+  },
+  custom:{sid:'hello',sub:'',body:'<p>Dear Client,</p><p>Thank you for reaching out to SHP Technology.</p><p>Best regards,<br>SHP Technology Team</p>'}
+};
 
-    // ── Quick email templates ──────────────────────────────────────────────
-    const templates = {
-        welcome: {
-            senderId: 'hello',
-            subject: 'Thank you for connecting with SHP Technology',
-            body: '<div style="font-family:Arial,sans-serif;line-height:1.6;color:#1e293b;max-width:600px;margin:0 auto;border:1px solid #e2e8f0;border-radius:8px;padding:24px;">\n  <h2 style="color:#0f172a;margin-top:0;">Welcome to SHP Technology</h2>\n  <p>We received your inquiry regarding custom software development &amp; enterprise cloud solutions.</p>\n  <p>Our senior technical architects are reviewing your specifications and will respond within 24 hours.</p>\n  <hr style="border:none;border-top:1px solid #e2e8f0;margin:20px 0;">\n  <p style="font-size:13px;color:#64748b;">SHP Technology — Build &bull; Automate &bull; Grow<br>Website: <a href="https://shptechnology.online" style="color:#2563eb;">shptechnology.online</a></p>\n</div>'
-        },
-        support: {
-            senderId: 'support',
-            subject: '[Ticket #SHP-8924] We received your technical support request',
-            body: '<div style="font-family:Arial,sans-serif;line-height:1.6;color:#1e293b;max-width:600px;margin:0 auto;border:1px solid #e2e8f0;border-radius:8px;padding:24px;">\n  <h2 style="color:#0f172a;margin-top:0;">SHP Support Helpdesk</h2>\n  <p>Your support ticket has been registered. A specialist has been assigned.</p>\n  <p><strong>Status:</strong> Under Active Investigation<br><strong>SLA:</strong> Under 2 hours</p>\n  <p>Reply to this email with any additional logs or screenshots.</p>\n  <p>Sincerely,<br><strong>SHP Technology Customer Support</strong></p>\n</div>'
-        },
-        proposal: {
-            senderId: 'sales',
-            subject: 'SHP Technology — Enterprise Engineering Solution & Proposal',
-            body: '<div style="font-family:Arial,sans-serif;line-height:1.6;color:#1e293b;max-width:600px;margin:0 auto;border:1px solid #e2e8f0;border-radius:8px;padding:24px;">\n  <h2 style="color:#0f172a;margin-top:0;">Project Architecture Proposal</h2>\n  <p>Following our technical evaluation, we have outlined the roadmap:</p>\n  <ul>\n    <li>High-performance microservices architecture</li>\n    <li>Multi-region cloud infrastructure &amp; automated CI/CD</li>\n    <li>Production enterprise security &amp; SLA guarantees</li>\n  </ul>\n  <p>Please let us know your availability for a deep-dive walkthrough.</p>\n  <p>Sincerely,<br><strong>SHP Technology Solutions Team</strong></p>\n</div>'
-        },
-        consultation: {
-            senderId: 'hello',
-            subject: 'Invitation: 1-on-1 Technical Architecture Consultation',
-            body: '<div style="font-family:Arial,sans-serif;line-height:1.6;color:#1e293b;max-width:600px;margin:0 auto;border:1px solid #e2e8f0;border-radius:8px;padding:24px;">\n  <h2 style="color:#0f172a;margin-top:0;">Schedule Your Technical Strategy Session</h2>\n  <p>We invite you to a complimentary 30-minute system design consultation with our lead architects.</p>\n  <p>Reply with your preferred schedule or WhatsApp us at <strong>+91 9301885654</strong>.</p>\n  <p>Warm regards,<br>SHP Technology Engineering</p>\n</div>'
-        },
-        custom: {
-            senderId: 'hello',
-            subject: '',
-            body: '<p>Dear Client,</p><p>Thank you for reaching out to SHP Technology.</p><p>Best regards,<br>SHP Technology Team</p>'
-        }
-    };
+// ── Filter / Search ────────────────────────────────────────────────────────
+let curFilter = 'all';
 
-    function handleSenderChange(val) {
-        const box = document.getElementById('customSenderContainer');
-        if (val === 'CUSTOM') {
-            box.classList.remove('d-none');
-            document.getElementById('customFromEmail').focus();
-        } else {
-            box.classList.add('d-none');
-        }
+function filterTable(){
+  const q = document.getElementById('searchInp').value.toLowerCase().trim();
+  document.getElementById('clearBtn').classList.toggle('hidden', !q);
+  const rows = document.querySelectorAll('#emailTable tbody tr');
+  let n=0;
+  rows.forEach(r=>{
+    const ok = (!q || (r.dataset.q||'').toLowerCase().includes(q)) &&
+               (curFilter==='all' || r.dataset.status===curFilter);
+    r.style.display = ok?'':'none';
+    if(ok) n++;
+  });
+  document.getElementById('rowCount').textContent = n+' entries';
+}
+
+function clearSearch(){
+  document.getElementById('searchInp').value='';
+  filterTable();
+}
+
+function setFilter(s){
+  curFilter=s;
+  ['all','sent','failed'].forEach(x=>{
+    document.getElementById('f-'+x).classList.toggle('on',x===s);
+  });
+  filterTable();
+}
+
+// ── Modals ─────────────────────────────────────────────────────────────────
+function openCompose(){
+  if(!document.getElementById('bodyInp').value) applyTemplate('welcome');
+  document.getElementById('composeModal').classList.add('open');
+  document.body.style.overflow='hidden';
+}
+function closeCompose(){
+  document.getElementById('composeModal').classList.remove('open');
+  document.body.style.overflow='';
+}
+function closeDetail(){
+  document.getElementById('detailModal').classList.remove('open');
+  document.body.style.overflow='';
+}
+function backdropClose(e,id){
+  if(e.target.id===id){ document.getElementById(id).classList.remove('open'); document.body.style.overflow=''; }
+}
+
+// ── Alerts ─────────────────────────────────────────────────────────────────
+function showAlert(msg,type='ok'){
+  const b=document.getElementById('alertBox');
+  b.className='alert mb-4 '+(type==='ok'?'alert-ok':'alert-err');
+  document.getElementById('alertIco').className='fas '+(type==='ok'?'fa-circle-check':'fa-circle-xmark');
+  document.getElementById('alertMsg').textContent=msg;
+  b.classList.remove('hidden');
+  b.scrollIntoView({behavior:'smooth',block:'nearest'});
+}
+function hideAlert(){ document.getElementById('alertBox').classList.add('hidden'); }
+
+// ── CSRF ───────────────────────────────────────────────────────────────────
+function getCsrf(){
+  const m=document.cookie.split(';').map(c=>c.trim()).find(c=>c.startsWith('csrftoken='));
+  if(m) return decodeURIComponent(m.split('=')[1]);
+  return document.querySelector('[name=csrfmiddlewaretoken]')?.value||'';
+}
+
+// ── Sender dropdown ────────────────────────────────────────────────────────
+function onSenderChange(v){
+  document.getElementById('customBox').classList.toggle('hidden', v!=='CUSTOM');
+  if(v==='CUSTOM') document.getElementById('customFrom').focus();
+}
+
+// ── Template loader ────────────────────────────────────────────────────────
+function applyTemplate(type){
+  const t=TEMPLATES[type]||TEMPLATES.custom;
+  if(t.sub) document.getElementById('subjectInp').value=t.sub;
+  document.getElementById('bodyInp').value=t.body;
+  const sel=document.getElementById('fromSel');
+  if(t.sid){
+    for(let i=0;i<sel.options.length;i++){
+      if(sel.options[i].text.toLowerCase().includes(t.sid)){
+        sel.selectedIndex=i; onSenderChange(sel.value); break;
+      }
     }
+  }
+  livePreview();
+}
 
-    function applyTemplate(type) {
-        const tmpl = templates[type] || templates.custom;
-        if (tmpl.subject) document.getElementById('subjectEmail').value = tmpl.subject;
-        document.getElementById('bodyContent').value = tmpl.body;
-        const sel = document.getElementById('fromEmailSelect');
-        if (tmpl.senderId) {
-            for (let i = 0; i < sel.options.length; i++) {
-                if (sel.options[i].text.toLowerCase().includes(tmpl.senderId)) {
-                    sel.selectedIndex = i;
-                    handleSenderChange(sel.value);
-                    break;
-                }
-            }
-        }
-        updateLivePreview();
-    }
+// ── Editor tabs ────────────────────────────────────────────────────────────
+function setTab(tab){
+  const edit=document.getElementById('editBox');
+  const prev=document.getElementById('prevBox');
+  const te=document.getElementById('tab-edit');
+  const tp=document.getElementById('tab-prev');
+  if(tab==='prev'){
+    livePreview();
+    edit.classList.add('hidden'); prev.classList.remove('hidden');
+    te.style.color='#adb5bd'; te.style.textDecoration='none';
+    tp.style.color='#3498db'; tp.style.textDecoration='underline'; tp.style.fontWeight='700';
+  } else {
+    prev.classList.add('hidden'); edit.classList.remove('hidden');
+    te.style.color='#3498db'; te.style.textDecoration='underline'; te.style.fontWeight='700';
+    tp.style.color='#adb5bd'; tp.style.textDecoration='none'; tp.style.fontWeight='400';
+  }
+}
+function livePreview(){
+  const raw=document.getElementById('bodyInp').value;
+  document.getElementById('prevBox').innerHTML=raw||'<em style="color:#999">No content yet.</em>';
+}
 
-    function setEditorTab(tab) {
-        const ec = document.getElementById('editorContainer');
-        const pc = document.getElementById('previewContainer');
-        const te = document.getElementById('tab-editor');
-        const tp = document.getElementById('tab-preview');
-        if (tab === 'preview') {
-            updateLivePreview();
-            ec.classList.add('d-none');
-            pc.classList.remove('d-none');
-            tp.className = 'btn btn-link btn-sm p-0 font-weight-bold text-info';
-            te.className = 'btn btn-link btn-sm p-0 text-muted';
-        } else {
-            pc.classList.add('d-none');
-            ec.classList.remove('d-none');
-            te.className = 'btn btn-link btn-sm p-0 font-weight-bold text-info';
-            tp.className = 'btn btn-link btn-sm p-0 text-muted';
-        }
-    }
+// ── Submit compose ─────────────────────────────────────────────────────────
+async function submitCompose(e){
+  e.preventDefault();
+  const btn=document.getElementById('sendBtn');
+  const orig=btn.innerHTML;
+  btn.disabled=true;
+  btn.innerHTML='<i class="fas fa-spinner fa-spin"></i> Sending…';
 
-    function updateLivePreview() {
-        const raw = document.getElementById('bodyContent').value;
-        document.getElementById('previewContainer').innerHTML = raw || '<span class="text-muted"><em>No content typed yet.</em></span>';
-    }
+  const sv=document.getElementById('fromSel').value;
+  const from=sv==='CUSTOM'
+    ? (document.getElementById('customFrom').value.trim()||'hello@shptechnology.online')
+    : sv;
 
-    // ── Search & Filter ────────────────────────────────────────────────────
-    function filterTable() {
-        const q = document.getElementById('searchInput').value.toLowerCase().trim();
-        document.getElementById('clearSearchBtn').classList.toggle('d-none', !q);
-        const rows = document.querySelectorAll('#emailTable tbody tr');
-        let visible = 0;
-        rows.forEach(row => {
-            const search = (row.dataset.search || '').toLowerCase();
-            const status = (row.dataset.status || '').toLowerCase();
-            const ok = (!q || search.includes(q)) && (currentFilter === 'all' || status === currentFilter);
-            row.style.display = ok ? '' : 'none';
-            if (ok) visible++;
-        });
-        document.getElementById('rowCountText').textContent = `${visible} entries`;
-    }
+  const payload={
+    to: document.getElementById('toEmail').value.trim(),
+    from_email: from,
+    subject: document.getElementById('subjectInp').value.trim(),
+    html: document.getElementById('bodyInp').value,
+  };
 
-    function clearSearch() {
-        document.getElementById('searchInput').value = '';
-        filterTable();
-    }
-
-    function setStatusFilter(status) {
-        currentFilter = status;
-        ['all', 'sent', 'failed'].forEach(s => {
-            const btn = document.getElementById(`filter-${s}`);
-            btn.classList.toggle('active', s === status);
-        });
-        filterTable();
-    }
-
-    // ── Modal helpers ──────────────────────────────────────────────────────
-    function openComposeModal() {
-        if (!document.getElementById('bodyContent').value) applyTemplate('welcome');
-        document.getElementById('composeModal').classList.add('show');
-        document.body.style.overflow = 'hidden';
-    }
-    function closeComposeModal() {
-        document.getElementById('composeModal').classList.remove('show');
-        document.body.style.overflow = '';
-    }
-    function closeDetailModal() {
-        document.getElementById('detailModal').classList.remove('show');
-        document.body.style.overflow = '';
-    }
-    function handleBackdropClick(e, id) {
-        if (e.target.id === id) {
-            document.getElementById(id).classList.remove('show');
-            document.body.style.overflow = '';
-        }
-    }
-
-    // ── Alert helpers ──────────────────────────────────────────────────────
-    function showAlert(msg, type = 'success') {
-        const b = document.getElementById('alertBanner');
-        const icon = document.getElementById('alertIcon');
-        b.className = `alert d-flex align-items-center justify-content-between mb-3 alert-${type === 'success' ? 'success' : 'danger'}`;
-        icon.className = `fas mr-2 ${type === 'success' ? 'fa-circle-check' : 'fa-circle-xmark'}`;
-        document.getElementById('alertMessage').textContent = msg;
-        b.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-    }
-    function dismissAlert() {
-        document.getElementById('alertBanner').classList.add('d-none');
-    }
-
-    // ── CSRF token ─────────────────────────────────────────────────────────
-    function getCookie(name) {
-        const match = document.cookie.split(';').map(c => c.trim()).find(c => c.startsWith(name + '='));
-        return match ? decodeURIComponent(match.split('=')[1]) : null;
-    }
-
-    // ── Send email ─────────────────────────────────────────────────────────
-    async function handleComposeSubmit(e) {
-        e.preventDefault();
-        const btn = document.getElementById('sendBtn');
-        const orig = btn.innerHTML;
-        btn.disabled = true;
-        btn.innerHTML = '<i class="fas fa-spinner fa-spin mr-1"></i> Dispatching…';
-
-        const selectVal = document.getElementById('fromEmailSelect').value;
-        const from = selectVal === 'CUSTOM'
-            ? (document.getElementById('customFromEmail').value.trim() || 'hello@shptechnology.online')
-            : selectVal;
-
-        const payload = {
-            to:         document.getElementById('toEmail').value.trim(),
-            from_email: from,
-            subject:    document.getElementById('subjectEmail').value.trim(),
-            html:       document.getElementById('bodyContent').value,
-        };
-
-        const csrf = getCookie('csrftoken') || document.querySelector('[name=csrfmiddlewaretoken]')?.value || '';
-
-        try {
-            const res = await fetch('/dashboard/emails/api/send/', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json', 'X-CSRFToken': csrf },
-                body: JSON.stringify(payload)
-            });
-            const data = await res.json();
-            if (data.success) {
-                closeComposeModal();
-                showAlert(`Email dispatched! Resend ID: ${data.id}`, 'success');
-                setTimeout(() => window.location.reload(), 1300);
-            } else {
-                showAlert(`Failed: ${data.error}`, 'error');
-            }
-        } catch (err) {
-            showAlert(`Network error: ${err.message}`, 'error');
-        } finally {
-            btn.disabled = false;
-            btn.innerHTML = orig;
-        }
-    }
-
-    // ── View email detail ──────────────────────────────────────────────────
-    async function viewEmailDetail(logId) {
-        try {
-            const res = await fetch(`/dashboard/emails/api/detail/${logId}/`);
-            const data = await res.json();
-            if (!data.success) { showAlert(data.error, 'error'); return; }
-
-            const log = data.log;
-            document.getElementById('detailSubject').textContent = log.subject;
-            document.getElementById('detailRecipient').textContent = log.recipient;
-            document.getElementById('detailSender').textContent = log.sender;
-            document.getElementById('detailResendId').textContent = log.resend_id || '—';
-            document.getElementById('detailTimestamp').textContent = log.created_at;
-            document.getElementById('detailLogId').textContent = `Log ID: #${log.id}`;
-
-            const badge = document.getElementById('detailStatusBadge');
-            if (log.status === 'sent') {
-                badge.className = 'badge badge-success';
-                badge.textContent = 'SENT';
-            } else if (log.status === 'failed') {
-                badge.className = 'badge badge-danger';
-                badge.textContent = 'FAILED';
-            } else {
-                badge.className = 'badge badge-warning';
-                badge.textContent = 'PENDING';
-            }
-
-            const errBox = document.getElementById('detailErrorBox');
-            if (log.error_message) {
-                errBox.classList.remove('d-none');
-                document.getElementById('detailErrorMessage').textContent = log.error_message;
-            } else {
-                errBox.classList.add('d-none');
-            }
-
-            document.getElementById('detailHtmlPreview').innerHTML = log.body_html || `<pre style="font-size:.8rem;">${log.body_text || 'No content'}</pre>`;
-            document.getElementById('detailResendBtn').onclick = () => resendEmail(log.id);
-
-            document.getElementById('detailModal').classList.add('show');
-            document.body.style.overflow = 'hidden';
-        } catch (err) {
-            showAlert(`Could not load email details: ${err.message}`, 'error');
-        }
-    }
-
-    // ── Resend email ───────────────────────────────────────────────────────
-    async function resendEmail(logId) {
-        if (!confirm(`Resend email log #${logId}?`)) return;
-        const csrf = getCookie('csrftoken') || document.querySelector('[name=csrfmiddlewaretoken]')?.value || '';
-        try {
-            const res = await fetch(`/dashboard/emails/api/resend/${logId}/`, {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json', 'X-CSRFToken': csrf }
-            });
-            const data = await res.json();
-            if (data.success) {
-                showAlert(`Email #${logId} resent! ID: ${data.id}`, 'success');
-                setTimeout(() => window.location.reload(), 1300);
-            } else {
-                showAlert(`Failed to resend: ${data.error}`, 'error');
-            }
-        } catch (err) {
-            showAlert(`Network error: ${err.message}`, 'error');
-        }
-    }
-
-    // Close modals on Escape
-    document.addEventListener('keydown', e => {
-        if (e.key === 'Escape') { closeComposeModal(); closeDetailModal(); }
+  try{
+    const r=await fetch('/dashboard/emails/api/send/',{
+      method:'POST',
+      headers:{'Content-Type':'application/json','X-CSRFToken':getCsrf()},
+      body:JSON.stringify(payload)
     });
+    const d=await r.json();
+    if(d.success){
+      closeCompose();
+      showAlert('Email dispatched! Resend ID: '+d.id,'ok');
+      setTimeout(()=>location.reload(),1400);
+    } else {
+      showAlert('Failed: '+d.error,'err');
+    }
+  } catch(err){
+    showAlert('Network error: '+err.message,'err');
+  } finally {
+    btn.disabled=false; btn.innerHTML=orig;
+  }
+}
+
+// ── View detail ────────────────────────────────────────────────────────────
+async function viewDetail(id){
+  try{
+    const r=await fetch('/dashboard/emails/api/detail/'+id+'/');
+    const d=await r.json();
+    if(!d.success){ showAlert(d.error,'err'); return; }
+    const L=d.log;
+    document.getElementById('dSubject').textContent=L.subject;
+    document.getElementById('dTo').textContent=L.recipient;
+    document.getElementById('dFrom').textContent=L.sender;
+    document.getElementById('dRid').textContent=L.resend_id||'—';
+    document.getElementById('dTime').textContent=L.created_at;
+    document.getElementById('dLogId').textContent='Log ID: #'+L.id;
+    const badge=document.getElementById('dBadge');
+    if(L.status==='sent'){ badge.className='badge badge-sent'; badge.textContent='SENT'; }
+    else if(L.status==='failed'){ badge.className='badge badge-fail'; badge.textContent='FAILED'; }
+    else { badge.className='badge badge-pend'; badge.textContent='PENDING'; }
+    const errBox=document.getElementById('dErrBox');
+    if(L.error_message){ errBox.classList.remove('hidden'); document.getElementById('dErrMsg').textContent=L.error_message; }
+    else { errBox.classList.add('hidden'); }
+    document.getElementById('dHtml').innerHTML=L.body_html||'<pre style="font-size:.78rem">'+( L.body_text||'No content')+'</pre>';
+    document.getElementById('dResendBtn').onclick=()=>resendEmail(L.id);
+    document.getElementById('detailModal').classList.add('open');
+    document.body.style.overflow='hidden';
+  } catch(err){
+    showAlert('Could not load detail: '+err.message,'err');
+  }
+}
+
+// ── Resend email ───────────────────────────────────────────────────────────
+async function resendEmail(id){
+  if(!confirm('Resend email log #'+id+'?')) return;
+  try{
+    const r=await fetch('/dashboard/emails/api/resend/'+id+'/',{
+      method:'POST',
+      headers:{'Content-Type':'application/json','X-CSRFToken':getCsrf()}
+    });
+    const d=await r.json();
+    if(d.success){ showAlert('Email #'+id+' resent! ID: '+d.id,'ok'); setTimeout(()=>location.reload(),1400); }
+    else { showAlert('Failed to resend: '+d.error,'err'); }
+  } catch(err){ showAlert('Network error: '+err.message,'err'); }
+}
+
+// Escape key closes modals
+document.addEventListener('keydown',e=>{
+  if(e.key==='Escape'){ closeCompose(); closeDetail(); }
+});
 </script>
 </body>
 </html>
