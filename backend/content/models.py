@@ -72,3 +72,31 @@ class Service(models.Model):
 
     def __str__(self):
         return self.title
+
+
+class EmailLog(models.Model):
+    STATUS_CHOICES = [
+        ('sent', 'Sent'),
+        ('failed', 'Failed'),
+        ('pending', 'Pending'),
+    ]
+
+    sender = models.CharField(max_length=255, default="", help_text="Sender email address")
+    recipient = models.TextField(help_text="Recipient email address(es)")
+    subject = models.CharField(max_length=500)
+    body_text = models.TextField(blank=True, default="")
+    body_html = models.TextField(blank=True, default="")
+    status = models.CharField(max_length=20, choices=STATUS_CHOICES, default='pending')
+    resend_id = models.CharField(max_length=100, blank=True, null=True, help_text="Resend message ID")
+    error_message = models.TextField(blank=True, null=True)
+    metadata = models.JSONField(blank=True, default=dict)
+    created_at = models.DateTimeField(auto_now_add=True)
+    sent_at = models.DateTimeField(blank=True, null=True)
+
+    class Meta:
+        ordering = ['-created_at']
+        verbose_name = "Email Log"
+        verbose_name_plural = "Email Logs"
+
+    def __str__(self):
+        return f"[{self.status.upper()}] {self.subject} -> {self.recipient}"
