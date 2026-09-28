@@ -1,10 +1,12 @@
 'use client';
 
 import React, { useState } from 'react';
+import Link from 'next/link';
 import { BaseInput } from '@/components/common/BaseInput';
 import { BaseTextarea } from '@/components/common/BaseTextarea';
 import { BaseSelect } from '@/components/common/BaseSelect';
 import { BaseButton } from '@/components/common/BaseButton';
+import { BaseCheckbox } from '@/components/common/BaseCheckbox';
 import { useFormValidation } from '@/hooks/useFormValidation';
 import { useAnalytics } from '@/hooks/useAnalytics';
 import { Send, CheckCircle2 } from 'lucide-react';
@@ -23,7 +25,7 @@ export const ContactForm: React.FC = () => {
     {
       name: { required: true },
       email: { required: true, email: true },
-      phone: { required: true, phone: true },
+      phone: { phone: true },
       company: {},
       subject: { required: true },
       message: { required: true, minLength: 5 }
@@ -33,6 +35,8 @@ export const ContactForm: React.FC = () => {
   const { trackEvent } = useAnalytics();
   const [loading, setLoading] = useState(false);
   const [submitted, setSubmitted] = useState(false);
+  const [consent, setConsent] = useState(false);
+  const [consentError, setConsentError] = useState('');
 
   const subjectOptions = [
     { label: 'Enterprise Software Development', value: 'software' },
@@ -45,7 +49,13 @@ export const ContactForm: React.FC = () => {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!validateForm()) return;
+    const formValid = validateForm();
+    if (!consent) {
+      setConsentError('Please confirm you agree to our Privacy Policy so we can respond to your inquiry.');
+    } else {
+      setConsentError('');
+    }
+    if (!formValid || !consent) return;
 
     setLoading(true);
     trackEvent('Contact Form', 'submit', values.subject);
@@ -59,6 +69,7 @@ export const ContactForm: React.FC = () => {
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({
             ...values,
+            consent: true,
             source: 'Contact Page Form',
             timestamp: new Date().toISOString()
           })
@@ -69,6 +80,7 @@ export const ContactForm: React.FC = () => {
 
       setSubmitted(true);
       resetForm();
+      setConsent(false);
     } catch (err) {
       console.error('Contact submit error:', err);
     } finally {
@@ -113,14 +125,13 @@ export const ContactForm: React.FC = () => {
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
         <BaseInput
-          label="Contact Number / WhatsApp *"
+          label="Contact Number / WhatsApp (Optional)"
           type="tel"
           placeholder="e.g. +91 9301885654"
           value={values.phone}
           onChange={(e) => handleChange('phone', e.target.value)}
           onBlur={() => handleBlur('phone')}
           error={errors.phone}
-          required
         />
         <BaseInput
           label="Company / Business Name (Optional)"
@@ -149,6 +160,31 @@ export const ContactForm: React.FC = () => {
       />
 
       <div className="pt-2 flex flex-col gap-3">
+        <BaseCheckbox
+          id="contact-consent"
+          checked={consent}
+          onChange={(e) => {
+            setConsent(e.target.checked);
+            if (e.target.checked) setConsentError('');
+          }}
+          error={consentError}
+          label={
+            <>
+              I agree to SHP Technology processing the details I've submitted to respond to my inquiry, as
+              described in the{' '}
+              <Link href="/privacy-policy" className="text-brand-primary font-semibold hover:underline">
+                Privacy Policy
+              </Link>
+              .
+            </>
+          }
+        />
+
+        <p className="text-[11px] text-mutedText leading-relaxed">
+          Your submission is delivered to our team via Google Sheets and email. We use it only to reply to you and
+          never sell your data.
+        </p>
+
         <BaseButton type="submit" variant="primary" size="lg" className="w-full" disabled={loading}>
           <span>{loading ? 'Submitting...' : 'Send Inquiry'}</span>
           <Send className="w-4 h-4" />

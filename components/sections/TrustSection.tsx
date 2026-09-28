@@ -37,7 +37,7 @@ export const TrustSection: React.FC = () => {
       icon: <Clock className="w-6 h-6 text-brand-primary" />,
       badge: 'Dedicated Support',
       title: '4-Hour Response SLA',
-      desc: 'Dedicated post-launch maintenance guarantees rapid resolution for critical issues.'
+      desc: 'Dedicated post-launch maintenance for rapid resolution of critical issues.'
     }
   ];
 

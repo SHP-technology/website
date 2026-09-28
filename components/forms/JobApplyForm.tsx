@@ -1,9 +1,11 @@
 'use client';
 
 import React, { useState } from 'react';
+import Link from 'next/link';
 import { BaseInput } from '@/components/common/BaseInput';
 import { BaseTextarea } from '@/components/common/BaseTextarea';
 import { BaseButton } from '@/components/common/BaseButton';
+import { BaseCheckbox } from '@/components/common/BaseCheckbox';
 import { useFormValidation } from '@/hooks/useFormValidation';
 import { CheckCircle2, Upload } from 'lucide-react';
 
@@ -34,12 +36,21 @@ export const JobApplyForm: React.FC<JobApplyFormProps> = ({ jobTitle }) => {
   );
 
   const [submitted, setSubmitted] = useState(false);
+  const [consent, setConsent] = useState(false);
+  const [consentError, setConsentError] = useState('');
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    if (!validateForm()) return;
+    const formValid = validateForm();
+    if (!consent) {
+      setConsentError('Please confirm you consent to us processing your application data.');
+    } else {
+      setConsentError('');
+    }
+    if (!formValid || !consent) return;
     setSubmitted(true);
     resetForm();
+    setConsent(false);
   };
 
   return (
@@ -120,6 +131,26 @@ export const JobApplyForm: React.FC<JobApplyFormProps> = ({ jobTitle }) => {
         rows={4}
         value={values.coverLetter}
         onChange={(e) => handleChange('coverLetter', e.target.value)}
+      />
+
+      <BaseCheckbox
+        id="job-consent"
+        checked={consent}
+        onChange={(e) => {
+          setConsent(e.target.checked);
+          if (e.target.checked) setConsentError('');
+        }}
+        error={consentError}
+        label={
+          <>
+            I consent to SHP Technology storing and processing my application details (including my CV/resume link)
+            for recruitment purposes, as described in the{' '}
+            <Link href="/privacy-policy" className="text-brand-primary font-semibold hover:underline">
+              Privacy Policy
+            </Link>
+            .
+          </>
+        }
       />
 
       <BaseButton type="submit" variant="amber" size="lg" className="w-full mt-2">

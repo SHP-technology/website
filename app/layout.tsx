@@ -5,6 +5,7 @@ import { AppFooter } from '@/components/layout/AppFooter';
 import { ScrollProgress } from '@/components/common/ScrollProgress';
 import { BackToTop } from '@/components/common/BackToTop';
 import { FloatingContactWidget } from '@/components/common/FloatingContactWidget';
+import { CookieConsent } from '@/components/common/CookieConsent';
 import { siteConfig } from '@/src/config/site.config';
 
 export const metadata: Metadata = {
@@ -106,6 +107,7 @@ export default function RootLayout({
           <AppFooter />
           <FloatingContactWidget />
           <BackToTop />
+          <CookieConsent />
         </ThemeProvider>
       </body>
     </html>
