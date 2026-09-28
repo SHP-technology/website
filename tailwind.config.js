@@ -25,6 +25,7 @@ export default {
           skyHover: 'var(--brand-sky-hover)',
           skyLight: 'var(--brand-sky-light)',
           navy: 'var(--bg-dark-surface)',
+          buttonText: 'var(--brand-button-text)',
         },
         surface: {
           main: 'var(--bg-main)',

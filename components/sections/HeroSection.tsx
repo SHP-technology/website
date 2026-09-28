@@ -17,7 +17,7 @@ export const HeroSection: React.FC = () => {
         <div className="inline-flex items-center gap-2.5 px-4 py-2 rounded-full backdrop-blur-xl bg-surface-card border border-surface-border text-primaryText mb-8 shadow-xl hover:border-brand-accent/60 transition-all cursor-default">
           <span className="flex h-2 w-2 rounded-full bg-brand-primary animate-ping" />
           <span className="text-xs font-bold uppercase tracking-wider text-secondaryText">
-            Unbeatable Value • Bulletproof Security • 4-Hour Response SLA
+            Cost-Effective • Security-First • 4-Hour Response SLA
           </span>
           <Sparkles className="w-3.5 h-3.5 text-brand-accent ml-0.5" />
         </div>
@@ -43,7 +43,7 @@ export const HeroSection: React.FC = () => {
             href={siteConfig.contact.whatsapp}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-2.5 px-7 py-4 rounded-xl backdrop-blur-xl bg-brand-primary hover:bg-brand-primaryHover text-white font-bold text-base shadow-xl hover:scale-105 active:scale-95 transition-all duration-200"
+            className="inline-flex items-center gap-2.5 px-7 py-4 rounded-xl backdrop-blur-xl bg-brand-primary hover:bg-brand-primaryHover text-brand-buttonText font-bold text-base shadow-xl hover:scale-105 active:scale-95 transition-all duration-200"
           >
             <MessageSquare className="w-5 h-5 fill-current" />
             <span>Chat on WhatsApp (Instant)</span>
@@ -61,9 +61,9 @@ export const HeroSection: React.FC = () => {
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4 w-full pt-8 border-t border-surface-border">
           {[
             { metric: '150+', label: 'Global Clients', detail: 'Trust & Partnerships' },
-            { metric: '80+', label: 'Delivered Projects', detail: '100% On-Time Record' },
+            { metric: '80+', label: 'Delivered Projects', detail: 'Reliable On-Time Delivery' },
             { metric: '50+', label: 'Automations Built', detail: 'Saving 1,000+ Hours' },
-            { metric: '<4 Hours', label: 'Response Guarantee', detail: 'Direct Engineer SLA' }
+            { metric: '<4 Hours', label: 'Response SLA', detail: 'Direct Engineer SLA' }
           ].map((stat, idx) => (
             <div
               key={idx}

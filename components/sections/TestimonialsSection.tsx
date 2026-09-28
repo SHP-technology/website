@@ -31,7 +31,7 @@ export const TestimonialsSection: React.FC<TestimonialsSectionProps> = ({
             Client Testimonials
           </BaseBadge>
           <h2 className="text-3xl md:text-5xl font-extrabold text-primaryText tracking-tight mb-4">
-            Trusted by Business Leaders
+            What Our Clients Say
           </h2>
           <p className="text-secondaryText text-base md:text-lg">
             Read how our custom software & AI tools transformed operations for our clients.

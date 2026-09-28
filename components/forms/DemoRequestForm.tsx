@@ -1,9 +1,11 @@
 'use client';
 
 import React, { useState } from 'react';
+import Link from 'next/link';
 import { BaseInput } from '@/components/common/BaseInput';
 import { BaseSelect } from '@/components/common/BaseSelect';
 import { BaseButton } from '@/components/common/BaseButton';
+import { BaseCheckbox } from '@/components/common/BaseCheckbox';
 import { useFormValidation } from '@/hooks/useFormValidation';
 import { Calendar, CheckCircle2 } from 'lucide-react';
 
@@ -26,6 +28,8 @@ export const DemoRequestForm: React.FC = () => {
   );
 
   const [submitted, setSubmitted] = useState(false);
+  const [consent, setConsent] = useState(false);
+  const [consentError, setConsentError] = useState('');
 
   const demoOptions = [
     { label: 'SHP E-Learning & LMS Platform', value: 'lms' },
@@ -36,9 +40,16 @@ export const DemoRequestForm: React.FC = () => {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    if (!validateForm()) return;
+    const formValid = validateForm();
+    if (!consent) {
+      setConsentError('Please confirm you agree to our Privacy Policy so we can schedule your demo.');
+    } else {
+      setConsentError('');
+    }
+    if (!formValid || !consent) return;
     setSubmitted(true);
     resetForm();
+    setConsent(false);
   };
 
   return (
@@ -96,6 +107,25 @@ export const DemoRequestForm: React.FC = () => {
         onBlur={() => handleBlur('date')}
         error={errors.date}
         required
+      />
+
+      <BaseCheckbox
+        id="demo-consent"
+        checked={consent}
+        onChange={(e) => {
+          setConsent(e.target.checked);
+          if (e.target.checked) setConsentError('');
+        }}
+        error={consentError}
+        label={
+          <>
+            I agree to SHP Technology using my details to schedule and follow up on this demo, as described in the{' '}
+            <Link href="/privacy-policy" className="text-brand-primary font-semibold hover:underline">
+              Privacy Policy
+            </Link>
+            .
+          </>
+        }
       />
 
       <BaseButton type="submit" variant="primary" size="lg" className="w-full mt-2">

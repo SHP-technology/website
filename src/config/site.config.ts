@@ -63,12 +63,12 @@ export interface CompanyConfig {
 
 export const siteConfig: CompanyConfig = {
   name: 'SHP Technology',
-  legalName: 'SHP Technology Inc.',
+  legalName: 'SHP Technology',
   shortName: 'SHP.',
   tagline: 'Software Development Company — Build • Automate • Grow',
   subTagline: 'Software Development Company',
   motto: 'Build • Automate • Grow',
-  description: 'SHP Technology is a premier software development company. We build high-performance custom enterprise web applications, cloud architecture, microservices, and AI automation solutions for businesses globally.',
+  description: 'SHP Technology is a software development company. We build high-performance custom enterprise web applications, cloud architecture, microservices, and AI automation solutions for businesses globally.',
   founded: '2019',
   headquarters: 'Madan Mahal Station, Jabalpur, MP & Remote Global',
   email: process.env.NEXT_PUBLIC_SITE_EMAIL || 'hello@shptechnology.online',
@@ -151,7 +151,7 @@ export const siteConfig: CompanyConfig = {
       name: 'Aparna Verma',
       initials: 'AV',
       role: 'Operations Manager',
-      bio: 'Oversees operational efficiency, project coordination, resource allocation, and team workflows to guarantee seamless project delivery.'
+      bio: 'Oversees operational efficiency, project coordination, resource allocation, and team workflows to support seamless project delivery.'
     }
   ]
 };

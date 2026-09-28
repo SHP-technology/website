@@ -51,7 +51,7 @@ export const MethodologySection: React.FC = () => {
             How We Deliver Your Software Project
           </h2>
           <p className="text-secondaryText text-base md:text-lg leading-relaxed">
-            Our structured 6-step methodology guarantees bi-weekly progress visibility, bulletproof code quality, and on-time launch.
+            Our structured 6-step methodology is built for bi-weekly progress visibility, high code quality, and on-time launches.
           </p>
         </div>
 

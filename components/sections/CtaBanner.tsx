@@ -20,7 +20,7 @@ export const CtaBanner: React.FC = () => {
           </h2>
 
           <p className="text-secondaryText text-base md:text-xl max-w-2xl mx-auto mb-10 leading-relaxed font-normal">
-            Consult directly with our senior software leads. We guarantee transparent fixed pricing, zero technical jargon, and bi-weekly working demos.
+            Consult directly with our senior software leads. We're committed to transparent fixed pricing, plain-English communication, and bi-weekly working demos.
           </p>
 
           <div className="flex flex-wrap justify-center items-center gap-4 mb-8">
@@ -33,7 +33,7 @@ export const CtaBanner: React.FC = () => {
               href={siteConfig.contact.whatsapp}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2.5 px-7 py-4 rounded-xl bg-brand-primary hover:bg-brand-primaryHover text-white font-bold text-base shadow-xl hover:scale-105 active:scale-95 transition-all duration-200"
+              className="inline-flex items-center gap-2.5 px-7 py-4 rounded-xl bg-brand-primary hover:bg-brand-primaryHover text-brand-buttonText font-bold text-base shadow-xl hover:scale-105 active:scale-95 transition-all duration-200"
             >
               <MessageSquare className="w-5 h-5 fill-current" />
               <span>WhatsApp Chat</span>

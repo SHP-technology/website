@@ -1,6 +1,7 @@
 import React from 'react';
 import Link from 'next/link';
 import { siteConfig } from '@/src/config/site.config';
+import { legalConfig } from '@/src/config/legal.config';
 import { AppLogo } from '@/components/common/AppLogo';
 import { ArrowRight } from 'lucide-react';
 
@@ -8,6 +9,13 @@ import { PlatformIcon } from '@/components/common/PlatformIcon';
 
 export const AppFooter: React.FC = () => {
   const currentYear = new Date().getFullYear();
+
+  const legalLinks = [
+    { label: 'Privacy Policy', href: '/privacy-policy' },
+    { label: 'Terms & Conditions', href: '/terms' },
+    { label: 'Cookie Policy', href: '/cookie-policy' },
+    { label: 'Refund Policy', href: '/refund-policy' },
+  ];
 
   const servicesLinks = [
     { label: 'Custom Software Development', href: '/services/enterprise-software-development' },
@@ -51,6 +59,17 @@ export const AppFooter: React.FC = () => {
               <span className="w-2 h-2 rounded-full bg-brand-primary animate-pulse" />
               <span>Response SLA: Within 4 Business Hours</span>
             </div>
+
+            <address className="not-italic text-xs text-mutedText leading-relaxed flex flex-col gap-1 mt-1">
+              <span className="text-secondaryText font-semibold">{legalConfig.businessName}</span>
+              <span>{legalConfig.registeredAddress}</span>
+              <a href={`mailto:${siteConfig.contact.email}`} className="hover:text-brand-accent transition-colors">
+                {siteConfig.contact.email}
+              </a>
+              <a href={`tel:${siteConfig.contact.phone.replace(/\s+/g, '')}`} className="hover:text-brand-accent transition-colors">
+                {siteConfig.contact.phone}
+              </a>
+            </address>
           </div>
 
           <div>
@@ -102,12 +121,25 @@ export const AppFooter: React.FC = () => {
           </div>
         </div>
 
-        <div className="pt-8 border-t border-surface-border flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-mutedText">
-          <p>© {currentYear} {siteConfig.legalName}. All rights reserved.</p>
-          <div className="flex items-center gap-6">
-            <span>Enterprise Code Quality</span>
-            <span>•</span>
-            <span>Zero Vendor Lock-In</span>
+        <div className="pt-8 border-t border-surface-border flex flex-col gap-6">
+          <nav aria-label="Legal" className="flex flex-wrap items-center gap-x-6 gap-y-2">
+            {legalLinks.map((link) => (
+              <Link
+                key={link.href}
+                href={link.href}
+                className="text-xs font-semibold text-secondaryText hover:text-brand-accent transition-colors"
+              >
+                {link.label}
+              </Link>
+            ))}
+          </nav>
+          <div className="flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-mutedText">
+            <p>© {currentYear} {siteConfig.legalName}. All rights reserved.</p>
+            <div className="flex items-center gap-6">
+              <span>Enterprise Code Quality</span>
+              <span>•</span>
+              <span>Zero Vendor Lock-In</span>
+            </div>
           </div>
         </div>
       </div>
