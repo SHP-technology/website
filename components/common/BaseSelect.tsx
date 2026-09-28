@@ -14,6 +14,7 @@ interface BaseSelectProps extends React.SelectHTMLAttributes<HTMLSelectElement> 
 export const BaseSelect = React.forwardRef<HTMLSelectElement, BaseSelectProps>(
   ({ label, options, error, className = '', id, ...props }, ref) => {
     const selectId = id || (label ? label.toLowerCase().replace(/\s+/g, '-') : undefined);
+    const errorId = selectId ? `${selectId}-error` : undefined;
 
     return (
       <div className="w-full flex flex-col gap-1.5">
@@ -25,6 +26,8 @@ export const BaseSelect = React.forwardRef<HTMLSelectElement, BaseSelectProps>(
         <select
           ref={ref}
           id={selectId}
+          aria-invalid={error ? true : undefined}
+          aria-describedby={error ? errorId : undefined}
           className={`w-full px-4 py-2.5 rounded-xl bg-surface-card border border-surface-border text-primaryText focus:outline-none focus:ring-2 focus:ring-brand-primary focus:border-transparent transition-all duration-200 text-sm ${
             error ? 'border-rose-500 focus:ring-rose-500' : ''
           } ${className}`}
@@ -36,7 +39,7 @@ export const BaseSelect = React.forwardRef<HTMLSelectElement, BaseSelectProps>(
             </option>
           ))}
         </select>
-        {error && <p className="text-xs text-red-500 font-medium">{error}</p>}
+        {error && <p id={errorId} role="alert" className="text-xs text-red-500 font-medium">{error}</p>}
       </div>
     );
   }

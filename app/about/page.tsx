@@ -61,9 +61,9 @@ export default async function AboutPage() {
             <div className="p-3.5 rounded-2xl bg-surface-subtle border border-surface-border w-fit mb-6 text-brand-accent">
               <ShieldCheck className="w-6 h-6" />
             </div>
-            <h3 className="text-xl font-bold text-primaryText mb-3">Our Guarantee</h3>
+            <h3 className="text-xl font-bold text-primaryText mb-3">Our Commitment</h3>
             <p className="text-secondaryText text-sm leading-relaxed">
-              Unbeatable pricing, zero hidden fees, bi-weekly working demos, and ongoing 24/7 post-launch support backed by robust SLAs.
+              Competitive, transparent pricing with no hidden fees, bi-weekly working demos, and responsive post-launch support backed by clear SLAs.
             </p>
           </div>
         </div>

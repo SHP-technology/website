@@ -17,7 +17,7 @@ export const BaseButton: React.FC<BaseButtonProps> = ({
   children,
   ...props
 }) => {
-  const baseStyles = 'inline-flex items-center justify-center font-semibold rounded-xl transition-all duration-300 focus:outline-none active:scale-[0.98] disabled:opacity-50 disabled:pointer-events-none cursor-pointer';
+  const baseStyles = 'inline-flex items-center justify-center font-semibold rounded-xl transition-all duration-300 focus:outline-none focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-accent focus-visible:ring-offset-2 focus-visible:ring-offset-surface-main active:scale-[0.98] disabled:opacity-50 disabled:pointer-events-none cursor-pointer';
 
   const sizeStyles = {
     sm: 'px-3.5 py-1.5 text-xs gap-1.5 shadow-sm',
