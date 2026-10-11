@@ -1,735 +1,1690 @@
-<!DOCTYPE html>
-<html lang="en" class="dark">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Email Studio — SHP Technology</title>
+{% extends "admin/base_site.html" %}
+{% load static %}
 
-<!-- Tailwind CSS CDN -->
-<script src="https://cdn.tailwindcss.com"></script>
-<script>
-tailwind.config = {
-  darkMode: 'class',
-  theme: {
-    extend: {
-      colors: {
-        d: {
-          bg:      '#222222',
-          surf:    '#303030',
-          head:    '#282828',
-          inp:     '#1a1a1a',
-          bord:    '#444444',
-          hov:     '#3a3a3a',
-          pri:     '#375a7f',
-          prih:    '#2b4764',
-          suc:     '#00bc8c',
-          dan:     '#e74c3c',
-          warn:    '#f39c12',
-          info:    '#3498db',
-          mut:     '#adb5bd',
-        }
-      }
+{% block content_title %}Email Studio{% endblock %}
+
+{% block breadcrumbs %}
+<ol class="breadcrumb float-sm-end">
+  <li class="breadcrumb-item"><a href="{% url 'admin:index' %}"><i class="fas fa-home me-1"></i> Home</a></li>
+  <li class="breadcrumb-item"><a href="/admin/content/emaillog/">Audit Logs</a></li>
+  <li class="breadcrumb-item active">Email Studio</li>
+</ol>
+{% endblock %}
+
+{% block page_actions %}
+<div class="d-flex align-items-center gap-2">
+  <button type="button" onclick="location.reload()" class="btn btn-sm btn-outline-secondary d-flex align-items-center gap-1 shadow-sm" title="Refresh outbound logs">
+    <i class="fas fa-rotate"></i>
+    <span class="d-none d-md-inline">Refresh</span>
+  </button>
+  <button type="button" onclick="openCompose()" class="btn btn-sm btn-primary d-flex align-items-center gap-1 shadow-sm">
+    <i class="fas fa-paper-plane"></i>
+    <span>Compose Email</span>
+  </button>
+</div>
+{% endblock %}
+
+{% block extrastyle %}
+<style>
+  /* ══════════════════════════════════════════════════════════════════════════
+     EMAIL STUDIO — NATIVE LIGHT THEME
+     Harmonized with Jazzmin Default Light Palette & AdminLTE Clean UI
+     ══════════════════════════════════════════════════════════════════════════ */
+  :root {
+    --es-bg-page: transparent;
+    --es-bg-card: #ffffff;
+    --es-bg-subtle: #f8fafc;
+    --es-bg-input: #ffffff;
+    --es-bg-hover: #f1f5f9;
+    --es-border: #e2e8f0;
+    --es-border-subtle: #f1f5f9;
+    --es-text-primary: #0f172a;
+    --es-text-secondary: #334155;
+    --es-text-muted: #64748b;
+    --es-primary: #007bff;
+    --es-primary-hover: #0056b3;
+    --es-success: #10b981;
+    --es-success-bg: #ecfdf5;
+    --es-success-border: #a7f3d0;
+    --es-success-text: #047857;
+    --es-danger: #ef4444;
+    --es-danger-bg: #fef2f2;
+    --es-danger-border: #fecaca;
+    --es-danger-text: #b91c1c;
+    --es-warning: #f59e0b;
+    --es-warning-bg: #fffbeb;
+    --es-warning-border: #fde68a;
+    --es-warning-text: #b45309;
+    --es-radius-sm: 6px;
+    --es-radius-md: 10px;
+    --es-radius-lg: 14px;
+    --es-shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.06), 0 1px 2px rgba(0, 0, 0, 0.04);
+    --es-shadow-md: 0 4px 14px rgba(0, 0, 0, 0.08);
+    --es-shadow-modal: 0 20px 45px rgba(15, 23, 42, 0.18);
+  }
+
+  .es-container {
+    width: 100%;
+    max-width: 1360px;
+    margin: 0 auto;
+    padding: 0.25rem 0.25rem 2rem;
+    color: var(--es-text-primary);
+  }
+
+  /* Notification Alert */
+  .es-toast-alert {
+    position: sticky;
+    top: 1rem;
+    z-index: 1050;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.85rem 1.25rem;
+    border-radius: var(--es-radius-md);
+    margin-bottom: 1.25rem;
+    box-shadow: var(--es-shadow-md);
+    backdrop-filter: blur(8px);
+    transition: all 0.25s ease;
+  }
+  .es-toast-alert.alert-ok {
+    background: #ecfdf5;
+    color: #065f46;
+    border: 1px solid var(--es-success-border);
+  }
+  .es-toast-alert.alert-err {
+    background: #fef2f2;
+    color: #991b1b;
+    border: 1px solid var(--es-danger-border);
+  }
+
+  /* KPI Stat Cards (Clean White Cards) */
+  .es-stat-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+  }
+  .es-card {
+    background: var(--es-bg-card);
+    border: 1px solid var(--es-border);
+    border-radius: var(--es-radius-md);
+    padding: 1.25rem;
+    box-shadow: var(--es-shadow-sm);
+    transition: transform 0.15s ease, box-shadow 0.15s ease, border-color 0.15s ease;
+    position: relative;
+    overflow: hidden;
+  }
+  .es-card:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--es-shadow-md);
+    border-color: #cbd5e1;
+  }
+  .es-card-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 0.75rem;
+  }
+  .es-card-title {
+    font-size: 0.74rem;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    font-weight: 700;
+    color: var(--es-text-muted);
+  }
+  .es-card-icon {
+    width: 38px;
+    height: 38px;
+    border-radius: var(--es-radius-sm);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1rem;
+  }
+  .es-icon-blue { background: #eff6ff; color: #2563eb; }
+  .es-icon-green { background: #ecfdf5; color: #059669; }
+  .es-icon-red { background: #fef2f2; color: #dc2626; }
+  .es-icon-amber { background: #fffbeb; color: #d97706; }
+
+  .es-stat-num {
+    font-size: 2.15rem;
+    font-weight: 800;
+    line-height: 1.1;
+    color: var(--es-text-primary);
+    letter-spacing: -0.02em;
+  }
+  .es-stat-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 0.5rem;
+    font-size: 0.75rem;
+    color: var(--es-text-muted);
+  }
+  .es-progress-track {
+    width: 100%;
+    height: 6px;
+    background: #f1f5f9;
+    border-radius: 9999px;
+    overflow: hidden;
+    margin-top: 0.6rem;
+  }
+  .es-progress-fill {
+    height: 100%;
+    background: var(--es-success);
+    border-radius: 9999px;
+    transition: width 0.5s ease;
+  }
+
+  /* Toolbar */
+  .es-toolbar {
+    background: var(--es-bg-card);
+    border: 1px solid var(--es-border);
+    border-radius: var(--es-radius-md);
+    padding: 0.85rem 1.1rem;
+    margin-bottom: 1.25rem;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.85rem;
+    box-shadow: var(--es-shadow-sm);
+  }
+  .es-search-wrap {
+    position: relative;
+    flex: 1;
+    min-width: 240px;
+    max-width: 440px;
+  }
+  .es-search-wrap i.fa-search {
+    position: absolute;
+    left: 0.85rem;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--es-text-muted);
+    font-size: 0.82rem;
+    pointer-events: none;
+  }
+  .es-search-input {
+    width: 100%;
+    background: var(--es-bg-input);
+    border: 1px solid #cbd5e1;
+    border-radius: var(--es-radius-sm);
+    color: var(--es-text-primary);
+    padding: 0.45rem 2.2rem 0.45rem 2.3rem;
+    font-size: 0.85rem;
+    transition: border-color 0.15s ease, box-shadow 0.15s ease;
+  }
+  .es-search-input:focus {
+    outline: none;
+    border-color: var(--es-primary);
+    box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.15);
+  }
+  .es-clear-btn {
+    position: absolute;
+    right: 0.65rem;
+    top: 50%;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    color: var(--es-text-muted);
+    cursor: pointer;
+    padding: 0.2rem;
+    font-size: 0.85rem;
+    line-height: 1;
+  }
+  .es-clear-btn:hover { color: var(--es-text-primary); }
+
+  /* Filter pills */
+  .es-filter-group {
+    display: inline-flex;
+    background: #f1f5f9;
+    padding: 3px;
+    border-radius: var(--es-radius-sm);
+    border: 1px solid var(--es-border);
+    gap: 2px;
+  }
+  .es-filter-pill {
+    background: transparent;
+    border: none;
+    color: var(--es-text-muted);
+    padding: 0.3rem 0.85rem;
+    font-size: 0.75rem;
+    font-weight: 600;
+    border-radius: 4px;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    transition: background 0.15s ease, color 0.15s ease;
+    white-space: nowrap;
+  }
+  .es-filter-pill:hover {
+    color: var(--es-text-primary);
+  }
+  .es-filter-pill.active {
+    background: var(--es-primary);
+    color: #fff;
+    box-shadow: 0 1px 3px rgba(0, 123, 255, 0.25);
+  }
+  .es-pill-badge {
+    padding: 1px 6px;
+    border-radius: 9999px;
+    font-size: 0.68rem;
+    background: rgba(0, 0, 0, 0.08);
+  }
+  .es-filter-pill.active .es-pill-badge {
+    background: rgba(255, 255, 255, 0.25);
+    color: #fff;
+  }
+
+  /* Table Card */
+  .es-table-card {
+    background: var(--es-bg-card);
+    border: 1px solid var(--es-border);
+    border-radius: var(--es-radius-md);
+    box-shadow: var(--es-shadow-sm);
+    overflow: hidden;
+  }
+  .es-table-header-bar {
+    padding: 0.85rem 1.25rem;
+    background: var(--es-bg-subtle);
+    border-bottom: 1px solid var(--es-border);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .es-table-title {
+    font-size: 0.9rem;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: var(--es-text-primary);
+  }
+  .es-table-count {
+    font-size: 0.78rem;
+    color: var(--es-text-muted);
+    font-weight: 500;
+  }
+
+  /* Custom Data Table */
+  .es-table-responsive {
+    overflow-x: auto;
+    width: 100%;
+  }
+  .es-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.84rem;
+  }
+  .es-table th {
+    background: #f8fafc;
+    color: var(--es-text-muted);
+    text-transform: uppercase;
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    padding: 0.75rem 1.1rem;
+    text-align: left;
+    white-space: nowrap;
+    border-bottom: 1px solid var(--es-border);
+  }
+  .es-table td {
+    padding: 0.75rem 1.1rem;
+    border-bottom: 1px solid var(--es-border-subtle);
+    vertical-align: middle;
+    color: var(--es-text-secondary);
+  }
+  .es-table tbody tr {
+    transition: background 0.12s ease;
+  }
+  .es-table tbody tr:hover {
+    background: #f8fafc;
+  }
+  .es-table tbody tr:last-child td {
+    border-bottom: none;
+  }
+
+  /* Status Badges (Light Semantic Tints) */
+  .es-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    padding: 0.22rem 0.6rem;
+    border-radius: 9999px;
+    font-size: 0.68rem;
+    font-weight: 700;
+    letter-spacing: 0.03em;
+    text-transform: uppercase;
+    white-space: nowrap;
+  }
+  .es-badge-sent {
+    background: var(--es-success-bg);
+    color: var(--es-success-text);
+    border: 1px solid var(--es-success-border);
+  }
+  .es-badge-failed {
+    background: var(--es-danger-bg);
+    color: var(--es-danger-text);
+    border: 1px solid var(--es-danger-border);
+  }
+  .es-badge-pending {
+    background: var(--es-warning-bg);
+    color: var(--es-warning-text);
+    border: 1px solid var(--es-warning-border);
+  }
+
+  /* Identity Tag */
+  .es-identity-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    background: #f1f5f9;
+    padding: 0.18rem 0.5rem;
+    border-radius: 4px;
+    font-size: 0.72rem;
+    color: #334155;
+    border: 1px solid #e2e8f0;
+  }
+
+  /* Monospace Code Pill */
+  .es-code-pill {
+    font-family: "SFMono-Regular", Consolas, Menlo, monospace;
+    font-size: 0.73rem;
+    background: #f1f5f9;
+    border: 1px solid #cbd5e1;
+    padding: 0.15rem 0.45rem;
+    border-radius: 4px;
+    color: #0369a1;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    transition: all 0.15s ease;
+  }
+  .es-code-pill:hover {
+    background: #e0f2fe;
+    border-color: #7dd3fc;
+    color: #0284c7;
+  }
+
+  /* Action Buttons */
+  .es-btn-action {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    padding: 0.25rem 0.6rem;
+    border-radius: var(--es-radius-sm);
+    font-size: 0.74rem;
+    font-weight: 600;
+    border: 1px solid #cbd5e1;
+    background: #ffffff;
+    color: var(--es-text-secondary);
+    cursor: pointer;
+    transition: all 0.15s ease;
+    text-decoration: none;
+  }
+  .es-btn-action:hover {
+    background: #f1f5f9;
+    color: var(--es-text-primary);
+    border-color: #94a3b8;
+  }
+  .es-btn-action.es-btn-resend:hover {
+    background: #eff6ff;
+    border-color: #bfdbfe;
+    color: var(--es-primary);
+  }
+
+  /* Empty state */
+  .es-empty-state {
+    padding: 3.5rem 1.5rem;
+    text-align: center;
+    color: var(--es-text-muted);
+  }
+  .es-empty-icon {
+    font-size: 3rem;
+    color: #cbd5e1;
+    margin-bottom: 1rem;
+  }
+  .es-empty-title {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--es-text-primary);
+    margin-bottom: 0.35rem;
+  }
+
+  /* ══════════════════════════════════════════════════════════════════════════
+     MODAL WINDOWS (CLEAN LIGHT DESIGN)
+     ══════════════════════════════════════════════════════════════════════════ */
+  .es-modal-backdrop {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(15, 23, 42, 0.45);
+    backdrop-filter: blur(6px);
+    z-index: 9999;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem;
+    overflow-y: auto;
+    animation: esFadeIn 0.18s ease;
+  }
+  .es-modal-backdrop.open {
+    display: flex;
+  }
+  @keyframes esFadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+
+  .es-modal-dialog {
+    background: #ffffff;
+    border: 1px solid var(--es-border);
+    border-radius: var(--es-radius-lg);
+    width: 100%;
+    max-width: 820px;
+    max-height: 90vh;
+    display: flex;
+    flex-direction: column;
+    box-shadow: var(--es-shadow-modal);
+    overflow: hidden;
+    color: var(--es-text-primary);
+    animation: esSlideUp 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  @keyframes esSlideUp {
+    from { transform: translateY(12px) scale(0.98); opacity: 0; }
+    to { transform: translateY(0) scale(1); opacity: 1; }
+  }
+
+  .es-modal-header {
+    background: #f8fafc;
+    border-bottom: 1px solid var(--es-border);
+    padding: 0.9rem 1.4rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-shrink: 0;
+  }
+  .es-modal-title {
+    font-size: 1.05rem;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: var(--es-text-primary);
+    margin: 0;
+  }
+  .es-modal-close-btn {
+    background: none;
+    border: none;
+    color: var(--es-text-muted);
+    font-size: 1.25rem;
+    cursor: pointer;
+    line-height: 1;
+    padding: 0.25rem;
+    border-radius: 4px;
+    transition: color 0.15s ease;
+  }
+  .es-modal-close-btn:hover {
+    color: var(--es-text-primary);
+  }
+
+  .es-modal-body {
+    padding: 1.4rem;
+    overflow-y: auto;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 1.1rem;
+    background: #ffffff;
+  }
+
+  .es-modal-footer {
+    background: #f8fafc;
+    border-top: 1px solid var(--es-border);
+    padding: 0.85rem 1.4rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-shrink: 0;
+  }
+
+  /* Form controls inside modal */
+  .es-form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+  }
+  .es-label {
+    font-size: 0.74rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    font-weight: 700;
+    color: var(--es-text-secondary);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .es-input, .es-select, .es-textarea {
+    width: 100%;
+    background: #ffffff;
+    border: 1px solid #cbd5e1;
+    border-radius: var(--es-radius-sm);
+    color: var(--es-text-primary);
+    padding: 0.55rem 0.85rem;
+    font-size: 0.88rem;
+    transition: border-color 0.15s ease, box-shadow 0.15s ease;
+  }
+  .es-input:focus, .es-select:focus, .es-textarea:focus {
+    outline: none;
+    border-color: var(--es-primary);
+    box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.15);
+  }
+  .es-textarea {
+    font-family: "SFMono-Regular", Consolas, Menlo, monospace;
+    font-size: 0.83rem;
+    resize: vertical;
+    line-height: 1.5;
+  }
+
+  /* Tabs inside modal */
+  .es-tab-bar {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    border-bottom: 1px solid var(--es-border);
+    padding-bottom: 0.5rem;
+    margin-bottom: 0.5rem;
+  }
+  .es-tab-btn {
+    background: none;
+    border: none;
+    color: var(--es-text-muted);
+    font-size: 0.78rem;
+    font-weight: 600;
+    cursor: pointer;
+    padding: 0.25rem 0.65rem;
+    border-radius: 4px;
+    transition: all 0.15s ease;
+  }
+  .es-tab-btn:hover { color: var(--es-text-primary); }
+  .es-tab-btn.active {
+    background: #eff6ff;
+    color: #2563eb;
+    font-weight: 700;
+  }
+
+  /* Email HTML Preview Container */
+  .es-preview-box {
+    background: #ffffff;
+    color: #1e293b;
+    border: 1px solid #cbd5e1;
+    border-radius: var(--es-radius-sm);
+    min-height: 160px;
+    max-height: 320px;
+    overflow-y: auto;
+    padding: 1.25rem;
+    font-size: 0.88rem;
+    box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.05);
+  }
+  .es-preview-box.canvas-dark {
+    background: #0f172a;
+    color: #f8fafc;
+    border-color: #334155;
+  }
+
+  /* Quick Insert Variable Chips */
+  .es-chip-wrap {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-top: 4px;
+  }
+  .es-chip {
+    font-size: 0.7rem;
+    font-family: monospace;
+    background: #f1f5f9;
+    border: 1px solid #cbd5e1;
+    padding: 2px 7px;
+    border-radius: 4px;
+    color: #2563eb;
+    cursor: pointer;
+    transition: all 0.15s ease;
+  }
+  .es-chip:hover {
+    background: #eff6ff;
+    border-color: #93c5fd;
+    color: #1d4ed8;
+  }
+
+  /* Metadata Inspection Grid (Detail Modal) */
+  .es-meta-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.85rem;
+    background: #f8fafc;
+    border: 1px solid var(--es-border);
+    border-radius: var(--es-radius-sm);
+    padding: 1rem;
+    font-size: 0.82rem;
+  }
+  .es-meta-item-label {
+    font-size: 0.7rem;
+    color: var(--es-text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    font-weight: 700;
+    margin-bottom: 2px;
+  }
+  .es-meta-item-val {
+    color: var(--es-text-primary);
+    font-weight: 600;
+    word-break: break-all;
+  }
+
+  /* Delivery Error Alert Box */
+  .es-error-banner {
+    background: var(--es-danger-bg);
+    border: 1px solid var(--es-danger-border);
+    border-radius: var(--es-radius-sm);
+    padding: 0.85rem 1rem;
+    color: var(--es-danger-text);
+    font-size: 0.82rem;
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+  }
+
+  /* Responsive layout */
+  @media (max-width: 768px) {
+    .es-table thead {
+      display: none;
+    }
+    .es-table, .es-table tbody, .es-table tr, .es-table td {
+      display: block;
+      width: 100%;
+    }
+    .es-table tbody tr {
+      border: 1px solid var(--es-border);
+      border-radius: var(--es-radius-md);
+      margin: 0.75rem;
+      background: #ffffff;
+      box-shadow: var(--es-shadow-sm);
+      padding: 0.5rem 0;
+    }
+    .es-table tbody td {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      padding: 0.6rem 1rem;
+      border-bottom: 1px solid var(--es-border-subtle);
+      text-align: right;
+    }
+    .es-table tbody td::before {
+      content: attr(data-label);
+      color: var(--es-text-muted);
+      font-size: 0.7rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      text-align: left;
+      flex-shrink: 0;
+    }
+    .es-table tbody td:last-child {
+      border-bottom: none;
+      justify-content: flex-end;
+      gap: 8px;
+    }
+    .es-stat-grid {
+      grid-template-columns: 1fr 1fr;
+    }
+    .es-meta-grid {
+      grid-template-columns: 1fr;
     }
   }
-}
-</script>
 
-<!-- Font Awesome -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-
-<style>
-  *,:before,:after{box-sizing:border-box}
-  body{margin:0;font-family:"Source Sans Pro","Helvetica Neue",Arial,sans-serif;background:#222;color:#fff;min-height:100vh;font-size:14px}
-  ::-webkit-scrollbar{width:5px;height:5px}
-  ::-webkit-scrollbar-track{background:#222}
-  ::-webkit-scrollbar-thumb{background:#555;border-radius:3px}
-  input,select,textarea{font-family:inherit}
-  input::placeholder,textarea::placeholder{color:#6c757d}
-  select option{background:#1a1a1a;color:#fff}
-  .inp{background:#1a1a1a;border:1px solid #444;color:#fff;border-radius:4px;padding:.45rem .75rem;font-size:.85rem;width:100%;transition:border-color .15s}
-  .inp:focus{outline:none;border-color:#375a7f;box-shadow:0 0 0 2px rgba(55,90,127,.3)}
-  textarea.inp{resize:vertical;font-family:monospace}
-  /* pills */
-  .pill{padding:.25rem .7rem;border-radius:3px;font-size:.72rem;font-weight:700;border:none;cursor:pointer;color:#adb5bd;background:transparent;white-space:nowrap;transition:background .12s,color .12s}
-  .pill.on{background:#375a7f;color:#fff}
-  .pill:not(.on):hover{color:#fff}
-  /* modal */
-  .modal{display:none;position:fixed;inset:0;background:rgba(0,0,0,.8);backdrop-filter:blur(4px);z-index:9999;align-items:center;justify-content:center;padding:1rem;overflow-y:auto}
-  .modal.open{display:flex}
-  /* badge */
-  .badge{display:inline-flex;align-items:center;gap:3px;padding:.15rem .5rem;border-radius:3px;font-size:.68rem;font-weight:700;letter-spacing:.03em}
-  .badge-sent{background:rgba(0,188,140,.15);color:#00bc8c;border:1px solid rgba(0,188,140,.3)}
-  .badge-fail{background:rgba(231,76,60,.15);color:#e74c3c;border:1px solid rgba(231,76,60,.3)}
-  .badge-pend{background:rgba(243,156,18,.15);color:#f39c12;border:1px solid rgba(243,156,18,.3)}
-  /* email white preview */
-  .eml-prev{background:#fff;color:#222;border-radius:4px;min-height:140px;max-height:260px;overflow-y:auto;padding:1rem;font-size:.85rem}
-  /* stat card */
-  .scard{background:#303030;border:1px solid #444;border-radius:5px;padding:1rem;transition:border-color .15s}
-  .scard:hover{border-color:#555}
-  /* table */
-  .tbl{width:100%;border-collapse:collapse}
-  .tbl thead th{background:#1a1a1a;color:#adb5bd;text-transform:uppercase;font-size:.68rem;letter-spacing:.07em;font-weight:700;padding:.6rem 1rem;white-space:nowrap;border-bottom:1px solid #444}
-  .tbl tbody td{padding:.65rem 1rem;border-bottom:1px solid #383838;vertical-align:middle;font-size:.83rem}
-  .tbl tbody tr:last-child td{border-bottom:none}
-  .tbl tbody tr:hover{background:#3a3a3a}
-  @media(max-width:640px){.sm-hide{display:none!important}}
-  @media(max-width:768px){.md-hide{display:none!important}}
-  /* btn */
-  .btn{display:inline-flex;align-items:center;gap:5px;padding:.35rem .75rem;border-radius:4px;font-size:.78rem;font-weight:600;border:none;cursor:pointer;transition:background .15s,opacity .15s;white-space:nowrap}
-  .btn:disabled{opacity:.55;cursor:not-allowed}
-  .btn-pri{background:#375a7f;color:#fff}.btn-pri:hover{background:#2b4764}
-  .btn-sec{background:#3a3a3a;color:#ccc;border:1px solid #444}.btn-sec:hover{background:#444;color:#fff}
-  .btn-xs{padding:.22rem .55rem;font-size:.72rem}
-  /* nav */
-  .topnav{background:#303030;border-bottom:1px solid #444;padding:.5rem 1rem;position:sticky;top:0;z-index:100;box-shadow:0 1px 6px rgba(0,0,0,.5)}
-  /* alert */
-  .alert{border-radius:4px;padding:.7rem 1rem;font-size:.83rem;display:flex;align-items:center;justify-content:space-between;gap:.5rem}
-  .alert-ok{background:rgba(0,188,140,.12);border:1px solid rgba(0,188,140,.3);color:#00bc8c}
-  .alert-err{background:rgba(231,76,60,.12);border:1px solid rgba(231,76,60,.3);color:#e74c3c}
-  /* mono */
-  .mono{font-family:"SFMono-Regular",Consolas,monospace;font-size:.72rem;background:#1a1a1a;border:1px solid #444;border-radius:3px;padding:.1rem .35rem}
+  @media (max-width: 500px) {
+    .es-stat-grid {
+      grid-template-columns: 1fr;
+    }
+    .es-toolbar {
+      flex-direction: column;
+      align-items: stretch;
+    }
+    .es-search-wrap {
+      max-width: 100%;
+    }
+    .es-filter-group {
+      overflow-x: auto;
+      width: 100%;
+    }
+  }
 </style>
-</head>
+{% endblock %}
 
-<body>
+{% block content %}
+<div class="col-12">
+  <div class="es-container">
 
-<!-- ╔══════════════════════════════════════════╗
-     ║  TOP NAVIGATION                          ║
-     ╚══════════════════════════════════════════╝ -->
-<nav class="topnav flex items-center justify-between">
-  <!-- Left: Brand -->
-  <div class="flex items-center gap-3">
-    <a href="/admin/" class="btn btn-pri" style="padding:.35rem .6rem;font-size:.75rem;" title="Django Admin">
-      <i class="fas fa-envelope-open-text"></i>
-    </a>
-    <div>
-      <div class="flex items-center gap-2">
-        <a href="/admin/" class="text-white font-bold text-sm no-underline hover:text-blue-300 transition">SHP Admin</a>
-        <span class="text-gray-500 sm-hide">/</span>
-        <span class="text-xs px-2 py-0.5 rounded font-semibold sm-hide" style="background:rgba(55,90,127,.25);color:#7cb3e0;border:1px solid rgba(55,90,127,.4)">Email Studio</span>
+    <!-- ── Floating Alert Banner ── -->
+    <div id="alertBox" class="es-toast-alert alert-ok d-none" role="alert">
+      <div class="d-flex align-items-center gap-2">
+        <i id="alertIco" class="fas fa-circle-check fs-5"></i>
+        <span id="alertMsg" class="fw-semibold"></span>
       </div>
-      <p class="text-xs sm-hide" style="color:#adb5bd;margin:0">Transactional Dispatcher &amp; Audit Log</p>
+      <button type="button" onclick="hideAlert()" class="btn btn-sm btn-link text-secondary p-0 text-decoration-none" aria-label="Close notification">
+        <i class="fas fa-times fs-6"></i>
+      </button>
     </div>
-  </div>
 
-  <!-- Right: Actions -->
-  <div class="flex items-center gap-2">
-    <!-- Resend status -->
-    <div class="flex items-center gap-1.5 text-xs md-hide" style="color:#adb5bd">
-      <span style="width:8px;height:8px;border-radius:50%;display:inline-block;background:{% if resend_configured %}#00bc8c{% else %}#f39c12{% endif %}"></span>
-      Resend: <strong class="text-white">{% if resend_configured %}Active{% else %}No Key{% endif %}</strong>
-    </div>
-    <a href="/admin/" class="btn btn-sec sm-hide"><i class="fas fa-gauge"></i><span>Admin</span></a>
-    <button onclick="openCompose()" class="btn btn-pri"><i class="fas fa-paper-plane"></i><span>Send Mail</span></button>
-  </div>
-</nav>
-
-<!-- ╔══════════════════════════════════════════╗
-     ║  MAIN CONTENT                            ║
-     ╚══════════════════════════════════════════╝ -->
-<div style="max-width:1280px;margin:0 auto;padding:1.25rem 1rem">
-
-  <!-- Alert -->
-  <div id="alertBox" class="alert alert-ok mb-4 hidden">
-    <div class="flex items-center gap-2">
-      <i id="alertIco" class="fas"></i>
-      <span id="alertMsg"></span>
-    </div>
-    <button onclick="hideAlert()" style="background:none;border:none;cursor:pointer;color:inherit;font-size:1rem;line-height:1"><i class="fas fa-times"></i></button>
-  </div>
-
-  <!-- ── KPI Cards ── -->
-  <div class="grid grid-cols-2 gap-3 mb-4" style="grid-template-columns:repeat(auto-fit,minmax(140px,1fr))">
-
-    <!-- Total -->
-    <div class="scard">
-      <div class="flex items-center justify-between mb-2">
-        <span class="text-xs font-bold uppercase tracking-wider" style="color:#adb5bd">Total Emails</span>
-        <div style="width:34px;height:34px;border-radius:4px;background:rgba(55,90,127,.25);display:flex;align-items:center;justify-content:center">
-          <i class="fas fa-envelopes-bulk" style="color:#7cb3e0;font-size:.85rem"></i>
+    <!-- ── KPI Overview Cards ── -->
+    <div class="es-stat-grid">
+      <!-- Total Dispatched -->
+      <div class="es-card">
+        <div class="es-card-header">
+          <span class="es-card-title">Total Dispatched</span>
+          <div class="es-card-icon es-icon-blue">
+            <i class="fas fa-envelopes-bulk"></i>
+          </div>
+        </div>
+        <div class="es-stat-num">{{ total_count }}</div>
+        <div class="es-stat-footer">
+          <span>Outbound records logged</span>
+          <span class="text-primary fw-bold">100% audited</span>
         </div>
       </div>
-      <div class="flex items-baseline gap-2">
-        <span style="font-size:2rem;font-weight:800;line-height:1">{{ total_count }}</span>
-        <span class="text-xs sm-hide" style="color:#adb5bd">logged</span>
-      </div>
-    </div>
 
-    <!-- Delivered -->
-    <div class="scard">
-      <div class="flex items-center justify-between mb-2">
-        <span class="text-xs font-bold uppercase tracking-wider" style="color:#adb5bd">Delivered</span>
-        <div style="width:34px;height:34px;border-radius:4px;background:rgba(0,188,140,.2);display:flex;align-items:center;justify-content:center">
-          <i class="fas fa-circle-check" style="color:#00bc8c;font-size:.85rem"></i>
+      <!-- Delivered -->
+      <div class="es-card">
+        <div class="es-card-header">
+          <span class="es-card-title">Delivered (Sent)</span>
+          <div class="es-card-icon es-icon-green">
+            <i class="fas fa-circle-check"></i>
+          </div>
+        </div>
+        <div class="es-stat-num text-success">{{ sent_count }}</div>
+        <div class="es-progress-track">
+          <div class="es-progress-fill" style="width: {{ success_rate }}%;"></div>
+        </div>
+        <div class="es-stat-footer mt-2">
+          <span>Success rate</span>
+          <span class="badge bg-success-subtle text-success border border-success-subtle">{{ success_rate }}%</span>
         </div>
       </div>
-      <div class="flex items-baseline gap-2">
-        <span style="font-size:2rem;font-weight:800;line-height:1;color:#00bc8c">{{ sent_count }}</span>
-        <span class="text-xs font-bold px-1.5 py-0.5 rounded" style="background:rgba(0,188,140,.2);color:#00bc8c">{{ success_rate }}%</span>
-      </div>
-    </div>
 
-    <!-- Failed -->
-    <div class="scard">
-      <div class="flex items-center justify-between mb-2">
-        <span class="text-xs font-bold uppercase tracking-wider" style="color:#adb5bd">Failed</span>
-        <div style="width:34px;height:34px;border-radius:4px;background:rgba(231,76,60,.2);display:flex;align-items:center;justify-content:center">
-          <i class="fas fa-triangle-exclamation" style="color:#e74c3c;font-size:.85rem"></i>
+      <!-- Delivery Issues / Failed -->
+      <div class="es-card" style="cursor: pointer;" onclick="setFilter('failed')" title="Click to filter failed deliveries">
+        <div class="es-card-header">
+          <span class="es-card-title">Failed / Bounces</span>
+          <div class="es-card-icon es-icon-red">
+            <i class="fas fa-triangle-exclamation"></i>
+          </div>
+        </div>
+        <div class="es-stat-num {% if failed_count > 0 %}text-danger{% else %}text-muted{% endif %}">{{ failed_count }}</div>
+        <div class="es-stat-footer">
+          <span>{% if failed_count > 0 %}Requires attention{% else %}Clean deliverability{% endif %}</span>
+          <span class="text-danger fw-bold">{% if failed_count > 0 %}Filter issues <i class="fas fa-arrow-right ms-1"></i>{% else %}Zero failures{% endif %}</span>
         </div>
       </div>
-      <div class="flex items-baseline gap-2">
-        <span style="font-size:2rem;font-weight:800;line-height:1{% if failed_count > 0 %};color:#e74c3c{% endif %}">{{ failed_count }}</span>
-        <span class="text-xs sm-hide" style="color:#adb5bd">issues</span>
-      </div>
-    </div>
 
-    <!-- Senders -->
-    <div class="scard">
-      <div class="flex items-center justify-between mb-2">
-        <span class="text-xs font-bold uppercase tracking-wider" style="color:#adb5bd">Senders</span>
-        <div style="width:34px;height:34px;border-radius:4px;background:rgba(52,152,219,.2);display:flex;align-items:center;justify-content:center">
-          <i class="fas fa-users-gear" style="color:#3498db;font-size:.85rem"></i>
+      <!-- Senders & Resend Status -->
+      <div class="es-card">
+        <div class="es-card-header">
+          <span class="es-card-title">Sender Identities</span>
+          <div class="es-card-icon es-icon-amber">
+            <i class="fas fa-shield-halved"></i>
+          </div>
+        </div>
+        <div class="es-stat-num">{{ sender_options|length }}</div>
+        <div class="es-stat-footer">
+          <span>Service status</span>
+          {% if resend_configured %}
+            <span class="badge bg-success text-white"><i class="fas fa-check-double me-1"></i> Resend Active</span>
+          {% else %}
+            <span class="badge bg-warning text-dark"><i class="fas fa-key me-1"></i> Key Pending</span>
+          {% endif %}
         </div>
       </div>
-      <div class="flex items-baseline gap-2">
-        <span style="font-size:2rem;font-weight:800;line-height:1">{{ sender_options|length }}</span>
-        <span class="text-xs sm-hide" style="color:#adb5bd">roles</span>
-      </div>
     </div>
 
-  </div>
-
-  <!-- ── Search + Filter Bar ── -->
-  <div style="background:#303030;border:1px solid #444;border-radius:5px;padding:.75rem;margin-bottom:.75rem">
-    <div class="flex flex-wrap items-center gap-2">
-
+    <!-- ── Search & Filter Toolbar ── -->
+    <div class="es-toolbar">
       <!-- Search -->
-      <div style="position:relative;flex:1;min-width:200px;max-width:380px">
-        <i class="fas fa-search" style="position:absolute;left:.65rem;top:50%;transform:translateY(-50%);color:#adb5bd;font-size:.72rem"></i>
-        <input type="text" id="searchInp" oninput="filterTable()" placeholder="Search recipient, subject, Resend ID…"
-          class="inp" style="padding-left:2rem;padding-right:2rem">
-        <button id="clearBtn" onclick="clearSearch()" class="hidden" style="position:absolute;right:.6rem;top:50%;transform:translateY(-50%);background:none;border:none;cursor:pointer;color:#adb5bd;font-size:.8rem">
-          <i class="fas fa-circle-xmark"></i>
+      <div class="es-search-wrap">
+        <i class="fas fa-search"></i>
+        <input type="text" id="searchInp" oninput="filterTable()" placeholder="Search recipient, subject, or message ID…" class="es-search-input" autocomplete="off">
+        <button id="clearBtn" onclick="clearSearch()" class="es-clear-btn d-none" aria-label="Clear search">
+          <i class="fas fa-times-circle"></i>
         </button>
       </div>
 
-      <!-- Status pills -->
-      <div class="flex gap-1 items-center" style="background:#1a1a1a;padding:.25rem;border-radius:4px;border:1px solid #444">
-        <button onclick="setFilter('all')" id="f-all" class="pill on">All ({{ total_count }})</button>
-        <button onclick="setFilter('sent')" id="f-sent" class="pill">Sent ({{ sent_count }})</button>
-        <button onclick="setFilter('failed')" id="f-failed" class="pill">Failed ({{ failed_count }})</button>
+      <!-- Filter pills -->
+      <div class="es-filter-group" role="tablist">
+        <button type="button" onclick="setFilter('all')" id="f-all" class="es-filter-pill active" role="tab" aria-selected="true">
+          <span>All</span>
+          <span class="es-pill-badge">{{ total_count }}</span>
+        </button>
+        <button type="button" onclick="setFilter('sent')" id="f-sent" class="es-filter-pill" role="tab" aria-selected="false">
+          <i class="fas fa-circle-check text-success" style="font-size: 0.65rem;"></i>
+          <span>Sent</span>
+          <span class="es-pill-badge">{{ sent_count }}</span>
+        </button>
+        <button type="button" onclick="setFilter('failed')" id="f-failed" class="es-filter-pill" role="tab" aria-selected="false">
+          <i class="fas fa-triangle-exclamation text-danger" style="font-size: 0.65rem;"></i>
+          <span>Failed</span>
+          <span class="es-pill-badge">{{ failed_count }}</span>
+        </button>
+        {% if pending_count > 0 %}
+        <button type="button" onclick="setFilter('pending')" id="f-pending" class="es-filter-pill" role="tab" aria-selected="false">
+          <i class="fas fa-clock text-warning" style="font-size: 0.65rem;"></i>
+          <span>Pending</span>
+          <span class="es-pill-badge">{{ pending_count }}</span>
+        </button>
+        {% endif %}
       </div>
 
-      <!-- Right actions -->
-      <div class="flex gap-2 ml-auto">
-        <button onclick="location.reload()" class="btn btn-sec btn-xs"><i class="fas fa-rotate"></i></button>
-        <button onclick="openCompose()" class="btn btn-pri btn-xs"><i class="fas fa-pen-to-square"></i><span>Compose</span></button>
+      <!-- Quick Actions -->
+      <div class="d-flex align-items-center gap-2">
+        <button type="button" onclick="openCompose()" class="btn btn-sm btn-primary d-flex align-items-center gap-1 shadow-sm px-3">
+          <i class="fas fa-paper-plane"></i>
+          <span>Compose</span>
+        </button>
       </div>
-
-    </div>
-  </div>
-
-  <!-- ── Email Log Table ── -->
-  <div style="background:#303030;border:1px solid #444;border-radius:5px;overflow:hidden">
-    <!-- Card header -->
-    <div style="background:#282828;border-bottom:1px solid #444;padding:.6rem 1rem;display:flex;align-items:center;justify-content:space-between">
-      <div class="flex items-center gap-2">
-        <i class="fas fa-list-check" style="color:#adb5bd;font-size:.8rem"></i>
-        <strong style="font-size:.82rem">Outbound Email Audit Trail</strong>
-      </div>
-      <span class="text-xs" style="color:#adb5bd" id="rowCount">{{ email_logs|length }} entries</span>
     </div>
 
-    <!-- Table scroll wrapper -->
-    <div style="overflow-x:auto">
-      <table class="tbl" id="emailTable">
-        <thead>
-          <tr>
-            <th>Status</th>
-            <th>Recipient</th>
-            <th>From</th>
-            <th>Subject</th>
-            <th class="md-hide">Resend ID</th>
-            <th class="sm-hide">Date &amp; Time</th>
-            <th style="text-align:right">Actions</th>
-          </tr>
-        </thead>
-        <tbody>
-          {% for log in email_logs %}
-          <tr data-status="{{ log.status }}" data-q="{{ log.recipient }} {{ log.sender }} {{ log.subject }} {{ log.resend_id|default:'' }}">
-
-            <td>
-              {% if log.status == 'sent' %}
-                <span class="badge badge-sent"><i class="fas fa-check"></i> SENT</span>
-              {% elif log.status == 'failed' %}
-                <span class="badge badge-fail" title="{{ log.error_message }}"><i class="fas fa-xmark"></i> FAILED</span>
-              {% else %}
-                <span class="badge badge-pend"><i class="fas fa-clock"></i> PENDING</span>
-              {% endif %}
-            </td>
-
-            <td style="max-width:180px">
-              <span class="block truncate font-semibold" title="{{ log.recipient }}">{{ log.recipient }}</span>
-            </td>
-
-            <td class="sm-hide" style="max-width:160px;color:#adb5bd;font-size:.75rem">
-              <span class="block truncate" title="{{ log.sender }}">{{ log.sender }}</span>
-            </td>
-
-            <td style="max-width:220px">
-              <span class="block truncate" title="{{ log.subject }}">{{ log.subject }}</span>
-            </td>
-
-            <td class="md-hide">
-              {% if log.resend_id %}
-                <span class="mono" title="{{ log.resend_id }}">{{ log.resend_id|slice:":12" }}…</span>
-              {% else %}
-                <span style="color:#555">—</span>
-              {% endif %}
-            </td>
-
-            <td class="sm-hide" style="white-space:nowrap;color:#adb5bd;font-size:.75rem">
-              {{ log.created_at|date:"M d, Y · H:i" }}
-            </td>
-
-            <td style="text-align:right;white-space:nowrap">
-              <button onclick="viewDetail({{ log.id }})" class="btn btn-sec btn-xs" style="margin-right:4px">
-                <i class="far fa-eye"></i> Preview
-              </button>
-              <button onclick="resendEmail({{ log.id }})" class="btn btn-xs" style="background:rgba(55,90,127,.2);color:#7cb3e0;border:1px solid rgba(55,90,127,.4)">
-                <i class="fas fa-rotate-right"></i> Resend
-              </button>
-            </td>
-
-          </tr>
-          {% empty %}
-          <tr>
-            <td colspan="7" style="text-align:center;padding:3rem;color:#adb5bd">
-              <i class="far fa-envelope-open" style="font-size:2.5rem;display:block;margin-bottom:.75rem;color:#444"></i>
-              <strong style="color:#fff;display:block;margin-bottom:.25rem">No outbound emails logged yet</strong>
-              Click <strong>Compose</strong> above to send your first email!
-            </td>
-          </tr>
-          {% endfor %}
-        </tbody>
-      </table>
-    </div>
-  </div>
-
-</div><!-- /main -->
-
-
-<!-- ╔══════════════════════════════════════════╗
-     ║  COMPOSE MODAL                           ║
-     ╚══════════════════════════════════════════╝ -->
-<div id="composeModal" class="modal" onclick="backdropClose(event,'composeModal')">
-  <div style="background:#303030;border:1px solid #444;border-radius:6px;width:100%;max-width:660px;max-height:92vh;display:flex;flex-direction:column;box-shadow:0 16px 48px rgba(0,0,0,.8)" onclick="event.stopPropagation()">
-
-    <!-- Header -->
-    <div style="background:#282828;border-bottom:1px solid #444;padding:.7rem 1rem;display:flex;align-items:center;justify-content:space-between;flex-shrink:0">
-      <div class="flex items-center gap-2">
-        <div style="width:28px;height:28px;border-radius:4px;background:#375a7f;display:flex;align-items:center;justify-content:center">
-          <i class="fas fa-paper-plane" style="font-size:.7rem;color:#fff"></i>
+    <!-- ── Outbound Email Audit Log Table ── -->
+    <div class="es-table-card">
+      <div class="es-table-header-bar">
+        <div class="es-table-title">
+          <i class="fas fa-list-check text-primary"></i>
+          <span>Audit Trail &amp; Transaction Log</span>
         </div>
-        <strong>Compose Transactional Email</strong>
+        <div class="es-table-count" id="rowCountDisplay">{{ email_logs|length }} transactions</div>
       </div>
-      <button onclick="closeCompose()" style="background:none;border:none;cursor:pointer;color:#adb5bd;font-size:1.1rem;line-height:1">&times;</button>
+
+      <div class="es-table-responsive">
+        <table class="es-table" id="emailTable">
+          <thead>
+            <tr>
+              <th style="width: 110px;">Status</th>
+              <th style="min-width: 190px;">Recipient</th>
+              <th style="min-width: 160px;">Sender Role</th>
+              <th style="min-width: 240px;">Subject Line</th>
+              <th style="width: 140px;">Resend ID</th>
+              <th style="width: 160px;">Dispatched At</th>
+              <th style="width: 160px; text-align: right;">Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for log in email_logs %}
+            <tr data-status="{{ log.status }}" data-q="{{ log.recipient|lower }} {{ log.sender|lower }} {{ log.subject|lower }} {{ log.resend_id|default:''|lower }}">
+              <!-- Status -->
+              <td data-label="Status">
+                {% if log.status == 'sent' %}
+                  <span class="es-badge es-badge-sent"><i class="fas fa-check"></i> SENT</span>
+                {% elif log.status == 'failed' %}
+                  <span class="es-badge es-badge-failed" title="{{ log.error_message }}"><i class="fas fa-triangle-exclamation"></i> FAILED</span>
+                {% else %}
+                  <span class="es-badge es-badge-pending"><i class="fas fa-clock"></i> PENDING</span>
+                {% endif %}
+              </td>
+
+              <!-- Recipient -->
+              <td data-label="Recipient">
+                <div class="d-flex align-items-center gap-2">
+                  <div class="rounded-circle bg-primary bg-opacity-10 text-primary d-flex align-items-center justify-content-center fw-bold" style="width: 28px; height: 28px; font-size: 0.72rem; flex-shrink: 0;">
+                    {{ log.recipient|slice:":1"|upper }}
+                  </div>
+                  <div class="text-truncate" style="max-width: 220px;">
+                    <span class="fw-bold text-dark" title="{{ log.recipient }}">{{ log.recipient }}</span>
+                  </div>
+                  <button type="button" onclick="copyText('{{ log.recipient }}', this)" class="btn btn-sm btn-link text-muted p-0 ms-1 opacity-75" title="Copy recipient email">
+                    <i class="far fa-copy" style="font-size: 0.72rem;"></i>
+                  </button>
+                </div>
+              </td>
+
+              <!-- Sender -->
+              <td data-label="Sender Role">
+                <span class="es-identity-tag" title="{{ log.sender }}">
+                  <i class="far fa-paper-plane text-muted" style="font-size: 0.65rem;"></i>
+                  <span class="text-truncate" style="max-width: 160px;">{{ log.sender }}</span>
+                </span>
+              </td>
+
+              <!-- Subject -->
+              <td data-label="Subject">
+                <div class="text-truncate fw-semibold text-dark" style="max-width: 320px;" title="{{ log.subject }}">
+                  {{ log.subject }}
+                </div>
+              </td>
+
+              <!-- Resend Message ID -->
+              <td data-label="Resend ID">
+                {% if log.resend_id %}
+                  <span class="es-code-pill" onclick="copyText('{{ log.resend_id }}', this)" title="Click to copy: {{ log.resend_id }}">
+                    <span>#{{ log.resend_id|slice:":8" }}…</span>
+                    <i class="far fa-copy" style="font-size: 0.65rem;"></i>
+                  </span>
+                {% else %}
+                  <span class="text-muted" style="font-size: 0.75rem;">—</span>
+                {% endif %}
+              </td>
+
+              <!-- Date -->
+              <td data-label="Dispatched At" style="white-space: nowrap; font-size: 0.78rem;" class="text-muted">
+                <i class="far fa-clock me-1 opacity-50"></i>{{ log.created_at|date:"M d, Y · H:i" }}
+              </td>
+
+              <!-- Actions -->
+              <td data-label="Actions" style="text-align: right; white-space: nowrap;">
+                <div class="d-inline-flex align-items-center gap-1">
+                  <button type="button" onclick="viewDetail({{ log.id }})" class="es-btn-action" title="Inspect full email payload">
+                    <i class="far fa-eye"></i> Preview
+                  </button>
+                  <button type="button" onclick="resendEmail({{ log.id }})" class="es-btn-action es-btn-resend" title="Re-dispatch email">
+                    <i class="fas fa-rotate-right"></i> Resend
+                  </button>
+                </div>
+              </td>
+            </tr>
+            {% empty %}
+            <tr>
+              <td colspan="7">
+                <div class="es-empty-state">
+                  <div class="es-empty-icon">
+                    <i class="far fa-envelope-open"></i>
+                  </div>
+                  <div class="es-empty-title">No outbound emails logged yet</div>
+                  <p class="mb-3 text-muted" style="max-width: 420px; margin: 0 auto;">
+                    Transactional emails triggered by contact forms, inquiries, or the manual composer will be tracked here with real-time audit logs.
+                  </p>
+                  <button type="button" onclick="openCompose()" class="btn btn-primary btn-sm px-3 shadow-sm">
+                    <i class="fas fa-paper-plane me-1"></i> Compose First Email
+                  </button>
+                </div>
+              </td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+
+      <!-- Dynamic Search Empty State (Hidden by default) -->
+      <div id="noSearchMatches" class="es-empty-state d-none">
+        <div class="es-empty-icon text-muted">
+          <i class="fas fa-magnifying-glass"></i>
+        </div>
+        <div class="es-empty-title">No matching email records found</div>
+        <p class="mb-3 text-muted">No records match the current filter and search query.</p>
+        <button type="button" onclick="clearSearch()" class="btn btn-outline-secondary btn-sm px-3">
+          <i class="fas fa-rotate-left me-1"></i> Reset Search &amp; Filters
+        </button>
+      </div>
     </div>
 
-    <!-- Form body (scrollable) -->
-    <form id="composeForm" onsubmit="submitCompose(event)" style="padding:1.1rem;overflow-y:auto;flex:1;display:flex;flex-direction:column;gap:1rem">
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════════════════════════════════
+     MODAL 1: COMPOSE TRANSACTIONAL EMAIL
+     Placed inside main content block to guarantee proper Django template rendering
+     ══════════════════════════════════════════════════════════════════════════ -->
+<div id="composeModal" class="es-modal-backdrop" onclick="backdropClose(event,'composeModal')" role="dialog" aria-modal="true" aria-labelledby="composeTitle">
+  <div class="es-modal-dialog" onclick="event.stopPropagation()">
+    <!-- Header -->
+    <div class="es-modal-header">
+      <h3 class="es-modal-title" id="composeTitle">
+        <i class="fas fa-paper-plane text-primary"></i>
+        <span>Compose Transactional Email</span>
+      </h3>
+      <button type="button" onclick="closeCompose()" class="es-modal-close-btn" aria-label="Close modal">&times;</button>
+    </div>
+
+    <!-- Form body -->
+    <form id="composeForm" onsubmit="submitCompose(event)" class="es-modal-body">
       {% csrf_token %}
 
-      <!-- From -->
-      <div>
-        <div class="flex items-center justify-between mb-1">
-          <label class="text-xs font-bold uppercase tracking-wider" style="color:#adb5bd">Send From (Role) <span style="color:#e74c3c">*</span></label>
-          <span class="text-xs" style="color:#3498db">Company identities</span>
-        </div>
-        <select id="fromSel" onchange="onSenderChange(this.value)" class="inp">
+      <!-- Sender selection -->
+      <div class="es-form-group">
+        <label for="fromSel" class="es-label">
+          <span>Sender Identity (From Role) <span class="text-danger">*</span></span>
+          <span class="text-muted fw-normal" style="font-size: 0.68rem;">Verified business roles</span>
+        </label>
+        <select id="fromSel" onchange="onSenderChange(this.value)" class="es-select">
           {% for opt in sender_options %}
           <option value="{{ opt.full }}" {% if opt.id == 'hello' %}selected{% endif %}>
             {{ opt.name }} — {{ opt.address }} [{{ opt.badge }}]
           </option>
           {% endfor %}
-          <option value="CUSTOM">✏️ Custom Address (Enter manually)…</option>
+          <option value="CUSTOM">✏️ Custom Sender Address (Manual specification)…</option>
         </select>
-        <div id="customBox" class="hidden mt-2">
-          <input type="text" id="customFrom" placeholder='Custom Name <custom@shptechnology.online>' class="inp">
-          <p class="text-xs mt-1" style="color:#adb5bd">Format: <code style="background:#1a1a1a;padding:.1rem .3rem;border-radius:2px">Display Name &lt;email@domain&gt;</code></p>
+
+        <!-- Custom Address Field (Revealed when CUSTOM is chosen) -->
+        <div id="customBox" class="d-none mt-2">
+          <input type="text" id="customFrom" placeholder='Display Name &lt;custom@shptechnology.online&gt;' class="es-input">
+          <span class="text-muted" style="font-size: 0.72rem;">Format: <code>Display Name &lt;email@domain&gt;</code></span>
         </div>
-        <p class="text-xs mt-1" style="color:#6c757d">
-          <i class="fas fa-circle-info" style="color:#3498db;margin-right:3px"></i>
-          Sandbox mode: emails route via <code style="background:#1a1a1a;padding:.1rem .3rem;border-radius:2px">onboarding@resend.dev</code>. Verify
-          <code style="background:#1a1a1a;padding:.1rem .3rem;border-radius:2px">shptechnology.online</code> at
-          <a href="https://resend.com/domains" target="_blank" style="color:#3498db">resend.com/domains</a> to unlock.
-        </p>
+
+        <!-- Sandbox notice -->
+        <div class="d-flex align-items-center gap-2 mt-1 p-2 rounded" style="background: #fffbeb; border: 1px solid #fde68a; font-size: 0.74rem; color: #92400e;">
+          <i class="fas fa-circle-info"></i>
+          <span>
+            Sandbox notice: In unverified mode, emails route through <code>onboarding@resend.dev</code>. Verify domain at
+            <a href="https://resend.com/domains" target="_blank" rel="noopener" class="text-primary text-decoration-underline fw-bold">resend.com/domains</a>.
+          </span>
+        </div>
       </div>
 
-      <!-- To -->
-      <div>
-        <label class="text-xs font-bold uppercase tracking-wider mb-1 block" style="color:#adb5bd">Recipient (To) <span style="color:#e74c3c">*</span></label>
-        <input type="email" id="toEmail" required value="founder.shp@gmail.com" placeholder="client@example.com" class="inp">
+      <!-- Recipient -->
+      <div class="es-form-group">
+        <label for="toEmail" class="es-label">
+          <span>Recipient Address (To) <span class="text-danger">*</span></span>
+          <span class="text-muted fw-normal" style="font-size: 0.68rem;">Single or comma-separated</span>
+        </label>
+        <input type="email" id="toEmail" required value="founder.shp@gmail.com" placeholder="client@example.com" class="es-input">
       </div>
 
-      <!-- Template -->
-      <div>
-        <label class="text-xs font-bold uppercase tracking-wider mb-1 block" style="color:#adb5bd">Quick Template</label>
-        <select id="tmplSel" onchange="applyTemplate(this.value)" class="inp">
-          <option value="welcome">Client Inquiry Response &amp; Welcome (Hello)</option>
-          <option value="support">Support Ticket Acknowledgement (Support)</option>
-          <option value="proposal">Enterprise Solution Proposal (Sales)</option>
-          <option value="consultation">Technical Architecture Consultation</option>
-          <option value="custom">Custom Blank Email</option>
+      <!-- Quick Template Picker -->
+      <div class="es-form-group">
+        <label for="tmplSel" class="es-label">
+          <span>Quick Preset Template</span>
+          <span class="text-muted fw-normal" style="font-size: 0.68rem;">Pre-crafted corporate responses</span>
+        </label>
+        <select id="tmplSel" onchange="applyTemplate(this.value)" class="es-select">
+          <option value="welcome">Client Inquiry Response &amp; Welcome (Hello Desk)</option>
+          <option value="support">Support Ticket Acknowledgement (Support Helpdesk)</option>
+          <option value="proposal">Enterprise Architecture Solution Proposal (Sales)</option>
+          <option value="consultation">Technical Strategy &amp; Architecture Consultation</option>
+          <option value="custom">Blank Email (Custom Format)</option>
         </select>
       </div>
 
       <!-- Subject -->
-      <div>
-        <label class="text-xs font-bold uppercase tracking-wider mb-1 block" style="color:#adb5bd">Subject Line <span style="color:#e74c3c">*</span></label>
-        <input type="text" id="subjectInp" required placeholder="Subject…" class="inp">
+      <div class="es-form-group">
+        <label for="subjectInp" class="es-label">
+          <span>Subject Line <span class="text-danger">*</span></span>
+          <span id="subjectCharCount" class="text-muted fw-normal" style="font-size: 0.68rem;">0 chars</span>
+        </label>
+        <input type="text" id="subjectInp" required placeholder="Email subject…" class="es-input" oninput="updateCharCount()">
       </div>
 
-      <!-- Body + Preview tabs -->
-      <div>
-        <div class="flex items-center justify-between mb-1">
-          <label class="text-xs font-bold uppercase tracking-wider" style="color:#adb5bd">Email Body (HTML supported)</label>
-          <div class="flex items-center gap-1" style="font-size:.75rem">
-            <button type="button" onclick="setTab('edit')" id="tab-edit"
-              style="background:none;border:none;cursor:pointer;color:#3498db;font-weight:700;text-decoration:underline">Edit</button>
-            <span style="color:#444">|</span>
-            <button type="button" onclick="setTab('prev')" id="tab-prev"
-              style="background:none;border:none;cursor:pointer;color:#adb5bd">Preview</button>
+      <!-- Body with HTML Tabs -->
+      <div class="es-form-group">
+        <div class="d-flex align-items-center justify-content-between">
+          <label class="es-label mb-0">Email Content (Rich HTML Supported)</label>
+          <div class="es-tab-bar mb-0 pb-0 border-0">
+            <button type="button" onclick="setTab('edit')" id="tab-edit" class="es-tab-btn active">
+              <i class="fas fa-code me-1"></i> HTML Editor
+            </button>
+            <button type="button" onclick="setTab('prev')" id="tab-prev" class="es-tab-btn">
+              <i class="far fa-eye me-1"></i> Live Visual Preview
+            </button>
           </div>
         </div>
-        <div id="editBox">
-          <textarea id="bodyInp" rows="8" required placeholder="Write message or HTML…" class="inp"></textarea>
-        </div>
-        <div id="prevBox" class="hidden eml-prev"></div>
-      </div>
 
+        <!-- Quick variable chips -->
+        <div class="es-chip-wrap">
+          <span class="text-muted" style="font-size: 0.7rem; align-self: center;">Insert Tags:</span>
+          <span class="es-chip" onclick="insertVariable('{{ name }}')" title="Insert {{ name }}">{{ name }}</span>
+          <span class="es-chip" onclick="insertVariable('{{ company }}')" title="Insert {{ company }}">{{ company }}</span>
+          <span class="es-chip" onclick="insertVariable('{{ email }}')" title="Insert {{ email }}">{{ email }}</span>
+          <span class="es-chip" onclick="insertVariable('{{ ticket_id }}')" title="Insert {{ ticket_id }}">{{ ticket_id }}</span>
+        </div>
+
+        <div id="editBox" class="mt-2">
+          <textarea id="bodyInp" rows="8" required placeholder="Write message body or paste HTML layout…" class="es-textarea"></textarea>
+        </div>
+
+        <div id="prevBox" class="es-preview-box d-none mt-2"></div>
+      </div>
     </form>
 
     <!-- Footer -->
-    <div style="border-top:1px solid #444;padding:.7rem 1rem;display:flex;align-items:center;justify-content:flex-end;gap:.5rem;flex-shrink:0">
-      <button type="button" onclick="closeCompose()" class="btn btn-sec">Cancel</button>
-      <button type="submit" form="composeForm" id="sendBtn" class="btn btn-pri">
-        <i class="fas fa-paper-plane"></i> Dispatch Email
+    <div class="es-modal-footer">
+      <button type="button" onclick="closeCompose()" class="btn btn-sm btn-outline-secondary px-3">
+        Cancel
+      </button>
+      <button type="submit" form="composeForm" id="sendBtn" class="btn btn-sm btn-primary px-4 shadow-sm d-flex align-items-center gap-2">
+        <i class="fas fa-paper-plane"></i>
+        <span>Dispatch Email</span>
       </button>
     </div>
-
   </div>
 </div>
 
-
-<!-- ╔══════════════════════════════════════════╗
-     ║  DETAIL MODAL                            ║
-     ╚══════════════════════════════════════════╝ -->
-<div id="detailModal" class="modal" onclick="backdropClose(event,'detailModal')">
-  <div style="background:#303030;border:1px solid #444;border-radius:6px;width:100%;max-width:740px;max-height:92vh;display:flex;flex-direction:column;box-shadow:0 16px 48px rgba(0,0,0,.8)" onclick="event.stopPropagation()">
-
+<!-- ══════════════════════════════════════════════════════════════════════════
+     MODAL 2: EMAIL DETAIL & PREVIEW INSPECTOR
+     ══════════════════════════════════════════════════════════════════════════ -->
+<div id="detailModal" class="es-modal-backdrop" onclick="backdropClose(event,'detailModal')" role="dialog" aria-modal="true" aria-labelledby="dSubject">
+  <div class="es-modal-dialog" onclick="event.stopPropagation()">
     <!-- Header -->
-    <div style="background:#282828;border-bottom:1px solid #444;padding:.7rem 1rem;display:flex;align-items:center;justify-content:space-between;flex-shrink:0">
-      <div class="flex items-center gap-2">
-        <span id="dBadge" class="badge"></span>
-        <strong id="dSubject" class="truncate" style="max-width:500px"></strong>
+    <div class="es-modal-header">
+      <div class="d-flex align-items-center gap-2 text-truncate" style="max-width: 650px;">
+        <span id="dBadge" class="es-badge"></span>
+        <strong id="dSubject" class="text-truncate text-dark" style="font-size: 0.95rem;"></strong>
       </div>
-      <button onclick="closeDetail()" style="background:none;border:none;cursor:pointer;color:#adb5bd;font-size:1.1rem;line-height:1">&times;</button>
+      <button type="button" onclick="closeDetail()" class="es-modal-close-btn" aria-label="Close modal">&times;</button>
     </div>
 
     <!-- Body -->
-    <div style="padding:1.1rem;overflow-y:auto;flex:1;display:flex;flex-direction:column;gap:1rem">
-
+    <div class="es-modal-body">
       <!-- Meta grid -->
-      <div style="background:#1a1a1a;border:1px solid #444;border-radius:4px;padding:.85rem;display:grid;grid-template-columns:1fr 1fr;gap:.85rem;font-size:.8rem">
-        <div><span style="color:#adb5bd;display:block;margin-bottom:2px">Recipient (To)</span><div id="dTo" class="font-semibold"></div></div>
-        <div><span style="color:#adb5bd;display:block;margin-bottom:2px">Sender (From)</span><div id="dFrom" class="font-semibold"></div></div>
-        <div><span style="color:#adb5bd;display:block;margin-bottom:2px">Resend Message ID</span><div id="dRid" style="font-family:monospace;font-size:.72rem;color:#3498db"></div></div>
-        <div><span style="color:#adb5bd;display:block;margin-bottom:2px">Timestamp</span><div id="dTime"></div></div>
+      <div class="es-meta-grid">
+        <div>
+          <div class="es-meta-item-label">Recipient (To)</div>
+          <div id="dTo" class="es-meta-item-val d-flex align-items-center gap-1">
+            <span id="dToVal"></span>
+            <button type="button" onclick="copyText(document.getElementById('dToVal').textContent, this)" class="btn btn-sm btn-link text-muted p-0 ms-1 opacity-75" title="Copy recipient">
+              <i class="far fa-copy" style="font-size: 0.72rem;"></i>
+            </button>
+          </div>
+        </div>
+        <div>
+          <div class="es-meta-item-label">Sender Identity (From)</div>
+          <div id="dFrom" class="es-meta-item-val"></div>
+        </div>
+        <div>
+          <div class="es-meta-item-label">Resend Message ID</div>
+          <div class="d-flex align-items-center gap-1">
+            <span id="dRid" class="es-code-pill"></span>
+            <button type="button" onclick="copyText(document.getElementById('dRid').textContent, this)" class="btn btn-sm btn-link text-muted p-0 ms-1 opacity-75" title="Copy Resend ID">
+              <i class="far fa-copy" style="font-size: 0.72rem;"></i>
+            </button>
+          </div>
+        </div>
+        <div>
+          <div class="es-meta-item-label">Dispatched Timestamp</div>
+          <div id="dTime" class="es-meta-item-val text-muted"></div>
+        </div>
       </div>
 
-      <!-- Error -->
-      <div id="dErrBox" class="hidden" style="background:rgba(231,76,60,.1);border:1px solid rgba(231,76,60,.3);border-radius:4px;padding:.75rem;font-size:.8rem;color:#e74c3c">
-        <i class="fas fa-triangle-exclamation mr-1"></i><strong>Delivery Error:</strong>
-        <span id="dErrMsg" style="font-family:monospace;word-break:break-all"></span>
+      <!-- Delivery Error Alert (If status is failed) -->
+      <div id="dErrBox" class="es-error-banner d-none">
+        <i class="fas fa-triangle-exclamation mt-1"></i>
+        <div>
+          <strong class="d-block mb-1">Delivery Failure Details:</strong>
+          <span id="dErrMsg" style="font-family: monospace; word-break: break-all;"></span>
+        </div>
       </div>
 
-      <!-- HTML preview -->
+      <!-- Rendered Email Body Preview -->
       <div>
-        <label class="text-xs font-bold uppercase tracking-wider mb-1 block" style="color:#adb5bd">Rendered Email Body</label>
-        <div id="dHtml" class="eml-prev" style="border:1px solid #444"></div>
+        <div class="d-flex align-items-center justify-content-between mb-1">
+          <label class="es-label mb-0">Rendered Email Payload</label>
+          <div class="d-flex align-items-center gap-2">
+            <button type="button" onclick="toggleCanvasDark()" id="canvasToggleBtn" class="btn btn-xs btn-outline-secondary py-0 px-2" style="font-size: 0.68rem;" title="Switch preview contrast">
+              <i class="fas fa-moon me-1"></i> Dark View
+            </button>
+          </div>
+        </div>
+        <div id="dHtml" class="es-preview-box"></div>
       </div>
-
     </div>
 
     <!-- Footer -->
-    <div style="border-top:1px solid #444;padding:.7rem 1rem;display:flex;align-items:center;justify-content:space-between;flex-shrink:0">
-      <small id="dLogId" style="color:#adb5bd"></small>
-      <div class="flex items-center gap-2">
-        <button onclick="closeDetail()" class="btn btn-sec btn-xs">Close</button>
-        <button id="dResendBtn" class="btn btn-pri btn-xs"><i class="fas fa-rotate-right"></i> Resend Email</button>
+    <div class="es-modal-footer">
+      <small id="dLogId" class="text-muted fw-bold" style="font-family: monospace;"></small>
+      <div class="d-flex align-items-center gap-2">
+        <button type="button" onclick="closeDetail()" class="btn btn-sm btn-outline-secondary px-3">
+          Close
+        </button>
+        <button type="button" id="dResendBtn" class="btn btn-sm btn-primary px-3 d-flex align-items-center gap-1 shadow-sm">
+          <i class="fas fa-rotate-right"></i>
+          <span>Resend Email</span>
+        </button>
       </div>
     </div>
-
   </div>
 </div>
+{% endblock %}
 
-
-<!-- ╔══════════════════════════════════════════╗
-     ║  JAVASCRIPT                              ║
-     ╚══════════════════════════════════════════╝ -->
+{% block extrajs %}
 <script>
-// ── Templates ─────────────────────────────────────────────────────────────
+// ── Templates Preset Data ──────────────────────────────────────────────────
 const TEMPLATES = {
   welcome: {
-    sid:'hello',
-    sub:'Thank you for connecting with SHP Technology',
-    body:`<div style="font-family:Arial,sans-serif;line-height:1.6;color:#1e293b;max-width:600px;margin:0 auto;border:1px solid #e2e8f0;border-radius:8px;padding:24px">
-  <h2 style="color:#0f172a;margin-top:0">Welcome to SHP Technology</h2>
-  <p>We received your inquiry regarding custom software development &amp; enterprise cloud solutions.</p>
-  <p>Our senior technical architects are reviewing your specifications and will respond within 24 hours.</p>
-  <hr style="border:none;border-top:1px solid #e2e8f0;margin:20px 0">
-  <p style="font-size:13px;color:#64748b">SHP Technology — Build &bull; Automate &bull; Grow<br>
-  Website: <a href="https://shptechnology.online" style="color:#2563eb">shptechnology.online</a></p>
+    sid: 'hello',
+    sub: 'Thank you for connecting with SHP Technology',
+    body: `<div style="font-family: 'Segoe UI', Arial, sans-serif; line-height: 1.6; color: #1e293b; max-width: 600px; margin: 0 auto; border: 1px solid #e2e8f0; border-radius: 12px; overflow: hidden; background: #ffffff;">
+  <div style="background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%); color: #ffffff; padding: 28px 24px;">
+    <h2 style="margin: 0; font-size: 22px; font-weight: 700; letter-spacing: -0.01em;">Welcome to SHP Technology</h2>
+    <p style="margin: 6px 0 0; color: #94a3b8; font-size: 14px;">Build &bull; Automate &bull; Grow</p>
+  </div>
+  <div style="padding: 24px;">
+    <p style="font-size: 15px; margin-top: 0;">Dear Valued Partner,</p>
+    <p>Thank you for reaching out regarding our custom software engineering &amp; cloud infrastructure solutions.</p>
+    <p>Our senior technical architects are evaluating your specifications and will deliver an initial consultation plan within <strong>24 business hours</strong>.</p>
+    <div style="margin: 24px 0; padding: 16px; background: #f8fafc; border-left: 4px solid #007bff; border-radius: 4px;">
+      <p style="margin: 0; font-size: 13.5px; color: #334155;"><strong>Immediate inquiry?</strong> Connect directly with our team at <a href="mailto:hello@shptechnology.online" style="color: #007bff; font-weight: 600;">hello@shptechnology.online</a> or WhatsApp <strong>+91 9301885654</strong>.</p>
+    </div>
+    <hr style="border: none; border-top: 1px solid #e2e8f0; margin: 24px 0;">
+    <p style="font-size: 12.5px; color: #64748b; margin-bottom: 0;">
+      SHP Technology &bull; Enterprise Software &amp; Cloud Systems<br>
+      Website: <a href="https://shptechnology.online" style="color: #007bff; text-decoration: none;">shptechnology.online</a>
+    </p>
+  </div>
 </div>`
   },
   support: {
-    sid:'support',
-    sub:'[Ticket #SHP] We received your support request',
-    body:`<div style="font-family:Arial,sans-serif;line-height:1.6;color:#1e293b;max-width:600px;margin:0 auto;border:1px solid #e2e8f0;border-radius:8px;padding:24px">
-  <h2 style="color:#0f172a;margin-top:0">SHP Support Helpdesk</h2>
-  <p>Your support ticket has been registered. A specialist has been assigned.</p>
-  <p><strong>Status:</strong> Under Active Investigation<br><strong>SLA:</strong> Under 2 hours</p>
-  <p>Reply to this email with additional logs or screenshots.</p>
-  <p>Sincerely,<br><strong>SHP Technology Customer Support</strong></p>
+    sid: 'support',
+    sub: '[Ticket #SHP] We have received your technical support request',
+    body: `<div style="font-family: 'Segoe UI', Arial, sans-serif; line-height: 1.6; color: #1e293b; max-width: 600px; margin: 0 auto; border: 1px solid #e2e8f0; border-radius: 12px; overflow: hidden; background: #ffffff;">
+  <div style="background: #0f172a; color: #ffffff; padding: 24px;">
+    <h2 style="margin: 0; font-size: 20px; font-weight: 700;">SHP Technical Support Helpdesk</h2>
+    <p style="margin: 4px 0 0; color: #38bdf8; font-size: 13px;">Ticket Assigned &bull; Priority Response</p>
+  </div>
+  <div style="padding: 24px;">
+    <p style="margin-top: 0;">Hello,</p>
+    <p>Your support inquiry has been logged in our engineering queues. An infrastructure specialist is reviewing your incident.</p>
+    <table style="width: 100%; border-collapse: collapse; margin: 20px 0; background: #f8fafc; border-radius: 6px; overflow: hidden; font-size: 13.5px;">
+      <tr>
+        <td style="padding: 10px 14px; border-bottom: 1px solid #e2e8f0; color: #64748b;"><strong>Status:</strong></td>
+        <td style="padding: 10px 14px; border-bottom: 1px solid #e2e8f0; color: #0284c7; font-weight: 600;">Under Active Investigation</td>
+      </tr>
+      <tr>
+        <td style="padding: 10px 14px; color: #64748b;"><strong>Response SLA:</strong></td>
+        <td style="padding: 10px 14px; color: #1e293b; font-weight: 600;">Under 2 hours</td>
+      </tr>
+    </table>
+    <p>To provide extra diagnostics or screenshots, please reply directly to this thread.</p>
+    <p style="margin-bottom: 0;">Sincerely,<br><strong>SHP Technology Customer Support Engineering</strong></p>
+  </div>
 </div>`
   },
   proposal: {
-    sid:'sales',
-    sub:'SHP Technology — Enterprise Engineering Solution & Proposal',
-    body:`<div style="font-family:Arial,sans-serif;line-height:1.6;color:#1e293b;max-width:600px;margin:0 auto;border:1px solid #e2e8f0;border-radius:8px;padding:24px">
-  <h2 style="color:#0f172a;margin-top:0">Project Architecture Proposal</h2>
-  <p>Following our technical evaluation, we have outlined the roadmap:</p>
-  <ul>
-    <li>High-performance microservices architecture</li>
-    <li>Multi-region cloud infrastructure &amp; automated CI/CD</li>
-    <li>Production enterprise security &amp; SLA guarantees</li>
-  </ul>
-  <p>Please let us know your availability for a deep-dive walkthrough.</p>
-  <p>Sincerely,<br><strong>SHP Technology Solutions Team</strong></p>
+    sid: 'sales',
+    sub: 'SHP Technology — Enterprise Engineering Solution & Roadmap Proposal',
+    body: `<div style="font-family: 'Segoe UI', Arial, sans-serif; line-height: 1.6; color: #1e293b; max-width: 600px; margin: 0 auto; border: 1px solid #e2e8f0; border-radius: 12px; overflow: hidden; background: #ffffff;">
+  <div style="background: linear-gradient(135deg, #1e3a8a 0%, #0f172a 100%); color: #ffffff; padding: 28px 24px;">
+    <h2 style="margin: 0; font-size: 22px; font-weight: 700;">Enterprise Solution &amp; Roadmap Proposal</h2>
+    <p style="margin: 4px 0 0; color: #93c5fd; font-size: 13.5px;">Custom Architecture Evaluation</p>
+  </div>
+  <div style="padding: 24px;">
+    <p style="margin-top: 0;">Dear Client,</p>
+    <p>Following our discovery evaluation, our architects have formulated the roadmap for your application ecosystem:</p>
+    <ul style="padding-left: 20px; color: #334155; font-size: 14px;">
+      <li style="margin-bottom: 8px;"><strong>Resilient Microservices Architecture:</strong> High-throughput, auto-scaling backend services with 99.9% uptime SLA.</li>
+      <li style="margin-bottom: 8px;"><strong>Multi-Region Cloud Infrastructure:</strong> Automated CI/CD deployment pipelines on AWS/Render/GCP.</li>
+      <li style="margin-bottom: 8px;"><strong>Security &amp; Compliance Hardening:</strong> Enterprise data privacy, rate-limiting, and end-to-end audit observability.</li>
+    </ul>
+    <p>We are available this week for a walkthrough of the milestone timeline and commercial schedule.</p>
+    <p style="margin-bottom: 0;">Warm regards,<br><strong>SHP Technology Solutions Team</strong></p>
+  </div>
 </div>`
   },
   consultation: {
-    sid:'hello',
-    sub:'Invitation: 1-on-1 Technical Architecture Consultation',
-    body:`<div style="font-family:Arial,sans-serif;line-height:1.6;color:#1e293b;max-width:600px;margin:0 auto;border:1px solid #e2e8f0;border-radius:8px;padding:24px">
-  <h2 style="color:#0f172a;margin-top:0">Schedule Your Technical Strategy Session</h2>
-  <p>We invite you to a complimentary 30-minute consultation with our lead architects.</p>
-  <p>Reply with your preferred schedule or WhatsApp us at <strong>+91 9301885654</strong>.</p>
-  <p>Warm regards,<br>SHP Technology Engineering</p>
+    sid: 'hello',
+    sub: 'Invitation: 1-on-1 Architecture Consultation with SHP Engineering',
+    body: `<div style="font-family: 'Segoe UI', Arial, sans-serif; line-height: 1.6; color: #1e293b; max-width: 600px; margin: 0 auto; border: 1px solid #e2e8f0; border-radius: 12px; overflow: hidden; background: #ffffff;">
+  <div style="background: #0f172a; color: #ffffff; padding: 26px 24px;">
+    <h2 style="margin: 0; font-size: 21px; font-weight: 700;">Technical Strategy Consultation</h2>
+    <p style="margin: 4px 0 0; color: #38bdf8; font-size: 13.5px;">Schedule your 30-minute deep-dive session</p>
+  </div>
+  <div style="padding: 24px;">
+    <p style="margin-top: 0;">Hello,</p>
+    <p>We would love to invite you to a complimentary 30-minute technical architecture consultation with our Principal Engineering Lead.</p>
+    <p>During this session, we will audit your performance constraints, system architecture, and optimization roadmap.</p>
+    <p>Simply reply to this email with your preferred time slot or ping us on WhatsApp at <strong>+91 9301885654</strong>.</p>
+    <p style="margin-bottom: 0;">Best regards,<br><strong>SHP Technology Engineering Group</strong></p>
+  </div>
 </div>`
   },
-  custom:{sid:'hello',sub:'',body:'<p>Dear Client,</p><p>Thank you for reaching out to SHP Technology.</p><p>Best regards,<br>SHP Technology Team</p>'}
+  custom: {
+    sid: 'hello',
+    sub: '',
+    body: `<div style="font-family: 'Segoe UI', Arial, sans-serif; line-height: 1.6; color: #1e293b; padding: 16px;">
+  <p>Dear Client,</p>
+  <p>Thank you for reaching out to SHP Technology.</p>
+  <p>Best regards,<br><strong>SHP Technology Team</strong></p>
+</div>`
+  }
 };
 
-// ── Filter / Search ────────────────────────────────────────────────────────
+// ── Filter and Search Logic ────────────────────────────────────────────────
 let curFilter = 'all';
 
-function filterTable(){
-  const q = document.getElementById('searchInp').value.toLowerCase().trim();
-  document.getElementById('clearBtn').classList.toggle('hidden', !q);
+function filterTable() {
+  const query = document.getElementById('searchInp').value.toLowerCase().trim();
+  document.getElementById('clearBtn').classList.toggle('d-none', !query);
+
   const rows = document.querySelectorAll('#emailTable tbody tr');
-  let n=0;
-  rows.forEach(r=>{
-    const ok = (!q || (r.dataset.q||'').toLowerCase().includes(q)) &&
-               (curFilter==='all' || r.dataset.status===curFilter);
-    r.style.display = ok?'':'none';
-    if(ok) n++;
+  let matchCount = 0;
+
+  rows.forEach(row => {
+    if (!row.dataset.status) return;
+
+    const rowData = (row.dataset.q || '').toLowerCase();
+    const rowStatus = row.dataset.status;
+
+    const matchesSearch = !query || rowData.includes(query);
+    const matchesFilter = (curFilter === 'all') || (rowStatus === curFilter);
+
+    const isVisible = matchesSearch && matchesFilter;
+    row.style.display = isVisible ? '' : 'none';
+    if (isVisible) matchCount++;
   });
-  document.getElementById('rowCount').textContent = n+' entries';
+
+  const countDisplay = document.getElementById('rowCountDisplay');
+  if (countDisplay) {
+    countDisplay.textContent = matchCount + ' ' + (matchCount === 1 ? 'transaction' : 'transactions');
+  }
+
+  const noMatches = document.getElementById('noSearchMatches');
+  if (noMatches) {
+    noMatches.classList.toggle('d-none', matchCount > 0 || rows.length === 0);
+  }
 }
 
-function clearSearch(){
-  document.getElementById('searchInp').value='';
+function clearSearch() {
+  document.getElementById('searchInp').value = '';
+  setFilter('all');
+}
+
+function setFilter(status) {
+  curFilter = status;
+  ['all', 'sent', 'failed', 'pending'].forEach(name => {
+    const btn = document.getElementById('f-' + name);
+    if (btn) {
+      btn.classList.toggle('active', name === status);
+      btn.setAttribute('aria-selected', name === status ? 'true' : 'false');
+    }
+  });
   filterTable();
 }
 
-function setFilter(s){
-  curFilter=s;
-  ['all','sent','failed'].forEach(x=>{
-    document.getElementById('f-'+x).classList.toggle('on',x===s);
-  });
-  filterTable();
-}
-
-// ── Modals ─────────────────────────────────────────────────────────────────
-function openCompose(){
-  if(!document.getElementById('bodyInp').value) applyTemplate('welcome');
+// ── Modal Handlers ─────────────────────────────────────────────────────────
+function openCompose() {
+  if (!document.getElementById('bodyInp').value.trim()) {
+    applyTemplate('welcome');
+  }
   document.getElementById('composeModal').classList.add('open');
-  document.body.style.overflow='hidden';
+  document.body.style.overflow = 'hidden';
+  updateCharCount();
+  setTimeout(() => document.getElementById('toEmail').focus(), 150);
 }
-function closeCompose(){
+
+function closeCompose() {
   document.getElementById('composeModal').classList.remove('open');
-  document.body.style.overflow='';
+  document.body.style.overflow = '';
 }
-function closeDetail(){
+
+function closeDetail() {
   document.getElementById('detailModal').classList.remove('open');
-  document.body.style.overflow='';
-}
-function backdropClose(e,id){
-  if(e.target.id===id){ document.getElementById(id).classList.remove('open'); document.body.style.overflow=''; }
+  document.body.style.overflow = '';
 }
 
-// ── Alerts ─────────────────────────────────────────────────────────────────
-function showAlert(msg,type='ok'){
-  const b=document.getElementById('alertBox');
-  b.className='alert mb-4 '+(type==='ok'?'alert-ok':'alert-err');
-  document.getElementById('alertIco').className='fas '+(type==='ok'?'fa-circle-check':'fa-circle-xmark');
-  document.getElementById('alertMsg').textContent=msg;
-  b.classList.remove('hidden');
-  b.scrollIntoView({behavior:'smooth',block:'nearest'});
-}
-function hideAlert(){ document.getElementById('alertBox').classList.add('hidden'); }
-
-// ── CSRF ───────────────────────────────────────────────────────────────────
-function getCsrf(){
-  const m=document.cookie.split(';').map(c=>c.trim()).find(c=>c.startsWith('csrftoken='));
-  if(m) return decodeURIComponent(m.split('=')[1]);
-  return document.querySelector('[name=csrfmiddlewaretoken]')?.value||'';
+function backdropClose(e, modalId) {
+  if (e.target.id === modalId) {
+    document.getElementById(modalId).classList.remove('open');
+    document.body.style.overflow = '';
+  }
 }
 
-// ── Sender dropdown ────────────────────────────────────────────────────────
-function onSenderChange(v){
-  document.getElementById('customBox').classList.toggle('hidden', v!=='CUSTOM');
-  if(v==='CUSTOM') document.getElementById('customFrom').focus();
+// ── Notification Banner ────────────────────────────────────────────────────
+let alertTimeout = null;
+function showAlert(msg, type = 'ok') {
+  if (alertTimeout) clearTimeout(alertTimeout);
+  const box = document.getElementById('alertBox');
+  box.className = 'es-toast-alert ' + (type === 'ok' ? 'alert-ok' : 'alert-err');
+  document.getElementById('alertIco').className = 'fas ' + (type === 'ok' ? 'fa-circle-check' : 'fa-circle-xmark') + ' fs-5';
+  document.getElementById('alertMsg').textContent = msg;
+  box.classList.remove('d-none');
+
+  alertTimeout = setTimeout(() => hideAlert(), 4500);
 }
 
-// ── Template loader ────────────────────────────────────────────────────────
-function applyTemplate(type){
-  const t=TEMPLATES[type]||TEMPLATES.custom;
-  if(t.sub) document.getElementById('subjectInp').value=t.sub;
-  document.getElementById('bodyInp').value=t.body;
-  const sel=document.getElementById('fromSel');
-  if(t.sid){
-    for(let i=0;i<sel.options.length;i++){
-      if(sel.options[i].text.toLowerCase().includes(t.sid)){
-        sel.selectedIndex=i; onSenderChange(sel.value); break;
+function hideAlert() {
+  const box = document.getElementById('alertBox');
+  box.classList.add('d-none');
+}
+
+// ── CSRF Extraction ────────────────────────────────────────────────────────
+function getCsrf() {
+  const cookieMatch = document.cookie.split(';').map(c => c.trim()).find(c => c.startsWith('csrftoken='));
+  if (cookieMatch) return decodeURIComponent(cookieMatch.split('=')[1]);
+  return document.querySelector('[name=csrfmiddlewaretoken]')?.value || '';
+}
+
+// ── Sender Dropdown Handler ────────────────────────────────────────────────
+function onSenderChange(val) {
+  const customBox = document.getElementById('customBox');
+  if (val === 'CUSTOM') {
+    customBox.classList.remove('d-none');
+    document.getElementById('customFrom').focus();
+  } else {
+    customBox.classList.add('d-none');
+  }
+}
+
+// ── Template Switcher ──────────────────────────────────────────────────────
+function applyTemplate(type) {
+  const tmpl = TEMPLATES[type] || TEMPLATES.custom;
+  if (tmpl.sub) document.getElementById('subjectInp').value = tmpl.sub;
+  document.getElementById('bodyInp').value = tmpl.body;
+
+  const sel = document.getElementById('fromSel');
+  if (tmpl.sid && sel) {
+    for (let i = 0; i < sel.options.length; i++) {
+      if (sel.options[i].text.toLowerCase().includes(tmpl.sid)) {
+        sel.selectedIndex = i;
+        onSenderChange(sel.value);
+        break;
       }
     }
   }
+  updateCharCount();
   livePreview();
 }
 
-// ── Editor tabs ────────────────────────────────────────────────────────────
-function setTab(tab){
-  const edit=document.getElementById('editBox');
-  const prev=document.getElementById('prevBox');
-  const te=document.getElementById('tab-edit');
-  const tp=document.getElementById('tab-prev');
-  if(tab==='prev'){
-    livePreview();
-    edit.classList.add('hidden'); prev.classList.remove('hidden');
-    te.style.color='#adb5bd'; te.style.textDecoration='none';
-    tp.style.color='#3498db'; tp.style.textDecoration='underline'; tp.style.fontWeight='700';
-  } else {
-    prev.classList.add('hidden'); edit.classList.remove('hidden');
-    te.style.color='#3498db'; te.style.textDecoration='underline'; te.style.fontWeight='700';
-    tp.style.color='#adb5bd'; tp.style.textDecoration='none'; tp.style.fontWeight='400';
+// ── Subject Character Counter ──────────────────────────────────────────────
+function updateCharCount() {
+  const inp = document.getElementById('subjectInp');
+  const countEl = document.getElementById('subjectCharCount');
+  if (inp && countEl) {
+    countEl.textContent = inp.value.length + ' chars';
   }
 }
-function livePreview(){
-  const raw=document.getElementById('bodyInp').value;
-  document.getElementById('prevBox').innerHTML=raw||'<em style="color:#999">No content yet.</em>';
+
+// ── Tab Switcher (HTML vs Visual Preview) ───────────────────────────────────
+function setTab(tab) {
+  const editBox = document.getElementById('editBox');
+  const prevBox = document.getElementById('prevBox');
+  const tabEdit = document.getElementById('tab-edit');
+  const tabPrev = document.getElementById('tab-prev');
+
+  if (tab === 'prev') {
+    livePreview();
+    editBox.classList.add('d-none');
+    prevBox.classList.remove('d-none');
+    tabEdit.classList.remove('active');
+    tabPrev.classList.add('active');
+  } else {
+    prevBox.classList.add('d-none');
+    editBox.classList.remove('d-none');
+    tabPrev.classList.remove('active');
+    tabEdit.classList.add('active');
+  }
 }
 
-// ── Submit compose ─────────────────────────────────────────────────────────
-async function submitCompose(e){
+function livePreview() {
+  const rawHtml = document.getElementById('bodyInp').value;
+  const prevBox = document.getElementById('prevBox');
+  prevBox.innerHTML = rawHtml || '<div class="text-muted fst-italic p-3 text-center">No message content drafted yet.</div>';
+}
+
+function insertVariable(tag) {
+  const textarea = document.getElementById('bodyInp');
+  const start = textarea.selectionStart;
+  const end = textarea.selectionEnd;
+  const text = textarea.value;
+  textarea.value = text.substring(0, start) + tag + text.substring(end);
+  textarea.focus();
+  textarea.selectionStart = textarea.selectionEnd = start + tag.length;
+}
+
+// ── Copy to Clipboard Helper ───────────────────────────────────────────────
+function copyText(str, btn) {
+  if (!str) return;
+  navigator.clipboard.writeText(str).then(() => {
+    showAlert('Copied to clipboard: ' + str, 'ok');
+    if (btn) {
+      const origHtml = btn.innerHTML;
+      btn.innerHTML = '<i class="fas fa-check text-success"></i>';
+      setTimeout(() => { btn.innerHTML = origHtml; }, 1400);
+    }
+  }).catch(err => {
+    showAlert('Could not copy: ' + err.message, 'err');
+  });
+}
+
+// ── Dark Canvas Toggle in Preview ──────────────────────────────────────────
+let canvasDark = false;
+function toggleCanvasDark() {
+  canvasDark = !canvasDark;
+  const previewBox = document.getElementById('dHtml');
+  const btn = document.getElementById('canvasToggleBtn');
+  if (previewBox) {
+    previewBox.classList.toggle('canvas-dark', canvasDark);
+  }
+  if (btn) {
+    btn.innerHTML = canvasDark ? '<i class="fas fa-sun me-1"></i> Light View' : '<i class="fas fa-moon me-1"></i> Dark View';
+  }
+}
+
+// ── Form Submission (Dispatch Email) ───────────────────────────────────────
+async function submitCompose(e) {
   e.preventDefault();
-  const btn=document.getElementById('sendBtn');
-  const orig=btn.innerHTML;
-  btn.disabled=true;
-  btn.innerHTML='<i class="fas fa-spinner fa-spin"></i> Sending…';
+  const btn = document.getElementById('sendBtn');
+  const origContent = btn.innerHTML;
+  btn.disabled = true;
+  btn.innerHTML = '<i class="fas fa-spinner fa-spin me-1"></i> Dispatching…';
 
-  const sv=document.getElementById('fromSel').value;
-  const from=sv==='CUSTOM'
-    ? (document.getElementById('customFrom').value.trim()||'hello@shptechnology.online')
-    : sv;
+  const senderVal = document.getElementById('fromSel').value;
+  const fromEmail = senderVal === 'CUSTOM'
+    ? (document.getElementById('customFrom').value.trim() || 'hello@shptechnology.online')
+    : senderVal;
 
-  const payload={
+  const payload = {
     to: document.getElementById('toEmail').value.trim(),
-    from_email: from,
+    from_email: fromEmail,
     subject: document.getElementById('subjectInp').value.trim(),
-    html: document.getElementById('bodyInp').value,
+    html: document.getElementById('bodyInp').value
   };
 
-  try{
-    const r=await fetch('/dashboard/emails/api/send/',{
-      method:'POST',
-      headers:{'Content-Type':'application/json','X-CSRFToken':getCsrf()},
-      body:JSON.stringify(payload)
+  try {
+    const res = await fetch('/dashboard/emails/api/send/', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'X-CSRFToken': getCsrf()
+      },
+      body: JSON.stringify(payload)
     });
-    const d=await r.json();
-    if(d.success){
+
+    const data = await res.json();
+    if (data.success) {
       closeCompose();
-      showAlert('Email dispatched! Resend ID: '+d.id,'ok');
-      setTimeout(()=>location.reload(),1400);
+      showAlert('Email dispatched successfully! Message ID: ' + data.id, 'ok');
+      setTimeout(() => location.reload(), 1200);
     } else {
-      showAlert('Failed: '+d.error,'err');
+      showAlert('Dispatch failed: ' + data.error, 'err');
     }
-  } catch(err){
-    showAlert('Network error: '+err.message,'err');
+  } catch (err) {
+    showAlert('Network error: ' + err.message, 'err');
   } finally {
-    btn.disabled=false; btn.innerHTML=orig;
+    btn.disabled = false;
+    btn.innerHTML = origContent;
   }
 }
 
-// ── View detail ────────────────────────────────────────────────────────────
-async function viewDetail(id){
-  try{
-    const r=await fetch('/dashboard/emails/api/detail/'+id+'/');
-    const d=await r.json();
-    if(!d.success){ showAlert(d.error,'err'); return; }
-    const L=d.log;
-    document.getElementById('dSubject').textContent=L.subject;
-    document.getElementById('dTo').textContent=L.recipient;
-    document.getElementById('dFrom').textContent=L.sender;
-    document.getElementById('dRid').textContent=L.resend_id||'—';
-    document.getElementById('dTime').textContent=L.created_at;
-    document.getElementById('dLogId').textContent='Log ID: #'+L.id;
-    const badge=document.getElementById('dBadge');
-    if(L.status==='sent'){ badge.className='badge badge-sent'; badge.textContent='SENT'; }
-    else if(L.status==='failed'){ badge.className='badge badge-fail'; badge.textContent='FAILED'; }
-    else { badge.className='badge badge-pend'; badge.textContent='PENDING'; }
-    const errBox=document.getElementById('dErrBox');
-    if(L.error_message){ errBox.classList.remove('hidden'); document.getElementById('dErrMsg').textContent=L.error_message; }
-    else { errBox.classList.add('hidden'); }
-    document.getElementById('dHtml').innerHTML=L.body_html||'<pre style="font-size:.78rem">'+( L.body_text||'No content')+'</pre>';
-    document.getElementById('dResendBtn').onclick=()=>resendEmail(L.id);
+// ── Detail Modal Inspection ────────────────────────────────────────────────
+async function viewDetail(logId) {
+  try {
+    const res = await fetch('/dashboard/emails/api/detail/' + logId + '/');
+    const data = await res.json();
+    if (!data.success) {
+      showAlert('Error: ' + data.error, 'err');
+      return;
+    }
+
+    const log = data.log;
+    document.getElementById('dSubject').textContent = log.subject;
+    document.getElementById('dToVal').textContent = log.recipient;
+    document.getElementById('dFrom').textContent = log.sender;
+    document.getElementById('dRid').textContent = log.resend_id || '—';
+    document.getElementById('dTime').textContent = log.created_at;
+    document.getElementById('dLogId').textContent = 'LOG ID #' + log.id;
+
+    const badge = document.getElementById('dBadge');
+    if (log.status === 'sent') {
+      badge.className = 'es-badge es-badge-sent';
+      badge.innerHTML = '<i class="fas fa-check"></i> SENT';
+    } else if (log.status === 'failed') {
+      badge.className = 'es-badge es-badge-failed';
+      badge.innerHTML = '<i class="fas fa-triangle-exclamation"></i> FAILED';
+    } else {
+      badge.className = 'es-badge es-badge-pending';
+      badge.innerHTML = '<i class="fas fa-clock"></i> PENDING';
+    }
+
+    const errBox = document.getElementById('dErrBox');
+    if (log.error_message) {
+      errBox.classList.remove('d-none');
+      document.getElementById('dErrMsg').textContent = log.error_message;
+    } else {
+      errBox.classList.add('d-none');
+    }
+
+    const htmlContainer = document.getElementById('dHtml');
+    htmlContainer.innerHTML = log.body_html || `<pre style="font-size: 0.8rem; margin: 0; white-space: pre-wrap;">${log.body_text || 'No message content available.'}</pre>`;
+
+    document.getElementById('dResendBtn').onclick = () => resendEmail(log.id);
+
     document.getElementById('detailModal').classList.add('open');
-    document.body.style.overflow='hidden';
-  } catch(err){
-    showAlert('Could not load detail: '+err.message,'err');
+    document.body.style.overflow = 'hidden';
+  } catch (err) {
+    showAlert('Could not load email detail: ' + err.message, 'err');
   }
 }
 
-// ── Resend email ───────────────────────────────────────────────────────────
-async function resendEmail(id){
-  if(!confirm('Resend email log #'+id+'?')) return;
-  try{
-    const r=await fetch('/dashboard/emails/api/resend/'+id+'/',{
-      method:'POST',
-      headers:{'Content-Type':'application/json','X-CSRFToken':getCsrf()}
+// ── Resend Email Action ────────────────────────────────────────────────────
+async function resendEmail(logId) {
+  if (!confirm('Re-dispatch outbound email #' + logId + ' to recipient?')) return;
+
+  try {
+    const res = await fetch('/dashboard/emails/api/resend/' + logId + '/', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'X-CSRFToken': getCsrf()
+      }
     });
-    const d=await r.json();
-    if(d.success){ showAlert('Email #'+id+' resent! ID: '+d.id,'ok'); setTimeout(()=>location.reload(),1400); }
-    else { showAlert('Failed to resend: '+d.error,'err'); }
-  } catch(err){ showAlert('Network error: '+err.message,'err'); }
+
+    const data = await res.json();
+    if (data.success) {
+      showAlert('Email re-dispatched successfully! Resend ID: ' + data.id, 'ok');
+      setTimeout(() => location.reload(), 1200);
+    } else {
+      showAlert('Resend failed: ' + data.error, 'err');
+    }
+  } catch (err) {
+    showAlert('Network error: ' + err.message, 'err');
+  }
 }
 
-// Escape key closes modals
-document.addEventListener('keydown',e=>{
-  if(e.key==='Escape'){ closeCompose(); closeDetail(); }
+// ── Global Keyboard Shortcuts ──────────────────────────────────────────────
+document.addEventListener('keydown', e => {
+  if (e.key === 'Escape') {
+    closeCompose();
+    closeDetail();
+  }
+  if (e.key === '/' && !['INPUT', 'TEXTAREA', 'SELECT'].includes(document.activeElement.tagName)) {
+    e.preventDefault();
+    document.getElementById('searchInp')?.focus();
+  }
 });
 </script>
-</body>
-</html>
+{% endblock %}
