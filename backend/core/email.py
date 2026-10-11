@@ -9,6 +9,7 @@ import urllib.request
 import urllib.error
 from typing import List, Union, Optional, Dict, Any
 from django.conf import settings
+from django.template.loader import render_to_string
 from django.utils import timezone
 
 logger = logging.getLogger(__name__)
@@ -226,39 +227,19 @@ def send_contact_notification(
     """
     admin_recipient = getattr(settings, "ADMIN_EMAIL", "founder.shp@gmail.com")
     email_subject = f"[New Lead] {subject} - from {name}"
-    
-    html = f"""
-    <div style="font-family: Arial, sans-serif; line-height: 1.6; color: #333; max-width: 600px; margin: 0 auto; border: 1px solid #e2e8f0; border-radius: 8px; overflow: hidden;">
-        <div style="background-color: #0f172a; color: #fff; padding: 20px;">
-            <h2 style="margin: 0; font-size: 20px;">SHP Technology — New Contact Lead</h2>
-        </div>
-        <div style="padding: 24px;">
-            <p><strong>Name:</strong> {name}</p>
-            <p><strong>Email:</strong> <a href="mailto:{email}">{email}</a></p>
-            {f'<p><strong>Phone:</strong> {phone}</p>' if phone else ''}
-            {f'<p><strong>Company:</strong> {company}</p>' if company else ''}
-            <p><strong>Subject/Service:</strong> {subject}</p>
-            <hr style="border: none; border-top: 1px solid #e2e8f0; margin: 20px 0;" />
-            <p><strong>Message:</strong></p>
-            <div style="background-color: #f8fafc; padding: 16px; border-radius: 6px; white-space: pre-wrap;">{message}</div>
-        </div>
-        <div style="background-color: #f1f5f9; padding: 12px 24px; font-size: 12px; color: #64748b;">
-            SHP Technology Automated Lead System
-        </div>
-    </div>
-    """
 
-    text = f"""
-New Contact Lead from SHP Technology Website:
-Name: {name}
-Email: {email}
-Phone: {phone}
-Company: {company}
-Subject: {subject}
+    context = {
+        "name": name,
+        "email": email,
+        "subject": subject,
+        "message": message,
+        "phone": phone,
+        "company": company,
+        "company_name": getattr(settings, "COMPANY_NAME", "SHP Technology"),
+    }
 
-Message:
-{message}
-    """
+    html = render_to_string("emails/contact_notification.html", context)
+    text = render_to_string("emails/contact_notification.txt", context)
 
     return send_email(
         to=admin_recipient,

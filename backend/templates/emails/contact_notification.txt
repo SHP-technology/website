@@ -1,0 +1,11 @@
+{% autoescape off %}New Contact Lead from {{ company_name }} Website:
+
+Name: {{ name }}
+Email: {{ email }}
+Phone: {{ phone }}
+Company: {{ company }}
+Subject: {{ subject }}
+
+Message:
+{{ message }}
+{% endautoescape %}
