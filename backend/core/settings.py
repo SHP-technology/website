@@ -60,6 +60,7 @@ else:
         'shptech.onrender.com',
         'shptechnology.online',
         'www.shptechnology.online',
+        'testserver',
     ]
 
 # Trust the X-Forwarded-Proto header from Render's reverse proxy
@@ -529,7 +530,7 @@ JAZZMIN_SETTINGS = {
     "usermenu_links": [
         {
             "name": "Support",
-            "url": "mailto:support@shptechnology.online",
+            "url": "https://shptechnology.online/contact",
             "icon": "fas fa-life-ring",
             "new_window": True,
         },
@@ -557,9 +558,9 @@ JAZZMIN_SETTINGS = {
     "custom_links": {
         "content": [
             {
-                "name": "Send Email",
+                "name": "Email Studio",
                 "url": "/dashboard/emails/",
-                "icon": "fas fa-envelope-open",
+                "icon": "fas fa-paper-plane",
                 "permissions": ["content.view_emaillog"],
             },
         ],
@@ -596,8 +597,8 @@ JAZZMIN_SETTINGS = {
     # ── Language/localisation ─────────────────────────────────────────────────
     "language_chooser": False,
 
-    # ── Theme ─────────────────────────────────────────────────────────────────
-    "theme": "darkly",                   # Jazzmin built-in Darkly (Bootstrap 4 dark)
+    # ── Theme (Default clean light Jazzmin) ──────────────────────────────────
+    "theme": "default",
 }
 
 JAZZMIN_UI_TWEAKS = {
@@ -605,9 +606,9 @@ JAZZMIN_UI_TWEAKS = {
     "footer_small_text": False,
     "body_small_text": False,
     "brand_small_text": False,
-    "brand_colour": "navbar-primary",
+    "brand_colour": False,
     "accent": "accent-primary",
-    "navbar": "navbar-dark",
+    "navbar": "navbar-white navbar-light",
     "no_navbar_border": False,
     "navbar_fixed": True,
     "layout_boxed": False,
@@ -620,8 +621,7 @@ JAZZMIN_UI_TWEAKS = {
     "sidebar_nav_compact_style": False,
     "sidebar_nav_legacy_style": False,
     "sidebar_nav_flat_style": False,
-    "theme": "darkly",
-    "dark_mode_theme": "darkly",
+    "theme": "default",
     "button_classes": {
         "primary": "btn-primary",
         "secondary": "btn-secondary",
