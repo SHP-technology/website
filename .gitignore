@@ -47,3 +47,4 @@ __pycache__/
 backend/staticfiles/
 .kilo
 .agents
+skills-lock.json
