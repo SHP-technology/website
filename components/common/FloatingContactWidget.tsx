@@ -2,7 +2,7 @@
 
 import React, { useState } from 'react';
 import Link from 'next/link';
-import { X, ArrowRight } from 'lucide-react';
+import { FiArrowRight, FiX } from 'react-icons/fi';
 import { PlatformIcon } from '@/components/common/PlatformIcon';
 import { siteConfig } from '@/src/config/site.config';
 import { useAnalytics } from '@/hooks/useAnalytics';
@@ -22,7 +22,7 @@ export const FloatingContactWidget: React.FC = () => {
   return (
     <div className="fixed bottom-4 right-4 sm:bottom-6 sm:right-6 z-50 flex flex-col items-end pointer-events-none">
       {isOpen && (
-        <div className="pointer-events-auto mb-3 w-[calc(100vw-32px)] max-w-[360px] p-4 sm:p-5 rounded-3xl bg-surface-card text-primaryText border border-surface-border shadow-2xl backdrop-blur-xl animate-fade-in-up">
+        <div className="pointer-events-auto mb-3 w-[calc(100vw-32px)] max-w-[360px] p-4 sm:p-5 rounded-3xl bg-surface-card text-primaryText border border-surface-border shadow-2xl  animate-fade-in-up">
           <div className="flex items-start justify-between mb-3 pb-3 border-b border-surface-border">
             <div>
               <div className="flex items-center gap-2 mb-1">
@@ -38,7 +38,7 @@ export const FloatingContactWidget: React.FC = () => {
               className="p-1 rounded-lg text-mutedText hover:text-primaryText hover:bg-surface-subtle transition-colors"
               aria-label="Close modal"
             >
-              <X className="w-4 h-4" />
+              <FiX className="w-4 h-4" />
             </button>
           </div>
 
@@ -55,7 +55,7 @@ export const FloatingContactWidget: React.FC = () => {
                 <span>Chat on WhatsApp</span>
                 <span className="text-[11px] font-normal text-brand-buttonText/80">Instant direct response</span>
               </div>
-              <ArrowRight className="w-4 h-4 ml-auto group-hover:translate-x-1 transition-transform" />
+              <FiArrowRight className="w-4 h-4 ml-auto group-hover:translate-x-1 transition-transform" />
             </a>
 
             <a
@@ -95,7 +95,7 @@ export const FloatingContactWidget: React.FC = () => {
           <button
             type="button"
             onClick={() => setIsOpen(true)}
-            className="flex items-center gap-2 px-3 py-1.5 sm:px-3.5 sm:py-2 rounded-full bg-surface-card text-primaryText text-xs font-semibold shadow-xl hover:shadow-2xl backdrop-blur-md border border-surface-border transition-all duration-200 hover:scale-105 active:scale-95 cursor-pointer touch-manipulation select-none"
+            className="flex items-center gap-2 px-3 py-1.5 sm:px-3.5 sm:py-2 rounded-full bg-surface-card text-primaryText text-xs font-semibold shadow-xl hover:shadow-2xl  border border-surface-border transition-all duration-200 hover:scale-105 active:scale-95 cursor-pointer touch-manipulation select-none"
           >
             <span className="w-2 h-2 rounded-full bg-brand-primary animate-pulse shrink-0" />
             <span className="whitespace-nowrap">Have a Project? <strong className="text-brand-primary">Chat</strong></span>
@@ -112,7 +112,7 @@ export const FloatingContactWidget: React.FC = () => {
           {!isOpen ? (
             <PlatformIcon platform="whatsapp" className="w-6 h-6 sm:w-7 sm:h-7 relative z-10" />
           ) : (
-            <X className="w-5 h-5 sm:w-6 sm:h-6 text-brand-buttonText relative z-10" />
+            <FiX className="w-5 h-5 sm:w-6 sm:h-6 text-brand-buttonText relative z-10" />
           )}
         </button>
       </div>

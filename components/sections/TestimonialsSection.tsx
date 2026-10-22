@@ -2,7 +2,7 @@ import React from 'react';
 import { ApiTestimonial } from '@/services/api';
 import { testimonialsData } from '@/src/data/testimonials';
 import { BaseBadge } from '@/components/common/BaseBadge';
-import { Star, Quote } from 'lucide-react';
+import { FiMessageSquare, FiStar } from 'react-icons/fi';
 
 interface TestimonialsSectionProps {
   testimonials?: ApiTestimonial[];
@@ -43,12 +43,12 @@ export const TestimonialsSection: React.FC<TestimonialsSectionProps> = ({
               key={t.id}
               className="p-8 rounded-3xl bg-surface-card border border-surface-border shadow-md flex flex-col justify-between relative"
             >
-              <Quote className="w-10 h-10 text-brand-primary/20 absolute top-6 right-6" />
+              <FiMessageSquare className="w-10 h-10 text-brand-primary/20 absolute top-6 right-6" />
 
               <div className="mb-6 relative z-10">
                 <div className="flex items-center gap-1 mb-4">
                   {[...Array(5)].map((_, idx) => (
-                    <Star key={idx} className="w-4 h-4 fill-brand-accent text-brand-accent" />
+                    <FiStar key={idx} className="w-4 h-4 fill-brand-accent text-brand-accent" />
                   ))}
                 </div>
                 <p className="text-secondaryText text-sm leading-relaxed italic">
@@ -57,7 +57,7 @@ export const TestimonialsSection: React.FC<TestimonialsSectionProps> = ({
               </div>
 
               <div className="flex items-center gap-3.5 pt-4 border-t border-surface-border">
-                <div className="w-10 h-10 rounded-full bg-gradient-to-br from-brand-primary to-brand-accent flex items-center justify-center text-brand-buttonText font-bold text-sm shadow-md">
+                <div className="w-10 h-10 rounded-full  from-brand-primary to-brand-accent flex items-center justify-center text-brand-buttonText font-bold text-sm shadow-md">
                   {t.name ? t.name.split(' ').map((n) => n[0]).join('') : 'CL'}
                 </div>
                 <div>

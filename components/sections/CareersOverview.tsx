@@ -1,6 +1,6 @@
 import React from 'react';
 import Link from 'next/link';
-import { ArrowRight, MapPin, Briefcase } from 'lucide-react';
+import { FiArrowRight, FiBriefcase, FiMapPin } from 'react-icons/fi';
 import { jobsData } from '@/src/data/jobs';
 import { BaseBadge } from '@/components/common/BaseBadge';
 
@@ -15,7 +15,7 @@ export const CareersOverview: React.FC = () => {
             Open Positions at SHP Technology
           </h2>
           <p className="text-secondaryText text-base md:text-lg">
-            Work on challenging client problems, cutting-edge AI tools, and scalable cloud systems.
+            Work on challenging client problems, modern AI tools, and scalable cloud systems.
           </p>
         </div>
 
@@ -31,10 +31,10 @@ export const CareersOverview: React.FC = () => {
                     {job.department}
                   </BaseBadge>
                   <span className="text-xs text-mutedText flex items-center gap-1">
-                    <MapPin className="w-3.5 h-3.5" /> {job.location}
+                    <FiMapPin className="w-3.5 h-3.5" /> {job.location}
                   </span>
                   <span className="text-xs text-mutedText flex items-center gap-1">
-                    <Briefcase className="w-3.5 h-3.5" /> {job.employmentType}
+                    <FiBriefcase className="w-3.5 h-3.5" /> {job.employmentType}
                   </span>
                 </div>
 
@@ -51,7 +51,7 @@ export const CareersOverview: React.FC = () => {
                 className="inline-flex items-center justify-center gap-2 px-5 py-3 rounded-xl bg-brand-primary hover:bg-brand-accent text-brand-buttonText font-bold text-sm shrink-0 transition-colors cursor-pointer"
               >
                 <span>View Role</span>
-                <ArrowRight className="w-4 h-4" />
+                <FiArrowRight className="w-4 h-4" />
               </Link>
             </div>
           ))}

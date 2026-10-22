@@ -7,7 +7,7 @@ import { BaseSelect } from '@/components/common/BaseSelect';
 import { BaseButton } from '@/components/common/BaseButton';
 import { BaseCheckbox } from '@/components/common/BaseCheckbox';
 import { useFormValidation } from '@/hooks/useFormValidation';
-import { Calendar, CheckCircle2 } from 'lucide-react';
+import { FiCalendar, FiCheckCircle } from 'react-icons/fi';
 
 export const DemoRequestForm: React.FC = () => {
   const { values, errors, handleChange, handleBlur, validateForm, resetForm } = useFormValidation(
@@ -56,7 +56,7 @@ export const DemoRequestForm: React.FC = () => {
     <form onSubmit={handleSubmit} className="glass-card p-6 md:p-8 rounded-3xl flex flex-col gap-5 border border-surface-border">
       {submitted && (
         <div className="p-4 rounded-2xl bg-emerald-500/10 border border-emerald-500/30 text-emerald-600 dark:text-emerald-400 text-sm font-semibold flex items-center gap-2">
-          <CheckCircle2 className="w-5 h-5 shrink-0" />
+          <FiCheckCircle className="w-5 h-5 shrink-0" />
           <span>Demo Session Scheduled! Our product team will confirm via email.</span>
         </div>
       )}
@@ -129,7 +129,7 @@ export const DemoRequestForm: React.FC = () => {
       />
 
       <BaseButton type="submit" variant="primary" size="lg" className="w-full mt-2">
-        <Calendar className="w-4 h-4" />
+        <FiCalendar className="w-4 h-4" />
         <span>Book Demo Session</span>
       </BaseButton>
     </form>

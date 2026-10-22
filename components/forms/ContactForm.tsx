@@ -9,7 +9,7 @@ import { BaseButton } from '@/components/common/BaseButton';
 import { BaseCheckbox } from '@/components/common/BaseCheckbox';
 import { useFormValidation } from '@/hooks/useFormValidation';
 import { useAnalytics } from '@/hooks/useAnalytics';
-import { Send, CheckCircle2 } from 'lucide-react';
+import { FiCheckCircle, FiSend } from 'react-icons/fi';
 import { PlatformIcon } from '@/components/common/PlatformIcon';
 import { siteConfig } from '@/src/config/site.config';
 
@@ -97,7 +97,7 @@ export const ContactForm: React.FC = () => {
     <form onSubmit={handleSubmit} className="glass-card p-6 md:p-8 rounded-3xl flex flex-col gap-5 border border-surface-border">
       {submitted && (
         <div className="p-4 rounded-2xl bg-emerald-500/10 border border-emerald-500/30 text-emerald-600 dark:text-emerald-400 text-sm font-semibold flex items-center gap-2">
-          <CheckCircle2 className="w-5 h-5 shrink-0" />
+          <FiCheckCircle className="w-5 h-5 shrink-0" />
           <span>Inquiry Submitted! Our engineering team will contact you within 4 business hours.</span>
         </div>
       )}
@@ -188,7 +188,7 @@ export const ContactForm: React.FC = () => {
 
         <BaseButton type="submit" variant="primary" size="lg" className="w-full" disabled={loading}>
           <span>{loading ? 'Submitting...' : 'Send Inquiry'}</span>
-          <Send className="w-4 h-4" />
+          <FiSend className="w-4 h-4" />
         </BaseButton>
 
         <a

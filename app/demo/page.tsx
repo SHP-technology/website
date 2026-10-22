@@ -1,7 +1,7 @@
 import type { Metadata } from 'next';
 import { DemoRequestForm } from '@/components/forms/DemoRequestForm';
 import { BaseBadge } from '@/components/common/BaseBadge';
-import { CheckCircle2, Tv, ExternalLink, GraduationCap, UtensilsCrossed } from 'lucide-react';
+import { FiBook, FiCheckCircle, FiCoffee, FiExternalLink, FiTv } from 'react-icons/fi';
 import { JsonLd } from '@/components/common/JsonLd';
 import { siteConfig } from '@/src/config/site.config';
 import { getCanonicalUrl, buildBreadcrumbSchema } from '@/src/config/schema';
@@ -81,7 +81,7 @@ export default function DemoPage() {
             <div>
               <div className="flex items-center justify-between mb-4">
                 <span className="px-3 py-1 rounded-full text-xs font-bold bg-brand-primary/10 text-brand-primary border border-brand-primary/20 flex items-center gap-1.5">
-                  <GraduationCap className="w-3.5 h-3.5" /> EdTech & LMS
+                  <FiBook className="w-3.5 h-3.5" /> EdTech & LMS
                 </span>
                 <span className="text-xs font-semibold text-brand-accent flex items-center gap-1.5">
                   <span className="w-2 h-2 rounded-full bg-brand-accent animate-pulse" />
@@ -102,7 +102,7 @@ export default function DemoPage() {
               className="inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-2xl bg-brand-primary hover:bg-brand-accent text-brand-buttonText font-bold text-sm transition-all shadow-xl shadow-brand-primary/20"
             >
               <span>Launch E-Learning Platform Demo</span>
-              <ExternalLink className="w-4 h-4" />
+              <FiExternalLink className="w-4 h-4" />
             </a>
           </div>
 
@@ -111,7 +111,7 @@ export default function DemoPage() {
             <div>
               <div className="flex items-center justify-between mb-4">
                 <span className="px-3 py-1 rounded-full text-xs font-bold bg-brand-accent/10 text-brand-accent border border-brand-accent/20 flex items-center gap-1.5">
-                  <UtensilsCrossed className="w-3.5 h-3.5" /> Hospitality & POS
+                  <FiCoffee className="w-3.5 h-3.5" /> Hospitality & POS
                 </span>
                 <span className="text-xs font-semibold text-brand-primary flex items-center gap-1.5">
                   <span className="w-2 h-2 rounded-full bg-brand-primary animate-pulse" />
@@ -132,7 +132,7 @@ export default function DemoPage() {
               className="inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-2xl bg-brand-accent hover:bg-brand-primary text-brand-buttonText font-bold text-sm transition-all shadow-xl shadow-brand-accent/20"
             >
               <span>Launch Restro POS Demo</span>
-              <ExternalLink className="w-4 h-4" />
+              <FiExternalLink className="w-4 h-4" />
             </a>
           </div>
         </div>
@@ -151,7 +151,7 @@ export default function DemoPage() {
           <div className="flex flex-col gap-6">
             <div className="p-6 rounded-2xl bg-surface-subtle border border-surface-border">
               <h3 className="text-xl font-bold text-primaryText mb-2 flex items-center gap-2">
-                <Tv className="w-5 h-5 text-brand-primary" />
+                <FiTv className="w-5 h-5 text-brand-primary" />
                 Live Engineering Session
               </h3>
               <p className="text-secondaryText text-sm leading-relaxed">
@@ -171,7 +171,7 @@ export default function DemoPage() {
                   'Transparent pricing and timeline breakdown'
                 ].map((item, idx) => (
                   <li key={idx} className="text-xs md:text-sm text-secondaryText flex items-center gap-2.5">
-                    <CheckCircle2 className="w-4 h-4 text-brand-primary shrink-0" />
+                    <FiCheckCircle className="w-4 h-4 text-brand-primary shrink-0" />
                     <span>{item}</span>
                   </li>
                 ))}

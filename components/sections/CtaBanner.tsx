@@ -1,6 +1,6 @@
 import React from 'react';
 import { BaseButton } from '@/components/common/BaseButton';
-import { ArrowRight, ShieldCheck } from 'lucide-react';
+import { FiArrowRight, FiShield } from 'react-icons/fi';
 import { PlatformIcon } from '@/components/common/PlatformIcon';
 import { siteConfig } from '@/src/config/site.config';
 
@@ -10,7 +10,7 @@ export const CtaBanner: React.FC = () => {
       <div className="container max-w-5xl mx-auto">
         <div className="p-8 md:p-12 text-center bg-surface-card border border-surface-border rounded-2xl shadow-sm">
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-surface-subtle border border-surface-border text-xs font-medium text-secondaryText mb-5 cursor-default">
-            <ShieldCheck className="w-4 h-4 text-brand-primary" />
+            <FiShield className="w-4 h-4 text-brand-primary" />
             <span>Architecture Review • Transparent Scope • 4-Hour Response SLA</span>
           </div>
 
@@ -25,7 +25,7 @@ export const CtaBanner: React.FC = () => {
           <div className="flex flex-wrap justify-center items-center gap-3 mb-8">
             <BaseButton href="/contact" variant="primary" size="lg" className="group text-sm font-semibold shadow-sm">
               <span>Schedule Free Consultation</span>
-              <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+              <FiArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
             </BaseButton>
 
             <a

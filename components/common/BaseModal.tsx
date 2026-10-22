@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useEffect } from 'react';
-import { X } from 'lucide-react';
+import { FiX } from 'react-icons/fi';
 
 interface BaseModalProps {
   isOpen: boolean;
@@ -36,7 +36,7 @@ export const BaseModal: React.FC<BaseModalProps> = ({
     <div className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 overflow-y-auto">
       {/* Backdrop */}
       <div
-        className="fixed inset-0 bg-surface-main/80 backdrop-blur-md transition-opacity"
+        className="fixed inset-0 bg-surface-main/80  transition-opacity"
         onClick={onClose}
       />
 
@@ -52,7 +52,7 @@ export const BaseModal: React.FC<BaseModalProps> = ({
             className="p-2 rounded-full text-mutedText hover:text-primaryText hover:bg-surface-subtle transition-colors"
             aria-label="Close modal"
           >
-            <X className="w-5 h-5" />
+            <FiX className="w-5 h-5" />
           </button>
         </div>
 

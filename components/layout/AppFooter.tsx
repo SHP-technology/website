@@ -3,7 +3,7 @@ import Link from 'next/link';
 import { siteConfig } from '@/src/config/site.config';
 import { legalConfig } from '@/src/config/legal.config';
 import { AppLogo } from '@/components/common/AppLogo';
-import { ArrowRight } from 'lucide-react';
+import { FiArrowRight } from 'react-icons/fi';
 
 import { PlatformIcon } from '@/components/common/PlatformIcon';
 
@@ -45,7 +45,7 @@ export const AppFooter: React.FC = () => {
 
   return (
     <footer className="bg-surface-card text-secondaryText border-t border-surface-border pt-16 pb-12 relative overflow-hidden">
-      <div className="absolute top-0 left-0 w-full h-[2px] bg-gradient-to-r from-brand-accent via-brand-primary to-brand-accent opacity-80" />
+      <div className="absolute top-0 left-0 w-full h-[2px] bg-brand-primary opacity-80" />
 
       <div className="container">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-10 mb-16">
@@ -113,7 +113,7 @@ export const AppFooter: React.FC = () => {
                       <PlatformIcon platform={link.platform} className="w-4 h-4" />
                     </div>
                     <span className="font-semibold">{link.label}</span>
-                    <ArrowRight className="w-3 h-3 text-mutedText ml-auto group-hover:translate-x-1 transition-transform" />
+                    <FiArrowRight className="w-3 h-3 text-mutedText ml-auto group-hover:translate-x-1 transition-transform" />
                   </a>
                 </li>
               ))}

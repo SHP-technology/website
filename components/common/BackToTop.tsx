@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useState, useEffect } from 'react';
-import { ArrowUp } from 'lucide-react';
+import { FiArrowUp } from 'react-icons/fi';
 
 export const BackToTop: React.FC = () => {
   const [show, setShow] = useState(false);
@@ -35,7 +35,7 @@ export const BackToTop: React.FC = () => {
       aria-label="Back to top"
       title="Scroll to top"
     >
-      <ArrowUp className="w-5 h-5 stroke-[2.5]" />
+      <FiArrowUp className="w-5 h-5 stroke-[2.5]" />
     </button>
   );
 };

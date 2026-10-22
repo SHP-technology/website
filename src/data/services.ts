@@ -86,7 +86,7 @@ export const servicesData: ServiceItem[] = [
     id: '4',
     slug: 'distributed-systems-modernization',
     title: 'Distributed Systems & API Design',
-    shortDescription: 'Robust event-driven architecture, API gateways, and legacy backend refactoring.',
+    shortDescription: 'Resilient event-driven architecture, API gateways, and legacy backend refactoring.',
     fullDescription: 'We help growing companies transition from legacy monoliths to resilient microservices architectures built for massive data throughput and real-time processing.',
     icon: 'Network',
     category: 'Architecture',
@@ -140,7 +140,7 @@ export const servicesData: ServiceItem[] = [
     benefits: [
       '3x faster frontend component implementation',
       'Full compliance with WCAG 2.1 AA accessibility guidelines',
-      'Cohesive visual identity tailored to your brand personality',
+      'Cohesive visual identity aligned with your brand personality',
       'Interactive Figma & Vue UI component library sync'
     ],
     deliverables: [

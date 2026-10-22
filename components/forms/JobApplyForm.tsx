@@ -7,7 +7,7 @@ import { BaseTextarea } from '@/components/common/BaseTextarea';
 import { BaseButton } from '@/components/common/BaseButton';
 import { BaseCheckbox } from '@/components/common/BaseCheckbox';
 import { useFormValidation } from '@/hooks/useFormValidation';
-import { CheckCircle2, Upload } from 'lucide-react';
+import { FiCheckCircle, FiUpload } from 'react-icons/fi';
 
 interface JobApplyFormProps {
   jobTitle: string;
@@ -61,7 +61,7 @@ export const JobApplyForm: React.FC<JobApplyFormProps> = ({ jobTitle }) => {
 
       {submitted && (
         <div className="p-4 rounded-2xl bg-emerald-500/10 border border-emerald-500/30 text-emerald-600 dark:text-emerald-400 text-sm font-semibold flex items-center gap-2">
-          <CheckCircle2 className="w-5 h-5 shrink-0" />
+          <FiCheckCircle className="w-5 h-5 shrink-0" />
           <span>Application Received! Our talent acquisition team will review your application.</span>
         </div>
       )}
@@ -154,7 +154,7 @@ export const JobApplyForm: React.FC<JobApplyFormProps> = ({ jobTitle }) => {
       />
 
       <BaseButton type="submit" variant="amber" size="lg" className="w-full mt-2">
-        <Upload className="w-4 h-4" />
+        <FiUpload className="w-4 h-4" />
         <span>Submit Application</span>
       </BaseButton>
     </form>
