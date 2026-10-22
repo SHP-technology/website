@@ -21,7 +21,7 @@ export const CareersOverview: React.FC = () => {
 
         <div className="flex flex-col gap-6 max-w-4xl mx-auto">
           {jobsData.map((job) => (
-            <div
+            <article
               key={job.id}
               className="glass-card p-8 rounded-3xl flex flex-col md:flex-row md:items-center justify-between gap-6 hover:border-brand-primary/50 transition-all duration-300"
             >
@@ -53,7 +53,7 @@ export const CareersOverview: React.FC = () => {
                 <span>View Role</span>
                 <FiArrowRight className="w-4 h-4" />
               </Link>
-            </div>
+            </article>
           ))}
         </div>
       </div>

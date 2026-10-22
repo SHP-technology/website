@@ -64,22 +64,22 @@ export default function PrivacyPolicyPage() {
 
       <LegalSection heading="2. Personal data we collect">
         <LegalP>We only collect the data we genuinely need for the purposes below (data minimisation):</LegalP>
-        <LegalP><strong className="text-primaryText">a) Data you give us</strong> — when you submit a contact, demo-request or job-application form, or email/message us:</LegalP>
+        <LegalP><strong className="text-primaryText">a) Data you give us</strong>: when you submit a contact, demo-request or job-application form, or email/message us:</LegalP>
         <LegalUL>
           <li>Contact form: name, email, project/inquiry type, message, and (optionally) phone number and company name.</li>
           <li>Demo request: name, work email, company name, chosen product demo and preferred date.</li>
           <li>Job application: name, email, phone, a résumé link, optional LinkedIn/portfolio links and an optional cover letter.</li>
         </LegalUL>
-        <LegalP><strong className="text-primaryText">b) Data collected automatically</strong> — only if you accept analytics cookies (see our <Link className="text-brand-primary hover:underline" href="/cookie-policy">Cookie Policy</Link>): device/browser type, approximate location, pages viewed and similar usage data collected via Google Analytics. Our web host may also process your IP address in server logs for security and to deliver the site.</LegalP>
+        <LegalP><strong className="text-primaryText">b) Data collected automatically</strong>: only if you accept analytics cookies (see our <Link className="text-brand-primary hover:underline" href="/cookie-policy">Cookie Policy</Link>): device/browser type, approximate location, pages viewed and similar usage data collected via Google Analytics. Our web host may also process your IP address in server logs for security and to deliver the site.</LegalP>
         <LegalP>We do not intentionally collect any special-category / sensitive personal data through this website, and we ask that you do not include such data in free-text fields.</LegalP>
       </LegalSection>
 
       <LegalSection heading="3. How and why we use your data (purposes & legal bases)">
         <LegalUL>
-          <li><strong className="text-primaryText">Responding to enquiries & providing services</strong> — legal basis: your consent and/or steps taken at your request prior to a contract (GDPR Art. 6(1)(a)/(b)); under the DPDP Act, processing for the purpose for which you voluntarily provided the data.</li>
-          <li><strong className="text-primaryText">Recruitment</strong> — to evaluate job applications. Legal basis: consent / pre-contractual steps.</li>
-          <li><strong className="text-primaryText">Analytics & site improvement</strong> — legal basis: your consent (GDPR Art. 6(1)(a); DPDP consent). No analytics run until you opt in.</li>
-          <li><strong className="text-primaryText">Security, fraud prevention & legal compliance</strong> — legal basis: our legitimate interests and compliance with legal obligations.</li>
+          <li><strong className="text-primaryText">Responding to enquiries & providing services</strong>: legal basis includes your consent and/or steps taken at your request prior to a contract (GDPR Art. 6(1)(a)/(b)); under the DPDP Act, processing for the purpose for which you voluntarily provided the data.</li>
+          <li><strong className="text-primaryText">Recruitment</strong>: to evaluate job applications. Legal basis: consent / pre-contractual steps.</li>
+          <li><strong className="text-primaryText">Analytics & site improvement</strong>: legal basis: your consent (GDPR Art. 6(1)(a); DPDP consent). No analytics run until you opt in.</li>
+          <li><strong className="text-primaryText">Security, fraud prevention & legal compliance</strong>: legal basis: our legitimate interests and compliance with legal obligations.</li>
         </LegalUL>
         <LegalP>We do not sell your personal data, and we do not use it for automated decision-making that produces legal effects.</LegalP>
       </LegalSection>
@@ -96,7 +96,7 @@ export default function PrivacyPolicyPage() {
         <LegalUL>
           {legalConfig.processors.map((p) => (
             <li key={p.name}>
-              <strong className="text-primaryText">{p.name}</strong> — {p.purpose} ({p.location}).{' '}
+              <strong className="text-primaryText">{p.name}</strong>: {p.purpose} ({p.location}).{' '}
               <a className="text-brand-primary hover:underline" href={p.privacyUrl} target="_blank" rel="noopener noreferrer">
                 Privacy notice
               </a>
@@ -124,7 +124,7 @@ export default function PrivacyPolicyPage() {
 
       <LegalSection heading="8. How we protect your data">
         <LegalP>
-          We apply reasonable technical and organisational security measures — including HTTPS/TLS encryption in transit, access controls and reputable processors — to protect personal data. No method of transmission or storage is completely secure, so we cannot guarantee absolute security; we will notify you and the relevant authority of a personal-data breach where the law requires.
+          We apply reasonable technical and organisational security measures (including HTTPS/TLS encryption in transit, access controls and reputable processors) to protect personal data. No method of transmission or storage is completely secure, so we cannot guarantee absolute security; we will notify you and the relevant authority of a personal-data breach where the law requires.
         </LegalP>
       </LegalSection>
 

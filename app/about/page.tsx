@@ -63,37 +63,37 @@ export default async function AboutPage() {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-24">
-          <div className="p-8 rounded-2xl bg-surface-card border border-surface-border shadow-sm transition-all duration-300">
-            <div className="p-3.5 rounded-2xl bg-surface-subtle border border-surface-border w-fit mb-6 text-brand-accent">
+        <section className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-24">
+          <article className="p-8 rounded-2xl bg-surface-card border border-surface-border shadow-sm transition-all duration-300">
+            <span className="p-3.5 rounded-2xl bg-surface-subtle border border-surface-border inline-flex items-center justify-center mb-6 text-brand-accent">
               <FiTarget className="w-6 h-6" />
-            </div>
+            </span>
             <h3 className="text-xl font-bold text-primaryText mb-3">Our Mission</h3>
             <p className="text-secondaryText text-sm leading-relaxed">
               Equip businesses worldwide with high-velocity, clean, and secure software solutions that automate operations and accelerate growth.
             </p>
-          </div>
+          </article>
 
-          <div className="p-8 rounded-2xl bg-surface-card border border-surface-border hover:border-brand-primary/40 shadow-xl transition-all duration-300">
-            <div className="p-3.5 rounded-2xl bg-surface-subtle border border-surface-border w-fit mb-6 text-brand-primary">
+          <article className="p-8 rounded-2xl bg-surface-card border border-surface-border hover:border-brand-primary/40 shadow-xl transition-all duration-300">
+            <span className="p-3.5 rounded-2xl bg-surface-subtle border border-surface-border inline-flex items-center justify-center mb-6 text-brand-primary">
               <FiEye className="w-6 h-6" />
-            </div>
+            </span>
             <h3 className="text-xl font-bold text-primaryText mb-3">Our Vision</h3>
             <p className="text-secondaryText text-sm leading-relaxed">
               Become a globally recognized engineering powerhouse known for transparent client partnerships, top-tier technical craft, and reliable delivery.
             </p>
-          </div>
+          </article>
 
-          <div className="p-8 rounded-2xl bg-surface-card border border-surface-border shadow-sm transition-all duration-300">
-            <div className="p-3.5 rounded-2xl bg-surface-subtle border border-surface-border w-fit mb-6 text-brand-accent">
+          <article className="p-8 rounded-2xl bg-surface-card border border-surface-border shadow-sm transition-all duration-300">
+            <span className="p-3.5 rounded-2xl bg-surface-subtle border border-surface-border inline-flex items-center justify-center mb-6 text-brand-accent">
               <FiShield className="w-6 h-6" />
-            </div>
+            </span>
             <h3 className="text-xl font-bold text-primaryText mb-3">Our Commitment</h3>
             <p className="text-secondaryText text-sm leading-relaxed">
-              Competitive, transparent pricing with no hidden fees, bi-weekly working demos, and responsive post-launch support backed by clear SLAs.
+              Competitive, clear milestone contracts with no hidden fees, bi-weekly working demos, and responsive post-launch support with strict SLAs.
             </p>
-          </div>
-        </div>
+          </article>
+        </section>
 
         <div className="mb-24">
           <div className="text-center max-w-3xl mx-auto mb-16">
@@ -109,14 +109,14 @@ export default async function AboutPage() {
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {teamMembers.map((member) => (
-              <div
+              <article
                 key={member.id || member.name}
                 className="p-8 rounded-2xl bg-surface-card border border-surface-border shadow-sm flex flex-col justify-between"
               >
                 <div>
-                  <div className="w-16 h-16 rounded-2xl  from-brand-accent to-brand-accentHover flex items-center justify-center text-brand-buttonText font-extrabold text-xl mb-6 shadow-lg shadow-brand-accent/20  transition-transform">
+                  <span className="w-16 h-16 rounded-2xl from-brand-accent to-brand-accentHover flex items-center justify-center text-brand-buttonText font-extrabold text-xl mb-6 shadow-lg shadow-brand-accent/20 transition-transform">
                     {member.initials || member.name.split(' ').map((n) => n[0]).join('')}
-                  </div>
+                  </span>
                   <h3 className="text-xl font-bold text-primaryText mb-1">
                     {member.name}
                   </h3>
@@ -128,7 +128,7 @@ export default async function AboutPage() {
                   </p>
                 </div>
 
-                <div className="flex items-center gap-3 pt-6 mt-6 border-t border-surface-border">
+                <footer className="flex items-center gap-3 pt-6 mt-6 border-t border-surface-border">
                   {member.linkedin_url && (
                     <a
                       href={member.linkedin_url}
@@ -151,8 +151,8 @@ export default async function AboutPage() {
                       <PlatformIcon platform="github" className="w-4 h-4" />
                     </a>
                   )}
-                </div>
-              </div>
+                </footer>
+              </article>
             ))}
           </div>
         </div>

@@ -9,7 +9,7 @@ import { getCanonicalUrl, buildBreadcrumbSchema } from '@/src/config/schema';
 export const metadata: Metadata = {
   title: 'Cookie Policy',
   description:
-    'What cookies and local storage SHP Technology uses, why, and how you can control them — including consent-gated Google Analytics.',
+    'What cookies and local storage SHP Technology uses, why, and how you can control them, including consent-gated Google Analytics.',
 };
 
 export default function CookiePolicyPage() {
@@ -48,14 +48,14 @@ export default function CookiePolicyPage() {
       </LegalSection>
 
       <LegalSection heading="2. How we use them">
-        <LegalP><strong className="text-primaryText">Strictly necessary (always on)</strong> — these do not require consent because they only support core functionality and your own preferences:</LegalP>
+        <LegalP><strong className="text-primaryText">Strictly necessary (always on)</strong>: these do not require consent because they only support core functionality and your own preferences:</LegalP>
         <LegalUL>
-          <li><code className="text-brand-primary">theme</code> (local storage) — remembers your light/dark theme choice.</li>
-          <li><code className="text-brand-primary">shp_cookie_consent</code> (local storage) — remembers whether you accepted or rejected analytics cookies, so we don't ask you again.</li>
+          <li><code className="text-brand-primary">theme</code> (local storage): remembers your light/dark theme choice.</li>
+          <li><code className="text-brand-primary">shp_cookie_consent</code> (local storage): remembers whether you accepted or rejected analytics cookies, so we don't ask you again.</li>
         </LegalUL>
-        <LegalP><strong className="text-primaryText">Analytics (optional — off until you accept)</strong>:</LegalP>
+        <LegalP><strong className="text-primaryText">Analytics (optional, off until you accept)</strong>:</LegalP>
         <LegalUL>
-          <li><strong className="text-primaryText">Google Analytics</strong> (<code className="text-brand-primary">_ga</code>, <code className="text-brand-primary">_ga_*</code>) — helps us understand, in aggregate, how visitors use the site so we can improve it. These cookies are only set <strong className="text-primaryText">after you click "Accept"</strong> on our cookie banner. If you reject or ignore the banner, Google Analytics is never loaded.</li>
+          <li><strong className="text-primaryText">Google Analytics</strong> (<code className="text-brand-primary">_ga</code>, <code className="text-brand-primary">_ga_*</code>): helps us understand, in aggregate, how visitors use the site so we can improve it. These cookies are only set <strong className="text-primaryText">after you click "Accept"</strong> on our cookie banner. If you reject or ignore the banner, Google Analytics is never loaded.</li>
         </LegalUL>
         <LegalP>We do not use advertising, marketing, or social-media tracking pixels (such as Meta Pixel) on this website.</LegalP>
       </LegalSection>

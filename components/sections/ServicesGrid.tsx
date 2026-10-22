@@ -37,9 +37,9 @@ export const ServicesGrid: React.FC = () => {
             >
               <div>
                 <div className="flex items-center justify-between mb-5">
-                  <div className="p-2.5 rounded-xl bg-surface-subtle border border-surface-border text-primaryText">
+                  <span className="p-2.5 rounded-xl bg-surface-subtle border border-surface-border text-primaryText inline-flex items-center justify-center">
                     {iconMap[service.icon] || <FiCode className="w-5 h-5 text-brand-primary" />}
-                  </div>
+                  </span>
                   <span className="text-[11px] font-semibold tracking-wide px-2.5 py-0.5 rounded-md bg-surface-subtle text-secondaryText border border-surface-border">
                     {service.category}
                   </span>
@@ -74,10 +74,10 @@ export const ServicesGrid: React.FC = () => {
                 </div>
               </div>
 
-              <div className="flex items-center justify-between pt-4 border-t border-surface-border/60 text-xs font-semibold text-brand-primary">
+              <footer className="flex items-center justify-between pt-4 border-t border-surface-border/60 text-xs font-semibold text-brand-primary">
                 <span>Technical Specifications</span>
                 <FiArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
-              </div>
+              </footer>
             </Link>
           ))}
         </div>

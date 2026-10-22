@@ -21,7 +21,7 @@ export const servicesData: ServiceItem[] = [
     fullDescription: 'We design and engineer bespoke web, mobile, and microservices software that modernizes enterprise workflows. Our applications are resilient, type-safe, and built to scale alongside your organization growth.',
     icon: 'Code2',
     category: 'Engineering',
-    problemSolved: 'Legacy monolithic software bottlenecks, slow feature velocity, and fragile integration architectures.',
+    problemSolved: 'Legacy monolithic software bottlenecks, slow iteration cycles, and fragile integration architectures.',
     benefits: [
       'Accelerated release cycles with automated deployment pipelines',
       'High system stability and zero-downtime deployments',

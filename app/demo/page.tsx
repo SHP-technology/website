@@ -75,9 +75,9 @@ export default function DemoPage() {
         </div>
 
         {/* Featured Live Product Demos Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-16">
+        <section className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-16">
           {/* E-Learning Demo Card */}
-          <div className="p-6 md:p-8 rounded-2xl bg-surface-card border border-surface-border shadow-2xl flex flex-col justify-between hover:border-brand-primary/50 transition-all group">
+          <article className="p-6 md:p-8 rounded-2xl bg-surface-card border border-surface-border shadow-2xl flex flex-col justify-between hover:border-brand-primary/50 transition-all group">
             <div>
               <div className="flex items-center justify-between mb-4">
                 <span className="px-3 py-1 rounded-full text-xs font-bold bg-brand-primary/10 text-brand-primary border border-brand-primary/20 flex items-center gap-1.5">
@@ -92,7 +92,7 @@ export default function DemoPage() {
                 SHP E-Learning Platform
               </h3>
               <p className="text-sm text-secondaryText leading-relaxed mb-6">
-                Full-featured cloud learning management system with course catalogs, student portals, video lessons, quiz attempts, and automated certificates.
+                Comprehensive cloud learning management system with course catalogs, student portals, video lessons, quiz attempts, and automated certificates.
               </p>
             </div>
             <a
@@ -104,10 +104,10 @@ export default function DemoPage() {
               <span>Launch E-Learning Platform Demo</span>
               <FiExternalLink className="w-4 h-4" />
             </a>
-          </div>
+          </article>
 
           {/* Restro POS Demo Card */}
-          <div className="p-6 md:p-8 rounded-2xl bg-surface-card border border-surface-border shadow-2xl flex flex-col justify-between hover:border-brand-accent/50 transition-all group">
+          <article className="p-6 md:p-8 rounded-2xl bg-surface-card border border-surface-border shadow-2xl flex flex-col justify-between hover:border-brand-accent/50 transition-all group">
             <div>
               <div className="flex items-center justify-between mb-4">
                 <span className="px-3 py-1 rounded-full text-xs font-bold bg-brand-accent/10 text-brand-accent border border-brand-accent/20 flex items-center gap-1.5">
@@ -134,8 +134,8 @@ export default function DemoPage() {
               <span>Launch Restro POS Demo</span>
               <FiExternalLink className="w-4 h-4" />
             </a>
-          </div>
-        </div>
+          </article>
+        </section>
 
         {/* Guided Walkthrough Request Section */}
         <div className="text-center mb-8">
@@ -149,17 +149,17 @@ export default function DemoPage() {
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 items-center">
           <div className="flex flex-col gap-6">
-            <div className="p-6 rounded-2xl bg-surface-subtle border border-surface-border">
+            <article className="p-6 rounded-2xl bg-surface-subtle border border-surface-border">
               <h3 className="text-xl font-bold text-primaryText mb-2 flex items-center gap-2">
                 <FiTv className="w-5 h-5 text-brand-primary" />
                 Live Engineering Session
               </h3>
               <p className="text-secondaryText text-sm leading-relaxed">
-                Test custom modules, inspect API response speeds, or discuss bespoke feature integration directly with our team.
+                Test custom modules, inspect API response speeds, or discuss bespoke module integration directly with our team.
               </p>
-            </div>
+            </article>
 
-            <div className="p-6 rounded-2xl bg-surface-card border border-surface-border shadow-xl">
+            <article className="p-6 rounded-2xl bg-surface-card border border-surface-border shadow-xl">
               <h4 className="font-bold text-primaryText text-base mb-4">
                 What to Expect During the Session:
               </h4>
@@ -168,7 +168,7 @@ export default function DemoPage() {
                   '30-minute tailored platform walkthrough',
                   'Q&A session with an engineering solution lead',
                   'Custom architecture & integration roadmap',
-                  'Transparent pricing and timeline breakdown'
+                  'Transparent milestone and timeline breakdown'
                 ].map((item, idx) => (
                   <li key={idx} className="text-xs md:text-sm text-secondaryText flex items-center gap-2.5">
                     <FiCheckCircle className="w-4 h-4 text-brand-primary shrink-0" />
@@ -176,7 +176,7 @@ export default function DemoPage() {
                   </li>
                 ))}
               </ul>
-            </div>
+            </article>
           </div>
 
           <div>

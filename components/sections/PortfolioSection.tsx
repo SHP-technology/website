@@ -24,7 +24,7 @@ export const PortfolioSection: React.FC = () => {
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {featured.map((project) => (
-            <div
+            <article
               key={project.id}
               className="p-6 rounded-2xl bg-surface-card border border-surface-border shadow-sm hover:border-brand-primary/50 transition-colors duration-200 flex flex-col justify-between"
             >
@@ -56,7 +56,7 @@ export const PortfolioSection: React.FC = () => {
                 </div>
               </div>
 
-              <div className="flex items-center justify-between pt-4 border-t border-surface-border/60">
+              <footer className="flex items-center justify-between pt-4 border-t border-surface-border/60">
                 <Link
                   href={`/portfolio/${project.slug}`}
                   className="text-xs font-semibold text-brand-primary hover:underline flex items-center gap-1.5"
@@ -76,8 +76,8 @@ export const PortfolioSection: React.FC = () => {
                     <FiExternalLink className="w-3.5 h-3.5" />
                   </a>
                 )}
-              </div>
-            </div>
+              </footer>
+            </article>
           ))}
         </div>
       </div>

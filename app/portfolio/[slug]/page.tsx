@@ -91,7 +91,7 @@ export default async function CaseStudyDetailPage({ params }: Props) {
         </Link>
 
         {/* Case Study Banner Header */}
-        <div className="p-8 md:p-12 rounded-2xl bg-surface-card border border-surface-border shadow-2xl mb-12 relative overflow-hidden">
+        <header className="p-8 md:p-12 rounded-2xl bg-surface-card border border-surface-border shadow-2xl mb-12 relative overflow-hidden">
           <div className="flex flex-wrap items-center gap-3 mb-4">
             <BaseBadge variant="amber" className="text-[10px]">
               {project.industry}
@@ -113,17 +113,17 @@ export default async function CaseStudyDetailPage({ params }: Props) {
               href={project.url}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2.5 px-7 py-3.5 rounded-xl bg-brand-primary hover:bg-brand-accent text-brand-buttonText font-bold text-sm shadow-xl shadow-brand-primary/20  active:scale-95 transition-all duration-200"
+              className="inline-flex items-center gap-2.5 px-7 py-3.5 rounded-xl bg-brand-primary hover:bg-brand-accent text-brand-buttonText font-bold text-sm shadow-xl shadow-brand-primary/20 active:scale-95 transition-all duration-200"
             >
               <span>Launch Live Demo / GitHub Repository</span>
               <FiExternalLink className="w-4 h-4" />
             </a>
           )}
-        </div>
+        </header>
 
         {/* Challenge & Solution Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
-          <div className="p-8 rounded-2xl bg-surface-card border border-surface-border shadow-xl">
+        <section className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
+          <article className="p-8 rounded-2xl bg-surface-card border border-surface-border shadow-xl">
             <h3 className="text-xl font-bold text-primaryText mb-3 flex items-center gap-2">
               <FiZap className="w-5 h-5 text-rose-400" />
               The Challenge
@@ -131,9 +131,9 @@ export default async function CaseStudyDetailPage({ params }: Props) {
             <p className="text-secondaryText text-sm leading-relaxed">
               {project.challenge}
             </p>
-          </div>
+          </article>
 
-          <div className="p-8 rounded-2xl bg-surface-card border border-surface-border shadow-xl">
+          <article className="p-8 rounded-2xl bg-surface-card border border-surface-border shadow-xl">
             <h3 className="text-xl font-bold text-primaryText mb-3 flex items-center gap-2">
               <FiShield className="w-5 h-5 text-emerald-400" />
               Our Technical Solution
@@ -141,24 +141,24 @@ export default async function CaseStudyDetailPage({ params }: Props) {
             <p className="text-secondaryText text-sm leading-relaxed">
               {project.solution}
             </p>
-          </div>
-        </div>
+          </article>
+        </section>
 
         {/* Results & Tech Stack */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-16">
-          <div className="p-8 rounded-2xl bg-surface-card border border-surface-border shadow-xl">
+        <section className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-16">
+          <article className="p-8 rounded-2xl bg-surface-card border border-surface-border shadow-xl">
             <h3 className="text-xl font-bold text-primaryText mb-4">Results & Metrics Delivered</h3>
             <div className="grid grid-cols-2 gap-4">
               {project.results.map((res, idx) => (
-                <div key={idx} className="p-4 rounded-2xl bg-surface-subtle border border-surface-border text-center">
+                <span key={idx} className="p-4 rounded-2xl bg-surface-subtle border border-surface-border text-center flex flex-col items-center justify-center">
                   <span className="text-2xl font-extrabold text-brand-primary block">{res.metric}</span>
                   <span className="text-xs text-secondaryText font-semibold">{res.label}</span>
-                </div>
+                </span>
               ))}
             </div>
-          </div>
+          </article>
 
-          <div className="p-8 rounded-2xl bg-surface-card border border-surface-border shadow-xl">
+          <article className="p-8 rounded-2xl bg-surface-card border border-surface-border shadow-xl">
             <h3 className="text-xl font-bold text-primaryText mb-4">Technology Stack Used</h3>
             <div className="flex flex-wrap gap-2">
               {project.technologies.map((tech, idx) => (
@@ -170,8 +170,8 @@ export default async function CaseStudyDetailPage({ params }: Props) {
                 </span>
               ))}
             </div>
-          </div>
-        </div>
+          </article>
+        </section>
 
         <CtaBanner />
       </div>

@@ -92,7 +92,7 @@ export default async function JobDetailPage({ params }: Props) {
 
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-10">
           <div className="lg:col-span-2">
-            <div className="p-8 rounded-2xl bg-surface-card border border-surface-border shadow-2xl mb-8">
+            <article className="p-8 rounded-2xl bg-surface-card border border-surface-border shadow-2xl mb-8">
               <div className="flex flex-wrap items-center gap-2 mb-3">
                 <BaseBadge variant="amber" className="text-[10px]">
                   {job.department}
@@ -113,7 +113,7 @@ export default async function JobDetailPage({ params }: Props) {
                 {job.fullDescription}
               </p>
 
-              <div className="mb-8 pt-6 border-t border-surface-border">
+              <section className="mb-8 pt-6 border-t border-surface-border">
                 <h3 className="text-lg font-bold text-primaryText mb-4">Responsibilities</h3>
                 <ul className="flex flex-col gap-2.5">
                   {job.responsibilities.map((r, idx) => (
@@ -123,9 +123,9 @@ export default async function JobDetailPage({ params }: Props) {
                     </li>
                   ))}
                 </ul>
-              </div>
+              </section>
 
-              <div className="mb-8 pt-6 border-t border-surface-border">
+              <section className="mb-8 pt-6 border-t border-surface-border">
                 <h3 className="text-lg font-bold text-primaryText mb-4">Requirements</h3>
                 <ul className="flex flex-col gap-2.5">
                   {job.requirements.map((req, idx) => (
@@ -135,10 +135,10 @@ export default async function JobDetailPage({ params }: Props) {
                     </li>
                   ))}
                 </ul>
-              </div>
+              </section>
 
               {job.niceToHave && job.niceToHave.length > 0 && (
-                <div className="pt-6 border-t border-surface-border">
+                <section className="pt-6 border-t border-surface-border">
                   <h3 className="text-lg font-bold text-primaryText mb-4">Nice to Have</h3>
                   <ul className="flex flex-col gap-2.5">
                     {job.niceToHave.map((nth, idx) => (
@@ -148,14 +148,14 @@ export default async function JobDetailPage({ params }: Props) {
                       </li>
                     ))}
                   </ul>
-                </div>
+                </section>
               )}
-            </div>
+            </article>
           </div>
 
-          <div className="lg:col-span-1">
+          <aside className="lg:col-span-1">
             <JobApplyForm jobTitle={job.title} />
-          </div>
+          </aside>
         </div>
       </div>
     </div>
