@@ -13,9 +13,8 @@ export const CompanyTimeline: React.FC = () => {
     <section className="py-20 relative">
       <div className="container">
         <div className="text-center max-w-3xl mx-auto mb-16">
-          <BaseBadge variant="amber" className="mb-4 uppercase tracking-widest text-[10px]">
-            Company Journey
-          </BaseBadge>
+          <span className="text-xs font-bold uppercase tracking-wider text-brand-primary block mb-2">Company Journey
+          </span>
           <h2 className="text-3xl md:text-5xl font-extrabold text-primaryText tracking-tight mb-4">
             Our Track Record & Milestones
           </h2>

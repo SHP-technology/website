@@ -5,6 +5,9 @@ import { portfolioData } from '@/src/data/portfolio';
 import { BaseBadge } from '@/components/common/BaseBadge';
 import { CtaBanner } from '@/components/sections/CtaBanner';
 import { ArrowLeft, ExternalLink, ShieldCheck, Zap } from 'lucide-react';
+import { JsonLd } from '@/components/common/JsonLd';
+import { siteConfig } from '@/src/config/site.config';
+import { getCanonicalUrl, buildBreadcrumbSchema } from '@/src/config/schema';
 
 interface Props {
   params: { slug: string };
@@ -31,12 +34,50 @@ export default function CaseStudyDetailPage({ params }: Props) {
     notFound();
   }
 
+  const projectUrl = getCanonicalUrl(`portfolio/${project.slug}`);
+
+  const articleSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'Article',
+    '@id': `${projectUrl}#article`,
+    headline: project.title,
+    description: project.summary,
+    url: projectUrl,
+    datePublished: `${project.completionYear}-01-01`,
+    author: {
+      '@type': 'Organization',
+      name: siteConfig.name,
+      url: siteConfig.site.url,
+    },
+    publisher: {
+      '@type': 'Organization',
+      name: siteConfig.name,
+      url: siteConfig.site.url,
+      logo: {
+        '@type': 'ImageObject',
+        url: `${siteConfig.site.url}assets/logo.svg`,
+      },
+    },
+    about: {
+      '@type': 'SoftwareApplication',
+      name: project.title,
+      applicationCategory: project.industry,
+      operatingSystem: 'Web, Cloud',
+      ...(project.url ? { url: project.url } : {}),
+    },
+  };
+
+  const breadcrumbSchema = buildBreadcrumbSchema([
+    { name: 'Home', path: '' },
+    { name: 'Portfolio', path: 'portfolio' },
+    { name: project.title, path: `portfolio/${project.slug}` },
+  ]);
+
   return (
     <div className="py-16 md:py-24 bg-surface-main text-primaryText relative overflow-hidden">
-      {/* Ambient lighting */}
-      <div className="absolute inset-0 pointer-events-none" aria-hidden="true">
-        <div className="absolute -top-32 left-1/2 -translate-x-1/2 w-[600px] h-[300px] rounded-full bg-brand-primary/10 blur-[120px]" />
-      </div>
+      <JsonLd data={[articleSchema, breadcrumbSchema]} />
+      
+      
 
       <div className="container max-w-5xl mx-auto relative z-10">
         <Link
@@ -48,7 +89,7 @@ export default function CaseStudyDetailPage({ params }: Props) {
         </Link>
 
         {/* Case Study Banner Header */}
-        <div className="p-8 md:p-12 rounded-3xl bg-surface-card border border-surface-border shadow-2xl mb-12 relative overflow-hidden">
+        <div className="p-8 md:p-12 rounded-2xl bg-surface-card border border-surface-border shadow-2xl mb-12 relative overflow-hidden">
           <div className="flex flex-wrap items-center gap-3 mb-4">
             <BaseBadge variant="amber" className="text-[10px]">
               {project.industry}
@@ -70,9 +111,9 @@ export default function CaseStudyDetailPage({ params }: Props) {
               href={project.url}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2.5 px-7 py-3.5 rounded-xl bg-brand-primary hover:bg-brand-accent text-brand-buttonText font-bold text-sm shadow-xl shadow-brand-primary/20 hover:scale-105 active:scale-95 transition-all duration-200"
+              className="inline-flex items-center gap-2.5 px-7 py-3.5 rounded-xl bg-brand-primary hover:bg-brand-accent text-brand-buttonText font-bold text-sm shadow-xl shadow-brand-primary/20  active:scale-95 transition-all duration-200"
             >
-              <span>Launch Live Demo / GitHub Repo 🚀</span>
+              <span>Launch Live Demo / GitHub Repository</span>
               <ExternalLink className="w-4 h-4" />
             </a>
           )}
@@ -80,7 +121,7 @@ export default function CaseStudyDetailPage({ params }: Props) {
 
         {/* Challenge & Solution Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
-          <div className="p-8 rounded-3xl bg-surface-card border border-surface-border shadow-xl">
+          <div className="p-8 rounded-2xl bg-surface-card border border-surface-border shadow-xl">
             <h3 className="text-xl font-bold text-primaryText mb-3 flex items-center gap-2">
               <Zap className="w-5 h-5 text-rose-400" />
               The Challenge
@@ -90,7 +131,7 @@ export default function CaseStudyDetailPage({ params }: Props) {
             </p>
           </div>
 
-          <div className="p-8 rounded-3xl bg-surface-card border border-surface-border shadow-xl">
+          <div className="p-8 rounded-2xl bg-surface-card border border-surface-border shadow-xl">
             <h3 className="text-xl font-bold text-primaryText mb-3 flex items-center gap-2">
               <ShieldCheck className="w-5 h-5 text-emerald-400" />
               Our Technical Solution
@@ -103,7 +144,7 @@ export default function CaseStudyDetailPage({ params }: Props) {
 
         {/* Results & Tech Stack */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-16">
-          <div className="p-8 rounded-3xl bg-surface-card border border-surface-border shadow-xl">
+          <div className="p-8 rounded-2xl bg-surface-card border border-surface-border shadow-xl">
             <h3 className="text-xl font-bold text-primaryText mb-4">Results & Metrics Delivered</h3>
             <div className="grid grid-cols-2 gap-4">
               {project.results.map((res, idx) => (
@@ -115,7 +156,7 @@ export default function CaseStudyDetailPage({ params }: Props) {
             </div>
           </div>
 
-          <div className="p-8 rounded-3xl bg-surface-card border border-surface-border shadow-xl">
+          <div className="p-8 rounded-2xl bg-surface-card border border-surface-border shadow-xl">
             <h3 className="text-xl font-bold text-primaryText mb-4">Technology Stack Used</h3>
             <div className="flex flex-wrap gap-2">
               {project.technologies.map((tech, idx) => (

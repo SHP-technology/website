@@ -22,9 +22,7 @@ export const LegalShell: React.FC<{
 }> = ({ title, intro, children }) => {
   return (
     <div className="py-16 md:py-24 bg-surface-main text-primaryText relative overflow-hidden">
-      <div className="absolute inset-0 pointer-events-none" aria-hidden="true">
-        <div className="absolute -top-32 left-1/2 -translate-x-1/2 w-[600px] h-[300px] rounded-full bg-brand-primary/10 blur-[120px]" />
-      </div>
+      
 
       <div className="container max-w-4xl mx-auto relative z-10">
         <header className="mb-10 border-b border-surface-border pb-8">

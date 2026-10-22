@@ -2,7 +2,9 @@ import type { Metadata } from 'next';
 import { CareersOverview } from '@/components/sections/CareersOverview';
 import { CtaBanner } from '@/components/sections/CtaBanner';
 import { BaseBadge } from '@/components/common/BaseBadge';
-import { companyCultureValues, hiringProcessSteps } from '@/src/data/jobs';
+import { companyCultureValues, hiringProcessSteps, jobsData } from '@/src/data/jobs';
+import { JsonLd } from '@/components/common/JsonLd';
+import { getCanonicalUrl, buildBreadcrumbSchema } from '@/src/config/schema';
 
 export const metadata: Metadata = {
   title: 'Careers & Open Roles | Join SHP Technology',
@@ -10,20 +12,41 @@ export const metadata: Metadata = {
 };
 
 export default function CareersPage() {
+  const careersListSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'ItemList',
+    name: 'SHP Technology Open Positions',
+    description: 'Explore open engineering positions and technical careers at SHP Technology.',
+    itemListElement: jobsData.map((job, idx) => ({
+      '@type': 'ListItem',
+      position: idx + 1,
+      item: {
+        '@type': 'JobPosting',
+        title: job.title,
+        description: job.shortDescription,
+        url: getCanonicalUrl(`careers/${job.slug}`),
+        employmentType: job.employmentType.toUpperCase().replace('-', '_'),
+      },
+    })),
+  };
+
+  const breadcrumbSchema = buildBreadcrumbSchema([
+    { name: 'Home', path: '' },
+    { name: 'Careers', path: 'careers' },
+  ]);
+
   return (
     <div className="py-16 md:py-24 bg-surface-main text-primaryText relative overflow-hidden">
-      {/* Ambient lighting */}
-      <div className="absolute inset-0 pointer-events-none" aria-hidden="true">
-        <div className="absolute -top-32 left-1/2 -translate-x-1/2 w-[600px] h-[300px] rounded-full bg-brand-primary/10 blur-[120px]" />
-      </div>
+      <JsonLd data={[careersListSchema, breadcrumbSchema]} />
+      
+      
 
       <div className="container max-w-6xl mx-auto relative z-10">
         <div className="text-center max-w-3xl mx-auto mb-16">
-          <BaseBadge variant="amber" className="mb-4 uppercase tracking-widest text-[10px]">
-            Careers at SHP
-          </BaseBadge>
+          <span className="text-xs font-bold uppercase tracking-wider text-brand-primary block mb-2">Careers at SHP
+          </span>
           <h1 className="text-4xl md:text-6xl font-extrabold text-primaryText tracking-tight mb-6 leading-tight">
-            Build the Future of <span className="bg-gradient-to-r from-brand-primary to-brand-accent bg-clip-text text-transparent">Software & AI</span>
+            Build Production Software & Cloud Infrastructure
           </h1>
           <p className="text-secondaryText text-lg md:text-xl leading-relaxed font-normal">
             We are hiring talented full-stack engineers, cloud architects, and AI developers. Work with modern tech stacks, competitive pay, and flexible remote hours.
@@ -36,9 +59,8 @@ export default function CareersPage() {
         {/* Culture & Benefits */}
         <div className="my-24">
           <div className="text-center max-w-3xl mx-auto mb-16">
-            <BaseBadge variant="amber" className="mb-4 uppercase tracking-widest text-[10px]">
-              Our Core Values
-            </BaseBadge>
+            <span className="text-xs font-bold uppercase tracking-wider text-brand-primary block mb-2">Our Core Values
+            </span>
             <h2 className="text-3xl md:text-5xl font-extrabold text-primaryText tracking-tight mb-4">
               Engineering Culture
             </h2>
@@ -46,7 +68,7 @@ export default function CareersPage() {
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
             {companyCultureValues.map((val, idx) => (
-              <div key={idx} className="p-6 rounded-3xl bg-surface-card border border-surface-border hover:border-brand-primary/40 shadow-xl transition-all duration-300">
+              <div key={idx} className="p-6 rounded-2xl bg-surface-card border border-surface-border hover:border-brand-primary/40 shadow-xl transition-all duration-300">
                 <h3 className="text-lg font-bold text-primaryText mb-2">{val.title}</h3>
                 <p className="text-xs text-mutedText leading-relaxed">{val.description}</p>
               </div>
@@ -57,9 +79,8 @@ export default function CareersPage() {
         {/* Hiring Process */}
         <div className="mb-24">
           <div className="text-center max-w-3xl mx-auto mb-16">
-            <BaseBadge variant="amber" className="mb-4 uppercase tracking-widest text-[10px]">
-              Hiring Steps
-            </BaseBadge>
+            <span className="text-xs font-bold uppercase tracking-wider text-brand-primary block mb-2">Hiring Steps
+            </span>
             <h2 className="text-3xl md:text-5xl font-extrabold text-primaryText tracking-tight mb-4">
               Our Transparent Interview Process
             </h2>
@@ -67,7 +88,7 @@ export default function CareersPage() {
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {hiringProcessSteps.map((step, idx) => (
-              <div key={idx} className="p-6 rounded-3xl bg-surface-card border border-surface-border shadow-xl">
+              <div key={idx} className="p-6 rounded-2xl bg-surface-card border border-surface-border shadow-xl">
                 <span className="text-2xl font-extrabold text-brand-primary block mb-2">{step.step}</span>
                 <h3 className="text-lg font-bold text-primaryText mb-2">{step.title}</h3>
                 <p className="text-xs text-mutedText leading-relaxed">{step.description}</p>

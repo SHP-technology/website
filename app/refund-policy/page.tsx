@@ -2,6 +2,8 @@ import type { Metadata } from 'next';
 import { siteConfig } from '@/src/config/site.config';
 import { legalConfig } from '@/src/config/legal.config';
 import { LegalShell, LegalSection, LegalP, LegalUL } from '@/components/legal/LegalLayout';
+import { JsonLd } from '@/components/common/JsonLd';
+import { getCanonicalUrl, buildBreadcrumbSchema } from '@/src/config/schema';
 
 export const metadata: Metadata = {
   title: 'Refund & Cancellation Policy',
@@ -10,11 +12,34 @@ export const metadata: Metadata = {
 };
 
 export default function RefundPolicyPage() {
+  const refundPolicyUrl = getCanonicalUrl('refund-policy');
+
+  const refundSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'WebPage',
+    '@id': `${refundPolicyUrl}#webpage`,
+    url: refundPolicyUrl,
+    name: 'Refund & Cancellation Policy | SHP Technology',
+    description: 'SHP Technology refund, cancellation and revision terms for custom software development.',
+    publisher: {
+      '@type': 'Organization',
+      name: siteConfig.name,
+      url: siteConfig.site.url,
+    },
+  };
+
+  const breadcrumbSchema = buildBreadcrumbSchema([
+    { name: 'Home', path: '' },
+    { name: 'Refund Policy', path: 'refund-policy' },
+  ]);
+
   return (
-    <LegalShell
-      title="Refund Policy"
-      intro={`This Refund & Cancellation Policy explains how refunds, cancellations and revisions work for services provided by ${legalConfig.tradingName}. Because we provide custom, made-to-order software and engineering services, refunds are handled differently from off-the-shelf products.`}
-    >
+    <>
+      <JsonLd data={[refundSchema, breadcrumbSchema]} />
+      <LegalShell
+        title="Refund Policy"
+        intro={`This Refund & Cancellation Policy explains how refunds, cancellations and revisions work for services provided by ${legalConfig.tradingName}. Because we provide custom, made-to-order software and engineering services, refunds are handled differently from off-the-shelf products.`}
+      >
       <LegalSection heading="1. Scope">
         <LegalP>
           This policy applies to engagements booked directly with {legalConfig.tradingName}. Where you have signed a proposal, Statement of Work (SOW) or Master Services Agreement (MSA), the refund and cancellation terms in that signed document take precedence over this general policy.
@@ -89,5 +114,6 @@ export default function RefundPolicyPage() {
         </LegalP>
       </LegalSection>
     </LegalShell>
+    </>
   );
 }

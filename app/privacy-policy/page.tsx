@@ -3,6 +3,8 @@ import { siteConfig } from '@/src/config/site.config';
 import { legalConfig } from '@/src/config/legal.config';
 import { LegalShell, LegalSection, LegalP, LegalUL } from '@/components/legal/LegalLayout';
 import Link from 'next/link';
+import { JsonLd } from '@/components/common/JsonLd';
+import { getCanonicalUrl, buildBreadcrumbSchema } from '@/src/config/schema';
 
 export const metadata: Metadata = {
   title: 'Privacy Policy',
@@ -11,11 +13,34 @@ export const metadata: Metadata = {
 };
 
 export default function PrivacyPolicyPage() {
+  const policyUrl = getCanonicalUrl('privacy-policy');
+
+  const privacySchema = {
+    '@context': 'https://schema.org',
+    '@type': 'WebPage',
+    '@id': `${policyUrl}#webpage`,
+    url: policyUrl,
+    name: 'Privacy Policy | SHP Technology',
+    description: 'How SHP Technology collects, uses, shares and protects personal data.',
+    publisher: {
+      '@type': 'Organization',
+      name: siteConfig.name,
+      url: siteConfig.site.url,
+    },
+  };
+
+  const breadcrumbSchema = buildBreadcrumbSchema([
+    { name: 'Home', path: '' },
+    { name: 'Privacy Policy', path: 'privacy-policy' },
+  ]);
+
   return (
-    <LegalShell
-      title="Privacy Policy"
-      intro={`This Privacy Policy explains how ${legalConfig.tradingName} ("we", "us", "our") collects, uses, discloses and safeguards personal data when you visit our website or contact us. We are committed to processing personal data lawfully, fairly and transparently in line with the EU General Data Protection Regulation (GDPR) and India's Digital Personal Data Protection Act, 2023 (DPDP Act).`}
-    >
+    <>
+      <JsonLd data={[privacySchema, breadcrumbSchema]} />
+      <LegalShell
+        title="Privacy Policy"
+        intro={`This Privacy Policy explains how ${legalConfig.tradingName} ("we", "us", "our") collects, uses, discloses and safeguards personal data when you visit our website or contact us. We are committed to processing personal data lawfully, fairly and transparently in line with the EU General Data Protection Regulation (GDPR) and India's Digital Personal Data Protection Act, 2023 (DPDP Act).`}
+      >
       <LegalSection heading="1. Who we are (Data Controller / Data Fiduciary)">
         <LegalP>
           The business responsible for your personal data is {legalConfig.businessName}, based in India.
@@ -146,5 +171,6 @@ export default function PrivacyPolicyPage() {
         </LegalP>
       </LegalSection>
     </LegalShell>
+    </>
   );
 }

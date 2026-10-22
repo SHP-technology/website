@@ -3,6 +3,8 @@ import { siteConfig } from '@/src/config/site.config';
 import { legalConfig } from '@/src/config/legal.config';
 import { LegalShell, LegalSection, LegalP, LegalUL } from '@/components/legal/LegalLayout';
 import Link from 'next/link';
+import { JsonLd } from '@/components/common/JsonLd';
+import { getCanonicalUrl, buildBreadcrumbSchema } from '@/src/config/schema';
 
 export const metadata: Metadata = {
   title: 'Terms & Conditions',
@@ -11,11 +13,34 @@ export const metadata: Metadata = {
 };
 
 export default function TermsPage() {
+  const termsUrl = getCanonicalUrl('terms');
+
+  const termsSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'WebPage',
+    '@id': `${termsUrl}#webpage`,
+    url: termsUrl,
+    name: 'Terms & Conditions | SHP Technology',
+    description: 'The terms governing your use of the SHP Technology website and services.',
+    publisher: {
+      '@type': 'Organization',
+      name: siteConfig.name,
+      url: siteConfig.site.url,
+    },
+  };
+
+  const breadcrumbSchema = buildBreadcrumbSchema([
+    { name: 'Home', path: '' },
+    { name: 'Terms & Conditions', path: 'terms' },
+  ]);
+
   return (
-    <LegalShell
-      title="Terms & Conditions"
-      intro={`These Terms & Conditions ("Terms") govern your access to and use of the ${legalConfig.tradingName} website and any services we agree to provide. By using this website you agree to these Terms. If you do not agree, please do not use the site.`}
-    >
+    <>
+      <JsonLd data={[termsSchema, breadcrumbSchema]} />
+      <LegalShell
+        title="Terms & Conditions"
+        intro={`These Terms & Conditions ("Terms") govern your access to and use of the ${legalConfig.tradingName} website and any services we agree to provide. By using this website you agree to these Terms. If you do not agree, please do not use the site.`}
+      >
       <LegalSection heading="1. About us">
         <LegalP>
           This website is operated by {legalConfig.businessName}, based in India, with its office at {legalConfig.registeredAddress}. You can reach us at{' '}
@@ -107,5 +132,6 @@ export default function TermsPage() {
         </LegalP>
       </LegalSection>
     </LegalShell>
+    </>
   );
 }

@@ -25,9 +25,8 @@ export const ServiceEstimator: React.FC = () => {
     <section className="py-20 bg-surface-subtle/40 border-y border-surface-border">
       <div className="container max-w-4xl">
         <div className="text-center mb-12">
-          <BaseBadge variant="amber" className="mb-4 uppercase tracking-widest text-[10px]">
-            Instant Estimator
-          </BaseBadge>
+          <span className="text-xs font-bold uppercase tracking-wider text-brand-primary block mb-2">Instant Estimator
+          </span>
           <h2 className="text-3xl md:text-4xl font-extrabold text-primaryText tracking-tight mb-4">
             Interactive Project Budget Estimator
           </h2>
