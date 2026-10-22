@@ -46,3 +46,4 @@ __pycache__/
 *.sqlite3
 backend/staticfiles/
 .kilo
+.agents

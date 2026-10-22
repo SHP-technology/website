@@ -6,6 +6,8 @@ import { CtaBanner } from '@/components/sections/CtaBanner';
 import { siteConfig } from '@/src/config/site.config';
 import { Target, Eye, ShieldCheck } from 'lucide-react';
 import { PlatformIcon } from '@/components/common/PlatformIcon';
+import { JsonLd } from '@/components/common/JsonLd';
+import { getCanonicalUrl, buildBreadcrumbSchema } from '@/src/config/schema';
 
 export const metadata: Metadata = {
   title: 'About Us | Leadership & Engineering Story',
@@ -17,19 +19,44 @@ export const revalidate = 60;
 export default async function AboutPage() {
   const teamMembers = await fetchTeamMembers();
 
+  const aboutSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'AboutPage',
+    '@id': `${getCanonicalUrl('about')}#webpage`,
+    url: getCanonicalUrl('about'),
+    name: 'About Us | SHP Technology',
+    description: 'Learn about SHP Technology, our leadership team, company timeline, and core engineering principles.',
+    mainEntity: {
+      '@type': 'Organization',
+      name: siteConfig.name,
+      url: siteConfig.site.url,
+      foundingDate: siteConfig.founded,
+      description: siteConfig.description,
+      member: teamMembers.map((member) => ({
+        '@type': 'Person',
+        name: member.name,
+        jobTitle: member.role,
+        description: member.bio,
+        ...(member.linkedin_url ? { sameAs: [member.linkedin_url] } : {}),
+      })),
+    },
+  };
+
+  const breadcrumbSchema = buildBreadcrumbSchema([
+    { name: 'Home', path: '' },
+    { name: 'About Us', path: 'about' },
+  ]);
+
   return (
-    <div className="py-16 md:py-24 bg-surface-main text-primaryText relative overflow-hidden">
-      <div className="absolute inset-0 pointer-events-none" aria-hidden="true">
-        <div className="absolute -top-32 left-1/2 -translate-x-1/2 w-[600px] h-[300px] rounded-full bg-brand-accent/10 blur-[120px]" />
-      </div>
+    <div className="py-16 md:py-20 bg-surface-main text-primaryText">
+      <JsonLd data={[aboutSchema, breadcrumbSchema]} />
 
       <div className="container max-w-6xl mx-auto relative z-10">
         <div className="text-center max-w-3xl mx-auto mb-20">
-          <BaseBadge variant="amber" className="mb-4 uppercase tracking-widest text-[10px]">
-            About SHP Technology
-          </BaseBadge>
+          <span className="text-xs font-bold uppercase tracking-wider text-brand-primary block mb-2">About SHP Technology
+          </span>
           <h1 className="text-4xl md:text-6xl font-extrabold text-primaryText tracking-tight mb-6 leading-tight">
-            Building High-Performance Software for the <span className="bg-gradient-to-r from-brand-accent to-brand-primary bg-clip-text text-transparent">Next Generation</span>
+            Engineering Resilient Enterprise Software & Scalable Architectures
           </h1>
           <p className="text-secondaryText text-lg md:text-xl leading-relaxed">
             {siteConfig.description}
@@ -37,7 +64,7 @@ export default async function AboutPage() {
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-24">
-          <div className="p-8 rounded-3xl bg-surface-card border border-surface-border hover:border-brand-accent/40 shadow-xl transition-all duration-300">
+          <div className="p-8 rounded-2xl bg-surface-card border border-surface-border shadow-sm transition-all duration-300">
             <div className="p-3.5 rounded-2xl bg-surface-subtle border border-surface-border w-fit mb-6 text-brand-accent">
               <Target className="w-6 h-6" />
             </div>
@@ -47,7 +74,7 @@ export default async function AboutPage() {
             </p>
           </div>
 
-          <div className="p-8 rounded-3xl bg-surface-card border border-surface-border hover:border-brand-primary/40 shadow-xl transition-all duration-300">
+          <div className="p-8 rounded-2xl bg-surface-card border border-surface-border hover:border-brand-primary/40 shadow-xl transition-all duration-300">
             <div className="p-3.5 rounded-2xl bg-surface-subtle border border-surface-border w-fit mb-6 text-brand-primary">
               <Eye className="w-6 h-6" />
             </div>
@@ -57,7 +84,7 @@ export default async function AboutPage() {
             </p>
           </div>
 
-          <div className="p-8 rounded-3xl bg-surface-card border border-surface-border hover:border-brand-accent/40 shadow-xl transition-all duration-300">
+          <div className="p-8 rounded-2xl bg-surface-card border border-surface-border shadow-sm transition-all duration-300">
             <div className="p-3.5 rounded-2xl bg-surface-subtle border border-surface-border w-fit mb-6 text-brand-accent">
               <ShieldCheck className="w-6 h-6" />
             </div>
@@ -70,9 +97,8 @@ export default async function AboutPage() {
 
         <div className="mb-24">
           <div className="text-center max-w-3xl mx-auto mb-16">
-            <BaseBadge variant="amber" className="mb-4 uppercase tracking-widest text-[10px]">
-              Leadership & Engineering
-            </BaseBadge>
+            <span className="text-xs font-bold uppercase tracking-wider text-brand-primary block mb-2">Leadership & Engineering
+            </span>
             <h2 className="text-3xl md:text-5xl font-extrabold text-primaryText tracking-tight mb-4">
               Meet the People Behind SHP
             </h2>
@@ -85,10 +111,10 @@ export default async function AboutPage() {
             {teamMembers.map((member) => (
               <div
                 key={member.id || member.name}
-                className="p-8 rounded-3xl bg-surface-card border border-surface-border hover:border-brand-accent/50 shadow-xl flex flex-col justify-between group transition-all duration-300 hover:-translate-y-1"
+                className="p-8 rounded-2xl bg-surface-card border border-surface-border shadow-sm flex flex-col justify-between"
               >
                 <div>
-                  <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-brand-accent to-brand-accentHover flex items-center justify-center text-brand-buttonText font-extrabold text-xl mb-6 shadow-lg shadow-brand-accent/20 group-hover:scale-105 transition-transform">
+                  <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-brand-accent to-brand-accentHover flex items-center justify-center text-brand-buttonText font-extrabold text-xl mb-6 shadow-lg shadow-brand-accent/20  transition-transform">
                     {member.initials || member.name.split(' ').map((n) => n[0]).join('')}
                   </div>
                   <h3 className="text-xl font-bold text-primaryText mb-1">

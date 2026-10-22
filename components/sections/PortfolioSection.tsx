@@ -8,47 +8,47 @@ export const PortfolioSection: React.FC = () => {
   const featured = portfolioData.filter((p) => p.featured);
 
   return (
-    <section className="py-20 relative">
-      <div className="container">
-        <div className="text-center max-w-3xl mx-auto mb-16">
-          <BaseBadge variant="amber" className="mb-4 uppercase tracking-widest text-[10px]">
-            Selected Works
-          </BaseBadge>
-          <h2 className="text-3xl md:text-5xl font-extrabold text-primaryText tracking-tight mb-4">
-            Proven Client & Open Source Software
+    <section className="py-20 relative bg-surface-main">
+      <div className="container max-w-6xl mx-auto">
+        <div className="max-w-3xl mb-12">
+          <span className="text-xs font-bold uppercase tracking-wider text-brand-primary block mb-2">
+            Selected Work
+          </span>
+          <h2 className="text-3xl md:text-4xl font-extrabold text-primaryText tracking-tight mb-3">
+            Delivered Software & Production Case Studies
           </h2>
           <p className="text-secondaryText text-base md:text-lg">
-            Explore live platforms, SaaS tools, and open source projects built by SHP Technology engineers.
+            Explore live platforms, SaaS tools, and applications built by SHP Technology engineers.
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {featured.map((project) => (
             <div
               key={project.id}
-              className="glass-card p-8 rounded-3xl flex flex-col justify-between group hover:border-brand-primary/50 transition-all duration-300"
+              className="p-6 rounded-2xl bg-surface-card border border-surface-border shadow-sm hover:border-brand-primary/50 transition-colors duration-200 flex flex-col justify-between"
             >
               <div>
                 <div className="flex items-center justify-between gap-2 mb-4">
-                  <BaseBadge variant="blue" className="text-[10px]">
+                  <span className="text-[11px] font-semibold text-brand-primary bg-surface-subtle px-2.5 py-0.5 rounded-md border border-surface-border">
                     {project.industry}
-                  </BaseBadge>
-                  <span className="text-xs text-mutedText font-semibold">{project.completionYear}</span>
+                  </span>
+                  <span className="text-xs text-mutedText font-medium">{project.completionYear}</span>
                 </div>
 
-                <h3 className="text-xl font-bold text-primaryText mb-3 group-hover:text-brand-primary transition-colors">
+                <h3 className="text-lg font-bold text-primaryText mb-2">
                   {project.title}
                 </h3>
 
-                <p className="text-secondaryText text-sm leading-relaxed mb-6">
+                <p className="text-secondaryText text-sm leading-relaxed mb-5">
                   {project.summary}
                 </p>
 
-                <div className="flex flex-wrap gap-2 mb-6">
+                <div className="flex flex-wrap gap-1.5 mb-6">
                   {project.technologies.slice(0, 4).map((tech, idx) => (
                     <span
                       key={idx}
-                      className="px-2.5 py-1 rounded-md bg-surface-subtle border border-surface-border text-[11px] font-semibold text-secondaryText"
+                      className="px-2 py-0.5 rounded-md bg-surface-subtle border border-surface-border/50 text-[11px] font-medium text-secondaryText"
                     >
                       {tech}
                     </span>
@@ -56,10 +56,10 @@ export const PortfolioSection: React.FC = () => {
                 </div>
               </div>
 
-              <div className="flex items-center justify-between pt-4 border-t border-surface-border">
+              <div className="flex items-center justify-between pt-4 border-t border-surface-border/60">
                 <Link
                   href={`/portfolio/${project.slug}`}
-                  className="text-xs font-bold text-brand-primary hover:text-brand-accent flex items-center gap-1.5"
+                  className="text-xs font-semibold text-brand-primary hover:underline flex items-center gap-1.5"
                 >
                   <span>Read Case Study</span>
                   <ArrowRight className="w-3.5 h-3.5" />
@@ -70,10 +70,10 @@ export const PortfolioSection: React.FC = () => {
                     href={project.url}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="p-2 rounded-xl bg-surface-subtle border border-surface-border text-secondaryText hover:text-brand-primary transition-colors"
+                    className="p-1.5 rounded-lg bg-surface-subtle border border-surface-border text-secondaryText hover:text-brand-primary transition-colors"
                     title="Visit Live Application"
                   >
-                    <ExternalLink className="w-4 h-4" />
+                    <ExternalLink className="w-3.5 h-3.5" />
                   </a>
                 )}
               </div>

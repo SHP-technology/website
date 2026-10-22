@@ -59,11 +59,11 @@ export const MethodologySection: React.FC = () => {
           {steps.map((step, i) => (
             <div
               key={i}
-              className="p-8 rounded-3xl bg-surface-card border border-surface-border hover:border-brand-accent/50 shadow-xl transition-all duration-300 relative flex flex-col justify-between group hover:-translate-y-1"
+              className="p-8 rounded-2xl bg-surface-card border border-surface-border hover:border-brand-accent/50 shadow-xl transition-all duration-300 relative flex flex-col justify-between group "
             >
               <div>
                 <div className="flex items-center justify-between mb-4">
-                  <span className="text-3xl font-extrabold text-brand-accent group-hover:scale-110 transition-transform">
+                  <span className="text-3xl font-extrabold text-brand-accent  transition-transform">
                     {step.num}
                   </span>
                   <span className="text-[10px] font-bold uppercase tracking-wider px-3 py-1 rounded-full bg-surface-subtle text-secondaryText border border-surface-border">

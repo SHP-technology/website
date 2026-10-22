@@ -71,22 +71,36 @@ export default function RootLayout({
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "Organization",
+    "@id": `${siteConfig.site.url}#organization`,
     "name": siteConfig.name,
     "legalName": siteConfig.legalName,
     "url": siteConfig.site.url,
-    "logo": `${siteConfig.site.url}assets/logo.svg`,
+    "logo": {
+      "@type": "ImageObject",
+      "url": `${siteConfig.site.url}assets/logo.svg`,
+    },
     "description": siteConfig.description,
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": siteConfig.officeLocation.address,
+      "addressLocality": siteConfig.officeLocation.city,
+      "addressRegion": siteConfig.officeLocation.state,
+      "postalCode": siteConfig.officeLocation.zip,
+      "addressCountry": siteConfig.officeLocation.country,
+    },
     "contactPoint": {
       "@type": "ContactPoint",
       "telephone": siteConfig.contact.phone,
       "contactType": "customer service",
       "email": siteConfig.contact.email,
+      "availableLanguage": ["English", "Hindi"],
     },
     "sameAs": [
       siteConfig.socials.linkedin,
       siteConfig.socials.instagram,
       siteConfig.socials.facebook,
-      siteConfig.socials.twitter
+      siteConfig.socials.twitter,
+      siteConfig.socials.indeed
     ].filter(Boolean)
   };
 
@@ -95,7 +109,7 @@ export default function RootLayout({
       <head>
         <script
           type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd).replace(/</g, '\\u003c') }}
         />
       </head>
       <body className="bg-surface-main text-primaryText transition-colors duration-300 min-h-screen flex flex-col relative" suppressHydrationWarning>

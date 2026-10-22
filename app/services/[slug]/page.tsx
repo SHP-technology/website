@@ -6,6 +6,9 @@ import { BaseBadge } from '@/components/common/BaseBadge';
 import { BaseButton } from '@/components/common/BaseButton';
 import { CtaBanner } from '@/components/sections/CtaBanner';
 import { CheckCircle2, ArrowLeft, ArrowRight, ShieldCheck, Zap } from 'lucide-react';
+import { JsonLd } from '@/components/common/JsonLd';
+import { siteConfig } from '@/src/config/site.config';
+import { getCanonicalUrl, buildBreadcrumbSchema } from '@/src/config/schema';
 
 interface Props {
   params: { slug: string };
@@ -32,11 +35,45 @@ export default function ServiceDetailPage({ params }: Props) {
     notFound();
   }
 
+  const serviceUrl = getCanonicalUrl(`services/${service.slug}`);
+
+  const serviceSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'Service',
+    '@id': `${serviceUrl}#service`,
+    name: service.title,
+    description: service.fullDescription,
+    serviceType: service.category,
+    provider: {
+      '@type': 'Organization',
+      name: siteConfig.name,
+      url: siteConfig.site.url,
+    },
+    areaServed: 'Worldwide',
+    hasOfferCatalog: {
+      '@type': 'OfferCatalog',
+      name: `${service.title} Deliverables`,
+      itemListElement: service.deliverables.map((item, idx) => ({
+        '@type': 'Offer',
+        itemOffered: {
+          '@type': 'Service',
+          name: item,
+        },
+        position: idx + 1,
+      })),
+    },
+  };
+
+  const breadcrumbSchema = buildBreadcrumbSchema([
+    { name: 'Home', path: '' },
+    { name: 'Services', path: 'services' },
+    { name: service.title, path: `services/${service.slug}` },
+  ]);
+
   return (
     <div className="py-16 md:py-24 bg-surface-main text-primaryText relative overflow-hidden">
-      <div className="absolute inset-0 pointer-events-none" aria-hidden="true">
-        <div className="absolute -top-32 left-1/2 -translate-x-1/2 w-[600px] h-[300px] rounded-full bg-brand-accent/10 blur-[120px]" />
-      </div>
+      <JsonLd data={[serviceSchema, breadcrumbSchema]} />
+      
 
       <div className="container max-w-5xl mx-auto relative z-10">
         <Link
@@ -47,10 +84,9 @@ export default function ServiceDetailPage({ params }: Props) {
           <span>← Back to All Services</span>
         </Link>
 
-        <div className="p-8 md:p-12 rounded-3xl bg-surface-card border border-surface-border shadow-2xl mb-12 relative overflow-hidden">
-          <BaseBadge variant="amber" className="mb-4 text-[10px] uppercase tracking-widest">
-            {service.category}
-          </BaseBadge>
+        <div className="p-8 md:p-12 rounded-2xl bg-surface-card border border-surface-border shadow-2xl mb-12 relative overflow-hidden">
+          <span className="text-xs font-bold uppercase tracking-wider text-brand-primary block mb-2">{service.category}
+          </span>
           <h1 className="text-3xl md:text-5xl font-extrabold text-primaryText tracking-tight mb-4">
             {service.title}
           </h1>
@@ -67,7 +103,7 @@ export default function ServiceDetailPage({ params }: Props) {
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
-          <div className="p-8 rounded-3xl bg-surface-card border border-rose-500/30 shadow-xl">
+          <div className="p-8 rounded-2xl bg-surface-card border border-rose-500/30 shadow-xl">
             <h3 className="text-xl font-bold text-primaryText mb-3 flex items-center gap-2">
               <Zap className="w-5 h-5 text-rose-400" />
               The Problem We Solve
@@ -77,7 +113,7 @@ export default function ServiceDetailPage({ params }: Props) {
             </p>
           </div>
 
-          <div className="p-8 rounded-3xl bg-surface-card border border-brand-primary/30 shadow-xl">
+          <div className="p-8 rounded-2xl bg-surface-card border border-brand-primary/30 shadow-xl">
             <h3 className="text-xl font-bold text-primaryText mb-3 flex items-center gap-2">
               <ShieldCheck className="w-5 h-5 text-brand-primary" />
               Key Benefits & Business Impact
@@ -94,7 +130,7 @@ export default function ServiceDetailPage({ params }: Props) {
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-16">
-          <div className="p-8 rounded-3xl bg-surface-card border border-surface-border shadow-xl">
+          <div className="p-8 rounded-2xl bg-surface-card border border-surface-border shadow-xl">
             <h3 className="text-xl font-bold text-primaryText mb-4">
               What You Receive (Deliverables)
             </h3>
@@ -108,7 +144,7 @@ export default function ServiceDetailPage({ params }: Props) {
             </ul>
           </div>
 
-          <div className="p-8 rounded-3xl bg-surface-card border border-surface-border shadow-xl">
+          <div className="p-8 rounded-2xl bg-surface-card border border-surface-border shadow-xl">
             <h3 className="text-xl font-bold text-primaryText mb-4">
               Technology Stack Used
             </h3>

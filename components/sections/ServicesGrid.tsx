@@ -14,18 +14,13 @@ const iconMap: Record<string, React.ReactNode> = {
 
 export const ServicesGrid: React.FC = () => {
   return (
-    <section className="py-24 relative bg-surface-main text-primaryText">
-      <div className="absolute inset-0 pointer-events-none" aria-hidden="true">
-        <div className="absolute top-1/3 left-10 w-96 h-96 rounded-full bg-brand-accent/10 blur-[120px]" />
-        <div className="absolute bottom-10 right-10 w-96 h-96 rounded-full bg-brand-primary/10 blur-[120px]" />
-      </div>
-
-      <div className="container max-w-6xl mx-auto relative z-10">
-        <div className="text-center max-w-3xl mx-auto mb-16">
-          <span className="text-xs font-extrabold uppercase tracking-widest text-brand-accent block mb-3">
-            Core Engineering Services
+    <section className="py-20 bg-surface-main text-primaryText">
+      <div className="container max-w-6xl mx-auto">
+        <div className="max-w-3xl mb-12">
+          <span className="text-xs font-bold uppercase tracking-wider text-brand-primary block mb-2">
+            Engineering Capabilities
           </span>
-          <h2 className="text-3xl md:text-5xl font-extrabold text-primaryText tracking-tight mb-4">
+          <h2 className="text-3xl md:text-4xl font-extrabold text-primaryText tracking-tight mb-3">
             Bespoke Software Solutions Tailored to Your Growth
           </h2>
           <p className="text-secondaryText text-base md:text-lg leading-relaxed">
@@ -33,45 +28,45 @@ export const ServicesGrid: React.FC = () => {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {servicesData.map((service) => (
             <Link
               key={service.id}
               href={`/services/${service.slug}`}
-              className="group p-8 rounded-3xl bg-surface-card border border-surface-border hover:border-brand-accent/50 shadow-xl hover:shadow-2xl transition-all duration-300 flex flex-col justify-between hover:-translate-y-1 relative overflow-hidden"
+              className="group p-6 rounded-2xl bg-surface-card border border-surface-border hover:border-brand-primary/60 shadow-sm hover:shadow-md transition-all duration-200 flex flex-col justify-between"
             >
               <div>
-                <div className="flex items-center justify-between mb-6">
-                  <div className="p-3.5 rounded-2xl bg-surface-subtle border border-surface-border group-hover:scale-110 transition-transform">
-                    {iconMap[service.icon] || <Code2 className="w-6 h-6 text-brand-accent" />}
+                <div className="flex items-center justify-between mb-5">
+                  <div className="p-2.5 rounded-xl bg-surface-subtle border border-surface-border text-primaryText">
+                    {iconMap[service.icon] || <Code2 className="w-5 h-5 text-brand-primary" />}
                   </div>
-                  <span className="text-[11px] font-bold uppercase tracking-wider px-3 py-1 rounded-full bg-surface-subtle text-brand-accent border border-surface-border">
+                  <span className="text-[11px] font-semibold tracking-wide px-2.5 py-0.5 rounded-md bg-surface-subtle text-secondaryText border border-surface-border">
                     {service.category}
                   </span>
                 </div>
 
-                <h3 className="text-xl font-bold text-primaryText mb-3 group-hover:text-brand-accent transition-colors">
+                <h3 className="text-lg font-bold text-primaryText mb-2 group-hover:text-brand-primary transition-colors">
                   {service.title}
                 </h3>
 
-                <p className="text-secondaryText text-sm leading-relaxed mb-6">
+                <p className="text-secondaryText text-sm leading-relaxed mb-5">
                   {service.shortDescription}
                 </p>
 
-                <ul className="flex flex-col gap-2 mb-6 pt-4 border-t border-surface-border">
+                <ul className="flex flex-col gap-2 mb-5 pt-4 border-t border-surface-border/60">
                   {service.benefits.slice(0, 2).map((benefit, idx) => (
-                    <li key={idx} className="text-xs text-secondaryText flex items-start gap-2">
+                    <li key={idx} className="text-xs text-mutedText flex items-start gap-2">
                       <CheckCircle2 className="w-3.5 h-3.5 text-brand-primary shrink-0 mt-0.5" />
                       <span>{benefit}</span>
                     </li>
                   ))}
                 </ul>
 
-                <div className="flex flex-wrap gap-1.5 mb-6">
+                <div className="flex flex-wrap gap-1.5 mb-5">
                   {service.technologies.slice(0, 3).map((tech, idx) => (
                     <span
                       key={idx}
-                      className="px-2 py-0.5 rounded-md bg-surface-subtle text-[10px] font-semibold text-secondaryText"
+                      className="px-2 py-0.5 rounded-md bg-surface-subtle text-[11px] font-medium text-secondaryText"
                     >
                       {tech}
                     </span>
@@ -79,9 +74,9 @@ export const ServicesGrid: React.FC = () => {
                 </div>
               </div>
 
-              <div className="flex items-center justify-between pt-4 border-t border-surface-border text-xs font-bold text-brand-accent group-hover:text-brand-accentHover">
-                <span>Explore Technical Specs</span>
-                <ArrowRight className="w-4 h-4 group-hover:translate-x-1.5 transition-transform" />
+              <div className="flex items-center justify-between pt-4 border-t border-surface-border/60 text-xs font-semibold text-brand-primary">
+                <span>Technical Specifications</span>
+                <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
               </div>
             </Link>
           ))}

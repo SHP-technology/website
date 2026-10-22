@@ -3,6 +3,8 @@ import { legalConfig } from '@/src/config/legal.config';
 import { siteConfig } from '@/src/config/site.config';
 import { LegalShell, LegalSection, LegalP, LegalUL } from '@/components/legal/LegalLayout';
 import Link from 'next/link';
+import { JsonLd } from '@/components/common/JsonLd';
+import { getCanonicalUrl, buildBreadcrumbSchema } from '@/src/config/schema';
 
 export const metadata: Metadata = {
   title: 'Cookie Policy',
@@ -11,11 +13,34 @@ export const metadata: Metadata = {
 };
 
 export default function CookiePolicyPage() {
+  const cookiePolicyUrl = getCanonicalUrl('cookie-policy');
+
+  const cookieSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'WebPage',
+    '@id': `${cookiePolicyUrl}#webpage`,
+    url: cookiePolicyUrl,
+    name: 'Cookie Policy | SHP Technology',
+    description: 'What cookies and local storage SHP Technology uses, why, and how you can control them.',
+    publisher: {
+      '@type': 'Organization',
+      name: siteConfig.name,
+      url: siteConfig.site.url,
+    },
+  };
+
+  const breadcrumbSchema = buildBreadcrumbSchema([
+    { name: 'Home', path: '' },
+    { name: 'Cookie Policy', path: 'cookie-policy' },
+  ]);
+
   return (
-    <LegalShell
-      title="Cookie Policy"
-      intro="This Cookie Policy explains what cookies and similar technologies we use on this website, what they do, and how you can control them."
-    >
+    <>
+      <JsonLd data={[cookieSchema, breadcrumbSchema]} />
+      <LegalShell
+        title="Cookie Policy"
+        intro="This Cookie Policy explains what cookies and similar technologies we use on this website, what they do, and how you can control them."
+      >
       <LegalSection heading="1. What are cookies & local storage?">
         <LegalP>
           Cookies are small text files stored on your device by websites you visit. "Local storage" is a similar browser technology that lets a site remember small pieces of information (like your theme preference) on your device. Together we refer to these as "cookies" in this policy. They can be strictly necessary (needed for the site to work or to honour your privacy choices) or optional (such as analytics).
@@ -59,5 +84,6 @@ export default function CookiePolicyPage() {
         </LegalP>
       </LegalSection>
     </LegalShell>
+    </>
   );
 }

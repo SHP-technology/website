@@ -57,11 +57,11 @@ export const TrustSection: React.FC = () => {
           {trustPoints.map((pt, i) => (
             <div
               key={i}
-              className="p-6 rounded-3xl bg-surface-card border border-surface-border hover:border-brand-accent/40 shadow-lg hover:shadow-2xl transition-all duration-300 flex flex-col justify-between group hover:-translate-y-1"
+              className="p-6 rounded-2xl bg-surface-card border border-surface-border hover:border-brand-accent/40 shadow-lg hover:shadow-2xl transition-all duration-300 flex flex-col justify-between group "
             >
               <div>
                 <div className="flex items-center justify-between mb-4">
-                  <div className="p-3 rounded-2xl bg-surface-subtle border border-surface-border group-hover:scale-110 transition-transform">
+                  <div className="p-3 rounded-2xl bg-surface-subtle border border-surface-border  transition-transform">
                     {pt.icon}
                   </div>
                   <span className="text-[10px] font-bold uppercase tracking-wider px-2.5 py-1 rounded-full bg-surface-subtle text-secondaryText border border-surface-border">

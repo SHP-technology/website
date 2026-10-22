@@ -27,9 +27,8 @@ export const TestimonialsSection: React.FC<TestimonialsSectionProps> = ({
     <section className="py-20 bg-surface-subtle/40 border-y border-surface-border">
       <div className="container">
         <div className="text-center max-w-3xl mx-auto mb-16">
-          <BaseBadge variant="amber" className="mb-4 uppercase tracking-widest text-[10px]">
-            Client Testimonials
-          </BaseBadge>
+          <span className="text-xs font-bold uppercase tracking-wider text-brand-primary block mb-2">Client Testimonials
+          </span>
           <h2 className="text-3xl md:text-5xl font-extrabold text-primaryText tracking-tight mb-4">
             What Our Clients Say
           </h2>

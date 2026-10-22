@@ -4,6 +4,10 @@ import { ServiceEstimator } from '@/components/sections/ServiceEstimator';
 import { MethodologySection } from '@/components/sections/MethodologySection';
 import { CtaBanner } from '@/components/sections/CtaBanner';
 import { BaseBadge } from '@/components/common/BaseBadge';
+import { JsonLd } from '@/components/common/JsonLd';
+import { servicesData } from '@/src/data/services';
+import { siteConfig } from '@/src/config/site.config';
+import { getCanonicalUrl, buildBreadcrumbSchema } from '@/src/config/schema';
 
 export const metadata: Metadata = {
   title: 'Engineering Services | Custom Enterprise Software & Cloud',
@@ -11,19 +15,44 @@ export const metadata: Metadata = {
 };
 
 export default function ServicesPage() {
+  const serviceListSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'ItemList',
+    name: 'SHP Technology Engineering Services',
+    description: 'Custom enterprise software, cloud architecture, AI solutions, and system modernization services.',
+    itemListElement: servicesData.map((s, idx) => ({
+      '@type': 'ListItem',
+      position: idx + 1,
+      item: {
+        '@type': 'Service',
+        name: s.title,
+        description: s.shortDescription,
+        url: getCanonicalUrl(`services/${s.slug}`),
+        provider: {
+          '@type': 'Organization',
+          name: siteConfig.name,
+          url: siteConfig.site.url,
+        },
+      },
+    })),
+  };
+
+  const breadcrumbSchema = buildBreadcrumbSchema([
+    { name: 'Home', path: '' },
+    { name: 'Services', path: 'services' },
+  ]);
+
   return (
     <div className="py-16 md:py-24 bg-surface-main text-primaryText relative overflow-hidden">
-      <div className="absolute inset-0 pointer-events-none" aria-hidden="true">
-        <div className="absolute -top-32 left-1/2 -translate-x-1/2 w-[600px] h-[300px] rounded-full bg-brand-accent/10 blur-[120px]" />
-      </div>
+      <JsonLd data={[serviceListSchema, breadcrumbSchema]} />
+      
 
       <div className="container max-w-6xl mx-auto relative z-10">
         <div className="text-center max-w-3xl mx-auto mb-16">
-          <BaseBadge variant="amber" className="mb-4 uppercase tracking-widest text-[10px]">
-            Engineering Capabilities
-          </BaseBadge>
+          <span className="text-xs font-bold uppercase tracking-wider text-brand-primary block mb-2">Engineering Capabilities
+          </span>
           <h1 className="text-4xl md:text-6xl font-extrabold text-primaryText tracking-tight mb-6 leading-tight">
-            End-to-End <span className="bg-gradient-to-r from-brand-accent to-brand-primary bg-clip-text text-transparent">Engineering Solutions</span>
+            End-to-End Engineering Solutions
           </h1>
           <p className="text-secondaryText text-lg md:text-xl leading-relaxed font-normal">
             We partner with visionary companies to design, build, and deploy production-grade software applications backed by bi-weekly live demos and transparent fixed pricing.

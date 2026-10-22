@@ -4,6 +4,7 @@ import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { Menu, X, ArrowRight } from 'lucide-react';
+import { PlatformIcon } from '@/components/common/PlatformIcon';
 import { AppLogo } from '@/components/common/AppLogo';
 import { BaseButton } from '@/components/common/BaseButton';
 import { ThemeToggle } from '@/components/common/ThemeToggle';
@@ -162,7 +163,8 @@ export const AppHeader: React.FC = () => {
                 rel="noopener noreferrer"
                 className="flex items-center justify-center gap-2.5 py-3.5 px-4 rounded-2xl bg-brand-primary hover:bg-brand-accent text-brand-buttonText font-bold text-sm transition-colors shadow-md touch-manipulation active:scale-95"
               >
-                💬 WhatsApp — Instant Chat
+                <PlatformIcon platform="whatsapp" className="w-5 h-5 shrink-0" />
+                <span>WhatsApp — Instant Chat</span>
               </a>
             </div>
           </div>

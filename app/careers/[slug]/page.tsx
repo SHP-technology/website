@@ -5,6 +5,9 @@ import { jobsData } from '@/src/data/jobs';
 import { BaseBadge } from '@/components/common/BaseBadge';
 import { JobApplyForm } from '@/components/forms/JobApplyForm';
 import { ArrowLeft, MapPin, Briefcase, CheckCircle2 } from 'lucide-react';
+import { JsonLd } from '@/components/common/JsonLd';
+import { siteConfig } from '@/src/config/site.config';
+import { getCanonicalUrl, buildBreadcrumbSchema } from '@/src/config/schema';
 
 interface Props {
   params: { slug: string };
@@ -31,12 +34,50 @@ export default function JobDetailPage({ params }: Props) {
     notFound();
   }
 
+  const jobUrl = getCanonicalUrl(`careers/${job.slug}`);
+
+  const jobSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'JobPosting',
+    '@id': `${jobUrl}#job`,
+    title: job.title,
+    description: `${job.fullDescription} Responsibilities: ${job.responsibilities.join('; ')}. Requirements: ${job.requirements.join('; ')}.`,
+    datePosted: '2025-01-01',
+    validThrough: '2026-12-31',
+    employmentType: job.employmentType.toUpperCase().replace('-', '_'),
+    hiringOrganization: {
+      '@type': 'Organization',
+      name: siteConfig.name,
+      sameAs: siteConfig.site.url,
+      logo: `${siteConfig.site.url}assets/logo.svg`,
+    },
+    jobLocation: {
+      '@type': 'Place',
+      address: {
+        '@type': 'PostalAddress',
+        addressLocality: siteConfig.officeLocation.city,
+        addressRegion: siteConfig.officeLocation.state,
+        addressCountry: siteConfig.officeLocation.country,
+      },
+    },
+    jobLocationType: job.location.toLowerCase().includes('remote') ? 'TELECOMMUTE' : undefined,
+    applicantLocationRequirements: {
+      '@type': 'Country',
+      name: 'Global',
+    },
+  };
+
+  const breadcrumbSchema = buildBreadcrumbSchema([
+    { name: 'Home', path: '' },
+    { name: 'Careers', path: 'careers' },
+    { name: job.title, path: `careers/${job.slug}` },
+  ]);
+
   return (
     <div className="py-16 md:py-24 bg-surface-main text-primaryText relative overflow-hidden">
-      {/* Ambient backdrop */}
-      <div className="absolute inset-0 pointer-events-none" aria-hidden="true">
-        <div className="absolute -top-32 left-1/2 -translate-x-1/2 w-[600px] h-[300px] rounded-full bg-brand-primary/10 blur-[120px]" />
-      </div>
+      <JsonLd data={[jobSchema, breadcrumbSchema]} />
+      
+      
 
       <div className="container max-w-5xl mx-auto relative z-10">
         <Link
@@ -49,7 +90,7 @@ export default function JobDetailPage({ params }: Props) {
 
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-10">
           <div className="lg:col-span-2">
-            <div className="p-8 rounded-3xl bg-surface-card border border-surface-border shadow-2xl mb-8">
+            <div className="p-8 rounded-2xl bg-surface-card border border-surface-border shadow-2xl mb-8">
               <div className="flex flex-wrap items-center gap-2 mb-3">
                 <BaseBadge variant="amber" className="text-[10px]">
                   {job.department}

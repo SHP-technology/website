@@ -10,6 +10,7 @@ import { BaseCheckbox } from '@/components/common/BaseCheckbox';
 import { useFormValidation } from '@/hooks/useFormValidation';
 import { useAnalytics } from '@/hooks/useAnalytics';
 import { Send, CheckCircle2 } from 'lucide-react';
+import { PlatformIcon } from '@/components/common/PlatformIcon';
 import { siteConfig } from '@/src/config/site.config';
 
 export const ContactForm: React.FC = () => {
@@ -196,7 +197,8 @@ export const ContactForm: React.FC = () => {
           rel="noopener noreferrer"
           className="flex items-center justify-center gap-2 py-3 px-4 rounded-xl border border-emerald-500/30 bg-emerald-500/10 hover:bg-emerald-500/20 text-emerald-700 dark:text-emerald-300 font-bold text-xs transition-colors"
         >
-          <span>💬 Need Instant Reply? Chat directly on WhatsApp →</span>
+          <PlatformIcon platform="whatsapp" className="w-4 h-4 shrink-0" />
+          <span>Need Instant Reply? Chat directly on WhatsApp →</span>
         </a>
       </div>
     </form>

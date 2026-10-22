@@ -9,6 +9,9 @@ import { TestimonialsSection } from '@/components/sections/TestimonialsSection';
 import { FaqAccordion } from '@/components/common/FaqAccordion';
 import { CtaBanner } from '@/components/sections/CtaBanner';
 import { BaseBadge } from '@/components/common/BaseBadge';
+import { JsonLd } from '@/components/common/JsonLd';
+import { siteConfig } from '@/src/config/site.config';
+import { getCanonicalUrl } from '@/src/config/schema';
 
 export const revalidate = 60; // Incremental Static Revalidation (ISR) every 60 seconds
 
@@ -18,8 +21,35 @@ export default async function HomePage() {
     fetchTestimonials()
   ]);
 
+  const websiteSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'WebSite',
+    '@id': `${getCanonicalUrl()}#website`,
+    url: getCanonicalUrl(),
+    name: siteConfig.name,
+    description: siteConfig.description,
+    publisher: {
+      '@id': `${siteConfig.site.url}#organization`,
+    },
+    inLanguage: 'en-US',
+  };
+
+  const faqSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: faqs.map((faq) => ({
+      '@type': 'Question',
+      name: faq.question,
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: faq.answer,
+      },
+    })),
+  };
+
   return (
     <>
+      <JsonLd data={[websiteSchema, faqSchema]} />
       <HeroSection />
       <TrustSection />
       <ServicesGrid />
@@ -31,9 +61,8 @@ export default async function HomePage() {
       <section className="py-20 relative">
         <div className="container">
           <div className="text-center max-w-3xl mx-auto mb-16">
-            <BaseBadge variant="amber" className="mb-4 uppercase tracking-widest text-[10px]">
-              Frequently Asked Questions
-            </BaseBadge>
+            <span className="text-xs font-bold uppercase tracking-wider text-brand-primary block mb-2">Frequently Asked Questions
+            </span>
             <h2 className="text-3xl md:text-5xl font-extrabold text-primaryText tracking-tight mb-4">
               Everything You Need to Know
             </h2>
