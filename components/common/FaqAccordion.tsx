@@ -20,27 +20,31 @@ export const FaqAccordion: React.FC<FaqAccordionProps> = ({ faqs }) => {
       {faqs.map((faq, idx) => {
         const isOpen = openIndex === idx;
         return (
-          <div
+          <details
             key={faq.id || idx}
-            className="rounded-2xl border border-surface-border bg-surface-card  overflow-hidden transition-all duration-300"
+            open={isOpen}
+            className="rounded-2xl border border-surface-border bg-surface-card overflow-hidden transition-all duration-300 group"
           >
-            <button
-              onClick={() => toggle(idx)}
-              className="w-full flex items-center justify-between p-6 text-left focus:outline-none"
+            <summary
+              onClick={(e) => {
+                e.preventDefault();
+                toggle(idx);
+              }}
+              className="w-full flex items-center justify-between p-6 text-left focus:outline-none cursor-pointer list-none select-none"
             >
               <span className="font-bold text-primaryText text-base md:text-lg pr-4">
                 {faq.question}
               </span>
-              <div className={`p-2 rounded-full transition-transform duration-300 ${isOpen ? 'rotate-180 bg-brand-primary/20 text-brand-primary' : 'bg-surface-subtle text-mutedText'}`}>
+              <span className={`p-2 rounded-full transition-transform duration-300 inline-flex items-center justify-center ${isOpen ? 'rotate-180 bg-brand-primary/20 text-brand-primary' : 'bg-surface-subtle text-mutedText'}`}>
                 <FiChevronDown className="w-5 h-5" />
-              </div>
-            </button>
+              </span>
+            </summary>
             {isOpen && (
               <div className="px-6 pb-6 pt-2 text-secondaryText text-sm md:text-base leading-relaxed border-t border-surface-border animate-fade-in-up">
                 {faq.answer}
               </div>
             )}
-          </div>
+          </details>
         );
       })}
     </div>

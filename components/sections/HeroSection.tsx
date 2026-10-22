@@ -9,12 +9,12 @@ export const HeroSection: React.FC = () => {
   return (
     <section className="relative py-20 lg:py-28 overflow-hidden bg-surface-main text-primaryText">
       <div className="container max-w-5xl mx-auto flex flex-col items-center text-center relative z-10">
-        <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-surface-subtle border border-surface-border text-primaryText mb-8 shadow-sm">
+        <span className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-surface-subtle border border-surface-border text-primaryText mb-8 shadow-sm">
           <span className="w-2 h-2 rounded-full bg-brand-primary" />
           <span className="text-xs font-semibold uppercase tracking-wider text-secondaryText">
             Production Software • Dedicated Engineering • 4-Hour Response SLA
           </span>
-        </div>
+        </span>
 
         <h1 className="text-4xl sm:text-5xl md:text-6xl font-extrabold leading-[1.15] tracking-tight mb-6 max-w-4xl text-primaryText">
           We Build Custom Software, Cloud Platforms & Scalable Systems
@@ -49,14 +49,14 @@ export const HeroSection: React.FC = () => {
           </Link>
         </div>
 
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 w-full pt-8 border-t border-surface-border">
+        <section className="grid grid-cols-2 md:grid-cols-4 gap-4 w-full pt-8 border-t border-surface-border">
           {[
             { metric: '150+', label: 'Global Clients', detail: 'Long-term client trust' },
             { metric: '80+', label: 'Delivered Projects', detail: 'Verified production systems' },
             { metric: '50+', label: 'Automations Built', detail: 'Workflow engines' },
             { metric: '<4 Hours', label: 'Response SLA', detail: 'Direct technical response' }
           ].map((stat, idx) => (
-            <div
+            <article
               key={idx}
               className="p-5 rounded-2xl flex flex-col items-center text-center bg-surface-card border border-surface-border hover:border-brand-primary/40 transition-colors duration-200"
             >
@@ -65,9 +65,9 @@ export const HeroSection: React.FC = () => {
               </span>
               <span className="text-sm font-semibold text-secondaryText mt-1.5">{stat.label}</span>
               <span className="text-xs text-mutedText mt-1">{stat.detail}</span>
-            </div>
+            </article>
           ))}
-        </div>
+        </section>
       </div>
     </section>
   );

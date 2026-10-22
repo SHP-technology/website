@@ -36,7 +36,7 @@ export const MethodologySection: React.FC = () => {
       num: '06',
       title: '24/7 SLA & Maintenance',
       badge: 'Post-Launch',
-      desc: 'Dedicated 4-hour response SLA support, automated backups, continuous security patches, and scalable feature expansion.'
+      desc: 'Dedicated 4-hour response SLA support, automated backups, continuous security patches, and scalable enhancement velocity.'
     }
   ];
 
@@ -57,7 +57,7 @@ export const MethodologySection: React.FC = () => {
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {steps.map((step, i) => (
-            <div
+            <article
               key={i}
               className="p-8 rounded-2xl bg-surface-card border border-surface-border hover:border-brand-accent/50 shadow-xl transition-all duration-300 relative flex flex-col justify-between group "
             >
@@ -79,7 +79,7 @@ export const MethodologySection: React.FC = () => {
                   {step.desc}
                 </p>
               </div>
-            </div>
+            </article>
           ))}
         </div>
       </div>

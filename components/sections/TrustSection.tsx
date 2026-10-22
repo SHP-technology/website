@@ -12,8 +12,8 @@ export const TrustSection: React.FC = () => {
     {
       icon: <FiDollarSign className="w-6 h-6 text-brand-primary" />,
       badge: 'No Surprise Charges',
-      title: 'Transparent Fixed Pricing',
-      desc: 'Clear scope and upfront fixed-rate milestones. No hidden fees or unexpected invoices.'
+      title: 'Predictable Fixed Milestones',
+      desc: 'Clear scope and upfront milestone estimates. No hidden fees or unexpected invoices.'
     },
     {
       icon: <FiZap className="w-6 h-6 text-brand-accent" />,
@@ -55,15 +55,15 @@ export const TrustSection: React.FC = () => {
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {trustPoints.map((pt, i) => (
-            <div
+            <article
               key={i}
               className="p-6 rounded-2xl bg-surface-card border border-surface-border hover:border-brand-accent/40 shadow-lg hover:shadow-2xl transition-all duration-300 flex flex-col justify-between group "
             >
               <div>
                 <div className="flex items-center justify-between mb-4">
-                  <div className="p-3 rounded-2xl bg-surface-subtle border border-surface-border  transition-transform">
+                  <span className="p-3 rounded-2xl bg-surface-subtle border border-surface-border inline-flex items-center justify-center transition-transform">
                     {pt.icon}
-                  </div>
+                  </span>
                   <span className="text-[10px] font-bold uppercase tracking-wider px-2.5 py-1 rounded-full bg-surface-subtle text-secondaryText border border-surface-border">
                     {pt.badge}
                   </span>
@@ -75,7 +75,7 @@ export const TrustSection: React.FC = () => {
                   {pt.desc}
                 </p>
               </div>
-            </div>
+            </article>
           ))}
         </div>
       </div>

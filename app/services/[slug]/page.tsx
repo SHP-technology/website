@@ -86,13 +86,13 @@ export default async function ServiceDetailPage({ params }: Props) {
           <span>← Back to All Services</span>
         </Link>
 
-        <div className="p-8 md:p-12 rounded-2xl bg-surface-card border border-surface-border shadow-2xl mb-12 relative overflow-hidden">
+        <header className="p-8 md:p-12 rounded-2xl bg-surface-card border border-surface-border shadow-2xl mb-12 relative overflow-hidden">
           <span className="text-xs font-bold uppercase tracking-wider text-brand-primary block mb-2">{service.category}
           </span>
           <h1 className="text-3xl md:text-5xl font-extrabold text-primaryText tracking-tight mb-4">
             {service.title}
           </h1>
-          <p className="text-secondaryText text-lg md:text-xl leading-relaxed mb-8 max-w-3xl font-normal">
+          <p className="text-secondaryText text-base md:text-lg leading-relaxed mb-8 max-w-3xl font-normal">
             {service.fullDescription}
           </p>
 
@@ -102,10 +102,10 @@ export default async function ServiceDetailPage({ params }: Props) {
               <FiArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
             </BaseButton>
           </div>
-        </div>
+        </header>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
-          <div className="p-8 rounded-2xl bg-surface-card border border-rose-500/30 shadow-xl">
+        <section className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
+          <article className="p-8 rounded-2xl bg-surface-card border border-rose-500/30 shadow-xl">
             <h3 className="text-xl font-bold text-primaryText mb-3 flex items-center gap-2">
               <FiZap className="w-5 h-5 text-rose-400" />
               The Problem We Solve
@@ -113,9 +113,9 @@ export default async function ServiceDetailPage({ params }: Props) {
             <p className="text-secondaryText text-sm leading-relaxed">
               {service.problemSolved}
             </p>
-          </div>
+          </article>
 
-          <div className="p-8 rounded-2xl bg-surface-card border border-brand-primary/30 shadow-xl">
+          <article className="p-8 rounded-2xl bg-surface-card border border-brand-primary/30 shadow-xl">
             <h3 className="text-xl font-bold text-primaryText mb-3 flex items-center gap-2">
               <FiShield className="w-5 h-5 text-brand-primary" />
               Key Benefits & Business Impact
@@ -128,11 +128,11 @@ export default async function ServiceDetailPage({ params }: Props) {
                 </li>
               ))}
             </ul>
-          </div>
-        </div>
+          </article>
+        </section>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-16">
-          <div className="p-8 rounded-2xl bg-surface-card border border-surface-border shadow-xl">
+        <section className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-16">
+          <article className="p-8 rounded-2xl bg-surface-card border border-surface-border shadow-xl">
             <h3 className="text-xl font-bold text-primaryText mb-4">
               What You Receive (Deliverables)
             </h3>
@@ -144,9 +144,9 @@ export default async function ServiceDetailPage({ params }: Props) {
                 </li>
               ))}
             </ul>
-          </div>
+          </article>
 
-          <div className="p-8 rounded-2xl bg-surface-card border border-surface-border shadow-xl">
+          <article className="p-8 rounded-2xl bg-surface-card border border-surface-border shadow-xl">
             <h3 className="text-xl font-bold text-primaryText mb-4">
               Technology Stack Used
             </h3>
@@ -160,8 +160,8 @@ export default async function ServiceDetailPage({ params }: Props) {
                 </span>
               ))}
             </div>
-          </div>
-        </div>
+          </article>
+        </section>
 
         <CtaBanner />
       </div>

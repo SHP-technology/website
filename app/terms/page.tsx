@@ -61,7 +61,7 @@ export default function TermsPage() {
 
       <LegalSection heading="3. Services, quotes & contracts">
         <LegalP>
-          Information on this website about our services (custom software development, cloud, AI, and related engineering work) is for general information and does not constitute a binding offer. Any engagement is governed by a separate written agreement — such as a proposal, Statement of Work (SOW), or Master Services Agreement (MSA) — which will set out the specific scope, deliverables, timelines, fees and payment terms. In the event of a conflict, that signed agreement prevails over these Terms.
+          Information on this website about our services (custom software development, cloud, AI, and related engineering work) is for general information and does not constitute a binding offer. Any engagement is governed by a separate written agreement (such as a proposal, Statement of Work (SOW), or Master Services Agreement (MSA)) which will set out the specific scope, deliverables, timelines, fees and payment terms. In the event of a conflict, that signed agreement prevails over these Terms.
         </LegalP>
       </LegalSection>
 
@@ -74,7 +74,7 @@ export default function TermsPage() {
 
       <LegalSection heading="5. Intellectual property">
         <LegalP>
-          All content on this website — including text, graphics, logos, the {legalConfig.tradingName} name and brand, layout and code — is owned by us or our licensors and is protected by intellectual-property laws. You may view and print pages for your own reference, but you must not copy, reproduce, republish or exploit any part of the site commercially without our prior written permission.
+          All content on this website (including text, graphics, logos, the {legalConfig.tradingName} name and brand, layout and code) is owned by us or our licensors and is protected by intellectual-property laws. You may view and print pages for your own reference, but you must not copy, reproduce, republish or exploit any part of the site commercially without our prior written permission.
         </LegalP>
         <LegalP>
           Ownership of deliverables we create for clients (and any pre-existing or third-party materials) is governed by the specific engagement agreement, not by these website Terms.

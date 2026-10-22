@@ -25,7 +25,7 @@ export const CompanyTimeline: React.FC = () => {
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
           {milestones.map((m, i) => (
-            <div
+            <article
               key={i}
               className="glass-card p-6 rounded-3xl flex flex-col justify-between border border-surface-border"
             >
@@ -34,7 +34,7 @@ export const CompanyTimeline: React.FC = () => {
                 <h3 className="text-lg font-bold text-primaryText mb-2">{m.title}</h3>
                 <p className="text-xs text-secondaryText leading-relaxed">{m.desc}</p>
               </div>
-            </div>
+            </article>
           ))}
         </div>
       </div>

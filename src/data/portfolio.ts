@@ -24,7 +24,7 @@ export const portfolioData: CaseStudyItem[] = [
     title: 'SHP E-Learning Platform & Learning Management System',
     client: 'SHP Education',
     industry: 'EdTech & Learning',
-    summary: 'A full-featured cloud E-Learning platform with student portals, course enrollment, video lessons, quiz attempts, and automated certificates.',
+    summary: 'A complete cloud E-Learning platform with student portals, course enrollment, video lessons, quiz attempts, and automated certificates.',
     challenge: 'Educational institutions require scalable LMS platforms to stream video courses, manage student enrollments, and track quiz attempts without expensive server hosting overhead.',
     solution: 'Engineered a modern React & Vite frontend deployed to Cloudflare Pages edge CDN, backed by Django REST APIs and cloud PostgreSQL.',
     results: [
@@ -78,7 +78,7 @@ export const portfolioData: CaseStudyItem[] = [
     title: 'Conversational AI Assistant Frontend Portal',
     client: 'Jarvis AI Open Source',
     industry: 'Artificial Intelligence',
-    summary: 'A beautiful, feature-rich conversational AI assistant web frontend designed with a responsive chat interface and native dark mode support.',
+    summary: 'A fast, interactive conversational AI assistant web frontend designed with a responsive chat interface and native dark mode support.',
     challenge: 'AI chat interfaces are often slow, bulky, or poorly optimized for mobile screens, degrading the user experience during quick prompt cycles.',
     solution: 'Engineered a highly responsive frontend portal with local storage session caching, markdown streaming rendering, and layout transitions.',
     results: [

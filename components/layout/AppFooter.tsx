@@ -55,10 +55,10 @@ export const AppFooter: React.FC = () => {
               {siteConfig.description}
             </p>
 
-            <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-surface-card border border-surface-border text-xs font-semibold text-brand-primary w-fit">
+            <span className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-surface-card border border-surface-border text-xs font-semibold text-brand-primary w-fit">
               <span className="w-2 h-2 rounded-full bg-brand-primary animate-pulse" />
               <span>Response SLA: Within 4 Business Hours</span>
-            </div>
+            </span>
 
             <address className="not-italic text-xs text-mutedText leading-relaxed flex flex-col gap-1 mt-1">
               <span className="text-secondaryText font-semibold">{legalConfig.businessName}</span>
@@ -109,9 +109,9 @@ export const AppFooter: React.FC = () => {
                     rel="noopener noreferrer"
                     className={`text-xs text-secondaryText ${link.color} transition-all duration-200 flex items-center gap-2.5 group`}
                   >
-                    <div className="p-1.5 rounded-lg bg-surface-subtle border border-surface-border group-hover:border-current transition-colors">
+                    <span className="p-1.5 rounded-lg bg-surface-subtle border border-surface-border group-hover:border-current transition-colors inline-flex items-center justify-center">
                       <PlatformIcon platform={link.platform} className="w-4 h-4" />
-                    </div>
+                    </span>
                     <span className="font-semibold">{link.label}</span>
                     <FiArrowRight className="w-3 h-3 text-mutedText ml-auto group-hover:translate-x-1 transition-transform" />
                   </a>
@@ -121,7 +121,7 @@ export const AppFooter: React.FC = () => {
           </div>
         </div>
 
-        <div className="pt-8 border-t border-surface-border flex flex-col gap-6">
+        <section className="pt-8 border-t border-surface-border flex flex-col gap-6">
           <nav aria-label="Legal" className="flex flex-wrap items-center gap-x-6 gap-y-2">
             {legalLinks.map((link) => (
               <Link
@@ -141,7 +141,7 @@ export const AppFooter: React.FC = () => {
               <span>Zero Vendor Lock-In</span>
             </div>
           </div>
-        </div>
+        </section>
       </div>
     </footer>
   );

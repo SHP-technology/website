@@ -24,7 +24,7 @@ export const faqs: FaqItem[] = [
   {
     id: 3,
     question: "Do you offer post-launch support and maintenance?",
-    answer: "Yes, we offer ongoing enterprise maintenance, security monitoring, infrastructure scaling, and feature updates under flexible SLA agreements.",
+    answer: "Yes, we offer ongoing enterprise maintenance, security monitoring, infrastructure scaling, and capability updates under flexible SLA agreements.",
     category: "Support",
     order: 3
   },

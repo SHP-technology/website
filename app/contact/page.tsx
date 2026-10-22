@@ -68,13 +68,13 @@ export default function ContactPage() {
 
         <div className="grid grid-cols-1 lg:grid-cols-5 gap-10">
           <div className="lg:col-span-2 flex flex-col gap-6">
-            <div className="p-8 rounded-2xl bg-surface-card border border-surface-border shadow-2xl">
+            <aside className="p-8 rounded-2xl bg-surface-card border border-surface-border shadow-2xl">
               <h3 className="text-xl font-bold text-primaryText mb-6">Direct Engineering Contact</h3>
               <div className="flex flex-col gap-5">
                 <a href={`mailto:${siteConfig.contact.contactEmail}`} className="flex items-center gap-3.5 text-secondaryText hover:text-brand-primary transition-colors group">
-                  <div className="p-3 rounded-2xl bg-brand-primary/10 border border-brand-primary/20 text-brand-primary  transition-transform">
+                  <span className="p-3 rounded-2xl bg-brand-primary/10 border border-brand-primary/20 text-brand-primary inline-flex items-center justify-center transition-transform">
                     <PlatformIcon platform="email" className="w-5 h-5" />
-                  </div>
+                  </span>
                   <div>
                     <span className="text-xs text-mutedText block font-semibold">General Contact & Queries</span>
                     <span className="text-sm font-bold text-primaryText group-hover:text-brand-primary">{siteConfig.contact.contactEmail}</span>
@@ -82,9 +82,9 @@ export default function ContactPage() {
                 </a>
 
                 <a href={`mailto:${siteConfig.contact.supportEmail}`} className="flex items-center gap-3.5 text-secondaryText hover:text-brand-primary transition-colors group">
-                  <div className="p-3 rounded-2xl bg-brand-primary/10 border border-brand-primary/20 text-brand-primary  transition-transform">
+                  <span className="p-3 rounded-2xl bg-brand-primary/10 border border-brand-primary/20 text-brand-primary inline-flex items-center justify-center transition-transform">
                     <PlatformIcon platform="email" className="w-5 h-5" />
-                  </div>
+                  </span>
                   <div>
                     <span className="text-xs text-mutedText block font-semibold">Customer & Tech Support</span>
                     <span className="text-sm font-bold text-primaryText group-hover:text-brand-primary">{siteConfig.contact.supportEmail}</span>
@@ -92,9 +92,9 @@ export default function ContactPage() {
                 </a>
 
                 <a href={`mailto:${siteConfig.contact.salesEmail}`} className="flex items-center gap-3.5 text-secondaryText hover:text-brand-primary transition-colors group">
-                  <div className="p-3 rounded-2xl bg-brand-primary/10 border border-brand-primary/20 text-brand-primary  transition-transform">
+                  <span className="p-3 rounded-2xl bg-brand-primary/10 border border-brand-primary/20 text-brand-primary inline-flex items-center justify-center transition-transform">
                     <PlatformIcon platform="email" className="w-5 h-5" />
-                  </div>
+                  </span>
                   <div>
                     <span className="text-xs text-mutedText block font-semibold">Sales & Business Inquiries</span>
                     <span className="text-sm font-bold text-primaryText group-hover:text-brand-primary">{siteConfig.contact.salesEmail}</span>
@@ -102,9 +102,9 @@ export default function ContactPage() {
                 </a>
 
                 <a href={`mailto:${siteConfig.contact.careersEmail}`} className="flex items-center gap-3.5 text-secondaryText hover:text-brand-primary transition-colors group">
-                  <div className="p-3 rounded-2xl bg-brand-primary/10 border border-brand-primary/20 text-brand-primary  transition-transform">
+                  <span className="p-3 rounded-2xl bg-brand-primary/10 border border-brand-primary/20 text-brand-primary inline-flex items-center justify-center transition-transform">
                     <PlatformIcon platform="email" className="w-5 h-5" />
-                  </div>
+                  </span>
                   <div>
                     <span className="text-xs text-mutedText block font-semibold">Jobs & Recruitment</span>
                     <span className="text-sm font-bold text-primaryText group-hover:text-brand-primary">{siteConfig.contact.careersEmail}</span>
@@ -112,9 +112,9 @@ export default function ContactPage() {
                 </a>
 
                 <a href={`tel:${siteConfig.contact.phone.replace(/\s+/g, '')}`} className="flex items-center gap-3.5 text-secondaryText hover:text-brand-primary transition-colors group">
-                  <div className="p-3 rounded-2xl bg-brand-primary/10 border border-brand-primary/20 text-brand-primary  transition-transform">
+                  <span className="p-3 rounded-2xl bg-brand-primary/10 border border-brand-primary/20 text-brand-primary inline-flex items-center justify-center transition-transform">
                     <PlatformIcon platform="phone" className="w-5 h-5" />
-                  </div>
+                  </span>
                   <div>
                     <span className="text-xs text-mutedText block font-semibold">Call Direct Line</span>
                     <span className="text-sm font-bold text-primaryText group-hover:text-brand-primary">{siteConfig.contact.phone}</span>
@@ -122,18 +122,18 @@ export default function ContactPage() {
                 </a>
 
                 <a href={siteConfig.contact.whatsapp} target="_blank" rel="noopener noreferrer" className="flex items-center gap-3.5 text-secondaryText hover:text-[#25D366] transition-colors group">
-                  <div className="p-3 rounded-2xl bg-[#25D366]/10 border border-[#25D366]/30 text-[#25D366]  transition-transform">
+                  <span className="p-3 rounded-2xl bg-[#25D366]/10 border border-[#25D366]/30 text-[#25D366] inline-flex items-center justify-center transition-transform">
                     <PlatformIcon platform="whatsapp" className="w-5 h-5" />
-                  </div>
+                  </span>
                   <div>
                     <span className="text-xs text-mutedText block font-semibold">WhatsApp Instant Chat</span>
                     <span className="text-sm font-bold text-[#25D366]">Instant Response (&lt;5 mins)</span>
                   </div>
                 </a>
               </div>
-            </div>
+            </aside>
 
-            <div className="p-8 rounded-2xl bg-surface-card border border-surface-border shadow-2xl flex flex-col gap-4">
+            <aside className="p-8 rounded-2xl bg-surface-card border border-surface-border shadow-2xl flex flex-col gap-4">
               <div className="flex items-start gap-3">
                 <FiMapPin className="w-5 h-5 text-brand-primary shrink-0 mt-1" />
                 <div>
@@ -151,7 +151,7 @@ export default function ContactPage() {
                   <span className="text-xs font-semibold text-brand-accent">Within {siteConfig.contact.responseSLA}</span>
                 </div>
               </div>
-            </div>
+            </aside>
           </div>
 
           <div className="lg:col-span-3">

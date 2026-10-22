@@ -55,7 +55,7 @@ export default function ServicesPage() {
             End-to-End Engineering Solutions
           </h1>
           <p className="text-secondaryText text-lg md:text-xl leading-relaxed font-normal">
-            We partner with visionary companies to design, build, and deploy production-grade software applications backed by bi-weekly live demos and transparent fixed pricing.
+            We partner with forward-thinking companies to design, build, and deploy production-grade software applications with bi-weekly live demos and clear milestone deliverables.
           </p>
         </div>
 

@@ -20,7 +20,7 @@ export const TechStackSection: React.FC = () => {
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
           {techStackData.map((cat, i) => (
-            <div
+            <article
               key={i}
               className="p-6 rounded-3xl bg-surface-card border border-surface-border shadow-sm flex flex-col gap-5"
             >
@@ -41,7 +41,7 @@ export const TechStackSection: React.FC = () => {
                   </div>
                 ))}
               </div>
-            </div>
+            </article>
           ))}
         </div>
       </div>

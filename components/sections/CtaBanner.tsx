@@ -8,11 +8,11 @@ export const CtaBanner: React.FC = () => {
   return (
     <section className="py-16 bg-surface-main">
       <div className="container max-w-5xl mx-auto">
-        <div className="p-8 md:p-12 text-center bg-surface-card border border-surface-border rounded-2xl shadow-sm">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-surface-subtle border border-surface-border text-xs font-medium text-secondaryText mb-5 cursor-default">
+        <aside className="p-8 md:p-12 text-center bg-surface-card border border-surface-border rounded-2xl shadow-sm">
+          <span className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-surface-subtle border border-surface-border text-xs font-medium text-secondaryText mb-5 cursor-default">
             <FiShield className="w-4 h-4 text-brand-primary" />
             <span>Architecture Review • Transparent Scope • 4-Hour Response SLA</span>
-          </div>
+          </span>
 
           <h2 className="text-2xl md:text-4xl font-extrabold text-primaryText tracking-tight mb-4 max-w-2xl mx-auto leading-snug">
             Ready to Discuss Your Software Platform?
@@ -50,7 +50,7 @@ export const CtaBanner: React.FC = () => {
               <span>{siteConfig.contact.phone}</span>
             </a>
           </div>
-        </div>
+        </aside>
       </div>
     </section>
   );

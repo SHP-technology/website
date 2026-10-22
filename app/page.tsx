@@ -61,13 +61,13 @@ export default async function HomePage() {
       <section className="py-20 relative">
         <div className="container">
           <div className="text-center max-w-3xl mx-auto mb-16">
-            <span className="text-xs font-bold uppercase tracking-wider text-brand-primary block mb-2">Frequently Asked Questions
+            <span className="text-xs font-bold uppercase tracking-wider text-brand-primary block mb-2">Common Queries
             </span>
             <h2 className="text-3xl md:text-5xl font-extrabold text-primaryText tracking-tight mb-4">
               Everything You Need to Know
             </h2>
             <p className="text-secondaryText text-base md:text-lg">
-              Got questions about our technical stack, process, pricing, or support? We've got answers.
+              Direct insights into our architecture standards, timelines, development models, and post-launch SLAs.
             </p>
           </div>
 

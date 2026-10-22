@@ -57,7 +57,7 @@ export default function CareersPage() {
         <CareersOverview />
 
         {/* Culture & Benefits */}
-        <div className="my-24">
+        <section className="my-24">
           <div className="text-center max-w-3xl mx-auto mb-16">
             <span className="text-xs font-bold uppercase tracking-wider text-brand-primary block mb-2">Our Core Values
             </span>
@@ -68,16 +68,16 @@ export default function CareersPage() {
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
             {companyCultureValues.map((val, idx) => (
-              <div key={idx} className="p-6 rounded-2xl bg-surface-card border border-surface-border hover:border-brand-primary/40 shadow-xl transition-all duration-300">
+              <article key={idx} className="p-6 rounded-2xl bg-surface-card border border-surface-border hover:border-brand-primary/40 shadow-xl transition-all duration-300">
                 <h3 className="text-lg font-bold text-primaryText mb-2">{val.title}</h3>
                 <p className="text-xs text-mutedText leading-relaxed">{val.description}</p>
-              </div>
+              </article>
             ))}
           </div>
-        </div>
+        </section>
 
         {/* Hiring Process */}
-        <div className="mb-24">
+        <section className="mb-24">
           <div className="text-center max-w-3xl mx-auto mb-16">
             <span className="text-xs font-bold uppercase tracking-wider text-brand-primary block mb-2">Hiring Steps
             </span>
@@ -88,14 +88,14 @@ export default function CareersPage() {
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {hiringProcessSteps.map((step, idx) => (
-              <div key={idx} className="p-6 rounded-2xl bg-surface-card border border-surface-border shadow-xl">
+              <article key={idx} className="p-6 rounded-2xl bg-surface-card border border-surface-border shadow-xl">
                 <span className="text-2xl font-extrabold text-brand-primary block mb-2">{step.step}</span>
                 <h3 className="text-lg font-bold text-primaryText mb-2">{step.title}</h3>
                 <p className="text-xs text-mutedText leading-relaxed">{step.description}</p>
-              </div>
+              </article>
             ))}
           </div>
-        </div>
+        </section>
 
         <CtaBanner />
       </div>
