@@ -79,7 +79,7 @@ export const JobApplyForm: React.FC<JobApplyFormProps> = ({ jobTitle }) => {
         <BaseInput
           label="Email Address *"
           type="email"
-          placeholder="e.g. priyanshu@example.com"
+          placeholder="priyanshu@gmail.com"
           value={values.email}
           onChange={(e) => handleChange('email', e.target.value)}
           onBlur={() => handleBlur('email')}

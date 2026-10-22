@@ -70,7 +70,7 @@ export default async function AboutPage() {
             </div>
             <h3 className="text-xl font-bold text-primaryText mb-3">Our Mission</h3>
             <p className="text-secondaryText text-sm leading-relaxed">
-              Empower enterprise businesses worldwide with high-velocity, clean, and secure software solutions that automate operations and accelerate growth.
+              Equip businesses worldwide with high-velocity, clean, and secure software solutions that automate operations and accelerate growth.
             </p>
           </div>
 

@@ -115,7 +115,7 @@ export const ContactForm: React.FC = () => {
         <BaseInput
           label="Work Email *"
           type="email"
-          placeholder="e.g. harsh@example.com"
+          placeholder="harsh@gmail.com"
           value={values.email}
           onChange={(e) => handleChange('email', e.target.value)}
           onBlur={() => handleBlur('email')}
@@ -128,7 +128,7 @@ export const ContactForm: React.FC = () => {
         <BaseInput
           label="Contact Number / WhatsApp (Optional)"
           type="tel"
-          placeholder="e.g. +91 9301885654"
+          placeholder="+91 9301885654"
           value={values.phone}
           onChange={(e) => handleChange('phone', e.target.value)}
           onBlur={() => handleBlur('phone')}
@@ -136,7 +136,7 @@ export const ContactForm: React.FC = () => {
         />
         <BaseInput
           label="Company / Business Name (Optional)"
-          placeholder="e.g. Acme Corp"
+          placeholder="Your company name"
           value={values.company}
           onChange={(e) => handleChange('company', e.target.value)}
         />
