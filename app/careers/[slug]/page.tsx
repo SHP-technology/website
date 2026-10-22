@@ -10,7 +10,7 @@ import { siteConfig } from '@/src/config/site.config';
 import { getCanonicalUrl, buildBreadcrumbSchema } from '@/src/config/schema';
 
 interface Props {
-  params: { slug: string };
+  params: Promise<{ slug: string }>;
 }
 
 export async function generateStaticParams() {
@@ -18,7 +18,8 @@ export async function generateStaticParams() {
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
-  const job = jobsData.find((j) => j.slug === params.slug);
+  const { slug } = await params;
+  const job = jobsData.find((j) => j.slug === slug);
   if (!job) return { title: 'Job Role Not Found' };
 
   return {
@@ -27,8 +28,9 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   };
 }
 
-export default function JobDetailPage({ params }: Props) {
-  const job = jobsData.find((j) => j.slug === params.slug);
+export default async function JobDetailPage({ params }: Props) {
+  const { slug } = await params;
+  const job = jobsData.find((j) => j.slug === slug);
 
   if (!job) {
     notFound();

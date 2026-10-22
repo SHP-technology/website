@@ -11,7 +11,7 @@ import { siteConfig } from '@/src/config/site.config';
 import { getCanonicalUrl, buildBreadcrumbSchema } from '@/src/config/schema';
 
 interface Props {
-  params: { slug: string };
+  params: Promise<{ slug: string }>;
 }
 
 export async function generateStaticParams() {
@@ -19,7 +19,8 @@ export async function generateStaticParams() {
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
-  const service = servicesData.find((s) => s.slug === params.slug);
+  const { slug } = await params;
+  const service = servicesData.find((s) => s.slug === slug);
   if (!service) return { title: 'Service Not Found' };
 
   return {
@@ -28,8 +29,9 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   };
 }
 
-export default function ServiceDetailPage({ params }: Props) {
-  const service = servicesData.find((s) => s.slug === params.slug);
+export default async function ServiceDetailPage({ params }: Props) {
+  const { slug } = await params;
+  const service = servicesData.find((s) => s.slug === slug);
 
   if (!service) {
     notFound();
