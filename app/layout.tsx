@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import Script from 'next/script';
 import './globals.css';
 import { AppHeader } from '@/components/layout/AppHeader';
 import { AppFooter } from '@/components/layout/AppFooter';
@@ -123,6 +124,12 @@ export default function RootLayout({
           <BackToTop />
           <CookieConsent />
         </ThemeProvider>
+        {/* AI Chatbot Script */}
+        <Script
+          id="mbg-ai-chatbot"
+          src="https://consolewebwhatsapp.digitalmbg.com/webchat/embed.js?channelKey=qbhnLWIkmOPHhNLOpVrWWNOjX23UbTRo"
+          strategy="afterInteractive"
+        />
       </body>
     </html>
   );
