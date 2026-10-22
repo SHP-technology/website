@@ -4,7 +4,7 @@ import Link from 'next/link';
 import { portfolioData } from '@/src/data/portfolio';
 import { BaseBadge } from '@/components/common/BaseBadge';
 import { CtaBanner } from '@/components/sections/CtaBanner';
-import { ArrowLeft, ExternalLink, ShieldCheck, Zap } from 'lucide-react';
+import { FiArrowLeft, FiExternalLink, FiShield, FiZap } from 'react-icons/fi';
 import { JsonLd } from '@/components/common/JsonLd';
 import { siteConfig } from '@/src/config/site.config';
 import { getCanonicalUrl, buildBreadcrumbSchema } from '@/src/config/schema';
@@ -84,7 +84,7 @@ export default function CaseStudyDetailPage({ params }: Props) {
           href="/portfolio"
           className="inline-flex items-center gap-2 text-xs font-bold text-brand-primary hover:text-brand-accent mb-8 transition-colors"
         >
-          <ArrowLeft className="w-4 h-4" />
+          <FiArrowLeft className="w-4 h-4" />
           <span>← Back to All Case Studies</span>
         </Link>
 
@@ -114,7 +114,7 @@ export default function CaseStudyDetailPage({ params }: Props) {
               className="inline-flex items-center gap-2.5 px-7 py-3.5 rounded-xl bg-brand-primary hover:bg-brand-accent text-brand-buttonText font-bold text-sm shadow-xl shadow-brand-primary/20  active:scale-95 transition-all duration-200"
             >
               <span>Launch Live Demo / GitHub Repository</span>
-              <ExternalLink className="w-4 h-4" />
+              <FiExternalLink className="w-4 h-4" />
             </a>
           )}
         </div>
@@ -123,7 +123,7 @@ export default function CaseStudyDetailPage({ params }: Props) {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
           <div className="p-8 rounded-2xl bg-surface-card border border-surface-border shadow-xl">
             <h3 className="text-xl font-bold text-primaryText mb-3 flex items-center gap-2">
-              <Zap className="w-5 h-5 text-rose-400" />
+              <FiZap className="w-5 h-5 text-rose-400" />
               The Challenge
             </h3>
             <p className="text-secondaryText text-sm leading-relaxed">
@@ -133,7 +133,7 @@ export default function CaseStudyDetailPage({ params }: Props) {
 
           <div className="p-8 rounded-2xl bg-surface-card border border-surface-border shadow-xl">
             <h3 className="text-xl font-bold text-primaryText mb-3 flex items-center gap-2">
-              <ShieldCheck className="w-5 h-5 text-emerald-400" />
+              <FiShield className="w-5 h-5 text-emerald-400" />
               Our Technical Solution
             </h3>
             <p className="text-secondaryText text-sm leading-relaxed">

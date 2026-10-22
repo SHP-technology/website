@@ -19,11 +19,15 @@ export default function sitemap(): MetadataRoute.Sitemap {
     '/demo',
     '/careers',
     '/contact',
+    '/privacy-policy',
+    '/terms',
+    '/cookie-policy',
+    '/refund-policy',
   ].map((route) => ({
     url: `${baseUrl}${route}`,
     lastModified: new Date(),
-    changeFrequency: 'weekly' as const,
-    priority: route === '' ? 1.0 : 0.9,
+    changeFrequency: (route === '' || route === '/services' || route === '/portfolio' || route === '/careers') ? ('weekly' as const) : ('monthly' as const),
+    priority: route === '' ? 1.0 : (route === '/privacy-policy' || route === '/terms' || route === '/cookie-policy' || route === '/refund-policy') ? 0.5 : 0.9,
   }));
 
   const serviceRoutes = servicesData.map((service) => ({

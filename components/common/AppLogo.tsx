@@ -14,7 +14,7 @@ export const AppLogo: React.FC<AppLogoProps> = ({ className = '', showText = tru
       <div className="relative flex items-center justify-center transition-transform duration-300 group-hover:scale-105">
         <Image
           src="/assets/image.webp"
-          alt="SHP Technology — Software Development Company"
+          alt="SHP Technology - Software Development Company"
           width={150}
           height={60}
           priority

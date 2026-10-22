@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useState } from 'react';
-import { ChevronDown } from 'lucide-react';
+import { FiChevronDown } from 'react-icons/fi';
 import { ApiFaq } from '@/services/api';
 
 interface FaqAccordionProps {
@@ -22,7 +22,7 @@ export const FaqAccordion: React.FC<FaqAccordionProps> = ({ faqs }) => {
         return (
           <div
             key={faq.id || idx}
-            className="rounded-2xl border border-surface-border bg-surface-card backdrop-blur-md overflow-hidden transition-all duration-300"
+            className="rounded-2xl border border-surface-border bg-surface-card  overflow-hidden transition-all duration-300"
           >
             <button
               onClick={() => toggle(idx)}
@@ -32,7 +32,7 @@ export const FaqAccordion: React.FC<FaqAccordionProps> = ({ faqs }) => {
                 {faq.question}
               </span>
               <div className={`p-2 rounded-full transition-transform duration-300 ${isOpen ? 'rotate-180 bg-brand-primary/20 text-brand-primary' : 'bg-surface-subtle text-mutedText'}`}>
-                <ChevronDown className="w-5 h-5" />
+                <FiChevronDown className="w-5 h-5" />
               </div>
             </button>
             {isOpen && (

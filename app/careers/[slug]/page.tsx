@@ -4,7 +4,7 @@ import Link from 'next/link';
 import { jobsData } from '@/src/data/jobs';
 import { BaseBadge } from '@/components/common/BaseBadge';
 import { JobApplyForm } from '@/components/forms/JobApplyForm';
-import { ArrowLeft, MapPin, Briefcase, CheckCircle2 } from 'lucide-react';
+import { FiArrowLeft, FiBriefcase, FiCheckCircle, FiMapPin } from 'react-icons/fi';
 import { JsonLd } from '@/components/common/JsonLd';
 import { siteConfig } from '@/src/config/site.config';
 import { getCanonicalUrl, buildBreadcrumbSchema } from '@/src/config/schema';
@@ -84,7 +84,7 @@ export default function JobDetailPage({ params }: Props) {
           href="/careers"
           className="inline-flex items-center gap-2 text-xs font-bold text-brand-primary hover:text-brand-accent mb-8 transition-colors"
         >
-          <ArrowLeft className="w-4 h-4" />
+          <FiArrowLeft className="w-4 h-4" />
           <span>← Back to All Open Roles</span>
         </Link>
 
@@ -96,10 +96,10 @@ export default function JobDetailPage({ params }: Props) {
                   {job.department}
                 </BaseBadge>
                 <span className="text-xs text-secondaryText flex items-center gap-1 font-semibold">
-                  <MapPin className="w-3.5 h-3.5 text-brand-primary" /> {job.location}
+                  <FiMapPin className="w-3.5 h-3.5 text-brand-primary" /> {job.location}
                 </span>
                 <span className="text-xs text-secondaryText flex items-center gap-1 font-semibold">
-                  <Briefcase className="w-3.5 h-3.5 text-brand-accent" /> {job.employmentType}
+                  <FiBriefcase className="w-3.5 h-3.5 text-brand-accent" /> {job.employmentType}
                 </span>
               </div>
 
@@ -116,7 +116,7 @@ export default function JobDetailPage({ params }: Props) {
                 <ul className="flex flex-col gap-2.5">
                   {job.responsibilities.map((r, idx) => (
                     <li key={idx} className="text-xs md:text-sm text-secondaryText flex items-start gap-2">
-                      <CheckCircle2 className="w-4 h-4 text-brand-primary shrink-0 mt-0.5" />
+                      <FiCheckCircle className="w-4 h-4 text-brand-primary shrink-0 mt-0.5" />
                       <span>{r}</span>
                     </li>
                   ))}
@@ -128,7 +128,7 @@ export default function JobDetailPage({ params }: Props) {
                 <ul className="flex flex-col gap-2.5">
                   {job.requirements.map((req, idx) => (
                     <li key={idx} className="text-xs md:text-sm text-secondaryText flex items-start gap-2">
-                      <CheckCircle2 className="w-4 h-4 text-brand-accent shrink-0 mt-0.5" />
+                      <FiCheckCircle className="w-4 h-4 text-brand-accent shrink-0 mt-0.5" />
                       <span>{req}</span>
                     </li>
                   ))}

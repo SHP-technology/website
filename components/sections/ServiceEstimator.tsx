@@ -3,7 +3,7 @@
 import React, { useState } from 'react';
 import { BaseBadge } from '@/components/common/BaseBadge';
 import { BaseButton } from '@/components/common/BaseButton';
-import { Calculator, CheckCircle2 } from 'lucide-react';
+import { FiActivity, FiCheckCircle } from 'react-icons/fi';
 
 export const ServiceEstimator: React.FC = () => {
   const [projectType, setProjectType] = useState<'web' | 'cloud' | 'ai' | 'full'>('web');
@@ -109,7 +109,7 @@ export const ServiceEstimator: React.FC = () => {
           </div>
 
           <div className="p-8 rounded-2xl bg-surface-card border border-surface-border flex flex-col items-center justify-center text-center relative overflow-hidden">
-            <Calculator className="w-8 h-8 text-brand-accent mb-2" />
+            <FiActivity className="w-8 h-8 text-brand-accent mb-2" />
             <span className="text-xs uppercase tracking-wider text-mutedText font-bold">Estimated Starting Price</span>
             <span className="text-4xl md:text-5xl font-extrabold text-brand-primary my-2">
               ${calculatedEstimate}

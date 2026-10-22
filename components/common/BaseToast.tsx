@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useEffect } from 'react';
-import { CheckCircle2, AlertCircle, X } from 'lucide-react';
+import { FiAlertCircle, FiCheckCircle, FiX } from 'react-icons/fi';
 
 export interface ToastProps {
   show: boolean;
@@ -34,12 +34,12 @@ export const BaseToast: React.FC<ToastProps> = ({
   const isSuccess = type === 'success';
 
   return (
-    <div className="fixed bottom-6 left-6 z-50 max-w-md w-full p-4 rounded-2xl bg-surface-card text-primaryText border border-surface-border shadow-2xl backdrop-blur-xl animate-fade-in-up flex items-start gap-3">
+    <div className="fixed bottom-6 left-6 z-50 max-w-md w-full p-4 rounded-2xl bg-surface-card text-primaryText border border-surface-border shadow-2xl  animate-fade-in-up flex items-start gap-3">
       <div className="mt-0.5 shrink-0">
         {isSuccess ? (
-          <CheckCircle2 className="w-5 h-5 text-brand-primary" />
+          <FiCheckCircle className="w-5 h-5 text-brand-primary" />
         ) : (
-          <AlertCircle className="w-5 h-5 text-rose-400" />
+          <FiAlertCircle className="w-5 h-5 text-rose-400" />
         )}
       </div>
       <div className="flex-1 pr-2">
@@ -51,7 +51,7 @@ export const BaseToast: React.FC<ToastProps> = ({
         className="p-1 rounded-lg text-mutedText hover:text-primaryText hover:bg-surface-subtle transition-colors"
         aria-label="Close notification"
       >
-        <X className="w-4 h-4" />
+        <FiX className="w-4 h-4" />
       </button>
     </div>
   );

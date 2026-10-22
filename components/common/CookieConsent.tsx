@@ -97,7 +97,7 @@ export const CookieConsent: React.FC = () => {
       aria-label="Cookie consent"
       className="fixed inset-x-0 bottom-0 z-[70] p-3 sm:p-4"
     >
-      <div className="container max-w-4xl mx-auto rounded-2xl border border-surface-border bg-surface-card/95 backdrop-blur-xl shadow-2xl p-4 sm:p-5 flex flex-col md:flex-row md:items-center gap-4">
+      <div className="container max-w-4xl mx-auto rounded-2xl border border-surface-border bg-surface-card/95  shadow-2xl p-4 sm:p-5 flex flex-col md:flex-row md:items-center gap-4">
         <p className="text-xs sm:text-sm text-secondaryText leading-relaxed flex-1">
           We use strictly-necessary cookies to run this site and, with your consent, Google Analytics to understand
           how it's used. No analytics run until you accept. See our{' '}
@@ -114,14 +114,14 @@ export const CookieConsent: React.FC = () => {
           <button
             type="button"
             onClick={reject}
-            className="px-4 py-2.5 rounded-xl border border-surface-border text-primaryText text-xs sm:text-sm font-semibold hover:bg-surface-subtle focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-accent focus-visible:ring-offset-2 focus-visible:ring-offset-surface-main transition-colors cursor-pointer"
+            className="px-4 py-2.5 rounded-xl border border-surface-border text-primaryText text-xs sm:text-sm font-semibold hover:bg-surface-subtle focus:outline-none focus:outline-emerald-500 transition-colors cursor-pointer"
           >
             Reject non-essential
           </button>
           <button
             type="button"
             onClick={accept}
-            className="px-5 py-2.5 rounded-xl bg-brand-primary hover:bg-brand-accent text-brand-buttonText text-xs sm:text-sm font-extrabold shadow-md focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-accent focus-visible:ring-offset-2 focus-visible:ring-offset-surface-main transition-colors cursor-pointer"
+            className="px-5 py-2.5 rounded-xl bg-brand-primary hover:bg-brand-accent text-brand-buttonText text-xs sm:text-sm font-extrabold shadow-md focus:outline-none focus:outline-emerald-500 transition-colors cursor-pointer"
           >
             Accept
           </button>

@@ -24,7 +24,7 @@ export const BaseCheckbox = React.forwardRef<HTMLInputElement, BaseCheckboxProps
             type="checkbox"
             aria-invalid={error ? true : undefined}
             aria-describedby={error ? errorId : undefined}
-            className={`mt-0.5 h-4 w-4 shrink-0 rounded border-surface-border text-brand-primary accent-brand-primary focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-accent focus-visible:ring-offset-2 focus-visible:ring-offset-surface-main cursor-pointer ${className}`}
+            className={`mt-0.5 h-4 w-4 shrink-0 rounded border-surface-border text-brand-primary accent-brand-primary focus:outline-none focus:outline-emerald-500 cursor-pointer ${className}`}
             {...props}
           />
           <label htmlFor={id} className="text-xs text-secondaryText leading-relaxed cursor-pointer select-none">

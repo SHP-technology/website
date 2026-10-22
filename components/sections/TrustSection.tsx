@@ -1,40 +1,40 @@
 import React from 'react';
-import { ShieldCheck, Zap, Lock, DollarSign, Clock, Code2 } from 'lucide-react';
+import { FiClock, FiCode, FiDollarSign, FiLock, FiShield, FiZap } from 'react-icons/fi';
 
 export const TrustSection: React.FC = () => {
   const trustPoints = [
     {
-      icon: <Code2 className="w-6 h-6 text-brand-accent" />,
+      icon: <FiCode className="w-6 h-6 text-brand-accent" />,
       badge: 'Zero Vendor Lock-In',
       title: '100% Code & IP Ownership',
       desc: 'You own every line of source code, deployment scripts, and intellectual property from Day 1.'
     },
     {
-      icon: <DollarSign className="w-6 h-6 text-brand-primary" />,
+      icon: <FiDollarSign className="w-6 h-6 text-brand-primary" />,
       badge: 'No Surprise Charges',
       title: 'Transparent Fixed Pricing',
       desc: 'Clear scope and upfront fixed-rate milestones. No hidden fees or unexpected invoices.'
     },
     {
-      icon: <Zap className="w-6 h-6 text-brand-accent" />,
+      icon: <FiZap className="w-6 h-6 text-brand-accent" />,
       badge: 'Rapid Iteration',
       title: 'Bi-Weekly Live Demos',
-      desc: 'Watch your software evolve with live working previews every 2 weeks—no black-box delays.'
+      desc: 'Watch your software evolve with live working previews every 2 weeks-no black-box delays.'
     },
     {
-      icon: <Lock className="w-6 h-6 text-brand-primary" />,
+      icon: <FiLock className="w-6 h-6 text-brand-primary" />,
       badge: 'Bank-Grade Security',
       title: 'OWASP & SOC2 Standards',
       desc: 'Encrypted database fields, secure API gateways, and strict data privacy compliance.'
     },
     {
-      icon: <ShieldCheck className="w-6 h-6 text-brand-accent" />,
+      icon: <FiShield className="w-6 h-6 text-brand-accent" />,
       badge: 'Direct Communication',
       title: 'Direct Engineering Access',
-      desc: 'Work directly with expert solution architects—no middleman account managers.'
+      desc: 'Work directly with expert solution architects-no middleman account managers.'
     },
     {
-      icon: <Clock className="w-6 h-6 text-brand-primary" />,
+      icon: <FiClock className="w-6 h-6 text-brand-primary" />,
       badge: 'Dedicated Support',
       title: '4-Hour Response SLA',
       desc: 'Dedicated post-launch maintenance for rapid resolution of critical issues.'

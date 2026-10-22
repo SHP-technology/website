@@ -1,6 +1,6 @@
 import React from 'react';
 import Link from 'next/link';
-import { ArrowRight, Sparkles, Play } from 'lucide-react';
+import { FiArrowRight, FiAward, FiPlay } from 'react-icons/fi';
 import { PlatformIcon } from '@/components/common/PlatformIcon';
 import { BaseButton } from '@/components/common/BaseButton';
 import { siteConfig } from '@/src/config/site.config';
@@ -27,7 +27,7 @@ export const HeroSection: React.FC = () => {
         <div className="flex flex-wrap justify-center items-center gap-3.5 mb-16 w-full sm:w-auto">
           <BaseButton href="/contact" variant="primary" size="lg" className="group text-sm font-semibold shadow-md">
             <span>Schedule Consultation</span>
-            <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+            <FiArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
           </BaseButton>
 
           <a
@@ -44,7 +44,7 @@ export const HeroSection: React.FC = () => {
             href="/demo"
             className="inline-flex items-center gap-2 px-5 py-3.5 rounded-xl bg-surface-card text-secondaryText font-semibold text-sm border border-surface-border hover:text-primaryText hover:border-brand-primary transition-all duration-200"
           >
-            <Play className="w-3.5 h-3.5 text-brand-primary fill-current" />
+            <FiPlay className="w-3.5 h-3.5 text-brand-primary fill-current" />
             <span>Explore Demos</span>
           </Link>
         </div>

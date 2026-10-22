@@ -1,6 +1,6 @@
 import React from 'react';
 import Link from 'next/link';
-import { ExternalLink, ArrowRight } from 'lucide-react';
+import { FiArrowRight, FiExternalLink } from 'react-icons/fi';
 import { portfolioData } from '@/src/data/portfolio';
 import { BaseBadge } from '@/components/common/BaseBadge';
 
@@ -62,7 +62,7 @@ export const PortfolioSection: React.FC = () => {
                   className="text-xs font-semibold text-brand-primary hover:underline flex items-center gap-1.5"
                 >
                   <span>Read Case Study</span>
-                  <ArrowRight className="w-3.5 h-3.5" />
+                  <FiArrowRight className="w-3.5 h-3.5" />
                 </Link>
 
                 {project.url && (
@@ -73,7 +73,7 @@ export const PortfolioSection: React.FC = () => {
                     className="p-1.5 rounded-lg bg-surface-subtle border border-surface-border text-secondaryText hover:text-brand-primary transition-colors"
                     title="Visit Live Application"
                   >
-                    <ExternalLink className="w-3.5 h-3.5" />
+                    <FiExternalLink className="w-3.5 h-3.5" />
                   </a>
                 )}
               </div>

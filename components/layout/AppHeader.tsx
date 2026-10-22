@@ -3,7 +3,7 @@
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { Menu, X, ArrowRight } from 'lucide-react';
+import { FiArrowRight, FiMenu, FiX } from 'react-icons/fi';
 import { PlatformIcon } from '@/components/common/PlatformIcon';
 import { AppLogo } from '@/components/common/AppLogo';
 import { BaseButton } from '@/components/common/BaseButton';
@@ -46,8 +46,8 @@ export const AppHeader: React.FC = () => {
 
   return (
     <>
-      <header className={`sticky top-0 left-0 w-full h-[80px] z-50 bg-surface-card/90 backdrop-blur-md transition-all duration-300 border-b border-surface-border ${isScrolled ? 'shadow-lg' : ''}`}>
-        <div className="absolute top-0 left-0 w-full h-[3px] bg-gradient-to-r from-brand-accent via-brand-primary to-brand-accent" />
+      <header className={`sticky top-0 left-0 w-full h-[80px] z-50 bg-surface-card/90  transition-all duration-300 border-b border-surface-border ${isScrolled ? 'shadow-lg' : ''}`}>
+        <div className="absolute top-0 left-0 w-full h-[3px] bg-brand-primary" />
 
         <div className="container h-full flex items-center justify-between">
           <AppLogo />
@@ -68,7 +68,7 @@ export const AppHeader: React.FC = () => {
                 >
                   {item.label}
                   {isActive && (
-                    <span className="absolute bottom-0 left-0 w-full h-[2.5px] bg-gradient-to-r from-brand-accent to-brand-primary rounded-full" />
+                    <span className="absolute bottom-0 left-0 w-full h-[2.5px]  from-brand-accent to-brand-primary rounded-full" />
                   )}
                 </Link>
               );
@@ -79,7 +79,7 @@ export const AppHeader: React.FC = () => {
             <ThemeToggle />
             <BaseButton href="/contact" variant="primary" size="sm">
               Let's Talk
-              <ArrowRight className="w-4 h-4" />
+              <FiArrowRight className="w-4 h-4" />
             </BaseButton>
           </div>
 
@@ -96,7 +96,7 @@ export const AppHeader: React.FC = () => {
               aria-label="Open navigation menu"
               onClick={() => setMobileMenuOpen(true)}
             >
-              <Menu className="w-5 h-5" />
+              <FiMenu className="w-5 h-5" />
             </button>
           </div>
         </div>
@@ -106,7 +106,7 @@ export const AppHeader: React.FC = () => {
       {mobileMenuOpen && (
         <div className="fixed inset-0 z-[99999] bg-surface-main text-primaryText flex flex-col lg:hidden animate-fade-in-up">
           {/* Mobile Drawer Top Header Bar */}
-          <div className="h-[80px] px-4 sm:px-8 border-b border-surface-border flex items-center justify-between bg-surface-card/90 backdrop-blur-md shrink-0">
+          <div className="h-[80px] px-4 sm:px-8 border-b border-surface-border flex items-center justify-between bg-surface-card/90  shrink-0">
             <AppLogo />
             <div className="flex items-center gap-2.5">
               <ThemeToggle />
@@ -116,7 +116,7 @@ export const AppHeader: React.FC = () => {
                 aria-label="Close navigation menu"
                 onClick={() => setMobileMenuOpen(false)}
               >
-                <X className="w-5 h-5" />
+                <FiX className="w-5 h-5" />
               </button>
             </div>
           </div>
@@ -140,7 +140,7 @@ export const AppHeader: React.FC = () => {
                       onClick={() => setMobileMenuOpen(false)}
                     >
                       <span>{item.label}</span>
-                      <ArrowRight className="w-5 h-5 text-mutedText" />
+                      <FiArrowRight className="w-5 h-5 text-mutedText" />
                     </Link>
                   );
                 })}
@@ -155,7 +155,7 @@ export const AppHeader: React.FC = () => {
             <div className="flex flex-col gap-3 pt-6 border-t border-surface-border mt-auto">
               <BaseButton href="/contact" variant="primary" className="w-full py-4 text-base font-extrabold touch-manipulation" onClick={() => setMobileMenuOpen(false)}>
                 Start Your Project Today
-                <ArrowRight className="w-5 h-5 ml-1" />
+                <FiArrowRight className="w-5 h-5 ml-1" />
               </BaseButton>
               <a
                 href={siteConfig.contact.whatsapp}
@@ -164,7 +164,7 @@ export const AppHeader: React.FC = () => {
                 className="flex items-center justify-center gap-2.5 py-3.5 px-4 rounded-2xl bg-brand-primary hover:bg-brand-accent text-brand-buttonText font-bold text-sm transition-colors shadow-md touch-manipulation active:scale-95"
               >
                 <PlatformIcon platform="whatsapp" className="w-5 h-5 shrink-0" />
-                <span>WhatsApp — Instant Chat</span>
+                <span>WhatsApp - Instant Chat</span>
               </a>
             </div>
           </div>

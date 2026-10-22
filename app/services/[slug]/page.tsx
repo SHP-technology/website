@@ -5,7 +5,7 @@ import { servicesData } from '@/src/data/services';
 import { BaseBadge } from '@/components/common/BaseBadge';
 import { BaseButton } from '@/components/common/BaseButton';
 import { CtaBanner } from '@/components/sections/CtaBanner';
-import { CheckCircle2, ArrowLeft, ArrowRight, ShieldCheck, Zap } from 'lucide-react';
+import { FiArrowLeft, FiArrowRight, FiCheckCircle, FiShield, FiZap } from 'react-icons/fi';
 import { JsonLd } from '@/components/common/JsonLd';
 import { siteConfig } from '@/src/config/site.config';
 import { getCanonicalUrl, buildBreadcrumbSchema } from '@/src/config/schema';
@@ -80,7 +80,7 @@ export default function ServiceDetailPage({ params }: Props) {
           href="/services"
           className="inline-flex items-center gap-2 text-xs font-bold text-brand-accent hover:underline mb-8 transition-colors"
         >
-          <ArrowLeft className="w-4 h-4" />
+          <FiArrowLeft className="w-4 h-4" />
           <span>← Back to All Services</span>
         </Link>
 
@@ -97,7 +97,7 @@ export default function ServiceDetailPage({ params }: Props) {
           <div className="flex flex-wrap gap-4">
             <BaseButton href="/contact" variant="primary" size="lg" className="group shadow-xl font-bold">
               <span>Inquire About {service.title}</span>
-              <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+              <FiArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
             </BaseButton>
           </div>
         </div>
@@ -105,7 +105,7 @@ export default function ServiceDetailPage({ params }: Props) {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
           <div className="p-8 rounded-2xl bg-surface-card border border-rose-500/30 shadow-xl">
             <h3 className="text-xl font-bold text-primaryText mb-3 flex items-center gap-2">
-              <Zap className="w-5 h-5 text-rose-400" />
+              <FiZap className="w-5 h-5 text-rose-400" />
               The Problem We Solve
             </h3>
             <p className="text-secondaryText text-sm leading-relaxed">
@@ -115,13 +115,13 @@ export default function ServiceDetailPage({ params }: Props) {
 
           <div className="p-8 rounded-2xl bg-surface-card border border-brand-primary/30 shadow-xl">
             <h3 className="text-xl font-bold text-primaryText mb-3 flex items-center gap-2">
-              <ShieldCheck className="w-5 h-5 text-brand-primary" />
+              <FiShield className="w-5 h-5 text-brand-primary" />
               Key Benefits & Business Impact
             </h3>
             <ul className="flex flex-col gap-2.5">
               {service.benefits.map((b, idx) => (
                 <li key={idx} className="text-xs md:text-sm text-secondaryText flex items-start gap-2">
-                  <CheckCircle2 className="w-4 h-4 text-brand-primary shrink-0 mt-0.5" />
+                  <FiCheckCircle className="w-4 h-4 text-brand-primary shrink-0 mt-0.5" />
                   <span>{b}</span>
                 </li>
               ))}

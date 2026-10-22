@@ -18,7 +18,7 @@ export const testimonialsData: TestimonialItem[] = [
   },
   {
     id: 't-2',
-    quote: 'SHP Technologies developed dedicated hostel management software for Rooms Hostel. It streamlined our room allocations, tenant records, and automated billing, making daily hostel administration effortless.',
+    quote: 'SHP Technologies developed dedicated hostel management software for Rooms Hostel. It simplifyd our room allocations, tenant records, and automated billing, making daily hostel administration continuous and straightforward.',
     author: 'Arun Sahu',
     role: 'Owner',
     company: 'Rooms Hostel',

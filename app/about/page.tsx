@@ -4,7 +4,7 @@ import { BaseBadge } from '@/components/common/BaseBadge';
 import { CompanyTimeline } from '@/components/sections/CompanyTimeline';
 import { CtaBanner } from '@/components/sections/CtaBanner';
 import { siteConfig } from '@/src/config/site.config';
-import { Target, Eye, ShieldCheck } from 'lucide-react';
+import { FiEye, FiShield, FiTarget } from 'react-icons/fi';
 import { PlatformIcon } from '@/components/common/PlatformIcon';
 import { JsonLd } from '@/components/common/JsonLd';
 import { getCanonicalUrl, buildBreadcrumbSchema } from '@/src/config/schema';
@@ -66,7 +66,7 @@ export default async function AboutPage() {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-24">
           <div className="p-8 rounded-2xl bg-surface-card border border-surface-border shadow-sm transition-all duration-300">
             <div className="p-3.5 rounded-2xl bg-surface-subtle border border-surface-border w-fit mb-6 text-brand-accent">
-              <Target className="w-6 h-6" />
+              <FiTarget className="w-6 h-6" />
             </div>
             <h3 className="text-xl font-bold text-primaryText mb-3">Our Mission</h3>
             <p className="text-secondaryText text-sm leading-relaxed">
@@ -76,7 +76,7 @@ export default async function AboutPage() {
 
           <div className="p-8 rounded-2xl bg-surface-card border border-surface-border hover:border-brand-primary/40 shadow-xl transition-all duration-300">
             <div className="p-3.5 rounded-2xl bg-surface-subtle border border-surface-border w-fit mb-6 text-brand-primary">
-              <Eye className="w-6 h-6" />
+              <FiEye className="w-6 h-6" />
             </div>
             <h3 className="text-xl font-bold text-primaryText mb-3">Our Vision</h3>
             <p className="text-secondaryText text-sm leading-relaxed">
@@ -86,7 +86,7 @@ export default async function AboutPage() {
 
           <div className="p-8 rounded-2xl bg-surface-card border border-surface-border shadow-sm transition-all duration-300">
             <div className="p-3.5 rounded-2xl bg-surface-subtle border border-surface-border w-fit mb-6 text-brand-accent">
-              <ShieldCheck className="w-6 h-6" />
+              <FiShield className="w-6 h-6" />
             </div>
             <h3 className="text-xl font-bold text-primaryText mb-3">Our Commitment</h3>
             <p className="text-secondaryText text-sm leading-relaxed">
@@ -114,7 +114,7 @@ export default async function AboutPage() {
                 className="p-8 rounded-2xl bg-surface-card border border-surface-border shadow-sm flex flex-col justify-between"
               >
                 <div>
-                  <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-brand-accent to-brand-accentHover flex items-center justify-center text-brand-buttonText font-extrabold text-xl mb-6 shadow-lg shadow-brand-accent/20  transition-transform">
+                  <div className="w-16 h-16 rounded-2xl  from-brand-accent to-brand-accentHover flex items-center justify-center text-brand-buttonText font-extrabold text-xl mb-6 shadow-lg shadow-brand-accent/20  transition-transform">
                     {member.initials || member.name.split(' ').map((n) => n[0]).join('')}
                   </div>
                   <h3 className="text-xl font-bold text-primaryText mb-1">

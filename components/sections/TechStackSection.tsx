@@ -1,7 +1,7 @@
 import React from 'react';
 import { techStackData } from '@/src/data/techStack';
 import { BaseBadge } from '@/components/common/BaseBadge';
-import { Code2, Server, Cloud, Sparkles } from 'lucide-react';
+import { FiAward, FiCloud, FiCode, FiServer } from 'react-icons/fi';
 
 export const TechStackSection: React.FC = () => {
   return (
@@ -14,7 +14,7 @@ export const TechStackSection: React.FC = () => {
             Modern Battle-Tested Stack
           </h2>
           <p className="text-secondaryText text-base md:text-lg">
-            We leverage cutting-edge frameworks, cloud systems, and AI tooling for maximum reliability.
+            We utilize modern frameworks, cloud systems, and AI tooling for maximum reliability.
           </p>
         </div>
 

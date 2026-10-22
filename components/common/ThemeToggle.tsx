@@ -1,7 +1,7 @@
 'use client';
 
 import React from 'react';
-import { Sun, Moon } from 'lucide-react';
+import { FiMoon, FiSun } from 'react-icons/fi';
 import { useTheme } from '@/hooks/useTheme';
 
 interface ThemeToggleProps {
@@ -26,7 +26,7 @@ export const ThemeToggle: React.FC<ThemeToggleProps> = ({ className = '', showLa
           <span className="font-bold text-brand-primary">{activeIsDark ? 'Dark Mode' : 'Light Mode'}</span>
         </span>
         <div className="p-1.5 rounded-lg bg-surface-subtle border border-surface-border">
-          {activeIsDark ? <Sun className="w-4 h-4 text-brand-primary" /> : <Moon className="w-4 h-4 text-brand-primary" />}
+          {activeIsDark ? <FiSun className="w-4 h-4 text-brand-primary" /> : <FiMoon className="w-4 h-4 text-brand-primary" />}
         </div>
       </button>
     );
@@ -40,7 +40,7 @@ export const ThemeToggle: React.FC<ThemeToggleProps> = ({ className = '', showLa
       aria-label="Toggle Theme"
       title="Toggle Light / Dark Mode"
     >
-      {activeIsDark ? <Sun className="w-5 h-5 text-brand-primary" /> : <Moon className="w-5 h-5 text-brand-primary" />}
+      {activeIsDark ? <FiSun className="w-5 h-5 text-brand-primary" /> : <FiMoon className="w-5 h-5 text-brand-primary" />}
     </button>
   );
 };

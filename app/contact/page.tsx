@@ -2,7 +2,7 @@ import type { Metadata } from 'next';
 import { ContactForm } from '@/components/forms/ContactForm';
 import { BaseBadge } from '@/components/common/BaseBadge';
 import { siteConfig } from '@/src/config/site.config';
-import { MapPin, Clock } from 'lucide-react';
+import { FiClock, FiMapPin } from 'react-icons/fi';
 import { PlatformIcon } from '@/components/common/PlatformIcon';
 import { JsonLd } from '@/components/common/JsonLd';
 import { getCanonicalUrl, buildBreadcrumbSchema } from '@/src/config/schema';
@@ -135,7 +135,7 @@ export default function ContactPage() {
 
             <div className="p-8 rounded-2xl bg-surface-card border border-surface-border shadow-2xl flex flex-col gap-4">
               <div className="flex items-start gap-3">
-                <MapPin className="w-5 h-5 text-brand-primary shrink-0 mt-1" />
+                <FiMapPin className="w-5 h-5 text-brand-primary shrink-0 mt-1" />
                 <div>
                   <span className="text-xs text-mutedText font-bold uppercase tracking-wider block">Headquarters</span>
                   <span className="text-xs text-secondaryText font-medium">
@@ -145,7 +145,7 @@ export default function ContactPage() {
               </div>
 
               <div className="flex items-center gap-3 pt-3 border-t border-surface-border">
-                <Clock className="w-5 h-5 text-brand-accent shrink-0" />
+                <FiClock className="w-5 h-5 text-brand-accent shrink-0" />
                 <div>
                   <span className="text-xs text-mutedText font-bold uppercase tracking-wider block">Response SLA</span>
                   <span className="text-xs font-semibold text-brand-accent">Within {siteConfig.contact.responseSLA}</span>

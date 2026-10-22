@@ -65,7 +65,7 @@ export const siteConfig: CompanyConfig = {
   name: 'SHP Technology',
   legalName: 'SHP Technology',
   shortName: 'SHP.',
-  tagline: 'Software Development Company — Build • Automate • Grow',
+  tagline: 'Software Development Company - Build • Automate • Grow',
   subTagline: 'Software Development Company',
   motto: 'Build • Automate • Grow',
   description: 'SHP Technology is a software development company. We build high-performance custom enterprise web applications, cloud architecture, microservices, and AI automation solutions for businesses globally.',
@@ -127,7 +127,7 @@ export const siteConfig: CompanyConfig = {
       name: 'Sandesh Patel',
       initials: 'SP',
       role: 'Co-Founder & Head of Full-Stack Development',
-      bio: 'Co-Founder and Head of Full-Stack Development, specializing in building scalable, modern web applications and robust full-stack solutions.'
+      bio: 'Co-Founder and Head of Full-Stack Development, specializing in building scalable, modern web applications and resilient full-stack solutions.'
     },
     {
       name: 'Prachi Dabar',
@@ -151,7 +151,7 @@ export const siteConfig: CompanyConfig = {
       name: 'Aparna Verma',
       initials: 'AV',
       role: 'Operations Manager',
-      bio: 'Oversees operational efficiency, project coordination, resource allocation, and team workflows to support seamless project delivery.'
+      bio: 'Oversees operational efficiency, project coordination, resource allocation, and team workflows to support continuous project delivery.'
     }
   ]
 };
