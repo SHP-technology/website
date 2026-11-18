@@ -8,7 +8,10 @@ import { getCanonicalUrl, buildBreadcrumbSchema } from '@/src/config/schema';
 
 export const metadata: Metadata = {
   title: 'Careers & Open Roles | Join SHP Technology',
-  description: 'Explore open engineering positions at SHP Technology. Build enterprise web applications, cloud systems, and AI tools with remote-first perks.'
+  description: 'Explore open engineering positions at SHP Technology. Build enterprise web applications, cloud systems, and AI tools with remote-first perks.',
+  alternates: {
+    canonical: '/careers'
+  }
 };
 
 export default function CareersPage() {

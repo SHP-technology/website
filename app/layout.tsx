@@ -16,41 +16,66 @@ export const metadata: Metadata = {
     template: `%s | ${siteConfig.name}`
   },
   description: siteConfig.description,
+  alternates: {
+    canonical: '/',
+  },
   keywords: [
     'software development company',
     'custom web application development',
     'cloud architecture devops',
     'AI machine learning integration',
     'Next.js SSR',
-    'SHP Technology'
+    'SHP Technology',
+    'software company in Jabalpur',
+    'web development Jabalpur'
   ],
   authors: [{ name: 'SHP Technology', url: siteConfig.site.url }],
   creator: 'SHP Technology',
+  manifest: '/site.webmanifest',
+  icons: {
+    icon: [
+      { url: '/favicon.svg', type: 'image/svg+xml' },
+      { url: '/favicon.ico', sizes: 'any' }
+    ],
+    apple: '/favicon.svg'
+  },
   openGraph: {
     type: 'website',
     locale: 'en_US',
     url: siteConfig.site.url,
-    title: siteConfig.name,
+    title: `${siteConfig.name} - ${siteConfig.tagline}`,
     description: siteConfig.description,
     siteName: siteConfig.name,
     images: [
       {
         url: `${siteConfig.site.url}assets/image.webp`,
-        width: 1200,
-        height: 630,
+        width: 1254,
+        height: 1254,
         alt: siteConfig.name
       }
     ]
   },
   twitter: {
     card: 'summary_large_image',
-    title: siteConfig.name,
+    title: `${siteConfig.name} - ${siteConfig.tagline}`,
     description: siteConfig.description,
-    creator: '@shptech'
+    creator: '@shptech',
+    images: [`${siteConfig.site.url}assets/image.webp`]
   },
   robots: {
     index: true,
-    follow: true
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      'max-video-preview': -1,
+      'max-image-preview': 'large',
+      'max-snippet': -1,
+    }
+  },
+  verification: {
+    google: process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION || undefined,
+    yandex: process.env.NEXT_PUBLIC_YANDEX_VERIFICATION || undefined,
   }
 };
 
@@ -71,38 +96,63 @@ export default function RootLayout({
 }) {
   const jsonLd = {
     "@context": "https://schema.org",
-    "@type": "Organization",
-    "@id": `${siteConfig.site.url}#organization`,
-    "name": siteConfig.name,
-    "legalName": siteConfig.legalName,
-    "url": siteConfig.site.url,
-    "logo": {
-      "@type": "ImageObject",
-      "url": `${siteConfig.site.url}assets/logo.svg`,
-    },
-    "description": siteConfig.description,
-    "address": {
-      "@type": "PostalAddress",
-      "streetAddress": siteConfig.officeLocation.address,
-      "addressLocality": siteConfig.officeLocation.city,
-      "addressRegion": siteConfig.officeLocation.state,
-      "postalCode": siteConfig.officeLocation.zip,
-      "addressCountry": siteConfig.officeLocation.country,
-    },
-    "contactPoint": {
-      "@type": "ContactPoint",
-      "telephone": siteConfig.contact.phone,
-      "contactType": "customer service",
-      "email": siteConfig.contact.email,
-      "availableLanguage": ["English", "Hindi"],
-    },
-    "sameAs": [
-      siteConfig.socials.linkedin,
-      siteConfig.socials.instagram,
-      siteConfig.socials.facebook,
-      siteConfig.socials.twitter,
-      siteConfig.socials.indeed
-    ].filter(Boolean)
+    "@graph": [
+      {
+        "@type": ["Organization", "ProfessionalService"],
+        "@id": `${siteConfig.site.url}#organization`,
+        "name": siteConfig.name,
+        "legalName": siteConfig.legalName,
+        "url": siteConfig.site.url,
+        "logo": {
+          "@type": "ImageObject",
+          "url": `${siteConfig.site.url}assets/logo.svg`,
+        },
+        "image": `${siteConfig.site.url}assets/image.webp`,
+        "description": siteConfig.description,
+        "email": siteConfig.contact.email,
+        "telephone": siteConfig.contact.phone,
+        "priceRange": "$$",
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": siteConfig.officeLocation.address,
+          "addressLocality": siteConfig.officeLocation.city,
+          "addressRegion": siteConfig.officeLocation.state,
+          "postalCode": siteConfig.officeLocation.zip,
+          "addressCountry": siteConfig.officeLocation.country,
+        },
+        "geo": {
+          "@type": "GeoCoordinates",
+          "latitude": "23.1608",
+          "longitude": "79.9184"
+        },
+        "contactPoint": {
+          "@type": "ContactPoint",
+          "telephone": siteConfig.contact.phone,
+          "contactType": "customer service",
+          "email": siteConfig.contact.email,
+          "availableLanguage": ["English", "Hindi"],
+        },
+        "sameAs": [
+          siteConfig.socials.linkedin,
+          siteConfig.socials.instagram,
+          siteConfig.socials.facebook,
+          siteConfig.socials.twitter,
+          siteConfig.socials.github,
+          siteConfig.socials.indeed
+        ].filter(Boolean)
+      },
+      {
+        "@type": "WebSite",
+        "@id": `${siteConfig.site.url}#website`,
+        "url": siteConfig.site.url,
+        "name": siteConfig.name,
+        "description": siteConfig.description,
+        "publisher": {
+          "@id": `${siteConfig.site.url}#organization`
+        },
+        "inLanguage": "en-US"
+      }
+    ]
   };
 
   return (

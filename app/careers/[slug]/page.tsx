@@ -24,7 +24,10 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
   return {
     title: `${job.title} | SHP Careers`,
-    description: job.shortDescription
+    description: job.shortDescription,
+    alternates: {
+      canonical: `/careers/${slug}`
+    }
   };
 }
 

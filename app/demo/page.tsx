@@ -8,7 +8,10 @@ import { getCanonicalUrl, buildBreadcrumbSchema } from '@/src/config/schema';
 
 export const metadata: Metadata = {
   title: 'Request Product Demo | Live Interactive Sessions & Live Apps',
-  description: 'Launch live interactive demos of SHP E-Learning LMS, Restro POS, AI document engines, or schedule a guided custom demo.'
+  description: 'Launch live interactive demos of SHP E-Learning LMS, Restro POS, AI document engines, or schedule a guided custom demo.',
+  alternates: {
+    canonical: '/demo'
+  }
 };
 
 export default function DemoPage() {

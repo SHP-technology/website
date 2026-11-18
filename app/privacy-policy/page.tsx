@@ -10,6 +10,9 @@ export const metadata: Metadata = {
   title: 'Privacy Policy',
   description:
     'How SHP Technology collects, uses, shares and protects personal data, and your rights under the EU GDPR and India\'s Digital Personal Data Protection (DPDP) Act 2023.',
+  alternates: {
+    canonical: '/privacy-policy'
+  }
 };
 
 export default function PrivacyPolicyPage() {

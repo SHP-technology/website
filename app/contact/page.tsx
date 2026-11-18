@@ -9,7 +9,10 @@ import { getCanonicalUrl, buildBreadcrumbSchema } from '@/src/config/schema';
 
 export const metadata: Metadata = {
   title: 'Contact Engineering | Get in Touch',
-  description: 'Contact SHP Technology engineering team. Discuss custom software development, cloud infrastructure, AI automation, or request a quote.'
+  description: 'Contact SHP Technology engineering team. Discuss custom software development, cloud infrastructure, AI automation, or request a quote.',
+  alternates: {
+    canonical: '/contact'
+  }
 };
 
 export default function ContactPage() {

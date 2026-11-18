@@ -11,7 +11,10 @@ import { getCanonicalUrl, buildBreadcrumbSchema } from '@/src/config/schema';
 
 export const metadata: Metadata = {
   title: 'Engineering Services | Custom Enterprise Software & Cloud',
-  description: 'Explore SHP Technology engineering services: Custom enterprise web apps, cloud DevOps, AI systems integration, microservices, and security audits.'
+  description: 'Explore SHP Technology engineering services: Custom enterprise web apps, cloud DevOps, AI systems integration, microservices, and security audits.',
+  alternates: {
+    canonical: '/services'
+  }
 };
 
 export default function ServicesPage() {

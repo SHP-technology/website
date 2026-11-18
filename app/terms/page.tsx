@@ -10,6 +10,9 @@ export const metadata: Metadata = {
   title: 'Terms & Conditions',
   description:
     'The terms governing your use of the SHP Technology website and services, including acceptable use, intellectual property, disclaimers and limitation of liability.',
+  alternates: {
+    canonical: '/terms'
+  }
 };
 
 export default function TermsPage() {

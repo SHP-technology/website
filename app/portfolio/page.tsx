@@ -8,7 +8,10 @@ import { getCanonicalUrl, buildBreadcrumbSchema } from '@/src/config/schema';
 
 export const metadata: Metadata = {
   title: 'Portfolio & Case Studies | Delivered Software Platforms',
-  description: 'Explore live enterprise platforms, LMS web apps, cloud POS systems, and AI tools engineered by SHP Technology.'
+  description: 'Explore live enterprise platforms, LMS web apps, cloud POS systems, and AI tools engineered by SHP Technology.',
+  alternates: {
+    canonical: '/portfolio'
+  }
 };
 
 export default function PortfolioPage() {

@@ -9,6 +9,9 @@ export const metadata: Metadata = {
   title: 'Refund & Cancellation Policy',
   description:
     'SHP Technology refund, cancellation and revision terms for custom software development and related services.',
+  alternates: {
+    canonical: '/refund-policy'
+  }
 };
 
 export default function RefundPolicyPage() {

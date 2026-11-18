@@ -10,6 +10,9 @@ export const metadata: Metadata = {
   title: 'Cookie Policy',
   description:
     'What cookies and local storage SHP Technology uses, why, and how you can control them, including consent-gated Google Analytics.',
+  alternates: {
+    canonical: '/cookie-policy'
+  }
 };
 
 export default function CookiePolicyPage() {

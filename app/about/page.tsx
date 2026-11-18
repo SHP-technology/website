@@ -11,7 +11,10 @@ import { getCanonicalUrl, buildBreadcrumbSchema } from '@/src/config/schema';
 
 export const metadata: Metadata = {
   title: 'About Us | Leadership & Engineering Story',
-  description: 'Learn about SHP Technology, our leadership team, company timeline, and core engineering principles.'
+  description: 'Learn about SHP Technology, our leadership team, company timeline, and core engineering principles.',
+  alternates: {
+    canonical: '/about'
+  }
 };
 
 export const revalidate = 60;
