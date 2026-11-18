@@ -1,0 +1,21 @@
+{
+  "name": "SHP Technology",
+  "short_name": "SHP Tech",
+  "description": "Software development company engineering custom enterprise web applications, cloud architecture, and AI automation.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#0B1120",
+  "theme_color": "#0284C7",
+  "icons": [
+    {
+      "src": "/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml"
+    },
+    {
+      "src": "/favicon.ico",
+      "sizes": "48x48 32x32 16x16",
+      "type": "image/x-icon"
+    }
+  ]
+}
